@@ -19,9 +19,7 @@ interface PhysicsContainerProps {
   cursorForce?: number;
   cursorRadius?: number;
   gap?: number;
-  /** Порог скорости для засыпания (чем меньше, тем дольше симуляция) */
   sleepThreshold?: number;
-  /** Время неактивности перед засыпанием (мс) */
   sleepDelay?: number;
 }
 
@@ -33,7 +31,8 @@ interface BodyData {
   element: ReactNode;
 }
 
-export const PhysicsContainer: FC<PhysicsContainerProps> = ({
+// Внутренний компонент с физикой
+const PhysicsContainerInner: FC<PhysicsContainerProps> = ({
   children,
   className,
   cursorForce = 0.0005,
@@ -52,7 +51,6 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
   const cursorForceRef = useRef(cursorForce);
   const cursorRadiusRef = useRef(cursorRadius);
 
-  // Состояние сна
   const isAwakeRef = useRef(true);
   const lastActivityRef = useRef(Date.now());
   const sleepThresholdRef = useRef(sleepThreshold);
@@ -74,27 +72,24 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
     [children]
   );
 
-  // Пробуждение симуляции
   const wakeUp = useCallback(() => {
     lastActivityRef.current = Date.now();
 
     if (!isAwakeRef.current) {
       isAwakeRef.current = true;
 
-      // Перезапускаем анимацию
       if (!animationRef.current && engineRef.current) {
-        const update = () => {
+        const loopUpdate = () => {
           const engine = engineRef.current;
           const bodies = bodiesRef.current;
 
           if (!engine || bodies.length === 0) {
-            animationRef.current = requestAnimationFrame(update);
+            animationRef.current = requestAnimationFrame(loopUpdate);
             return;
           }
 
           Matter.Engine.update(engine, 1000 / 60);
 
-          // Сила от курсора
           if (mouseRef.current.isInside) {
             const cursorR = cursorRadiusRef.current;
             const cursorF = cursorForceRef.current;
@@ -115,7 +110,6 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
             });
           }
 
-          // Проверяем, нужно ли засыпать
           const allSleeping = bodies.every(({ body }) => {
             const speed = Math.sqrt(body.velocity.x ** 2 + body.velocity.y ** 2);
             const angularSpeed = Math.abs(body.angularVelocity);
@@ -125,13 +119,11 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
           const timeSinceActivity = Date.now() - lastActivityRef.current;
 
           if (allSleeping && timeSinceActivity > sleepDelayRef.current && !mouseRef.current.isInside) {
-            // Засыпаем
             isAwakeRef.current = false;
             animationRef.current = null;
             return;
           }
 
-          // Обновляем позиции
           const newPositions = new Map<number, { x: number; y: number; angle: number }>();
           bodies.forEach(({ id, body }) => {
             newPositions.set(id, {
@@ -142,15 +134,14 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
           });
           setPositions(newPositions);
 
-          animationRef.current = requestAnimationFrame(update);
+          animationRef.current = requestAnimationFrame(loopUpdate);
         };
 
-        animationRef.current = requestAnimationFrame(update);
+        animationRef.current = requestAnimationFrame(loopUpdate);
       }
     }
   }, []);
 
-  // Основной цикл обновления
   const update = useCallback(() => {
     const engine = engineRef.current;
     const bodies = bodiesRef.current;
@@ -162,7 +153,6 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
 
     Matter.Engine.update(engine, 1000 / 60);
 
-    // Сила от курсора
     if (mouseRef.current.isInside) {
       const cursorR = cursorRadiusRef.current;
       const cursorF = cursorForceRef.current;
@@ -183,7 +173,6 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
       });
     }
 
-    // Проверяем, нужно ли засыпать
     const allSleeping = bodies.every(({ body }) => {
       const speed = Math.sqrt(body.velocity.x ** 2 + body.velocity.y ** 2);
       const angularSpeed = Math.abs(body.angularVelocity);
@@ -198,7 +187,6 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
       return;
     }
 
-    // Обновляем позиции
     const newPositions = new Map<number, { x: number; y: number; angle: number }>();
     bodies.forEach(({ id, body }) => {
       newPositions.set(id, {
@@ -212,21 +200,25 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
     animationRef.current = requestAnimationFrame(update);
   }, []);
 
+  // Только для начального замера размера (без ресайза — ресайз обрабатывается через key)
   useEffect(() => {
     if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    if (rect.width > 0 && rect.height > 0) {
+      setContainerSize({ width: rect.width, height: rect.height });
+    }
 
     const observer = new ResizeObserver((entries) => {
       const entry = entries[0];
       if (entry) {
         const { width, height } = entry.contentRect;
         setContainerSize({ width, height });
-        wakeUp(); // Пробуждаем при ресайзе
       }
     });
 
     observer.observe(containerRef.current);
     return () => observer.disconnect();
-  }, [wakeUp]);
+  }, []);
 
   useEffect(() => {
     if (phase !== 'measure') return;
@@ -267,14 +259,14 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
           -wallThickness / 2,
           containerHeight / 2,
           wallThickness,
-          containerHeight * 2,
+          containerHeight * 20,
           { isStatic: true }
         ),
         Matter.Bodies.rectangle(
           containerWidth + wallThickness / 2,
           containerHeight / 2,
           wallThickness,
-          containerHeight * 2,
+          containerHeight * 20,
           { isStatic: true }
         ),
       ];
@@ -325,27 +317,6 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
     };
   }, []);
 
-  useEffect(() => {
-    if (phase !== 'physics') return;
-    if (!engineRef.current || wallsRef.current.length === 0) return;
-
-    const { width: containerWidth, height: containerHeight } = containerSize;
-    if (containerWidth === 0 || containerHeight === 0) return;
-
-    const wallThickness = 50;
-    const [floor, , rightWall] = wallsRef.current;
-
-    Matter.Body.setPosition(floor, {
-      x: containerWidth / 2,
-      y: containerHeight + wallThickness / 2,
-    });
-
-    Matter.Body.setPosition(rightWall, {
-      x: containerWidth + wallThickness / 2,
-      y: containerHeight / 2,
-    });
-  }, [phase, containerSize]);
-
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
@@ -366,11 +337,8 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
     mouseRef.current.isInside = false;
   };
 
-  // Клик тоже пробуждает
   const handleClick = () => {
     wakeUp();
-
-    // Добавляем небольшой импульс всем телам
     bodiesRef.current.forEach(({ body }) => {
       Matter.Body.applyForce(body, body.position, {
         x: (Math.random() - 0.5) * 0.001,
@@ -419,4 +387,35 @@ export const PhysicsContainer: FC<PhysicsContainerProps> = ({
         })}
     </div>
   );
+};
+
+// Обёртка с key-рестартом при ресайзе
+export const PhysicsContainer: FC<PhysicsContainerProps> = (props) => {
+  const [resetKey, setResetKey] = useState(0);
+  const lastWidthRef = useRef(typeof window !== 'undefined' ? window.innerWidth : 0);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const currentWidth = window.innerWidth;
+
+      // Игнорируем мелкие изменения (< 50px) — только значительный ресайз
+      if (Math.abs(currentWidth - lastWidthRef.current) < 50) return;
+
+      if (timerRef.current) clearTimeout(timerRef.current);
+
+      timerRef.current = setTimeout(() => {
+        lastWidthRef.current = currentWidth;
+        setResetKey((k) => k + 1);
+      }, 300);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  return <PhysicsContainerInner key={resetKey} {...props} />;
 };
