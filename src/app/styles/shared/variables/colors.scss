@@ -1,0 +1,25 @@
+﻿:root {
+  --color_text-accent_high--enabled: hsl(211, 100%, 50%);
+  --color_text-accent_high--hovered: hsl(211, 100%, 35%);
+  --color_text-accent_default--enabled: hsl(0, 0%, 8%);
+  --color_text-accent_default-inverted--enabled: hsl(0, 0%, 100%, 0.95);
+  // --color_text-accent_muted--enabled: hsla(0, 0%, 0%, 0.4);
+  --color_text-accent_muted--enabled: hsl(239.97deg 1% 46.34%);
+
+  --border_color-screen: hsla(0, 0%, 0%, 0.1);
+
+  --accent-primary__face-solid__isActive-false__state-enabled__target-bg: var(--color_text-accent_default--enabled);
+  --accent-primary__face-solid__isActive-false__state-hover__target-bg: rgba(74, 74, 74, 1);
+  --accent-primary__face-solid__isActive-false__state-any__target-text: var(--color_text-accent_default-inverted--enabled);
+
+  --accent-primary__face-light__isActive-false__state-enabled__target-bg: rgba(242, 243, 245, 1);
+  --accent-primary__face-light__isActive-false__state-hover__target-bg: rgba(232, 233, 235, 1);
+  --accent-primary__face-light__isActive-false__state-any__target-text: var(--color_text-accent_default--enabled);
+
+  --accent-primary__face-outline__isActive-false__state-enabled__target-border: rgba(34, 34, 34, 0.2);
+  --accent-primary__face-outline__isActive-false__state-hover__target-border: rgba(34, 34, 34, 0.4);
+  --accent-primary__face-outline__isActive-false__state-any__target-text: var(--color_text-accent_default--enabled);
+
+  --bento-bg: hsl(220, 1%, 97%);
+  --bg__accent-primary: hsl(0, 0%, 100%);
+}

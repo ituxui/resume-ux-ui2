@@ -1,0 +1,83 @@
+﻿.wrapper {
+  @include flex(row, center, flex-start);
+  width: 100%;
+  position: relative;
+  gap: 16px;
+  max-width: var(--bento-width);
+  --image-width: calc(var(--bento-width) / 3 - 16px);
+  --image-height: calc(var(--bento-width) / 4 - 16px);
+}
+
+.clickable {
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color_accent, #0066ff);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+.imageContainer {
+  background: var(--bento-bg);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.imageContainer,
+.image {
+  min-width: var(--image-width);
+  width: var(--image-width);
+  height: var(--image-height);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// @include media-m-breakpoint-and-up {
+//   .imageContainer {
+//     position: absolute;
+//     top: 0;
+//     left: calc(var(--image-width) * -1 - 44px);
+//   }
+// }
+
+@include media-s-breakpoint-and-down {
+  .wrapper {
+    // @include flex(column, flex-start, flex-start);
+    // flex-direction: column;
+    gap: 20px;
+  }
+
+  .imageContainer,
+  .image {
+    --image-width: min(120px, 14vw);
+    --image-height: min(80px, 14vw);
+  }
+
+  .imageContainer {
+    border-radius: min(24px, 4vw);
+  }
+}
+
+// .header {
+//   // ...
+// }
+
+// .heading {
+//   // ...
+// }
+
+// .description {
+//   // ...
+// }

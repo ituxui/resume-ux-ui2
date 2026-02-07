@@ -1,0 +1,40 @@
+﻿.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+
+  // Kind: island
+  &--kind-island {
+    box-shadow:
+      0px 0px 1px rgba(0, 0, 0, 0.07),
+      0px 1px 1px rgba(0, 0, 0, 0.06),
+      0px 3px 2px rgba(0, 0, 0, 0.03),
+      0px 6px 2px rgba(0, 0, 0, 0.01),
+      0px 9px 2px rgba(0, 0, 0, 0);
+  }
+
+  // Size: xl
+  &--size-xl {
+    height: 40px;
+    padding: 8px;
+    border-radius: 8px;
+
+    &.badge--with-text {
+      padding-right: 10px;
+    }
+  }
+
+  &__image {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
+  &__text {
+    font-size: 14px;
+    line-height: 1.2;
+    white-space: nowrap;
+  }
+}

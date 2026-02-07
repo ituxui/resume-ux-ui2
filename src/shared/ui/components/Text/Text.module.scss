@@ -1,0 +1,403 @@
+﻿// ═══════════════════════════════════════════════════════════════════════════
+// TEXT COMPONENT — Apple-inspired typography с Roboto Flex
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// БРЕЙКПОИНТЫ:
+// ┌─────────────┬─────────────┐
+// │ Desktop     │ > 768px     │
+// │ Tablet      │ 481–768px   │
+// │ Mobile      │ ≤ 480px     │
+// └─────────────┴─────────────┘
+
+// ═══════════════════════════════════════════════════════════════════════════
+// БАЗОВЫЕ СТИЛИ
+// ═══════════════════════════════════════════════════════════════════════════
+.text {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Flex', sans-serif;
+
+  --text-wght: 325;
+  --text-wdth: 102;
+  --text-opsz: 12;
+  --text-GRAD: 0;
+  --text-slnt: 0;
+  --text-XOPQ: 96;
+  --text-YOPQ: 79;
+  --text-XTRA: 483;
+  --text-YTLC: 532;
+  --text-YTUC: 722;
+  --text-YTAS: 727;
+  --text-YTDE: -218;
+  --text-YTFI: 717;
+
+  font-variation-settings:
+    'wght' var(--text-wght),
+    'wdth' var(--text-wdth),
+    'opsz' var(--text-opsz),
+    'GRAD' var(--text-GRAD),
+    'slnt' var(--text-slnt),
+    'XOPQ' var(--text-XOPQ),
+    'YOPQ' var(--text-YOPQ),
+    'XTRA' var(--text-XTRA),
+    'YTLC' var(--text-YTLC),
+    'YTUC' var(--text-YTUC),
+    'YTAS' var(--text-YTAS),
+    'YTDE' var(--text-YTDE),
+    'YTFI' var(--text-YTFI);
+
+  strong {
+    --text-wght: 600;
+    color: var(--color_text-accent_default--enabled);
+    font-variation-settings:
+      'wght' var(--text-wght),
+      'wdth' var(--text-wdth),
+      'opsz' var(--text-opsz),
+      'GRAD' var(--text-GRAD),
+      'slnt' var(--text-slnt),
+      'XOPQ' var(--text-XOPQ),
+      'YOPQ' var(--text-YOPQ),
+      'XTRA' var(--text-XTRA),
+      'YTLC' var(--text-YTLC),
+      'YTUC' var(--text-YTUC),
+      'YTAS' var(--text-YTAS),
+      'YTDE' var(--text-YTDE),
+      'YTFI' var(--text-YTFI);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ЦВЕТА ПО УМОЛЧАНИЮ
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Default (accent) by default
+.button-md,
+.button-lg,
+.button-xl,
+.list,
+.bento,
+.description,
+.meta,
+.label {
+  color: var(--color_text-accent_default--enabled);
+}
+
+// Muted by default
+.body,
+.table_td,
+.subheading,
+.caption {
+  color: var(--color_text-accent_muted--enabled);
+}
+
+// Inverted
+.button-md-on_invert,
+.button-lg-on_invert,
+.button-xl-on_invert {
+  color: var(--color_text-accent_default-inverted--enabled);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ЦВЕТОВЫЕ СХЕМЫ (для явного переопределения)
+// ═══════════════════════════════════════════════════════════════════════════
+.muted {
+  color: var(--color_text-accent_muted--enabled);
+}
+
+.default {
+  color: var(--color_text-accent_default--enabled);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BODY
+// ═══════════════════════════════════════════════════════════════════════════
+.body {
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+    line-height: 26px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// DESCRIPTION, subheading
+// ═══════════════════════════════════════════════════════════════════════════
+
+.description,
+.subheading {
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+.description {
+  --text-wght: 365;
+  --text-wdth: 100;
+  --text-opsz: 14;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BENTO
+// ═══════════════════════════════════════════════════════════════════════════
+.bento {
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: 0;
+
+  --text-XTRA: 480;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUTTON-MEDIUM
+// ═══════════════════════════════════════════════════════════════════════════
+.button-md {
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+
+  --text-wght: 440;
+  --text-XTRA: 478;
+  --text-YTLC: 528;
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUTTON-LARGE
+// ═══════════════════════════════════════════════════════════════════════════
+.button-lg {
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: 0.005em;
+
+  --text-wght: 430;
+  --text-XTRA: 480;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUTTON-EXTRA-LARGE
+// ═══════════════════════════════════════════════════════════════════════════
+.button-xl {
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: 0;
+
+  --text-wght: 420;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUTTON-SMALL-ON-INVERT
+// ═══════════════════════════════════════════════════════════════════════════
+.button-md-on_invert {
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+
+  --text-wght: 480;
+  --text-GRAD: 15;
+  --text-XTRA: 480;
+  --text-YTLC: 530;
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUTTON-MEDIUM-ON-INVERT
+// ═══════════════════════════════════════════════════════════════════════════
+.button-lg-on_invert {
+  font-size: 16px;
+  line-height: 1.35;
+  letter-spacing: 0.005em;
+
+  --text-wght: 480;
+  --text-GRAD: 15;
+  --text-XTRA: 482;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BUTTON-LARGE-ON-INVERT
+// ═══════════════════════════════════════════════════════════════════════════
+.button-xl-on_invert {
+  font-size: 18px;
+  line-height: 1.4;
+  letter-spacing: 0;
+
+  --text-wght: 480;
+  --text-GRAD: 15;
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LINK
+// ═══════════════════════════════════════════════════════════════════════════
+.link {
+  font-size: inherit;
+  line-height: inherit;
+  letter-spacing: inherit;
+  color: var(--color_text-accent_high--enabled);
+  text-decoration: none;
+  cursor: pointer;
+
+  --text-wght: 420;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TABLE-TD
+// ═══════════════════════════════════════════════════════════════════════════
+.table_td {
+  font-size: 16px;
+  line-height: 1.45;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+
+  --text-XTRA: 480;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// META
+// ═══════════════════════════════════════════════════════════════════════════
+.meta {
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+
+  --text-XTRA: 478;
+  --text-YTLC: 528;
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LIST
+// ═══════════════════════════════════════════════════════════════════════════
+.list {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0;
+
+  --text-XTRA: 480;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 15px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CAPTION
+// ═══════════════════════════════════════════════════════════════════════════
+.caption {
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.005em;
+
+  --text-XTRA: 480;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LABEL
+// ═══════════════════════════════════════════════════════════════════════════
+.label {
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.005em;
+
+  --text-wght: 400;
+  --text-XTRA: 480;
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+  }
+}

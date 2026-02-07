@@ -1,0 +1,39 @@
+﻿@use '../includes/index.scss' as *;
+
+:root {
+  --container-max-width: 1304px;
+  --readable-container-max-width: 768px;
+
+  --readable-container-min_text-width: 620px;
+  --margin-sections-vertical: 120px;
+  --margin-screens-horizontal: 24px;
+  --bento-width: 800px;
+
+  --gap--heading_section-to-description: 16px;
+
+  --size-md__height: 32px;
+  --size-md__gap: 4px;
+  --size-md__padding-to-text: 16px;
+  --size-md__padding-to-icon: 12px;
+
+  --size-lg__height: 40px;
+  --size-lg__gap: 6px;
+  --size-lg__padding-to-text: 20px;
+  --size-lg__padding-to-icon: 16px;
+
+  --size-xl__height: 56px;
+  --size-xl__gap: 8px;
+  --size-xl__padding-to-text: 24px;
+  --size-xl__padding-to-icon: 20px;
+
+  --padding__popover: 16px;
+
+  --bento__border-radius: 16px;
+
+  --bento__size-compact__padding: 16px;
+
+  @include media-s-breakpoint-and-down {
+    --margin-sections-vertical: 64px;
+    --margin-screens-horizontal: 16px;
+  }
+}

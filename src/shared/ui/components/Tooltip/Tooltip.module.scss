@@ -1,0 +1,101 @@
+﻿// ═══════════════════════════════════════════════════════════════════════════
+// TOOLTIP COMPONENT (Floating UI)
+// ═══════════════════════════════════════════════════════════════════════════
+
+$arrow-size: 6px;
+$bg-color: #1a1a1a;
+$max-width: 300px;
+
+.trigger {
+  display: inline-flex;
+}
+
+.tooltip {
+  max-width: $max-width;
+  background-color: $bg-color;
+  color: #ffffff;
+  border-radius: 6px;
+  z-index: 9999;
+
+  // Анимация
+  animation: tooltipFadeIn 0.15s ease-out;
+}
+
+.content {
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+
+  // Разрешаем перенос текста
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ARROW
+// ═══════════════════════════════════════════════════════════════════════════
+
+.arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: $arrow-size solid transparent;
+}
+
+// Tooltip сверху — стрелка указывает вниз
+.placement--top .arrow {
+  border-top-color: $bg-color;
+  border-bottom: none;
+}
+
+// Tooltip снизу — стрелка указывает вверх
+.placement--bottom .arrow {
+  border-bottom-color: $bg-color;
+  border-top: none;
+}
+
+// Tooltip слева — стрелка указывает вправо
+.placement--left .arrow {
+  border-left-color: $bg-color;
+  border-right: none;
+}
+
+// Tooltip справа — стрелка указывает влево
+.placement--right .arrow {
+  border-right-color: $bg-color;
+  border-left: none;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// РАЗМЕРЫ
+// ═══════════════════════════════════════════════════════════════════════════
+
+.size--sm {
+  border-radius: 5px;
+
+  .content {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+.size--md {
+  border-radius: 6px;
+
+  .content {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}

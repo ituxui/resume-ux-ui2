@@ -1,0 +1,13 @@
+﻿.wrapper {
+  @include flex(column, flex-start, flex-start);
+  width: 100%;
+  gap: 2px;
+}
+
+.input {
+  height: var(--size-lg__height);
+  width: 100%;
+  padding: 0 var(--size-lg__padding-to-text);
+  border: 1px solid var(--accent-primary__face-outline__isActive-false__state-enabled__target-border);
+  border-radius: 999px;
+}

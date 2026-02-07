@@ -1,0 +1,537 @@
+﻿// ═══════════════════════════════════════════════════════════════════════════
+// SCREEN COMPONENT
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// РАЗМЕРЫ (Desktop):
+// ┌──────────┬─────────────────────────────────────────────────────┐
+// │ 1/3      │ 424px × 832px (aspect-ratio: 424/832)               │
+// │ 2/3      │ 864px × 832px (424 + 424 + 16 gap)                  │
+// │ 3/3      │ 1304px × 832px (424×3 + 16×2 gap)                   │
+// └──────────┴─────────────────────────────────────────────────────┘
+//
+// РЕЖИМЫ СКРОЛЛА:
+// ┌──────────┬─────────────────────────────────────────────────────┐
+// │ static   │ Картинка фиксирована, object-fit: cover             │
+// │ parallax │ Картинка скроллится внутри контейнера               │
+// └──────────┴─────────────────────────────────────────────────────┘
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ПЕРЕМЕННЫЕ
+// ═══════════════════════════════════════════════════════════════════════════
+
+$module-width: 424px;
+$module-height: 832px;
+$gap: 16px;
+
+$aspect-one-third: calc(424 / 832);
+$aspect-two-thirds: calc(864 / 832);
+$aspect-three-thirds: calc(1304 / 832);
+
+$width-one-third: $module-width;
+$width-two-thirds: calc($module-width * 2 + $gap);
+$width-three-thirds: var(--container-max-width, 1304px);
+
+// ═══════════════════════════════════════════════════════════════════════════
+// БАЗОВЫЕ СТИЛИ
+// ═══════════════════════════════════════════════════════════════════════════
+
+.screen {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px var(--border_color-screen) solid;
+  background-color: rgba(0, 0, 0, 0.04);
+  cursor: zoom-in;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+
+  &:hover {
+    // transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PLACEHOLDER & SKELETON
+// ═══════════════════════════════════════════════════════════════════════════
+
+.placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// IMAGE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  &.imageVisible {
+    opacity: 1;
+  }
+}
+
+// Static режим
+.screen:not(.parallax) {
+  .image {
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PARALLAX — всегда активный, работает в обе стороны
+// ═══════════════════════════════════════════════════════════════════════════
+
+.parallax {
+  .image {
+    height: auto;
+    min-height: 100%;
+    object-fit: cover;
+    object-position: top left;
+    will-change: transform;
+
+    // Плавная длинная анимация с медленным стартом
+    transition:
+      opacity 0.5s ease-out,
+      // transform 1.8s cubic-bezier(0.25, 0.1, 0.25, 1);
+      transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LOADING STATE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.loading {
+  &:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  cursor: default;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// РАЗМЕРЫ — DEFAULT MODE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.mode_default {
+  --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 2);
+
+  &.sizeOneThird {
+    // width: min($width-one-third, var(--max-module));
+    aspect-ratio: $aspect-one-third;
+
+    grid-column: span 1;
+  }
+
+  &.sizeTwoThirds {
+    // width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
+    aspect-ratio: $aspect-two-thirds;
+
+    grid-column: span 2;
+  }
+
+  &.sizeThreeThirds {
+    // width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
+    aspect-ratio: $aspect-three-thirds;
+
+    grid-column: span 3;
+  }
+
+  // @include media-1352px-breakpoint-and-down {
+  //   &.sizeOneThird {
+  //     width: max($width-one-third, 40%);
+  //   }
+  //   &.sizeTwoThirds {
+  //     width: 100%;
+  //   }
+  //   &.sizeThreeThirds {
+  //     width: 100%;
+  //   }
+
+  //   &.parallax {
+  //     &.sizeTwoThirds {
+  //       aspect-ratio: $aspect-one-third;
+  //     }
+  //     &.sizeThreeThirds {
+  //       aspect-ratio: $aspect-one-third;
+  //     }
+  //   }
+  // }
+
+  @include media-s-breakpoint-and-down {
+    &.sizeOneThird,
+    &.sizeTwoThirds,
+    &.sizeThreeThirds {
+      width: 100%;
+    }
+
+    &.parallax {
+      &.sizeTwoThirds,
+      &.sizeThreeThirds {
+        aspect-ratio: $aspect-one-third;
+      }
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// РАЗМЕРЫ — GALLERY MODE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.mode_gallery {
+  --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 4);
+
+  &.sizeOneThird {
+    width: min($width-one-third, var(--max-module));
+    aspect-ratio: $aspect-one-third;
+  }
+
+  &.sizeTwoThirds {
+    width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
+    aspect-ratio: $aspect-two-thirds;
+  }
+
+  &.sizeThreeThirds {
+    width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
+    aspect-ratio: $aspect-three-thirds;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// РАЗМЕРЫ — FULL MODE (max 100vw)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.mode_full {
+  --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 2);
+
+  &.sizeOneThird {
+    width: min($width-one-third, var(--max-module));
+    aspect-ratio: $aspect-one-third;
+  }
+
+  &.sizeTwoThirds {
+    width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
+    aspect-ratio: $aspect-two-thirds;
+  }
+
+  &.sizeThreeThirds {
+    width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
+    aspect-ratio: $aspect-three-thirds;
+  }
+
+  @include media-1352px-breakpoint-and-down {
+    &.sizeOneThird,
+    &.sizeTwoThirds,
+    &.sizeThreeThirds {
+      width: 100% !important;
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// АДАПТИВ
+// ═══════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 1024px) {
+  .screen {
+    border-radius: 10px;
+  }
+
+  .sizeOneThird,
+  .sizeTwoThirds,
+  .sizeThreeThirds {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .screen {
+    border-radius: 8px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ZOOM DIALOG
+// ═══════════════════════════════════════════════════════════════════════════
+
+.zoomDialog {
+  [data-rmiz-modal-overlay] {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+
+  [data-rmiz-btn-unzoom] {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 2px;
+      background-color: white;
+      border-radius: 1px;
+    }
+
+    &::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MODAL (полноэкранный просмотр с zoom)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.95);
+  animation: fadeIn 0.2s ease-out;
+  z-index: 2;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// IMAGE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.imageWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; // Пропускаем клики на backdrop
+}
+
+.modalImage {
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  cursor: grab;
+  user-select: none;
+  pointer-events: auto; // Картинка ловит клики для zoom/pan
+  z-index: 2;
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CLOSE BUTTON
+// ═══════════════════════════════════════════════════════════════════════════
+
+.closeButton {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10001;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+.closeIcon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: white;
+    border-radius: 1px;
+  }
+
+  &::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  &::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ZOOM CONTROLS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.zoomControls {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+  display: flex;
+  gap: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 8px 12px;
+  border-radius: 24px;
+  backdrop-filter: blur(10px);
+}
+
+.zoomButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &:active {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// HINT
+// ═══════════════════════════════════════════════════════════════════════════
+
+.hint {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10001;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  text-align: center;
+  pointer-events: none;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    white-space: normal;
+    max-width: 280px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MOBILE ADJUSTMENTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+@media (max-width: 768px) {
+  .closeButton {
+    top: 16px;
+    right: 16px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .zoomControls {
+    bottom: 100px;
+  }
+
+  .hint {
+    bottom: 40px;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// WRAPPER (для postfix)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  // Скрин внутри wrapper не должен иметь grid-column
+  .screen {
+    grid-column: unset;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// POSTFIX
+// ═══════════════════════════════════════════════════════════════════════════
+
+.postfix {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color_text_muted--enabled, rgba(0, 0, 0, 0.6));
+  text-align: center;
+}

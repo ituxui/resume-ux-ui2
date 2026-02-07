@@ -1,0 +1,47 @@
+﻿.tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: color 0.2s ease;
+  color: var(--color_text-accent_muted--enabled);
+  font-weight: 500;
+  flex-shrink: 0; // Важно для drag scroll
+
+  // Предотвращаем выделение при drag
+  user-select: none;
+  -webkit-user-select: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+  }
+
+  &:hover {
+    color: var(--color_text-accent_default--enabled);
+  }
+
+  &--active {
+    color: var(--color_text-accent_default--enabled);
+
+    &::after {
+      background-color: var(--color_text-accent_default--enabled);
+    }
+  }
+
+  &--sm {
+    height: 28px;
+    font-size: 14px;
+    padding: 0 12px;
+  }
+}

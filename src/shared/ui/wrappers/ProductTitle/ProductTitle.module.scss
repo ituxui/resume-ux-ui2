@@ -1,0 +1,16 @@
+﻿.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center; // Добавил для выравнивания иконки и текста по центру
+  flex: 1;
+}
+
+.separator {
+  margin-left: 8px;
+  margin-right: 8px;
+  color: inherit; // Чтобы иконка наследовала цвет текста, если нужно
+
+  @media screen and (max-width: 480px) {
+    --icon-size: 24px;
+  }
+}

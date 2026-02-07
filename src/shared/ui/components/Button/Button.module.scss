@@ -1,0 +1,196 @@
+﻿// ═══════════════════════════════════════════════════════════════════════════
+// BUTTON COMPONENT
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// АКЦЕНТЫ:
+// ┌─────────┬───────────────────────────────────────────┐
+// │ primary │ Чёрные (основные)                         │
+// └─────────┴───────────────────────────────────────────┘
+//
+// FACE:
+// ┌─────────┬───────────────────────────────────────────┐
+// │ solid   │ Заливка                                   │
+// │ light   │ Светлый фон                               │
+// │ outline │ Обводка                                   │
+// └─────────┴───────────────────────────────────────────┘
+//
+// РАЗМЕРЫ:
+// ┌─────────┬─────────┬────────────────────────────────┐
+// │ md      │ 32px    │ padding: 0 12px (icon) / 16px  │
+// │ lg      │ 40px    │ padding: 0 16px (icon) / 20px  │
+// │ xl      │ 56px    │ padding: 0 20px (icon) / 24px  │
+// └─────────┴─────────┴────────────────────────────────┘
+
+// ═══════════════════════════════════════════════════════════════════════════
+// БАЗОВЫЕ СТИЛИ
+// ═══════════════════════════════════════════════════════════════════════════
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease;
+
+  &:active {
+    opacity: 0.9;
+  }
+}
+
+.text {
+  white-space: nowrap;
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// РАЗМЕРЫ
+// ═══════════════════════════════════════════════════════════════════════════
+
+.size_md {
+  height: var(--size-md__height);
+  gap: var(--size-md__gap);
+
+  &.content_text-icon,
+  &.content_text {
+    padding: 0 var(--size-md__padding-to-text);
+  }
+
+  &.content_icon {
+    width: var(--size-md__height);
+    padding: 0;
+  }
+
+  &.content_text-icon {
+    padding-right: var(--size-md__padding-to-icon);
+  }
+}
+
+.size_lg {
+  height: var(--size-lg__height);
+  gap: var(--size-lg__gap);
+
+  &.content_text-icon,
+  &.content_text {
+    padding: 0 var(--size-lg__padding-to-text);
+  }
+
+  &.content_icon {
+    width: var(--size-lg__height);
+    padding: 0;
+  }
+
+  &.content_text-icon {
+    padding-right: var(--size-lg__padding-to-icon);
+  }
+}
+
+.size_xl {
+  height: var(--size-xl__height);
+  gap: var(--size-xl__gap);
+
+  &.content_text-icon,
+  &.content_text {
+    padding: 0 var(--size-xl__padding-to-text);
+  }
+
+  &.content_icon {
+    width: var(--size-xl__height);
+    padding: 0;
+  }
+
+  &.content_text-icon {
+    padding-right: var(--size-xl__padding-to-icon);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ШИРИНА И ВЫРАВНИВАНИЕ (WIDTH)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.width_auto {
+  // Базовое поведение, уже задано в .button (display: inline-flex)
+  width: auto;
+}
+
+.width_full {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.width_full-between {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// PRIMARY + FACE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.accent_primary {
+  &.face_solid {
+    background-color: var(--accent-primary__face-solid__isActive-false__state-enabled__target-bg);
+    color: var(--accent-primary__face-solid__isActive-false__state-any__target-text);
+
+    &:hover {
+      background-color: var(--accent-primary__face-solid__isActive-false__state-hover__target-bg);
+    }
+  }
+
+  &.face_light {
+    background-color: var(--accent-primary__face-light__isActive-false__state-enabled__target-bg);
+    color: var(--accent-primary__face-light__isActive-false__state-any__target-text);
+
+    &:hover {
+      background-color: var(--accent-primary__face-light__isActive-false__state-hover__target-bg);
+    }
+  }
+
+  &.face_outline {
+    background-color: transparent;
+    border: 1px solid var(--accent-primary__face-outline__isActive-false__state-enabled__target-border);
+    color: var(--accent-primary__face-outline__isActive-false__state-any__target-text);
+
+    &:hover {
+      border-color: var(--accent-primary__face-outline__isActive-false__state-hover__target-border);
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// СОСТОЯНИЯ
+// ═══════════════════════════════════════════════════════════════════════════
+
+.active {
+  // Активное состояние — как hover
+  &.accent_primary {
+    &.face_solid {
+      background-color: var(--accent-primary__face-solid__isActive-false__state-hover__target-bg);
+    }
+    &.face_light {
+      background-color: var(--accent-primary__face-light__isActive-false__state-hover__target-bg);
+    }
+    &.face_outline {
+      border-color: var(--accent-primary__face-outline__isActive-false__state-hover__target-border);
+    }
+  }
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

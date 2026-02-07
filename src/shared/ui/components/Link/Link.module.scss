@@ -1,0 +1,225 @@
+﻿// ═══════════════════════════════════════════════════════════════════════════
+// LINK COMPONENT
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// ТИПЫ (определяются автоматически):
+// ┌─────────────┬─────────────────────────────┬─────────────────┐
+// │ Тип         │ Условие                     │ Иконка          │
+// ├─────────────┼─────────────────────────────┼─────────────────┤
+// │ download    │ download prop или файл      │ download        │
+// │ internal    │ to prop (react-router)      │ arrow-right     │
+// │ modal       │ только onClick              │ arrow-right     │
+// │ external    │ http:// или //              │ arrow-top-right │
+// │ anchor      │ anchorId или #hash          │ arrow-down-right│
+// └─────────────┴─────────────────────────────┴─────────────────┘
+//
+// РАЗМЕРЫ:
+// ┌─────────┬─────────────────┐
+// │ sm      │ как feature     │
+// │ md      │ как body        │
+// │ lg      │ как lead        │
+// └─────────┴─────────────────┘
+
+// ═══════════════════════════════════════════════════════════════════════════
+// БАЗОВЫЕ СТИЛИ
+// ═══════════════════════════════════════════════════════════════════════════
+.link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto Flex', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: color 0.15s ease;
+
+  --text-wght: 375;
+  --text-wdth: 102;
+  --text-opsz: 12;
+  --text-GRAD: 0;
+  --text-slnt: 0;
+  --text-XOPQ: 96;
+  --text-YOPQ: 79;
+  --text-XTRA: 483;
+  --text-YTLC: 532;
+  --text-YTUC: 722;
+  --text-YTAS: 727;
+  --text-YTDE: -218;
+  --text-YTFI: 717;
+
+  font-variation-settings:
+    'wght' var(--text-wght),
+    'wdth' var(--text-wdth),
+    'opsz' var(--text-opsz),
+    'GRAD' var(--text-GRAD),
+    'slnt' var(--text-slnt),
+    'XOPQ' var(--text-XOPQ),
+    'YOPQ' var(--text-YOPQ),
+    'XTRA' var(--text-XTRA),
+    'YTLC' var(--text-YTLC),
+    'YTUC' var(--text-YTUC),
+    'YTAS' var(--text-YTAS),
+    'YTDE' var(--text-YTDE),
+    'YTFI' var(--text-YTFI);
+
+  &:active {
+    opacity: 0.8;
+  }
+}
+
+.phrase {
+  // Текст как обычный inline
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: baseline;
+  flex-shrink: 0;
+  margin-left: 0.2em;
+  transition: transform 0.15s ease;
+  position: relative;
+  transform: translateY(1px);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// РАЗМЕРЫ
+// ═══════════════════════════════════════════════════════════════════════════
+
+.sm {
+  font-size: 14px;
+  line-height: 1.45;
+  letter-spacing: 0.005em;
+
+  --text-XTRA: 478;
+  --text-YTLC: 528;
+
+  .icon {
+    top: 0.1em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+
+    .icon {
+      top: 0.08em;
+    }
+  }
+}
+
+.md {
+  font-size: 18px;
+  line-height: 1.6;
+  letter-spacing: 0;
+
+  .icon {
+    top: 0.12em;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+    line-height: 1.55;
+
+    .icon {
+      top: 0.11em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    line-height: 1.55;
+
+    .icon {
+      top: 0.1em;
+    }
+  }
+}
+
+.lg {
+  font-size: 18px;
+  line-height: 1.55;
+  letter-spacing: 0;
+
+  .icon {
+    top: 0.13em;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 17px;
+    line-height: 1.5;
+
+    .icon {
+      top: 0.12em;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 16px;
+    line-height: 1.5;
+
+    .icon {
+      top: 0.1em;
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// АКЦЕНТЫ (светлый фон)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.muted {
+  color: var(--color_text-accent_muted--enabled);
+
+  &:hover {
+    color: var(--color_text-accent_default--enabled);
+  }
+}
+
+.default {
+  color: var(--color_text-accent_default--enabled);
+
+  &:hover {
+    color: var(--color_text-accent_high--enabled);
+  }
+}
+
+.high {
+  color: var(--color_text-accent_high--enabled);
+
+  &:hover {
+    color: var(--color_text-accent_high--hovered);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ИНВЕРТИРОВАННЫЕ ЦВЕТА (тёмный фон)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.invert {
+  // Muted на тёмном фоне — светло-серая
+  &.muted {
+    color: #a0a0a0;
+
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  // Default на тёмном фоне — белая
+  &.default {
+    color: #ffffff;
+
+    &:hover {
+      color: #b3d4fc;
+    }
+  }
+
+  // High на тёмном фоне — светло-голубая
+  &.high {
+    color: #7ab8ff;
+
+    &:hover {
+      color: #a8d0ff;
+    }
+  }
+}

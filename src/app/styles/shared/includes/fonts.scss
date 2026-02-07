@@ -1,0 +1,8 @@
+﻿@mixin font-on-solid-backface {
+  font-weight: 600;
+  --font-weight: 650;
+  --font-opsz: 20;
+  font-variation-settings:
+    'opsz' var(--font-opsz),
+    'wght' var(--font-weight);
+}

@@ -1,0 +1,9 @@
+﻿@mixin outline-mouse-navigation {
+  outline: 1px solid var(--text-link);
+  outline-offset: -1px; // внутренний (смещён внутрь)
+}
+
+@mixin outline-tab-navigation {
+  outline: 2px solid white;
+  box-shadow: 0 0 0 4px black;
+}

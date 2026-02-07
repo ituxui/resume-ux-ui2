@@ -1,0 +1,19 @@
+﻿.gallery {
+  margin-top: 32px;
+  gap: 16px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  & > * {
+    grid-row: span 1;
+  }
+
+  @include media-s-breakpoint-and-down {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    gap: 40px;
+  }
+}

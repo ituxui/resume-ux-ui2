@@ -1,0 +1,67 @@
+﻿.ava,
+.avaContainer {
+  min-width: 220px;
+  min-height: 180px;
+  width: 220px;
+  height: 180px;
+  border-radius: 999px;
+}
+
+.avaContainer {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.wrapper,
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper {
+  padding-left: var(--margin-screens-horizontal);
+  padding-right: var(--margin-screens-horizontal);
+}
+
+.container {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: min(calc(100vh - 48px), 1920px);
+  max-width: 514px;
+  padding-top: var(--margin-sections-vertical);
+  padding-bottom: var(--margin-sections-vertical);
+}
+
+.talkAboutYourProduct {
+  margin-top: var(--margin-sections-vertical);
+}
+
+.links {
+  margin-top: 24px;
+  display: flex;
+  gap: 24px;
+
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+
+  @include media-390px-breakpoint-and-down {
+    flex-direction: column;
+  }
+}
+
+.arrowDown {
+  display: flex;
+  justify-content: center;
+  transform: translateY(0);
+  opacity: 1;
+  transition:
+    transform 0.4s ease-out,
+    opacity 0.4s ease-out;
+
+  &_hidden {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+}

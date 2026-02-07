@@ -1,0 +1,89 @@
+﻿@use 'sass:color';
+
+// ==========================================
+// ЦВЕТОВЫЕ ФУНКЦИИ (для статических цветов)
+// ==========================================
+
+// Для CSS переменных нельзя использовать sass функции
+// Используем эти функции только для статических цветов
+@function darken-static($clr, $amount) {
+  @return color.adjust($clr, $lightness: -$amount);
+}
+
+@function lighten-static($clr, $amount) {
+  @return color.adjust($clr, $lightness: $amount);
+}
+
+// ==========================================
+// LAYOUT
+// ==========================================
+
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  @if $gap != 0 {
+    gap: $gap;
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// ==========================================
+// ТЕКСТ
+// ==========================================
+
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin text-clamp($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// ==========================================
+// СКРОЛЛБАР
+// ==========================================
+
+@mixin scrollbar($width: 8px) {
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: $radius-full;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-bg-hover;
+    border-radius: $radius-full;
+
+    &:hover {
+      background: $color-bg-active;
+    }
+  }
+
+  scrollbar-width: thin;
+}
+
+@mixin scrollbar-thin {
+  @include scrollbar(6px);
+}

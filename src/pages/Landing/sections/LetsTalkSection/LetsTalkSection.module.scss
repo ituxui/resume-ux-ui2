@@ -1,0 +1,27 @@
+﻿.wrapper {
+  @include flex(column, flex-start, center);
+  padding-left: var(--margin-screens-horizontal);
+  padding-right: var(--margin-screens-horizontal);
+  padding-top: var(--margin-sections-vertical);
+  padding-bottom: var(--margin-sections-vertical);
+  width: 100%;
+}
+
+.heading {
+  text-align: center;
+}
+
+.content {
+  @include flex(row, flex-start, center);
+  flex-wrap: wrap;
+  margin-top: 96px;
+  margin-bottom: 120px;
+  gap: 96px;
+}
+
+@include media-s-breakpoint-and-down {
+  .content {
+    flex-direction: column;
+    gap: 36px;
+  }
+}

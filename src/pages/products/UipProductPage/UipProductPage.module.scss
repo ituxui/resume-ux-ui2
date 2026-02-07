@@ -1,0 +1,17 @@
+﻿.wrapper {
+  @include flex(column, flex-start, center);
+  width: 100%;
+
+  padding-left: var(--margin-screens-horizontal);
+  padding-right: var(--margin-screens-horizontal);
+}
+
+.section {
+  padding-bottom: var(--margin-sections-vertical);
+
+  max-width: var(--container-max-width);
+}
+
+.text {
+  max-width: var(--readable-container-max-width);
+}

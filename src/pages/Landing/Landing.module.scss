@@ -1,0 +1,7 @@
+﻿.wrapper {
+  @include flex(column, flex-start, center);
+  width: 100%;
+
+  padding-left: var(--margin-screens-horizontal);
+  padding-right: var(--margin-screens-horizontal);
+}

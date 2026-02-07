@@ -1,0 +1,155 @@
+﻿// ═══════════════════════════════════════════════════════════════════════════
+// BOOK COMPONENT
+// ═══════════════════════════════════════════════════════════════════════════
+//
+// РАЗМЕРЫ:
+// ┌──────────┬─────────────────────────────────────────────────────┐
+// │ free     │ Задаётся через внешний className                    │
+// │ md       │ width: 96px, aspect-ratio: 84/122                   │
+// └──────────┴─────────────────────────────────────────────────────┘
+
+$aspect-ratio: calc(84 / 122);
+$border-radius: 3px;
+
+.book {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SKELETON & PLACEHOLDER
+// ═══════════════════════════════════════════════════════════════════════════
+
+.skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.placeholder {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: $border-radius;
+  aspect-ratio: $aspect-ratio;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// IMAGE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: $aspect-ratio;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+  border-radius: $border-radius;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+
+  // Тень книги
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.imageVisible {
+  opacity: 1;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// LOADING STATE
+// ═══════════════════════════════════════════════════════════════════════════
+
+.loading {
+  &:hover .tooltip {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TOOLTIP
+// ═══════════════════════════════════════════════════════════════════════════
+
+.tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+
+  padding: 8px 12px;
+  margin-bottom: 8px;
+
+  background-color: #1a1a1a;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 6px;
+
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+
+  // Стрелка
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border: 6px solid transparent;
+    border-top-color: #1a1a1a;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// РАЗМЕРЫ
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Free — размеры задаются снаружи через className
+.size--free {
+  .image,
+  .placeholder {
+    width: 100%;
+    height: auto;
+  }
+
+  .tooltip {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+// MD — фиксированная ширина 96px
+.size--md {
+  .image,
+  .placeholder {
+    width: 96px;
+    height: auto;
+  }
+
+  .tooltip {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+}

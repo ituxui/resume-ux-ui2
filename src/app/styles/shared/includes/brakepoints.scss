@@ -1,0 +1,135 @@
+﻿@use 'sass:math';
+@use 'sass:map';
+@use 'sass:meta';
+
+// $m-breakpoints: (
+//   768: 768px,
+//   960: 960px,
+//   1280: 1280px,
+//   1360: 1360px,
+//   1512: 1512px,
+//   1728: 1728px,
+//   1920: 1920px,
+//   2560: 2560px,
+// );
+
+// $s-breakpoints: (
+//   280: 280px,
+//   320: 320px,
+//   360: 360px,
+//   390: 390px,
+//   414: 414px,
+//   430: 430px,
+// );
+
+@mixin media-breakpoint-up($args...) {
+  // props
+  $size: '';
+  //
+
+  @each $name, $value in meta.keywords($args) {
+    @if ($name == 'size') {
+      $size: $value;
+    }
+  }
+
+  @media (min-width: $size) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($args...) {
+  // props
+  $size: '';
+  //
+
+  @each $name, $value in meta.keywords($args) {
+    @if ($name == 'size') {
+      $size: $value;
+    }
+  }
+
+  $sizeMax: $size - 0.02px;
+  @media (max-width: $sizeMax) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($args...) {
+  // props
+  $min: '';
+  $max: '';
+  //
+
+  @each $name, $value in meta.keywords($args) {
+    @if ($name == 'min') {
+      $min: $value;
+    }
+    @if ($name == 'max') {
+      $max: $value;
+    }
+  }
+
+  @media (min-width: $min) and (max-width: $max - 0.02px) {
+    @content;
+  }
+}
+
+@mixin media-wide-device {
+  @media (min-width: 2560px) {
+    @content;
+  }
+}
+
+@mixin media-m-breakpoint-and-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+// @mixin media-m-breakpoint-and-up {
+//   @media (min-width: 768px) and (max-width: 2560px - 0.02px) {
+//     @content;
+//   }
+// }
+
+@mixin media-1920px-breakpoint-and-up {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
+
+@mixin media-1920px-breakpoint-and-down {
+  @media (max-width: 1920px - 0.02px) {
+    @content;
+  }
+}
+
+@mixin media-1280px-breakpoint-and-up {
+  @media (min-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin media-1352px-breakpoint-and-down {
+  @media (max-width: 1368px - 0.02px) {
+    @content;
+  }
+}
+
+@mixin media-1280px-breakpoint-and-down {
+  @media (max-width: 1280px - 0.02px) {
+    @content;
+  }
+}
+
+@mixin media-s-breakpoint-and-down {
+  @media (max-width: 768px - 0.02px) {
+    @content;
+  }
+}
+
+@mixin media-390px-breakpoint-and-down {
+  @media (max-width: 390px - 0.02px) {
+    @content;
+  }
+}
