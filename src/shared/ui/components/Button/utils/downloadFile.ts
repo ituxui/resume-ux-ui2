@@ -1,4 +1,4 @@
-﻿const getFilenameFromUrl = (url: string): string => {
+const getFilenameFromUrl = (url: string): string => {
   try {
     const pathname = new URL(url, window.location.origin).pathname;
     const filename = pathname.split('/').pop();

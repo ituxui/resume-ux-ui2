@@ -1,4 +1,4 @@
-﻿# Deploy to Githab Pages
+# Deploy to Githab Pages
 
 npm run deploy
 

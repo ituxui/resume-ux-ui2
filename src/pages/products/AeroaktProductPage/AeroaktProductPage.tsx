@@ -1,4 +1,4 @@
-﻿import styles from './AeroaktProductPage.module.scss';
+import styles from './AeroaktProductPage.module.scss';
 import { Button, Link } from '@components';
 
 export function AeroaktProductPage() {

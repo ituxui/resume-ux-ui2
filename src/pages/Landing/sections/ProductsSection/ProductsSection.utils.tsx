@@ -1,4 +1,4 @@
-﻿import { Button, Link, Meta, Screen, Text } from "@shared/ui/components";
+import { Button, Link, Meta, Screen, Text } from "@shared/ui/components";
 import type { ProjectAction, ProjectMeta, ProjectScreen } from "./ProductsSection.types";
 import type { ReactNode } from "react";
 

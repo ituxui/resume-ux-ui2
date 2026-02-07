@@ -1,4 +1,4 @@
-﻿import { Fragment, type ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import styles from './ProductCard.module.scss';
 import { Heading, Text } from '@shared/ui';
 import classNames from 'classnames';

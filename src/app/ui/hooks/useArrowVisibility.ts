@@ -1,4 +1,4 @@
-﻿import { useEffect, useState, type RefObject } from 'react';
+import { useEffect, useState, type RefObject } from 'react';
 
 function debounce<T extends (...args: unknown[]) => void>(
   fn: T,

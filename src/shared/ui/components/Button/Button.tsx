@@ -1,4 +1,4 @@
-﻿import { type ReactNode, type MouseEvent, forwardRef } from 'react';
+import { type ReactNode, type MouseEvent, forwardRef } from 'react';
 import { Link as RouterLink } from 'react-router';
 import cn from 'classnames';
 import styles from './Button.module.scss';

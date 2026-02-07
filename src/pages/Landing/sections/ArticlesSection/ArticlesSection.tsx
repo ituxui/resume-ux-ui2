@@ -1,4 +1,4 @@
-﻿import styles from './ArticlesSection.module.scss';
+import styles from './ArticlesSection.module.scss';
 import { Heading, Text } from '@components';
 import { Article } from './components/Article';
 import { articlesList } from '@shared/data';

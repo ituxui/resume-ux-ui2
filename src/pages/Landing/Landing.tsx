@@ -1,4 +1,4 @@
-﻿import { AboutMeSection, ArticlesSection, Hero, LetsTalkSection, ProductsSection } from './sections';
+import { AboutMeSection, ArticlesSection, Hero, LetsTalkSection, ProductsSection } from './sections';
 import styles from './Landing.module.scss';
 
 

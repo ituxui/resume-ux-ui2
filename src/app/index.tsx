@@ -1,4 +1,4 @@
-﻿import { StrictMode, Suspense } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { RouterProvider, } from 'react-router'
 import { createRoot } from 'react-dom/client'
 

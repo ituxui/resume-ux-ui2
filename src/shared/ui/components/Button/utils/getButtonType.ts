@@ -1,4 +1,4 @@
-﻿
+
 import type { ButtonProps } from '../Button';
 
 export type ButtonType = 'download' | 'internal' | 'modal' | 'external' | 'anchor' | 'email';

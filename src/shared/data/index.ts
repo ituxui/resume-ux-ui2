@@ -1,4 +1,4 @@
-﻿export { MY_EMAIL } from './config';
+export { MY_EMAIL } from './config';
 
 export { articlesList } from './articlesList.data';
 export type { Article, ArticleKey } from './articlesList.data';

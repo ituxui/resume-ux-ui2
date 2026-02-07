@@ -1,4 +1,4 @@
-﻿import styles from './TsdProductPage.module.scss';
+import styles from './TsdProductPage.module.scss';
 import { Button, Link } from '@components';
 
 export function TsdProductPage() {

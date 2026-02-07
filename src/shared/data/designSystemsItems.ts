@@ -1,4 +1,4 @@
-﻿export const designSystemsItems = [
+export const designSystemsItems = [
   {
     id: 'kontur',
     alt: 'Контур Гайды',

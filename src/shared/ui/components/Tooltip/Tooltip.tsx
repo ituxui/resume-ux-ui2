@@ -1,4 +1,4 @@
-﻿import { useState, useRef, cloneElement } from 'react';
+import { useState, useRef, cloneElement } from 'react';
 import {
   useFloating,
   autoUpdate,

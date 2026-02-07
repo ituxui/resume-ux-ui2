@@ -1,4 +1,4 @@
-﻿import { routeMap } from "@shared/routes";
+import { routeMap } from "@shared/routes";
 
 export const articlesList = [
   {

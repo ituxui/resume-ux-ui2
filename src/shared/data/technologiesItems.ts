@@ -1,4 +1,4 @@
-﻿export const technologiesItems = [
+export const technologiesItems = [
   {
     id: 'react',
     alt: 'React',

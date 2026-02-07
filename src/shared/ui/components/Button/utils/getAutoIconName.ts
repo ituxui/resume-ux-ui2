@@ -1,4 +1,4 @@
-﻿
+
 import type { IconName } from '@shared/ui/atoms';
 import type { ButtonType } from './getButtonType';
 

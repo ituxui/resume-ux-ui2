@@ -1,4 +1,4 @@
-﻿import { Fragment, type ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { useNavigate } from 'react-router';
 import styles from './ProductCard.module.scss';
 import type { RoutePath } from '@shared/routes';  // Импортируем тип

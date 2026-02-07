@@ -1,4 +1,4 @@
-﻿
+
 import { LandingPage } from "@pages/Landing/Landing";
 import { createHashRouter } from "react-router";
 import { routeMap } from "./utils";

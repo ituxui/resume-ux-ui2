@@ -1,4 +1,4 @@
-﻿export { ProductTitle } from "./ProductTitle/ProductTitle";
+export { ProductTitle } from "./ProductTitle/ProductTitle";
 
 export { Gallery } from "./Gallery/Gallery";
 

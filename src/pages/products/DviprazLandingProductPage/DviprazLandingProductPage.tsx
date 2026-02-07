@@ -1,4 +1,4 @@
-﻿import styles from './DviprazLandingProductPage.module.scss';
+import styles from './DviprazLandingProductPage.module.scss';
 import { Button, Link } from '@components';
 
 export function DviprazLandingProductPage() {

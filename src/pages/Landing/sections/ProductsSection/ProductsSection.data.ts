@@ -1,4 +1,4 @@
-﻿import { routeMap } from "@shared/routes";
+import { routeMap } from "@shared/routes";
 import type { ProjectData } from "./ProductsSection.types";
 
 export const productsSection: ProjectData[] = [

@@ -1,4 +1,4 @@
-﻿import { forwardRef, type ReactNode, type MouseEvent } from 'react';
+import { forwardRef, type ReactNode, type MouseEvent } from 'react';
 import { Link as RouterLink } from 'react-router';
 import cn from 'classnames';
 import styles from './Link.module.scss';

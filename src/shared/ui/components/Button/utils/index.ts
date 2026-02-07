@@ -1,4 +1,4 @@
-﻿export { getButtonType, type ButtonType } from './getButtonType';
+export { getButtonType, type ButtonType } from './getButtonType';
 export { getAutoIconName } from './getAutoIconName';
 export { downloadFile } from './downloadFile';
 export { scrollToAnchor } from './scrollToAnchor';

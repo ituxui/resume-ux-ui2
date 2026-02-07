@@ -1,4 +1,4 @@
-﻿import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import styles from './Article.module.scss';
 import { Heading, Text, Image } from '@components';
 import cn from 'classnames';

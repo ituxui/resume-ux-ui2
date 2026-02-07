@@ -1,4 +1,4 @@
-﻿import cn from 'classnames';
+import cn from 'classnames';
 import styles from './ProductTitle.module.scss';
 import { Heading, Icon } from '@shared/ui';
 

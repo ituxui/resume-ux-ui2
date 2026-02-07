@@ -1,4 +1,4 @@
-﻿import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 interface UseLazyLoadOptions {
   /** Порог загрузки в vh от верха viewport */

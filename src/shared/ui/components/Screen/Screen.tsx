@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef, useMemo, type ReactNode } from 'react';
+import { useState, useEffect, useRef, useMemo, type ReactNode } from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';

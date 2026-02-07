@@ -1,4 +1,4 @@
-﻿
+
 export const softwareItems = [
   { id: 'figma', alt: 'Figma', src: '/images/software/Figma.png', href: 'https://www.figma.com/', phrase: 'Figma' },
   { id: 'clickup', alt: 'ClickUp', src: '/images/software/ClickUp.png', href: 'https://clickup.com/', phrase: 'ClickUp' },

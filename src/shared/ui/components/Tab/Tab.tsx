@@ -1,4 +1,4 @@
-﻿import type { FC, ButtonHTMLAttributes } from 'react';
+import type { FC, ButtonHTMLAttributes } from 'react';
 import cn from 'classnames';
 import styles from './Tab.module.scss';
 

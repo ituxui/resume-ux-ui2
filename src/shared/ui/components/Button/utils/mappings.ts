@@ -1,4 +1,4 @@
-﻿import type { IconSize } from '@shared/ui/atoms/Icon/Icon';
+import type { IconSize } from '@shared/ui/atoms/Icon/Icon';
 import type { TextRole } from '@shared/ui/components/Text/Text';
 import type { ButtonSize, ButtonAccent, ButtonFace } from '../Button';
 

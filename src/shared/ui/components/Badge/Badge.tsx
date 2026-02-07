@@ -1,4 +1,4 @@
-﻿import type { FC, MouseEvent } from 'react';
+import type { FC, MouseEvent } from 'react';
 import { Link as RouterLink } from 'react-router';
 import cn from 'classnames';
 import styles from './Badge.module.scss';

@@ -1,4 +1,4 @@
-﻿import type { ElementType, ReactNode, HTMLAttributes } from 'react';
+import type { ElementType, ReactNode, HTMLAttributes } from 'react';
 import cn from 'classnames';
 import styles from './Text.module.scss';
 

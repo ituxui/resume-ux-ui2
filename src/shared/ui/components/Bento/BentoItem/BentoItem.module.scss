@@ -1,4 +1,4 @@
-﻿.wrapper {
+.wrapper {
   @include flex(column, flex-start, center);
   // border: 1px solid var(--border_color-screen);
   background: var(--bento-bg);

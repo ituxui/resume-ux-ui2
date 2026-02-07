@@ -1,4 +1,4 @@
-﻿
+
 export const subscriptionsList  = [
   {
     heading: 'Пользовательский опыт',

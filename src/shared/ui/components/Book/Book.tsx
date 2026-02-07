@@ -1,4 +1,4 @@
-﻿import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
 import type { ReactNode } from 'react';

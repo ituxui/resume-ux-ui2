@@ -1,4 +1,4 @@
-﻿.wrapper {
+.wrapper {
   @include flex(column, flex-start, center);
   padding-top: calc(var(--margin-sections-vertical) * 2);
   padding-bottom: calc(var(--margin-sections-vertical) * 2);

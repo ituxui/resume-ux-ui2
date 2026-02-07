@@ -1,4 +1,4 @@
-﻿import { renderActions, renderDescription, renderMeta, renderScreens } from '@pages/Landing/sections/ProductsSection/ProductsSection.utils';
+import { renderActions, renderDescription, renderMeta, renderScreens } from '@pages/Landing/sections/ProductsSection/ProductsSection.utils';
 import { productsSection } from '@pages/Landing/sections/ProductsSection/ProductsSection.data';
 import { ProductCard } from '@pages/Landing/sections';
 import classNames from 'classnames';

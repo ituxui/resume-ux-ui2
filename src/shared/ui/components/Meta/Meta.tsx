@@ -1,4 +1,4 @@
-﻿import type { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Heading, Text } from '@components';
 import styles from './Meta.module.scss';
 import classNames from 'classnames';

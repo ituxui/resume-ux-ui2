@@ -1,4 +1,4 @@
-﻿import React, { type HTMLAttributes } from 'react';
+import React, { type HTMLAttributes } from 'react';
 import styles from './Nowrap.module.scss';
 
 export interface NowrapProps extends HTMLAttributes<HTMLSpanElement> {

@@ -1,4 +1,4 @@
-﻿import { type FC, type ReactNode, type MouseEvent } from 'react';
+import { type FC, type ReactNode, type MouseEvent } from 'react';
 import cn from 'classnames';
 import styles from './Gallery.module.scss';
 

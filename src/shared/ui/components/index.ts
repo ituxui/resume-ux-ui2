@@ -1,4 +1,4 @@
-﻿export { Tab } from './Tab/Tab';
+export { Tab } from './Tab/Tab';
 
 export { Badge } from './Badge/Badge';
 

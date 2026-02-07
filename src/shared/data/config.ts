@@ -1,1 +1,1 @@
-﻿export const MY_EMAIL = 'xreider@yandex.ru'
+export const MY_EMAIL = 'xreider@yandex.ru'

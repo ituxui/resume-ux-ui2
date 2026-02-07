@@ -1,4 +1,4 @@
-﻿export { AboutMeSection } from './AboutMeSection/AboutMeSection';
+export { AboutMeSection } from './AboutMeSection/AboutMeSection';
 
 export { ProductsSection } from './ProductsSection/ProductsSection';
 

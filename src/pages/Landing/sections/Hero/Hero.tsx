@@ -1,4 +1,4 @@
-﻿import { useRef } from 'react';
+import { useRef } from 'react';
 import cn from 'classnames';
 import { Heading, Icon, Link, Text } from "@shared/ui";
 import { useArrowVisibility } from '@hooks/useArrowVisibility';

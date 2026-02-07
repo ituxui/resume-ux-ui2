@@ -1,4 +1,4 @@
-﻿@mixin outline-mouse-navigation {
+@mixin outline-mouse-navigation {
   outline: 1px solid var(--text-link);
   outline-offset: -1px; // внутренний (смещён внутрь)
 }

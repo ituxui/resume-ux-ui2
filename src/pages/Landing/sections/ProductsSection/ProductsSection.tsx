@@ -1,4 +1,4 @@
-﻿
+
 import { Meta } from '@shared/ui/components';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { ProductCardOther } from '../ProductCard/ProductCardOther';

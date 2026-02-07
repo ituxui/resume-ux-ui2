@@ -1,1 +1,1 @@
-﻿export { Icon, type IconSize, type IconName } from './Icon/Icon';
+export { Icon, type IconSize, type IconName } from './Icon/Icon';

@@ -1,4 +1,4 @@
-﻿import Tilt from 'react-parallax-tilt';
+import Tilt from 'react-parallax-tilt';
 
 import { Badge, BentoItem, Book, EmojiText, Heading, Image, Link, Nowrap, Pictogram, Screen, Text } from '@components';
 import { booksItems, designSystemsItems, softwareItems, subscriptionsList, technologiesItems } from '@shared/data';

@@ -1,4 +1,4 @@
-﻿import { Text } from '@components';
+import { Text } from '@components';
 import styles from './InputUncontrolled.module.scss';
 import { MY_EMAIL } from '@shared/data';
 import type { MouseEvent } from 'react';
