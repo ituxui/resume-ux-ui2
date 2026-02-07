@@ -72,9 +72,7 @@ export const Screen = ({
   useEffect(() => {
     const element = containerRef.current;
     if (element) {
-      // @ts-ignore
       lazyContainerRef.current = element;
-      // @ts-ignore
       scrollContainerRef.current = element;
     }
   }, [lazyContainerRef, scrollContainerRef]);
