@@ -1,22 +1,28 @@
-const fs = require('fs');
+const fs = require('fs').promises;
 const path = require('path');
 
-function cleanBOM(dir) {
-  const files = fs.readdirSync(dir);
-  files.forEach((file) => {
-    const fullPath = path.join(dir, file);
-    if (fs.statSync(fullPath).isDirectory()) {
-      if (file !== 'node_modules') cleanBOM(fullPath);
-    } else {
-      if (fullPath.match(/\.(scss|tsx|ts|js|css)$/)) {
-        const buffer = fs.readFileSync(fullPath);
-        if (buffer[0] === 0xef && buffer[1] === 0xbb && buffer[2] === 0xbf) {
-          fs.writeFileSync(fullPath, buffer.subarray(3));
-          console.log('Fixed:', fullPath);
-        }
+async function findBom(dir) {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  let found = 0;
+
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (!['node_modules', '.git', '.next', 'dist', 'build'].includes(entry.name)) {
+        found += await findBom(full);
+      }
+    } else if (/\.(ts|tsx|js|jsx|json|css|scss|md|html|svg|yaml|yml)$/.test(entry.name)) {
+      const buf = await fs.readFile(full);
+      if (buf.length >= 3 && buf[0] === 0xef && buf[1] === 0xbb && buf[2] === 0xbf) {
+        console.log('BOM найден →', full);
+        found++;
       }
     }
-  });
+  }
+  return found;
 }
 
-cleanBOM('./');
+(async () => {
+  const total = await findBom(process.argv[2] || '.');
+  console.log(total ? `\nНайдено файлов с BOM: ${total}` : '\nBOM нигде не найден. Всё чисто.');
+})();
