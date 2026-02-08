@@ -96,11 +96,13 @@
 // SECTION
 // ═══════════════════════════════════════════════════════════════════════════
 .section {
-  font-size: 42px;
-  line-height: 1.1;
+  font-size: 28px;
+  line-height: 36px;
   letter-spacing: -0.03em;
+  padding-bottom: 32px;
+  max-width: var(--readable-container-min_text-width);
 
-  --heading-wght: 550;
+  --heading-wght: 500;
   --heading-XTRA: 468;
   --heading-YTUC: 652;
   --heading-YTAS: 670;

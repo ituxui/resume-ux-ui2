@@ -30,7 +30,7 @@ export interface ImageProps {
 export const Image = ({
   src,
   alt = 'Image',
-  lazyThreshold = 100,
+  lazyThreshold = 200,
   zoomable = true,
   className,
 }: ImageProps) => {

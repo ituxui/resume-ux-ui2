@@ -18,7 +18,8 @@ export type TextRole =
   | 'list'
   | 'caption'
   | 'label'
-  | 'subheading';
+  | 'subheading'
+  | 'image-info';
 
 type TextColorScheme = 'default' | 'muted';
 type TextTag = 'p' | 'span' | 'div' | 'li' | 'td' | 'a' | 'label';
@@ -37,6 +38,9 @@ const defaultTagMap: Record<TextRole, TextTag> = {
   'description': 'p',
   'subheading': 'p',
 
+  'list': 'p',
+  'image-info': 'p',
+
   'bento': 'span',
   'button-md': 'span',
   'button-lg': 'span',
@@ -47,7 +51,6 @@ const defaultTagMap: Record<TextRole, TextTag> = {
   'link': 'span',
   'table_td': 'span',
   'meta': 'span',
-  'list': 'span',
   'caption': 'span',
   'label': 'span',
 };

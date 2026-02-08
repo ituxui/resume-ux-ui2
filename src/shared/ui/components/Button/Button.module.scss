@@ -58,6 +58,10 @@
 // РАЗМЕРЫ
 // ═══════════════════════════════════════════════════════════════════════════
 
+.content_icon {
+  aspect-ratio: 2 / 1;
+}
+
 .size_md {
   height: var(--size-md__height);
   gap: var(--size-md__gap);
@@ -68,7 +72,7 @@
   }
 
   &.content_icon {
-    width: var(--size-md__height);
+    height: var(--size-md__height);
     padding: 0;
   }
 
@@ -87,7 +91,7 @@
   }
 
   &.content_icon {
-    width: var(--size-lg__height);
+    height: var(--size-lg__height);
     padding: 0;
   }
 
@@ -106,7 +110,7 @@
   }
 
   &.content_icon {
-    width: var(--size-xl__height);
+    height: var(--size-xl__height);
     padding: 0;
   }
 

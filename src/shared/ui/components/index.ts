@@ -1,3 +1,10 @@
+export { ListItem } from './list/ListItem';
+
+export { Persons } from './Persons/Persons';
+export type { PersonsProps, PersonData, PersonSection } from './Persons/Persons.types';
+
+export { List } from './list/List';
+
 export { Tab } from './Tab/Tab';
 
 export { Badge } from './Badge/Badge';

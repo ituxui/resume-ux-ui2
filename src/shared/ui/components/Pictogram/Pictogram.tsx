@@ -42,7 +42,7 @@ export const Pictogram = ({
   face = 'empty',
   children,
   className,
-  lazyThreshold = 100,
+  lazyThreshold = 200,
 }: PictogramProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [shouldLoad, setShouldLoad] = useState(false);

@@ -1,0 +1,94 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: var(--readable-container-min_text-width);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VIEWPORT — обрезает контент
+// ═══════════════════════════════════════════════════════════════════════════
+
+.viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TRACK — горизонтальная лента слайдов
+// ═══════════════════════════════════════════════════════════════════════════
+
+.track {
+  display: flex;
+  gap: 16px;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// КАЖДЫЙ СЛАЙД
+// ═══════════════════════════════════════════════════════════════════════════
+
+.slideWrapper {
+  flex-shrink: 0;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid var(--border_color-screen, rgba(0, 0, 0, 0.08));
+  background: hsla(230, 1%, 98%, 1);
+  overflow: hidden;
+
+  // Анимация появления/ухода
+  opacity: 1;
+  transition:
+    transform 0.55s cubic-bezier(0.25, 1, 0.5, 1),
+    opacity 0.4s ease;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+
+  @media (max-width: 480px) {
+    padding: 24px;
+    gap: 20px;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// НАВИГАЦИЯ
+// ═══════════════════════════════════════════════════════════════════════════
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 480px) {
+    gap: 12px;
+  }
+}
+
+.counter {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.navButton {
+  flex: 1;
+  min-width: 0;
+}

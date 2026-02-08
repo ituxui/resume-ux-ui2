@@ -1,3 +1,5 @@
+export { uipPersons } from './persons/uipPersons';
+
 export { MY_EMAIL } from './config';
 
 export { articlesList } from './articlesList.data';
@@ -12,6 +14,4 @@ export { softwareItems } from './softwareItems';
 export { technologiesItems } from './technologiesItems';
 
 export { subscriptionsList } from './subscriptionsList.data';
-
-
 

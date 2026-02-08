@@ -65,6 +65,7 @@ export const ProductCard = ({
           companyName={companyName}
           projectName={projectName}
           className={styles.heading}
+          mode={mode}
         />
 
         <div className={styles.description}>

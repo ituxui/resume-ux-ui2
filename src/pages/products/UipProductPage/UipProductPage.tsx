@@ -2,8 +2,11 @@ import { renderActions, renderDescription, renderMeta, renderScreens } from '@pa
 import { productsSection } from '@pages/Landing/sections/ProductsSection/ProductsSection.data';
 import { ProductCard } from '@pages/Landing/sections';
 import classNames from 'classnames';
-import { Heading } from '@shared/ui';
+import { Heading, Text } from '@shared/ui';
 import styles from './UipProductPage.module.scss';
+import { List, ListItem, Persons, Screen } from '@components';
+import { Gallery } from '@shared/ui/wrappers';
+import { uipPersons } from '@shared/data';
 
 export function UipProductPage() {
 
@@ -38,10 +41,63 @@ export function UipProductPage() {
       </div>
 
 
-      <div className={classNames(styles.section, styles.text)}>
+      <div className={styles.section}>
         <Heading role='section'>
           Кратко
         </Heading>
+        <Text role='body'>
+          В этом проекте я был ведущим UX UI дизайнером и плотно работал с продуктовым менеджером и программистами.
+        </Text>
+        <Text role='body'>
+          Разработав информационный портал для компании застройщика, мы достигли следующих целей:
+        </Text>
+        <List role='body'>
+          <ListItem>Формирование доверия к бренду через портфолио, отзывы и профессиональный дизайн</ListItem>
+          <ListItem>Привлечение потенциальных клиентов тронулось с места, потому что предыдущие лендинги не вызывали доверия</ListItem>
+          <ListItem>Сделали удобный и расширяемый портал для компании</ListItem>
+        </List>
+      </div>
+
+
+      <div className={styles.section}>
+
+        <Gallery>
+          <Screen src="/projects/uip/page/Hero и о застройщике.png" alt="Hero и о застройщике" postfix="Hero и о застройщике" size='1/3' scroll='parallax' />
+          <Screen src="/projects/uip/page/ЖК и другие проекты.png" alt="Жилые комплексы и другие проекты" postfix="Жилые комплексы и другие проекты" size='1/3' scroll='parallax' />
+          <Screen src="/projects/uip/page/Новости и акции.png" alt="Новости и акции" postfix="Новости и акции" size='1/3' scroll='parallax' />
+        </Gallery>
+      </div>
+
+
+
+      <div className={styles.section}>
+        <Heading role='section'>
+          Гипотетические прото-персоны на основе экспертных оценок
+        </Heading>
+        <Text role='body'>
+          Основываясь на анализе конкурентов, переговоров с заказчиками и общих знаниях о рынке недвижимости, я выделил 5 ключевых сегментов аудитории, чтобы проверить свои дизайн-решения на разных сценариях
+        </Text>
+      </div>
+
+
+      <div className={styles.section}>
+        <Persons persons={uipPersons} />
+      </div>
+
+
+
+      <div className={styles.section}>
+        <Heading role='section'>
+          Анализ прямых и косвенных конкурентов
+        </Heading>
+        <Text role='body'>
+          Провели анализ, чтобы выявить их сильные и слабые стороны, лучшие практики UX/UI, функционал, структуру и подходы к подаче информации.
+        </Text>
+      </div>
+
+
+      <div className={styles.section}>
+
       </div>
     </div>);
 }

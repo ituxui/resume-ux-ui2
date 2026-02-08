@@ -1,0 +1,56 @@
+.list {
+  max-width: var(--readable-container-min_text-width);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  position: relative;
+  counter-increment: list-item 1;
+  list-style: none;
+  padding-inline-start: 2ch;
+
+  &::before {
+    position: absolute;
+    inset-inline-start: 0;
+  }
+}
+
+// ul > li
+.unordered > .item::before {
+  content: '•';
+}
+
+// ol > li
+.ordered > .item::before {
+  content: counter(list-item) '.';
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ROLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Body — дефолт
+.role-body {
+  gap: 4px;
+}
+
+.item-body {
+  // дефолтные стили
+}
+
+// Person — компактнее
+.role-person {
+  gap: 2px;
+}
+
+.item-person {
+  padding-inline-start: 1.6ch;
+
+  &::before {
+    opacity: 0.5;
+  }
+}

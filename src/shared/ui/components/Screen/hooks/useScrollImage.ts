@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 interface UseScrollImageOptions {
   enabled: boolean;
@@ -17,64 +17,128 @@ export const useScrollImage = ({
   enabled,
   startThreshold = 30,
   endThreshold = 70,
-  throttleMs = 16,
+  throttleMs = 800,
 }: UseScrollImageOptions): UseScrollImageReturn => {
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  const progressRef = useRef(0);
   const lastCallRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const imageOverflowRef = useRef(0);
+  const canScrollRef = useRef(false);
 
-  const handleScroll = useCallback(() => {
-    if (!enabled || !containerRef.current) return;
-
-    const now = Date.now();
-    if (now - lastCallRef.current < throttleMs) {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(() => handleScroll());
-      return;
-    }
-    lastCallRef.current = now;
-
+  const calcOverflow = useCallback(() => {
+    if (!imageRef.current || !containerRef.current) return;
     const container = containerRef.current;
+    const image = imageRef.current;
+
+    const containerHeight = container.clientHeight;
+    const containerWidth = container.clientWidth;
+    const imageNaturalHeight = image.naturalHeight;
+    const imageNaturalWidth = image.naturalWidth;
+
+    if (imageNaturalWidth === 0) return;
+
+    const scaledImageHeight = (containerWidth / imageNaturalWidth) * imageNaturalHeight;
+    const overflow = scaledImageHeight - containerHeight;
+
+    imageOverflowRef.current = Math.max(0, overflow);
+    canScrollRef.current = overflow > 0;
+  }, []);
+
+  const applyTransform = useCallback(() => {
+    const container = containerRef.current;
+    const image = imageRef.current;
+    if (!container || !image || !canScrollRef.current) return;
+
     const rect = container.getBoundingClientRect();
     const viewportHeight = window.innerHeight;
-
     const topPositionVh = (rect.top / viewportHeight) * 100;
 
     const startPoint = startThreshold;
     const endPoint = -(endThreshold - startThreshold);
+    const range = startPoint - endPoint;
 
     let progress = 0;
-
     if (topPositionVh <= startPoint) {
-      const range = startPoint - endPoint;
       progress = (startPoint - topPositionVh) / range;
     }
-
-    // Ограничиваем 0–1, но не сбрасываем
     progress = Math.max(0, Math.min(1, progress));
 
-    setScrollProgress(progress);
-  }, [enabled, startThreshold, endThreshold, throttleMs]);
+    if (Math.abs(progress - progressRef.current) < 0.001) return;
+
+    progressRef.current = progress;
+
+    const translateY = -progress * imageOverflowRef.current;
+    image.style.transform = `translateY(${translateY}px)`;
+  }, [startThreshold, endThreshold]);
+
+  const handleScroll = useCallback(() => {
+    if (!enabled || !canScrollRef.current) return;
+
+    const now = Date.now();
+    const elapsed = now - lastCallRef.current;
+
+    if (elapsed >= throttleMs) {
+      // Прошло достаточно времени — применяем сразу
+      lastCallRef.current = now;
+      applyTransform();
+    } else {
+      // Ещё рано — ставим отложенный вызов на конец тротлинга
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        lastCallRef.current = Date.now();
+        applyTransform();
+      }, throttleMs - elapsed);
+    }
+  }, [enabled, throttleMs, applyTransform]);
 
   useEffect(() => {
     if (!enabled) return;
 
+    const image = imageRef.current;
+    if (!image) return;
+
+    const onLoad = () => {
+      calcOverflow();
+      applyTransform();
+    };
+
+    if (image.complete && image.naturalHeight > 0) {
+      onLoad();
+    } else {
+      image.addEventListener('load', onLoad);
+    }
+
+    return () => {
+      image.removeEventListener('load', onLoad);
+    };
+  }, [enabled, calcOverflow, applyTransform]);
+
+  useEffect(() => {
+    if (!enabled) return;
+
+    const onResize = () => {
+      calcOverflow();
+      applyTransform();
+    };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener('resize', onResize, { passive: true });
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      window.removeEventListener('resize', onResize);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
     };
-  }, [enabled, handleScroll]);
+  }, [enabled, handleScroll, calcOverflow, applyTransform]);
 
   return {
     containerRef,
     imageRef,
-    scrollProgress,
+    scrollProgress: progressRef.current,
   };
 };

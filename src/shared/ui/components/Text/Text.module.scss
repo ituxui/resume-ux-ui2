@@ -71,22 +71,22 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 // Default (accent) by default
-.button-md,
-.button-lg,
-.button-xl,
-.list,
 .bento,
+.body,
+.button-lg,
+.button-md,
+.button-xl,
 .description,
-.meta,
-.label {
+.label .list,
+.meta {
   color: var(--color_text-accent_default--enabled);
 }
 
 // Muted by default
-.body,
 .table_td,
 .subheading,
-.caption {
+.caption,
+.image-info {
   color: var(--color_text-accent_muted--enabled);
 }
 
@@ -109,12 +109,18 @@
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// BODY
+// BODY, LIST
 // ═══════════════════════════════════════════════════════════════════════════
-.body {
+.body,
+.list {
   font-size: 18px;
   line-height: 28px;
   letter-spacing: 0;
+  max-width: var(--readable-container-min_text-width);
+
+  --text-wght: 400;
+  --text-wdth: 100;
+  --text-opsz: 14;
 
   @media (max-width: 768px) {
     font-size: 17px;
@@ -125,6 +131,14 @@
     font-size: 16px;
     line-height: 22px;
   }
+}
+
+.body:not(:last-child) {
+  padding-bottom: 24px;
+}
+
+.list:not(:last-child) {
+  padding-bottom: 16px;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -172,6 +186,24 @@
   @media (max-width: 480px) {
     font-size: 14px;
     line-height: 1.45;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// IMAGE-INFO
+// ═══════════════════════════════════════════════════════════════════════════
+
+.image-info {
+  font-size: 14px;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+
+  // --text-wght: 440;
+  // --text-XTRA: 478;
+  // --text-YTLC: 528;
+
+  @media (max-width: 480px) {
+    font-size: 13px;
   }
 }
 
@@ -345,25 +377,6 @@
 
   @media (max-width: 480px) {
     font-size: 13px;
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// LIST
-// ═══════════════════════════════════════════════════════════════════════════
-.list {
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 0;
-
-  --text-XTRA: 480;
-
-  @media (max-width: 768px) {
-    font-size: 15px;
-  }
-
-  @media (max-width: 480px) {
-    font-size: 15px;
   }
 }
 

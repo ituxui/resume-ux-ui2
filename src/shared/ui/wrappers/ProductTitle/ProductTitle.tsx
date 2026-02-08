@@ -9,16 +9,19 @@ interface ProductTitleProps {
   projectName: string;
   /** Дополнительный класс */
   className?: string;
+
+  mode?: 'page' | 'landing';
 }
 
 export const ProductTitle = ({
   companyName,
   projectName,
   className,
+  mode,
 }: ProductTitleProps) => {
   return (
     <div className={cn(styles.container, className)}>
-      <Heading role="article">{companyName}</Heading>
+      <Heading role={mode === 'page' ? 'page' : 'article'}>{companyName}</Heading>
 
       <Icon
         name="asterisk"
@@ -26,7 +29,7 @@ export const ProductTitle = ({
         className={styles.separator}
       />
 
-      <Heading role="article">{projectName}</Heading>
+      <Heading role={mode === 'page' ? 'page' : 'article'}>{projectName}</Heading>
     </div>
   );
 };
