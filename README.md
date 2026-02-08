@@ -1,5 +1,5 @@
 git add .
 
-git commit -m "all good"
+git commit -m "deleted index"
 
 git push origin main
