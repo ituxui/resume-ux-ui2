@@ -1,6 +1,6 @@
 
 import styles from './LetsTalkSection.module.scss';
-import { Heading, Link, Nowrap, Popover, } from '@components';
+import { Heading, Link, Nowrap, Popover, } from '@shared/ui/sections';
 import { EmailPart } from '@sections';
 
 

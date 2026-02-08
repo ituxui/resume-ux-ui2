@@ -4,7 +4,7 @@ import { ProductCard } from '@pages/Landing/sections';
 import classNames from 'classnames';
 import { Heading, Text } from '@shared/ui';
 import styles from './UipProductPage.module.scss';
-import { List, ListItem, Persons, Screen } from '@components';
+import { List, ListItem, Persons, Screen } from '@shared/ui/sections';
 import { Gallery } from '@shared/ui/wrappers';
 import { uipPersons } from '@shared/data';
 

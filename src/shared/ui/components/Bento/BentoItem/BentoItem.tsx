@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import styles from './BentoItem.module.scss';
 import type { BentoItemProps } from './BentoItem.types';
-import { Heading } from '@components';
+import { Heading } from '@shared/ui/sections';
 
 
 

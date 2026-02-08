@@ -17,6 +17,8 @@ export interface ScreenProps {
   size?: ScreenSize;
   mode?: ScreenMode;
   scroll?: ScreenScroll;
+  // Эти пропсы больше не влияют на физику нового хука, но оставим их в типах,
+  // чтобы не ломать интерфейс, если они используются где-то еще
   scrollStartThreshold?: number;
   scrollEndThreshold?: number;
   lazyThreshold?: number;
@@ -30,8 +32,7 @@ export const Screen = ({
   size = '1/3',
   mode = 'default',
   scroll = 'static',
-  scrollStartThreshold = 20,
-  scrollEndThreshold = 60,
+  // scrollStartThreshold и scrollEndThreshold больше не нужны для нового алгоритма
   lazyThreshold = 300,
   postfix,
   className,
@@ -46,13 +47,12 @@ export const Screen = ({
     setIsLoaded,
   } = useLazyLoad({ threshold: lazyThreshold });
 
+  // Исправленный вызов хука (убрали лишние пропсы)
   const {
     containerRef: scrollContainerRef,
     imageRef,
   } = useScrollImage({
     enabled: isParallax && isLoaded,
-    startThreshold: scrollStartThreshold,
-    endThreshold: scrollEndThreshold,
   });
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -167,7 +167,7 @@ export const Screen = ({
     <>
       {hasPostfix ? (
         <div className={wrapperClasses}>
-          <Text role={'image-info'} className={styles.postfix}>{postfix}</Text>
+          <Text role={'caption'} className={styles.postfix}>{postfix}</Text>
           {screenContent}
         </div>
       ) : (

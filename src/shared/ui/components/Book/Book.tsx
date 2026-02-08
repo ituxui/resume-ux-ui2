@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
 import type { ReactNode } from 'react';
 import styles from './Book.module.scss';
-import { Tooltip } from '@components';
+import { Tooltip } from '@shared/ui/sections';
 
 type BookSize = 'free' | 'md';
 

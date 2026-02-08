@@ -5,7 +5,7 @@ import type { RoutePath } from '@shared/routes';  // Импортируем ти
 import cn from 'classnames';
 import { Gallery } from '@shared/ui/wrappers';
 import { ProductTitle } from '@shared/ui/wrappers';
-import { Image } from '@shared/ui/components';
+import { Image } from '@shared/ui/sections';
 
 interface ProductCardProps {
   companyName: string;

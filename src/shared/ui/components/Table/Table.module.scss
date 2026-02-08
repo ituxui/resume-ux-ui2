@@ -1,0 +1,72 @@
+.wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// HEADER
+// ═══════════════════════════════════════════════════════════════════════════
+
+.thead {
+  background: var(--color_bg-accent_default--enabled, #1d1d1f);
+}
+
+.th {
+  padding: 16px 24px;
+  text-align: left;
+  vertical-align: middle;
+
+  &:first-child {
+    border-radius: 12px 0 0 12px;
+  }
+
+  &:last-child {
+    border-radius: 0 12px 12px 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 16px;
+  }
+}
+
+.stickyHeader .th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BODY
+// ═══════════════════════════════════════════════════════════════════════════
+
+.td {
+  padding: 20px 24px;
+  vertical-align: top;
+  text-align: left;
+  border-bottom: 1px solid var(--border_color-screen, rgba(0, 0, 0, 0.08));
+
+  @media (max-width: 480px) {
+    padding: 16px;
+  }
+}
+
+.tr:last-child .td {
+  border-bottom: none;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CELL CONTENT
+// ═══════════════════════════════════════════════════════════════════════════
+
+.cellContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}

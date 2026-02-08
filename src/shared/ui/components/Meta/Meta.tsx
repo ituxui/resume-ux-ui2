@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { Heading, Text } from '@components';
+import { Heading, Text } from '@shared/ui/sections';
 import styles from './Meta.module.scss';
 import classNames from 'classnames';
 

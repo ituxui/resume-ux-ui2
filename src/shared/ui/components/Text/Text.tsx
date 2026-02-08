@@ -13,7 +13,8 @@ export type TextRole =
   | 'button-lg-on_invert'
   | 'button-xl-on_invert'
   | 'link'
-  | 'table_td'
+  | 'table-td'
+  | 'table-th'
   | 'meta'
   | 'list'
   | 'caption'
@@ -49,7 +50,8 @@ const defaultTagMap: Record<TextRole, TextTag> = {
   'button-lg-on_invert': 'span',
   'button-xl-on_invert': 'span',
   'link': 'span',
-  'table_td': 'span',
+  'table-td': 'span',
+  'table-th': 'span',
   'meta': 'span',
   'caption': 'span',
   'label': 'span',

@@ -1,5 +1,5 @@
 git add .
 
-git commit -m "message"
+git commit -m "all good"
 
 git push origin main

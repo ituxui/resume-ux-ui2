@@ -1,5 +1,5 @@
 
-import { Meta } from '@shared/ui/components';
+import { Meta } from '@shared/ui/sections';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { ProductCardOther } from '../ProductCard/ProductCardOther';
 import { productsSection } from './ProductsSection.data';

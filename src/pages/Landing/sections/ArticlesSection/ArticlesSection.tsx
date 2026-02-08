@@ -1,5 +1,5 @@
 import styles from './ArticlesSection.module.scss';
-import { Heading, Text } from '@components';
+import { Heading, Text } from '@shared/ui/sections';
 import { Article } from './components/Article';
 import { articlesList } from '@shared/data';
 

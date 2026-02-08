@@ -1,6 +1,6 @@
 import Tilt from 'react-parallax-tilt';
 
-import { Badge, BentoItem, Book, EmojiText, Heading, Image, Link, Nowrap, Pictogram, Screen, Text } from '@components';
+import { Badge, BentoItem, Book, EmojiText, Heading, Image, Link, Nowrap, Pictogram, Screen, Text } from '@shared/ui/sections';
 import { booksItems, designSystemsItems, softwareItems, subscriptionsList, technologiesItems } from '@shared/data';
 
 import styles from './AboutMeSection.module.scss';
