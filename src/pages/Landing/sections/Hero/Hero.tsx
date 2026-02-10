@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { Heading, Icon, Link, Text } from "@shared/ui";
 import { useArrowVisibility } from '@hooks/useArrowVisibility';
 import styles from './Hero.module.scss';
-import { Image, Nowrap, Popover } from '@shared/ui/sections';
+import { Image, Nowrap, Popover } from '@components';
 import { EmailPart } from '@sections';
 
 export function Hero() {

@@ -1,20 +1,55 @@
+import { type ReactNode } from 'react';
 
-export interface TableColumn {
-  key: string;
-  header: string;
-  width?: string;
-}
+// ═══════════════════════════════════════════════════════════════════════════
+// TABLE
+// ═══════════════════════════════════════════════════════════════════════════
 
-export interface TableCellData {
-  title: string;
-  subtitle?: string;
-}
-
-export type TableRowData = Record<string, TableCellData | string>;
+export type TableSize = 'sm' | 'md' | 'lg';
+export type TableColorScheme = 'default' | 'striped' | 'bordered';
+export type TableRegion = 'head' | 'body' | 'foot';
 
 export interface TableProps {
-  columns: TableColumn[];
-  rows: TableRowData[];
-  className?: string;
+  children: ReactNode;
   stickyHeader?: boolean;
+  stickyFooter?: boolean;
+  stickyColumns?: number;
+  colorScheme?: TableColorScheme;
+  size?: TableSize;
+  className?: string;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SECTIONS
+// ═══════════════════════════════════════════════════════════════════════════
+
+export interface TableSectionProps {
+  children: ReactNode;
+  className?: string;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ROW
+// ═══════════════════════════════════════════════════════════════════════════
+
+export interface TableRowProps {
+  children: ReactNode;
+  highlighted?: boolean;
+  className?: string;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CELL
+// ═══════════════════════════════════════════════════════════════════════════
+
+export interface TableCellProps {
+  children?: ReactNode;
+  as?: 'td' | 'th';
+  colSpan?: number;
+  rowSpan?: number;
+  align?: 'left' | 'center' | 'right';
+  valign?: 'top' | 'middle' | 'bottom';
+  sticky?: boolean;
+  width?: string;
+  minWidth?: string;
+  className?: string;
 }

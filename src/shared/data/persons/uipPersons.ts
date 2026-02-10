@@ -1,4 +1,4 @@
-import { type PersonData } from '@shared/ui/sections';
+import { type PersonData } from '@components';
 
 export const uipPersons: PersonData[] = [
   {

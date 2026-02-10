@@ -1,4 +1,4 @@
-import type { ScreenMode, ScreenScroll, ScreenSize } from "@shared/ui/sections";
+import type { ScreenMode, ScreenScroll, ScreenSize } from "@shared/ui/components";
 import type { RoutePath } from "@shared/routes";  // Импортируем готовый тип
 
 export interface ProjectAction {

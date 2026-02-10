@@ -1,4 +1,4 @@
-import { Text } from '@shared/ui/sections';
+import { Text } from '@components';
 import styles from './EmojiText.module.scss';
 
 

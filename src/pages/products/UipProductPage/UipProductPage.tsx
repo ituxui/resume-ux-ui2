@@ -4,7 +4,7 @@ import { ProductCard } from '@pages/Landing/sections';
 import classNames from 'classnames';
 import { Heading, Text } from '@shared/ui';
 import styles from './UipProductPage.module.scss';
-import { List, ListItem, Persons, Screen } from '@shared/ui/sections';
+import { List, ListItem, Persons, Screen, Table, TableBody, TableCell, TableHead, TableRow } from '@components';
 import { Gallery } from '@shared/ui/wrappers';
 import { uipPersons } from '@shared/data';
 
@@ -97,7 +97,24 @@ export function UipProductPage() {
 
 
       <div className={styles.section}>
-
+        <Table stickyHeader stickyColumns={1} size="lg">
+          <TableHead>
+            <TableRow>
+              <TableCell width="40%">Сфера</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <Text role='table-td'>Cybersecurity Tech</Text>
+                <br />
+                <Text role='caption'>Access Control Systems, Network Security</Text>
+              </TableCell>
+              <TableCell><Text role='table-td'>Приложение кибербезопасности (Remote Desktop Protocol)</Text></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     </div>);
 }

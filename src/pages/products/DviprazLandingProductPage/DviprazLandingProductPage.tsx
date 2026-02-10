@@ -1,5 +1,5 @@
 import styles from './DviprazLandingProductPage.module.scss';
-import { Button, Link } from '@shared/ui/sections';
+import { Button, Link } from '@components';
 
 export function DviprazLandingProductPage() {
   return <div className={styles.wrapper}>

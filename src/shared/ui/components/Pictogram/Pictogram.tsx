@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
 import type { ReactNode } from 'react';
 import styles from './Pictogram.module.scss';
-import { Tooltip } from '@shared/ui/sections';
+import { Tooltip } from '@components';
 
 type PictogramSize = 'sm' | 'md';
 type PictogramFace = 'empty' | 'island';

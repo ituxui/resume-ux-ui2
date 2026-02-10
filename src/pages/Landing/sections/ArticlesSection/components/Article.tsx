@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 import styles from './Article.module.scss';
-import { Heading, Text, Image } from '@shared/ui/sections';
+import { Heading, Text, Image } from '@components';
 import cn from 'classnames';
 import type { RoutePath } from '@shared/routes';
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, InputUncontrolled } from '@shared/ui/sections';
+import { Button, InputUncontrolled } from '@components';
 import styles from './EmailPart.module.scss';
 import { MY_EMAIL } from '@shared/data';
 

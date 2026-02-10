@@ -1,5 +1,5 @@
 import styles from './TsdProductPage.module.scss';
-import { Button, Link } from '@shared/ui/sections';
+import { Button, Link } from '@components';
 
 export function TsdProductPage() {
   return <div className={styles.wrapper}>

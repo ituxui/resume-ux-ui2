@@ -1,5 +1,5 @@
 
-import { Meta } from '@shared/ui/sections';
+import { Meta, Table, TableBody, TableCell, TableHead, TableRow } from '@shared/ui/components';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { ProductCardOther } from '../ProductCard/ProductCardOther';
 import { productsSection } from './ProductsSection.data';
@@ -39,6 +39,256 @@ export const ProductsSection = () => {
           <Meta title="Logistics Tech, E-commerce" children="Платформа международных операторов доставки грузов" />,
         ]}
       />
+
+      <div>
+        <Table stickyHeader stickyColumns={1} size="lg" colorScheme='bordered'>
+          <TableHead>
+            <TableRow>
+              <TableCell width="40%">Сфера</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+              <TableCell>IT-Продукты</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>
+                <strong>Cybersecurity Tech</strong>
+                <br />
+                <span style={{ opacity: 0.6 }}>Access Control Systems, Network Security</span>
+              </TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+              <TableCell>Приложение кибербезопасности (Remote Desktop Protocol)</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
     </section>
   );
 };
