@@ -15,3 +15,6 @@ export { technologiesItems } from './technologiesItems';
 
 export { subscriptionsList } from './subscriptionsList.data';
 
+
+export { itSpheresData } from './itSpheres.data';
+export type { ItSphereItem, ProductTuple } from './itSpheres.data';

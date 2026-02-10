@@ -1,3 +1,5 @@
+// src/shared/ui/components/Table/Table.tsx
+
 import { type FC } from 'react';
 import cn from 'classnames';
 import type { TableProps } from './Table.types';
@@ -9,24 +11,26 @@ export const Table: FC<TableProps> = ({
   stickyHeader = false,
   stickyFooter = false,
   stickyColumns = 0,
-  colorScheme = 'default',
   size = 'md',
   className,
 }) => {
   return (
     <TableProvider
-      value={{ stickyHeader, stickyFooter, stickyColumns, size, colorScheme }}
+      value={{ stickyHeader, stickyFooter, stickyColumns, size }}
     >
+      {/* Внешняя рамка (border + radius) */}
       <div className={cn(styles.wrapper, className)}>
-        <table
-          className={cn(
-            styles.table,
-            styles[`size-${size}`],
-            styles[`scheme-${colorScheme}`],
-          )}
-        >
-          {children}
-        </table>
+        {/* Скролл-контейнер */}
+        <div className={styles.scrollContainer}>
+          <table
+            className={cn(
+              styles.table,
+              styles[`size-${size}`]
+            )}
+          >
+            {children}
+          </table>
+        </div>
       </div>
     </TableProvider>
   );

@@ -7,6 +7,7 @@ type HeadingRole =
   | 'hero'     // Главный посыл страницы
   | 'page'     // Заголовок страницы/раздела
   | 'section'  // Начало смыслового блока
+  | 'subsection'
   | 'article'  // Статья
   | 'feature'  // Название фичи/преимущества
   | 'label'    // Подпись к элементу
@@ -33,6 +34,7 @@ const defaultTagMap: Record<HeadingRole, HeadingTag> = {
   hero: 'h1',
   page: 'h1',
   section: 'h2',
+  subsection: 'h3',
   article: 'h3',
   feature: 'h3',
   label: 'span',

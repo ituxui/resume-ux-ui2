@@ -145,22 +145,32 @@ $width-three-thirds: var(--container-max-width, 1304px);
   &.sizeOneThird {
     // width: min($width-one-third, var(--max-module));
     aspect-ratio: $aspect-one-third;
-
     grid-column: span 1;
+
+    .screen {
+      aspect-ratio: $aspect-one-third;
+      grid-column: span 1;
+    }
   }
 
   &.sizeTwoThirds {
     // width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
     aspect-ratio: $aspect-two-thirds;
-
     grid-column: span 2;
+    .screen {
+      aspect-ratio: $aspect-two-thirds;
+      grid-column: span 2;
+    }
   }
 
   &.sizeThreeThirds {
     // width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
     aspect-ratio: $aspect-three-thirds;
-
     grid-column: span 3;
+    .screen {
+      aspect-ratio: $aspect-three-thirds;
+      grid-column: span 3;
+    }
   }
 
   // @include media-1352px-breakpoint-and-down {
@@ -522,9 +532,9 @@ $width-three-thirds: var(--container-max-width, 1304px);
   gap: 12px;
 
   // Скрин внутри wrapper не должен иметь grid-column
-  .screen {
-    grid-column: unset;
-  }
+  // .screen {
+  //   grid-column: unset;
+  // }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════

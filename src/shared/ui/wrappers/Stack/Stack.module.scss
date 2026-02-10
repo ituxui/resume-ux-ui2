@@ -1,55 +1,64 @@
-// src/shared/ui/components/Table/Table.types.ts
-
-import { type ReactNode } from 'react';
-
 // ═══════════════════════════════════════════════════════════════════════════
-// TABLE
+// STACK — вертикальный контейнер с ритмическими отступами
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type TableSize = 'sm' | 'md' | 'lg';
-export type TableRegion = 'head' | 'body' | 'foot';
-
-export interface TableProps {
-  children: ReactNode;
-  stickyHeader?: boolean;
-  stickyFooter?: boolean;
-  stickyColumns?: number;
-  size?: TableSize;
-  className?: string;
+.stack {
+  @include flex(column, flex-start, center);
+  width: 100%;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// SECTIONS
+// WIDTH
 // ═══════════════════════════════════════════════════════════════════════════
 
-export interface TableSectionProps {
-  children: ReactNode;
-  className?: string;
+.width-text {
+  max-width: var(--readable-container-min_text-width);
+}
+
+.width-container {
+  max-width: var(--container-max-width);
+}
+
+.width-full {
+  max-width: none;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ROW
+// LANDING
 // ═══════════════════════════════════════════════════════════════════════════
 
-export interface TableRowProps {
-  children: ReactNode;
-  highlighted?: boolean;
-  className?: string;
+.landing-section {
+  padding-bottom: 240px;
+}
+.landing-subsection {
+  padding-bottom: 120px;
+}
+.landing-subsubsection {
+  padding-bottom: 60px;
+}
+.landing-paragraph {
+  padding-bottom: 24px;
+}
+.landing-none {
+  padding-bottom: 0;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// CELL
+// ARTICLE
 // ═══════════════════════════════════════════════════════════════════════════
 
-export interface TableCellProps {
-  children?: ReactNode;
-  as?: 'td' | 'th';
-  colSpan?: number;
-  rowSpan?: number;
-  align?: 'left' | 'center' | 'right';
-  valign?: 'top' | 'middle' | 'bottom';
-  sticky?: boolean;
-  width?: string;
-  minWidth?: string;
-  className?: string;
+.article-section {
+  padding-bottom: 120px;
+}
+.article-subsection {
+  padding-bottom: 60px;
+}
+.article-subsubsection {
+  padding-bottom: 40px;
+}
+.article-paragraph {
+  padding-bottom: 28px;
+}
+.article-none {
+  padding-bottom: 0;
 }

@@ -13,6 +13,8 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto Flex', sans-serif;
+  display: block;
+  width: 100%;
   color: inherit;
 
   --heading-wght: 560;
@@ -99,7 +101,7 @@
   font-size: 28px;
   line-height: 36px;
   letter-spacing: -0.03em;
-  padding-bottom: 32px;
+  padding-bottom: 48px;
   max-width: var(--readable-container-min_text-width);
 
   --heading-wght: 500;
@@ -118,6 +120,33 @@
     line-height: 1.15;
     letter-spacing: -0.02em;
     --heading-wght: 640;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SUBSECTION
+// ═══════════════════════════════════════════════════════════════════════════
+.subsection {
+  font-size: 19px;
+  line-height: 28px;
+  letter-spacing: -0.01em;
+  padding-bottom: 12px;
+
+  --heading-wght: 550;
+  --heading-XTRA: 468;
+  --heading-YTUC: 655;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+    line-height: 1.18;
+    letter-spacing: -0.025em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    --heading-wght: 630;
   }
 }
 

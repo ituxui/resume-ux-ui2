@@ -1,5 +1,5 @@
 git add .
 
-git commit -m "deleted index"
+git commit -m "before refactoring of Screen Gallery"
 
 git push origin main

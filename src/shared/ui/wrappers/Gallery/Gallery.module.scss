@@ -1,18 +1,27 @@
 .gallery {
+  display: grid;
   gap: 16px;
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  & > * {
-    grid-row: span 1;
-  }
+  // & > * {
+  //   grid-row: span 1;
+  // }
 
   @include media-s-breakpoint-and-down {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-
     gap: 40px;
   }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// COLUMNS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.cols-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.cols-2 {
+  grid-template-columns: repeat(2, 1fr);
 }

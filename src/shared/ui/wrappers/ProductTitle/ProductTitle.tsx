@@ -21,7 +21,7 @@ export const ProductTitle = ({
 }: ProductTitleProps) => {
   return (
     <div className={cn(styles.container, className)}>
-      <Heading role={mode === 'page' ? 'page' : 'article'}>{companyName}</Heading>
+      <Heading role={mode === 'page' ? 'page' : 'article'} className={styles.header}>{companyName}</Heading>
 
       <Icon
         name="asterisk"
@@ -29,7 +29,7 @@ export const ProductTitle = ({
         className={styles.separator}
       />
 
-      <Heading role={mode === 'page' ? 'page' : 'article'}>{projectName}</Heading>
+      <Heading role={mode === 'page' ? 'page' : 'article'} className={styles.header}>{projectName}</Heading>
     </div>
   );
 };

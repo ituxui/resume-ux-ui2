@@ -216,3 +216,12 @@
     }
   }
 }
+
+.others {
+  .container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100%;
+  }
+  padding-bottom: calc(var(--margin-sections-vertical) / 2);
+}

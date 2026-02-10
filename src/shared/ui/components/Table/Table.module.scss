@@ -1,13 +1,67 @@
+// src/shared/ui/components/Table/Table.module.scss
+
 // ═══════════════════════════════════════════════════════════════════════════
-// WRAPPER
+// VARIABLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+$radius: 12px;
+$border-color: var(--border_color-screen, rgba(0, 0, 0, 0.08));
+$bg-header: var(--color_bg-accent_default--enabled, #1d1d1f);
+$bg-body: var(--color_bg-primary, #fff);
+$text-header: var(--color_text-accent_default-inverted--enabled, #fff);
+
+// ═══════════════════════════════════════════════════════════════════════════
+// WRAPPER (Frame)
 // ═══════════════════════════════════════════════════════════════════════════
 
 .wrapper {
-  width: 100%;
+  // Рисуем внешнюю рамку здесь, чтобы она была стационарной
+  border: 1px solid $border-color;
+  border-radius: $radius;
+  overflow: hidden; // Обрезаем углы контента и скроллбаров
+
+  // Размеры
+  min-width: var(--readable-container-min_text-width);
   max-width: calc(100vw - (var(--margin-screens-horizontal) * 2));
-  max-height: calc(100vh - (var(--margin-screens-horizontal) * 2));
-  overflow-x: auto;
+  max-height: min(70vh, calc(100vh - 100px));
+
+  // Flex нужен, чтобы скролл-контейнер занимал все место
+  display: flex;
+  flex-direction: column;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCROLL CONTAINER
+// ═══════════════════════════════════════════════════════════════════════════
+
+.scrollContainer {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+
+  // Инерционный скролл iOS
   -webkit-overflow-scrolling: touch;
+
+  // ─── Custom Scrollbar ────────────────────────────────────────────────────
+  &::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 99px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -18,232 +72,114 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  table-layout: auto;
+  // Убираем border у самой таблицы, так как он теперь на wrapper
+  border: none;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// SECTIONS
+// HEADER (THEAD)
 // ═══════════════════════════════════════════════════════════════════════════
 
 .thead {
-}
-.tbody {
-}
-.tfoot {
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// ROW
-// ═══════════════════════════════════════════════════════════════════════════
-
-.tr {
-}
-
-.highlighted {
-  background: var(--color_bg-accent_muted--enabled, rgba(0, 0, 0, 0.02));
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// CELL — общее
-// ═══════════════════════════════════════════════════════════════════════════
-
-.cell {
-  margin: 0;
-  border: 0;
-  background: inherit;
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// SIZE
-// ═══════════════════════════════════════════════════════════════════════════
-
-.size-sm .cell {
-  padding: 8px 12px;
-}
-
-.size-md .cell {
-  padding: 12px 20px;
-}
-
-.size-lg .cell {
-  padding: 20px 24px;
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// COLOR SCHEMES
-// ═══════════════════════════════════════════════════════════════════════════
-
-// Default — горизонтальные линии
-.scheme-default {
-  .tbody .tr {
-    border-bottom: 1px solid var(--border_color-screen, rgba(0, 0, 0, 0.08));
-
-    &:last-child {
-      border-bottom: none;
-    }
-  }
-
-  // Чтобы border работал на tr при border-collapse: separate
-  .tbody .td {
-    border-bottom: 1px solid var(--border_color-screen, rgba(0, 0, 0, 0.08));
-  }
-
-  .tbody .tr:last-child .td {
-    border-bottom: none;
-  }
-
-  .thead {
-    background: var(--color_bg-accent_default--enabled, #1d1d1f);
-
-    .th {
-      color: var(--color_text-accent_default-inverted--enabled, #fff);
-    }
-
-    // Скругления первой и последней ячейки хедера
-    .tr:first-child .cell:first-child {
-      border-radius: 12px 0 0 12px;
-    }
-
-    .tr:first-child .cell:last-child {
-      border-radius: 0 12px 12px 0;
-    }
-  }
-}
-
-// Striped — зебра
-.scheme-striped {
-  .tbody .tr:nth-child(even) {
-    background: var(--color_bg-accent_muted--enabled, rgba(0, 0, 0, 0.02));
-  }
-
-  .thead {
-    background: var(--color_bg-accent_default--enabled, #1d1d1f);
-
-    .th {
-      color: var(--color_text-accent_default-inverted--enabled, #fff);
-    }
-
-    .tr:first-child .cell:first-child {
-      border-radius: 12px 0 0 12px;
-    }
-
-    .tr:first-child .cell:last-child {
-      border-radius: 0 12px 12px 0;
-    }
-  }
-}
-
-// Bordered — полная сетка
-.scheme-bordered {
-  .cell {
-    border: 1px solid var(--border_color-screen, rgba(0, 0, 0, 0.08));
-  }
-
-  .thead {
-    background: var(--color_bg-accent_default--enabled, #1d1d1f);
-
-    .th {
-      color: var(--color_text-accent_default-inverted--enabled, #fff);
-      border-color: rgba(255, 255, 255, 0.15);
-    }
-
-    .tr:first-child .cell:first-child {
-      border-radius: 12px 0 0 0;
-    }
-
-    .tr:first-child .cell:last-child {
-      border-radius: 0 12px 0 0;
-    }
-  }
-
-  // Убираем дублирование бордеров
-  .tr + .tr .cell {
-    border-top: none;
-  }
-
-  .cell + .cell {
-    border-left: none;
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// ALIGNMENT
-// ═══════════════════════════════════════════════════════════════════════════
-
-.align-left {
-  text-align: left;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.valign-top {
-  vertical-align: top;
-}
-
-.valign-middle {
-  vertical-align: middle;
-}
-
-.valign-bottom {
-  vertical-align: bottom;
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// STICKY
-// ═══════════════════════════════════════════════════════════════════════════
-
-.stickyRow {
+  // Фиксация заголовка
   position: sticky;
   top: 0;
+  z-index: 10;
+
+  .cell {
+    background: $bg-header;
+    color: $text-header;
+    font-weight: 600;
+    text-align: left;
+
+    // Рисуем границы ТОЛЬКО между ячейками
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    // У последней ячейки справа границы нет (там рамка wrapper)
+    &:last-child {
+      border-right: none;
+    }
+  }
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// BODY (TBODY)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.tbody {
+  .cell {
+    background: $bg-body;
+
+    // Границы: справа и снизу
+    border-right: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+
+    // // У последней ячейки в строке убираем правую границу
+    // &:last-child {
+    //   border-right: none;
+    // }
+  }
+
+  // У последней строки убираем нижнюю границу (там рамка wrapper)
+  .tr:last-child .cell {
+    border-bottom: none;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STICKY COLUMNS
+// ═══════════════════════════════════════════════════════════════════════════
 
 .stickyCol {
   position: sticky;
   left: 0;
-  background: var(--color_bg-primary, #fff);
+  z-index: 5;
+  // Важно: фон должен перекрывать контент, который проезжает под ним
+  background: inherit;
 
-  // Тень справа при прокрутке
+  // Тень для отделения
   &::after {
     content: '';
     position: absolute;
     top: 0;
-    right: -8px;
+    right: 0;
     bottom: 0;
-    width: 8px;
+    width: 30px;
+    transform: translateX(100%);
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.05), transparent);
     pointer-events: none;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.04), transparent);
-    opacity: 0;
-    transition: opacity 0.2s ease;
   }
 }
 
-// Показываем тень когда таблица скроллится
-.wrapper:hover .stickyCol::after {
-  opacity: 1;
-}
-
+// Угловая ячейка (пересечение хедера и первой колонки)
 .stickyCorner {
-  position: sticky;
-  top: 0;
-  left: 0;
+  z-index: 20; // Выше всего
 }
 
-// Sticky header сохраняет фон
-.thead .stickyRow,
-.thead .stickyCorner {
-  background: var(--color_bg-accent_default--enabled, #1d1d1f);
+// ═══════════════════════════════════════════════════════════════════════════
+// SIZES & HIGHLIGHTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.size-sm .cell {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+.size-md .cell {
+  padding: 12px 16px;
+  font-size: 14px;
+}
+.size-lg .cell {
+  padding: 16px 24px;
+  font-size: 16px;
 }
 
-// Sticky footer сохраняет фон
-.tfoot .stickyRow,
-.tfoot .stickyCorner {
-  background: var(--color_bg-primary, #fff);
-  bottom: 0;
-  top: auto;
+.tr {
+  transition: background-color 0.15s ease;
+
+  &:hover:not(:first-child) {
+    .cell {
+      background-color: var(--color_bg-accent_muted--enabled, rgba(0, 0, 0, 0.02));
+    }
+  }
 }

@@ -58,6 +58,7 @@ export type {
   TableRowProps,
   TableCellProps,
   TableSize,
-  TableColorScheme,
   TableRegion,
 } from './Table/Table.types';
+
+export * from './CompetitorsTable/CompetitorsTable';

@@ -1,4 +1,4 @@
-import { Fragment, type ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import styles from './ProductCard.module.scss';
 import { Heading, Text } from '@shared/ui';
 import classNames from 'classnames';
@@ -16,10 +16,10 @@ interface ProductCardOtherProps {
 export const ProductCardOther = ({
   heading,
   description,
-  summaryItems = [],
+  // summaryItems = [],
 }: ProductCardOtherProps) => {
   return (
-    <div className={classNames(styles.wrapper, styles[`mode-${'landing'}`])}>
+    <div className={classNames(styles.wrapper, styles.others, styles[`mode-${'landing'}`])}>
       <div className={styles.container}>
 
 
@@ -30,7 +30,7 @@ export const ProductCardOther = ({
         <Text role="description" className={styles.description} >
           {description}
         </Text>
-        {summaryItems.length > 0 && (
+        {/* {summaryItems.length > 0 && (
           <div className={styles.meta}>
             {summaryItems.map((item, index) => (
               <Fragment key={index}>
@@ -38,7 +38,7 @@ export const ProductCardOther = ({
               </Fragment>
             ))}
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

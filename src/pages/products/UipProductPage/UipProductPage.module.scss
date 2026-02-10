@@ -12,6 +12,10 @@
   max-width: var(--container-max-width);
 }
 
+.halfSection {
+  padding-bottom: calc(var(--margin-sections-vertical) / 2);
+}
+
 .text {
   max-width: var(--readable-container-max-width);
 }

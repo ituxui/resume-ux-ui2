@@ -1,5 +1,7 @@
+// src/shared/ui/components/Table/TableContext.ts
+
 import { createContext, useContext } from 'react';
-import type { TableSize, TableColorScheme, TableRegion } from './Table.types';
+import type { TableSize, TableRegion } from './Table.types';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TABLE CONFIG
@@ -10,7 +12,6 @@ export interface TableContextValue {
   stickyFooter: boolean;
   stickyColumns: number;
   size: TableSize;
-  colorScheme: TableColorScheme;
 }
 
 const TableContext = createContext<TableContextValue>({
@@ -18,7 +19,6 @@ const TableContext = createContext<TableContextValue>({
   stickyFooter: false,
   stickyColumns: 0,
   size: 'md',
-  colorScheme: 'default',
 });
 
 export const TableProvider = TableContext.Provider;

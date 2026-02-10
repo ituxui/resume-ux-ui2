@@ -113,9 +113,14 @@ export const Screen = ({
     '3/3': styles.sizeThreeThirds,
   };
 
+  const wrapperClasses = cn(
+    styles.wrapper,
+    styles[`mode_${mode}`],
+    sizeClassMap[size],
+  );
+
   const screenClasses = cn(
     styles.screen,
-    sizeClassMap[size],
     styles[`mode_${mode}`],
     {
       [styles.parallax]: isParallax,
@@ -124,10 +129,6 @@ export const Screen = ({
     className
   );
 
-  const wrapperClasses = cn(
-    styles.wrapper,
-    styles[`mode_${mode}`]
-  );
 
   const hasPostfix = Boolean(postfix);
 

@@ -1,0 +1,40 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.title {
+  font-weight: 600;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.advantage {
+  color: var(--color_text-success--enabled, #10b981);
+}
+
+.disadvantage {
+  color: var(--color_text-critical--enabled, #ef4444);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  &.check {
+    color: var(--color_text-success--enabled, #10b981);
+  }
+  &.cross {
+    color: var(--color_text-critical--enabled, #ef4444);
+    opacity: 0.5;
+  }
+  &.warn {
+    color: var(--color_text-warning--enabled, #f59e0b);
+  }
+}

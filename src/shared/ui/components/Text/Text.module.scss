@@ -16,7 +16,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto Flex', sans-serif;
-
+  width: 100%;
   --text-wght: 325;
   --text-wdth: 102;
   --text-opsz: 12;
@@ -112,7 +112,8 @@
 // BODY, LIST
 // ═══════════════════════════════════════════════════════════════════════════
 .body,
-.list {
+.list,
+.link {
   font-size: 18px;
   line-height: 28px;
   letter-spacing: 0;
@@ -133,8 +134,32 @@
   }
 }
 
-.body:not(:last-child) {
-  padding-bottom: 24px;
+.list:not(:last-child) {
+  padding-bottom: 16px;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// .link-sm
+// ═══════════════════════════════════════════════════════════════════════════
+
+.link-sm {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0;
+
+  --text-wght: 400;
+  --text-wdth: 100;
+  --text-opsz: 14;
+
+  // @media (max-width: 768px) {
+  //   font-size: 14px;
+  //   line-height: 26px;
+  // }
+
+  @media (max-width: 480px) {
+    font-size: 13px;
+    line-height: 18px;
+  }
 }
 
 .list:not(:last-child) {
@@ -322,27 +347,27 @@
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// LINK
-// ═══════════════════════════════════════════════════════════════════════════
-.link {
-  font-size: inherit;
-  line-height: inherit;
-  letter-spacing: inherit;
-  color: var(--color_text-accent_high--enabled);
-  text-decoration: none;
-  cursor: pointer;
+// // ═══════════════════════════════════════════════════════════════════════════
+// // LINK
+// // ═══════════════════════════════════════════════════════════════════════════
+// .link {
+//   font-size: inherit;
+//   line-height: inherit;
+//   letter-spacing: inherit;
+//   color: var(--color_text-accent_high--enabled);
+//   text-decoration: none;
+//   cursor: pointer;
 
-  --text-wght: 420;
+//   --text-wght: 420;
 
-  &:hover {
-    text-decoration: underline;
-  }
+//   &:hover {
+//     text-decoration: underline;
+//   }
 
-  &:active {
-    opacity: 0.8;
-  }
-}
+//   &:active {
+//     opacity: 0.8;
+//   }
+// }
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TABLE-TH

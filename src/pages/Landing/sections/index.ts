@@ -1,3 +1,5 @@
+export { Spheres } from './Spheres/Spheres';
+
 export { AboutMeSection } from './AboutMeSection/AboutMeSection';
 
 export { ProductsSection } from './ProductsSection/ProductsSection';

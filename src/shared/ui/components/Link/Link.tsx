@@ -2,9 +2,10 @@ import { forwardRef, type ReactNode, type MouseEvent } from 'react';
 import { Link as RouterLink } from 'react-router';
 import cn from 'classnames';
 import styles from './Link.module.scss';
+import { Text, type TextRole } from '../Text/Text';
 import { Icon, type IconSize } from '@shared/ui/atoms/Icon/Icon';
 
-export type LinkSize = 'sm' | 'md' | 'lg';
+export type LinkSize = 'sm' | 'md';
 export type LinkAccent = 'muted' | 'default' | 'high';
 
 type LinkType = 'download' | 'internal' | 'modal' | 'external' | 'anchor';
@@ -25,14 +26,17 @@ export interface LinkProps {
 
   target?: string;
   rel?: string;
-
-  [key: string]: any;
 }
+
+
+const sizeToTextRole: Record<LinkSize, TextRole> = {
+  sm: 'link-sm',
+  md: 'link',
+};
 
 const sizeToIconSize: Record<LinkSize, IconSize> = {
   sm: 'sm',
   md: 'md',
-  lg: 'lg',
 };
 
 const getLinkType = (props: Partial<LinkProps>): LinkType => {
@@ -138,11 +142,11 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
 }, ref) => {
   const linkType = getLinkType({ phrase, href, to, download, onClick, anchorId });
   const iconName = getIconName(linkType);
-  const iconSize = sizeToIconSize[size as LinkSize];
+  const iconSize = sizeToIconSize[size];
+  const textRole = sizeToTextRole[size];
 
   const classes = cn(
     styles.link,
-    styles[size],
     styles[accent],
     invert && styles.invert,
     isActive && styles.active,
@@ -150,13 +154,12 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
   );
 
   const content = (
-    <>
+    <Text role={textRole} as="span">
       <span className={styles.phrase}>{phrase}</span>
       <Icon name={iconName} size={iconSize} className={styles.icon} />
-    </>
+    </Text>
   );
 
-  // Обёртка для обработчиков с stopPropagation
   const handleClick = (e: MouseEvent, callback?: () => void) => {
     e.stopPropagation();
     callback?.();
