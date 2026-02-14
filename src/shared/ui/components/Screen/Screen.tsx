@@ -8,14 +8,12 @@ import { useLazyLoad } from './hooks/useLazyLoad';
 import { Text } from '../Text/Text';
 
 export type ScreenSize = '1/3' | '2/3' | '3/3';
-export type ScreenMode = 'default' | 'gallery' | 'full';
 export type ScreenScroll = 'static' | 'parallax';
 
 export interface ScreenProps {
   src: string;
   alt?: string;
   size?: ScreenSize;
-  mode?: ScreenMode;
   scroll?: ScreenScroll;
   // Эти пропсы больше не влияют на физику нового хука, но оставим их в типах,
   // чтобы не ломать интерфейс, если они используются где-то еще
@@ -30,13 +28,13 @@ export const Screen = ({
   src,
   alt = 'Screenshot',
   size = '1/3',
-  mode = 'default',
   scroll = 'static',
   // scrollStartThreshold и scrollEndThreshold больше не нужны для нового алгоритма
   lazyThreshold = 300,
   postfix,
   className,
 }: ScreenProps) => {
+
   const isParallax = scroll === 'parallax';
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -113,15 +111,16 @@ export const Screen = ({
     '3/3': styles.sizeThreeThirds,
   };
 
+
+  console.log('alt', alt, sizeClassMap[size]);
+
   const wrapperClasses = cn(
     styles.wrapper,
-    styles[`mode_${mode}`],
-    sizeClassMap[size],
   );
 
   const screenClasses = cn(
     styles.screen,
-    styles[`mode_${mode}`],
+    sizeClassMap[size],
     {
       [styles.parallax]: isParallax,
       [styles.loading]: !isLoaded && shouldLoad,

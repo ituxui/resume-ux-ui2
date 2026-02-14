@@ -46,8 +46,8 @@ export const productsSection: ProjectData[] = [
       { title: 'Доступ', value: 'Закрытый' },
     ],
     screens: [
-      { src: '/projects/oxygen-plant/landing.jpg', alt: 'Терминал сбора данных', size: '2/3', mode: 'gallery' },
-      { src: '/projects/oxygen-plant/result/22.png', alt: 'Терминал сбора данных', size: '1/3', mode: 'default' },
+      { src: '/projects/oxygen-plant/landing.jpg', alt: 'Терминал сбора данных', size: '2/3', },
+      { src: '/projects/oxygen-plant/result/22.png', alt: 'Терминал сбора данных', size: '1/3', },
     ],
   },
   {

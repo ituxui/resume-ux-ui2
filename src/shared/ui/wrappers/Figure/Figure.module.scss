@@ -1,0 +1,17 @@
+// src/shared/ui/wrappers/Figure/Figure.module.scss
+
+.figure {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.caption {
+  display: block;
+  text-align: center;
+  // Стили для подписи (можно использовать миксины Typography)
+  color: var(--color_text_muted--enabled, rgba(0, 0, 0, 0.6));
+}

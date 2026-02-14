@@ -42,7 +42,6 @@ export const renderScreens = (screens: ProjectScreen[]): ReactNode => {
           src={screen.src}
           alt={screen.alt}
           size={screen.size}
-          mode={screen.mode ?? 'default'}
           scroll={screen.scroll}
         />
       ))}

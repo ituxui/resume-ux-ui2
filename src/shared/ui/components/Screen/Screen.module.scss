@@ -136,132 +136,22 @@ $width-three-thirds: var(--container-max-width, 1304px);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// РАЗМЕРЫ — DEFAULT MODE
+// SIZES
 // ═══════════════════════════════════════════════════════════════════════════
 
-.mode_default {
-  --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 2);
-
-  &.sizeOneThird {
-    // width: min($width-one-third, var(--max-module));
-    aspect-ratio: $aspect-one-third;
-    grid-column: span 1;
-
-    .screen {
-      aspect-ratio: $aspect-one-third;
-      grid-column: span 1;
-    }
-  }
-
-  &.sizeTwoThirds {
-    // width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
-    aspect-ratio: $aspect-two-thirds;
-    grid-column: span 2;
-    .screen {
-      aspect-ratio: $aspect-two-thirds;
-      grid-column: span 2;
-    }
-  }
-
-  &.sizeThreeThirds {
-    // width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
-    aspect-ratio: $aspect-three-thirds;
-    grid-column: span 3;
-    .screen {
-      aspect-ratio: $aspect-three-thirds;
-      grid-column: span 3;
-    }
-  }
-
-  // @include media-1352px-breakpoint-and-down {
-  //   &.sizeOneThird {
-  //     width: max($width-one-third, 40%);
-  //   }
-  //   &.sizeTwoThirds {
-  //     width: 100%;
-  //   }
-  //   &.sizeThreeThirds {
-  //     width: 100%;
-  //   }
-
-  //   &.parallax {
-  //     &.sizeTwoThirds {
-  //       aspect-ratio: $aspect-one-third;
-  //     }
-  //     &.sizeThreeThirds {
-  //       aspect-ratio: $aspect-one-third;
-  //     }
-  //   }
-  // }
-
-  @include media-s-breakpoint-and-down {
-    &.sizeOneThird,
-    &.sizeTwoThirds,
-    &.sizeThreeThirds {
-      width: 100%;
-    }
-
-    &.parallax {
-      &.sizeTwoThirds,
-      &.sizeThreeThirds {
-        aspect-ratio: $aspect-one-third;
-      }
-    }
-  }
+.sizeOneThird {
+  width: max($width-one-third, 40%);
+  aspect-ratio: $aspect-one-third;
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// РАЗМЕРЫ — GALLERY MODE
-// ═══════════════════════════════════════════════════════════════════════════
-
-.mode_gallery {
-  --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 4);
-
-  &.sizeOneThird {
-    width: min($width-one-third, var(--max-module));
-    aspect-ratio: $aspect-one-third;
-  }
-
-  &.sizeTwoThirds {
-    width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
-    aspect-ratio: $aspect-two-thirds;
-  }
-
-  &.sizeThreeThirds {
-    width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
-    aspect-ratio: $aspect-three-thirds;
-  }
+.sizeTwoThirds {
+  width: max($width-two-thirds, 40%);
+  aspect-ratio: $aspect-two-thirds;
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// РАЗМЕРЫ — FULL MODE (max 100vw)
-// ═══════════════════════════════════════════════════════════════════════════
-
-.mode_full {
-  --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 2);
-
-  &.sizeOneThird {
-    width: min($width-one-third, var(--max-module));
-    aspect-ratio: $aspect-one-third;
-  }
-
-  &.sizeTwoThirds {
-    width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
-    aspect-ratio: $aspect-two-thirds;
-  }
-
-  &.sizeThreeThirds {
-    width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
-    aspect-ratio: $aspect-three-thirds;
-  }
-
-  @include media-1352px-breakpoint-and-down {
-    &.sizeOneThird,
-    &.sizeTwoThirds,
-    &.sizeThreeThirds {
-      width: 100% !important;
-    }
-  }
+.sizeThreeThirds {
+  width: max($width-three-thirds, 40%);
+  aspect-ratio: $aspect-three-thirds;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -547,3 +437,132 @@ $width-three-thirds: var(--container-max-width, 1304px);
   color: var(--color_text_muted--enabled, rgba(0, 0, 0, 0.6));
   text-align: center;
 }
+
+// // ═══════════════════════════════════════════════════════════════════════════
+// // РАЗМЕРЫ — DEFAULT MODE
+// // ═══════════════════════════════════════════════════════════════════════════
+
+// .mode_default {
+//   --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 2);
+
+//   &.sizeOneThird {
+//     // width: min($width-one-third, var(--max-module));
+//     aspect-ratio: $aspect-one-third;
+//     grid-column: span 1;
+
+//     .screen {
+//       aspect-ratio: $aspect-one-third;
+//       grid-column: span 1;
+//     }
+//   }
+
+//   &.sizeTwoThirds {
+//     // width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
+//     aspect-ratio: $aspect-two-thirds;
+//     grid-column: span 2;
+//     .screen {
+//       aspect-ratio: $aspect-two-thirds;
+//       grid-column: span 2;
+//     }
+//   }
+
+//   &.sizeThreeThirds {
+//     // width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
+//     aspect-ratio: $aspect-three-thirds;
+//     grid-column: span 3;
+//     .screen {
+//       aspect-ratio: $aspect-three-thirds;
+//       grid-column: span 3;
+//     }
+//   }
+
+//   // @include media-1352px-breakpoint-and-down {
+//   //   &.sizeOneThird {
+//   //     width: max($width-one-third, 40%);
+//   //   }
+//   //   &.sizeTwoThirds {
+//   //     width: 100%;
+//   //   }
+//   //   &.sizeThreeThirds {
+//   //     width: 100%;
+//   //   }
+
+//   //   &.parallax {
+//   //     &.sizeTwoThirds {
+//   //       aspect-ratio: $aspect-one-third;
+//   //     }
+//   //     &.sizeThreeThirds {
+//   //       aspect-ratio: $aspect-one-third;
+//   //     }
+//   //   }
+//   // }
+
+//   @include media-s-breakpoint-and-down {
+//     &.sizeOneThird,
+//     &.sizeTwoThirds,
+//     &.sizeThreeThirds {
+//       width: 100%;
+//     }
+
+//     &.parallax {
+//       &.sizeTwoThirds,
+//       &.sizeThreeThirds {
+//         aspect-ratio: $aspect-one-third;
+//       }
+//     }
+//   }
+// }
+
+// // ═══════════════════════════════════════════════════════════════════════════
+// // РАЗМЕРЫ — GALLERY MODE
+// // ═══════════════════════════════════════════════════════════════════════════
+
+// .mode_gallery {
+//   --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 4);
+
+//   &.sizeOneThird {
+//     width: min($width-one-third, var(--max-module));
+//     aspect-ratio: $aspect-one-third;
+//   }
+
+//   &.sizeTwoThirds {
+//     width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
+//     aspect-ratio: $aspect-two-thirds;
+//   }
+
+//   &.sizeThreeThirds {
+//     width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
+//     aspect-ratio: $aspect-three-thirds;
+//   }
+// }
+
+// // ═══════════════════════════════════════════════════════════════════════════
+// // РАЗМЕРЫ — FULL MODE (max 100vw)
+// // ═══════════════════════════════════════════════════════════════════════════
+
+// .mode_full {
+//   --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 2);
+
+//   &.sizeOneThird {
+//     width: min($width-one-third, var(--max-module));
+//     aspect-ratio: $aspect-one-third;
+//   }
+
+//   &.sizeTwoThirds {
+//     width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
+//     aspect-ratio: $aspect-two-thirds;
+//   }
+
+//   &.sizeThreeThirds {
+//     width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
+//     aspect-ratio: $aspect-three-thirds;
+//   }
+
+//   @include media-1352px-breakpoint-and-down {
+//     &.sizeOneThird,
+//     &.sizeTwoThirds,
+//     &.sizeThreeThirds {
+//       width: 100% !important;
+//     }
+//   }
+// }

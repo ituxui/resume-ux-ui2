@@ -286,8 +286,8 @@ export function UipProductPage() {
 
         <Stack page="article" width="full" role="subsubsection">
           <Gallery columns={2}>
-            <Screen src="/projects/uip/page/UIP components.png" mode='full' alt="Компоненты UIP UI-kit" postfix="Компоненты" size='3/3' scroll='static' />
-            <Screen src="/projects/uip/page/UIP colors fonts etc.png" mode='full' alt="Цвета, шрифты UIP UI-kit" postfix="Цвета, шрифты, эмблемы, иконки" size='3/3' scroll='static' />
+            <Screen src="/projects/uip/page/UIP components.png" alt="Компоненты UIP UI-kit" postfix="Компоненты" size='3/3' scroll='static' />
+            <Screen src="/projects/uip/page/UIP colors fonts etc.png" alt="Цвета, шрифты UIP UI-kit" postfix="Цвета, шрифты, эмблемы, иконки" size='3/3' scroll='static' />
           </Gallery>
         </Stack>
       </Stack>
@@ -361,8 +361,8 @@ export function UipProductPage() {
 
         <Stack page="article" width="container" role="subsubsection">
           <Gallery columns={3}>
-            <Screen src="/projects/uip/page/Модальные окна связи мобильный дизайн.png" mode='default' alt="Модальное окно в мобильном дизайне" postfix="Компоненты" size='1/3' scroll='parallax' />
-            <Screen src="/projects/uip/page/Модальные окна связи ПК.png" mode='default' alt="Модальное окно в ПК дизайне" postfix="Цвета, шрифты, эмблемы, иконки" size='2/3' scroll='parallax' />
+            <Screen src="/projects/uip/page/Модальные окна связи мобильный дизайн.png" alt="Модальное окно в мобильном дизайне" postfix="Компоненты" size='1/3' scroll='parallax' />
+            <Screen src="/projects/uip/page/Модальные окна связи ПК.png" alt="Модальное окно в ПК дизайне" postfix="Цвета, шрифты, эмблемы, иконки" size='2/3' scroll='parallax' />
           </Gallery>
         </Stack>
       </Stack>

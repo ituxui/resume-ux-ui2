@@ -1,4 +1,4 @@
-import type { ScreenMode, ScreenScroll, ScreenSize } from "@shared/ui/components";
+import type { ScreenProps } from "@shared/ui/components";
 import type { RoutePath } from "@shared/routes";  // Импортируем готовый тип
 
 export interface ProjectAction {
@@ -17,12 +17,8 @@ export interface ProjectMeta {
   };
 }
 
-export interface ProjectScreen {
-  src: string;
-  alt: string;
-  size: ScreenSize;
-  mode?: ScreenMode;
-  scroll?: ScreenScroll;
+export type ProjectScreen = ScreenProps & {
+
 }
 
 export interface ProjectData {

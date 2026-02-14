@@ -31,7 +31,7 @@ export type {
 } from './Button';
 
 export { Screen } from './Screen/Screen';
-export type { ScreenProps, ScreenSize, ScreenMode, ScreenScroll } from './Screen/Screen';
+export type { ScreenProps, ScreenSize, ScreenScroll } from './Screen/Screen';
 
 
 export { Pictogram } from './Pictogram/Pictogram';

@@ -1,5 +1,5 @@
 
-import { Meta, Table, TableBody, TableCell, TableHead, TableRow } from '@shared/ui/components';
+// import { Meta, Table, TableBody, TableCell, TableHead, TableRow } from '@shared/ui/components';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { ProductCardOther } from '../ProductCard/ProductCardOther';
 import { productsSection } from './ProductsSection.data';

@@ -138,18 +138,18 @@ $text-header: var(--color_text-accent_default-inverted--enabled, #fff);
   // Важно: фон должен перекрывать контент, который проезжает под ним
   background: inherit;
 
-  // Тень для отделения
-  &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 30px;
-    transform: translateX(100%);
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.05), transparent);
-    pointer-events: none;
-  }
+  // // Тень для отделения
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   top: 0;
+  //   right: 0;
+  //   bottom: 0;
+  //   width: 30px;
+  //   transform: translateX(100%);
+  //   background: linear-gradient(to right, rgba(0, 0, 0, 0.05), transparent);
+  //   pointer-events: none;
+  // }
 }
 
 // Угловая ячейка (пересечение хедера и первой колонки)
