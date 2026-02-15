@@ -2,53 +2,83 @@
 // SCREEN COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════
 //
-// РАЗМЕРЫ (Desktop):
-// ┌──────────┬─────────────────────────────────────────────────────┐
-// │ 1/3      │ 424px × 832px (aspect-ratio: 424/832)               │
-// │ 2/3      │ 864px × 832px (424 + 424 + 16 gap)                  │
-// │ 3/3      │ 1304px × 832px (424×3 + 16×2 gap)                   │
-// └──────────┴─────────────────────────────────────────────────────┘
+// Структура DOM:
+//   .wrapper[data-screen-size]   ← размер, aspect, flex-column
+//     .screen[data-screen-size]  ← overflow, border, zoom-in cursor
+//       .image / .skeleton / .placeholder
+//     .postfix                   ← опциональная подпись
 //
-// РЕЖИМЫ СКРОЛЛА:
-// ┌──────────┬─────────────────────────────────────────────────────┐
-// │ static   │ Картинка фиксирована, object-fit: cover             │
-// │ parallax │ Картинка скроллится внутри контейнера               │
-// └──────────┴─────────────────────────────────────────────────────┘
+// РАЗМЕРЫ (Desktop):
+//   1/3  →  424px × 832px   (aspect-ratio: 424/832)
+//   2/3  →  864px × 832px   (424×2 + 16 gap)
+//   3/3  → 1304px × 832px   (424×3 + 16×2 gap)
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ПЕРЕМЕННЫЕ
+// VARIABLES
 // ═══════════════════════════════════════════════════════════════════════════
 
 $module-width: 424px;
-$module-height: 832px;
 $gap: 16px;
 
-$aspect-one-third: calc(424 / 832);
-$aspect-two-thirds: calc(864 / 832);
-$aspect-three-thirds: calc(1304 / 832);
+$aspect-1: calc(424 / 832);
+$aspect-2: calc(864 / 832);
+$aspect-3: calc(1304 / 832);
 
-$width-one-third: $module-width;
-$width-two-thirds: calc($module-width * 2 + $gap);
-$width-three-thirds: var(--container-max-width, 1304px);
+$width-1: $module-width;
+$width-2: calc($module-width * 2 + $gap);
+$width-3: var(--container-max-width, 1304px);
 
 // ═══════════════════════════════════════════════════════════════════════════
-// БАЗОВЫЕ СТИЛИ
+// WRAPPER — всегда присутствует, владеет размером
+// ═══════════════════════════════════════════════════════════════════════════
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// ─── Size variants (на wrapper) ──────────────────────────────────────────
+
+.sizeOneThird {
+  width: min($width-1, 100%);
+
+  .screen {
+    aspect-ratio: $aspect-1;
+  }
+}
+
+.sizeTwoThirds {
+  width: min($width-2, 100%);
+
+  .screen {
+    aspect-ratio: $aspect-2;
+  }
+}
+
+.sizeThreeThirds {
+  width: min($width-3, 100%);
+
+  .screen {
+    aspect-ratio: $aspect-3;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SCREEN — контейнер изображения
 // ═══════════════════════════════════════════════════════════════════════════
 
 .screen {
   position: relative;
   overflow: hidden;
+  width: 100%;
   border-radius: 12px;
-  border: 1px var(--border_color-screen) solid;
+  border: 1px solid var(--border_color-screen);
   background-color: rgba(0, 0, 0, 0.04);
   cursor: zoom-in;
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: box-shadow 0.2s ease;
 
   &:hover {
-    // transform: translateY(-2px);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   }
 }
@@ -57,21 +87,17 @@ $width-three-thirds: var(--container-max-width, 1304px);
 // PLACEHOLDER & SKELETON
 // ═══════════════════════════════════════════════════════════════════════════
 
-.placeholder {
+.placeholder,
+.skeleton {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
+}
+
+.placeholder {
   background-color: rgba(0, 0, 0, 0.04);
 }
 
 .skeleton {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   z-index: 1;
 }
 
@@ -82,7 +108,7 @@ $width-three-thirds: var(--container-max-width, 1304px);
 .image {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   object-position: top;
   opacity: 0;
@@ -93,34 +119,18 @@ $width-three-thirds: var(--container-max-width, 1304px);
   }
 }
 
-// Static режим
-.screen:not(.parallax) {
-  .image {
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
 // ═══════════════════════════════════════════════════════════════════════════
-// PARALLAX — всегда активный, работает в обе стороны
+// PARALLAX
 // ═══════════════════════════════════════════════════════════════════════════
 
-.parallax {
-  .image {
-    height: auto;
-    min-height: 100%;
-    object-fit: cover;
-    object-position: top left;
-
-    // Оптимизация для браузера
-    will-change: transform;
-    // Аппаратное ускорение
-    transform: translate3d(0, 0, 0);
-
-    // ВАЖНО: Убрали transform из transition!
-    // Оставляем только opacity для плавного появления при загрузке
-    transition: opacity 0.5s ease-out;
-  }
+.parallax .image {
+  height: auto;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 0.5s ease-out;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -128,34 +138,26 @@ $width-three-thirds: var(--container-max-width, 1304px);
 // ═══════════════════════════════════════════════════════════════════════════
 
 .loading {
+  cursor: default;
+
   &:hover {
-    transform: none;
     box-shadow: none;
   }
-  cursor: default;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// SIZES
+// POSTFIX
 // ═══════════════════════════════════════════════════════════════════════════
 
-.sizeOneThird {
-  width: max($width-one-third, 40%);
-  aspect-ratio: $aspect-one-third;
-}
-
-.sizeTwoThirds {
-  width: max($width-two-thirds, 40%);
-  aspect-ratio: $aspect-two-thirds;
-}
-
-.sizeThreeThirds {
-  width: max($width-three-thirds, 40%);
-  aspect-ratio: $aspect-three-thirds;
+.postfix {
+  font-size: 13px;
+  line-height: 18px;
+  color: var(--color_text_muted--enabled, rgba(0, 0, 0, 0.6));
+  text-align: center;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// АДАПТИВ
+// ADAPTIVE
 // ═══════════════════════════════════════════════════════════════════════════
 
 @media (max-width: 1024px) {
@@ -178,67 +180,17 @@ $width-three-thirds: var(--container-max-width, 1304px);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ZOOM DIALOG
-// ═══════════════════════════════════════════════════════════════════════════
-
-.zoomDialog {
-  [data-rmiz-modal-overlay] {
-    background-color: rgba(0, 0, 0, 0.9);
-  }
-
-  [data-rmiz-btn-unzoom] {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-    }
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 20px;
-      height: 2px;
-      background-color: white;
-      border-radius: 1px;
-    }
-
-    &::before {
-      transform: translate(-50%, -50%) rotate(45deg);
-    }
-
-    &::after {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
-  }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// MODAL (полноэкранный просмотр с zoom)
+// ZOOM MODAL
 // ═══════════════════════════════════════════════════════════════════════════
 
 .modalOverlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+  inset: 0;
   z-index: 9999;
   background-color: rgba(0, 0, 0, 0.95);
   animation: fadeIn 0.2s ease-out;
-  z-index: 2;
 }
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -246,19 +198,6 @@ $width-three-thirds: var(--container-max-width, 1304px);
   to {
     opacity: 1;
   }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// IMAGE
-// ═══════════════════════════════════════════════════════════════════════════
-
-.imageWrapper {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none; // Пропускаем клики на backdrop
 }
 
 .modalImage {
@@ -269,16 +208,14 @@ $width-three-thirds: var(--container-max-width, 1304px);
   object-fit: contain;
   cursor: grab;
   user-select: none;
-  pointer-events: auto; // Картинка ловит клики для zoom/pan
-  z-index: 2;
+  pointer-events: auto;
+
   &:active {
     cursor: grabbing;
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// CLOSE BUTTON
-// ═══════════════════════════════════════════════════════════════════════════
+// ─── Close ───────────────────────────────────────────────────────────────
 
 .closeButton {
   position: fixed;
@@ -291,10 +228,10 @@ $width-three-thirds: var(--container-max-width, 1304px);
   background-color: rgba(255, 255, 255, 0.1);
   border: none;
   cursor: pointer;
-  transition: background-color 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.15s ease;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -321,15 +258,12 @@ $width-three-thirds: var(--container-max-width, 1304px);
   &::before {
     transform: translate(-50%, -50%) rotate(45deg);
   }
-
   &::after {
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ZOOM CONTROLS
-// ═══════════════════════════════════════════════════════════════════════════
+// ─── Zoom Controls ───────────────────────────────────────────────────────
 
 .zoomControls {
   position: fixed;
@@ -354,23 +288,20 @@ $width-three-thirds: var(--container-max-width, 1304px);
   color: white;
   font-size: 20px;
   cursor: pointer;
-  transition: background-color 0.15s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background-color 0.15s ease;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
-
   &:active {
     background-color: rgba(255, 255, 255, 0.3);
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// HINT
-// ═══════════════════════════════════════════════════════════════════════════
+// ─── Hint ────────────────────────────────────────────────────────────────
 
 .hint {
   position: fixed;
@@ -391,9 +322,7 @@ $width-three-thirds: var(--container-max-width, 1304px);
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// MOBILE ADJUSTMENTS
-// ═══════════════════════════════════════════════════════════════════════════
+// ─── Mobile modal ────────────────────────────────────────────────────────
 
 @media (max-width: 768px) {
   .closeButton {
@@ -402,167 +331,10 @@ $width-three-thirds: var(--container-max-width, 1304px);
     width: 44px;
     height: 44px;
   }
-
   .zoomControls {
     bottom: 100px;
   }
-
   .hint {
     bottom: 40px;
   }
 }
-
-// ═══════════════════════════════════════════════════════════════════════════
-// WRAPPER (для postfix)
-// ═══════════════════════════════════════════════════════════════════════════
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  // Скрин внутри wrapper не должен иметь grid-column
-  // .screen {
-  //   grid-column: unset;
-  // }
-}
-
-// ═══════════════════════════════════════════════════════════════════════════
-// POSTFIX
-// ═══════════════════════════════════════════════════════════════════════════
-
-.postfix {
-  font-size: 13px;
-  line-height: 18px;
-  color: var(--color_text_muted--enabled, rgba(0, 0, 0, 0.6));
-  text-align: center;
-}
-
-// // ═══════════════════════════════════════════════════════════════════════════
-// // РАЗМЕРЫ — DEFAULT MODE
-// // ═══════════════════════════════════════════════════════════════════════════
-
-// .mode_default {
-//   --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 2);
-
-//   &.sizeOneThird {
-//     // width: min($width-one-third, var(--max-module));
-//     aspect-ratio: $aspect-one-third;
-//     grid-column: span 1;
-
-//     .screen {
-//       aspect-ratio: $aspect-one-third;
-//       grid-column: span 1;
-//     }
-//   }
-
-//   &.sizeTwoThirds {
-//     // width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
-//     aspect-ratio: $aspect-two-thirds;
-//     grid-column: span 2;
-//     .screen {
-//       aspect-ratio: $aspect-two-thirds;
-//       grid-column: span 2;
-//     }
-//   }
-
-//   &.sizeThreeThirds {
-//     // width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
-//     aspect-ratio: $aspect-three-thirds;
-//     grid-column: span 3;
-//     .screen {
-//       aspect-ratio: $aspect-three-thirds;
-//       grid-column: span 3;
-//     }
-//   }
-
-//   // @include media-1352px-breakpoint-and-down {
-//   //   &.sizeOneThird {
-//   //     width: max($width-one-third, 40%);
-//   //   }
-//   //   &.sizeTwoThirds {
-//   //     width: 100%;
-//   //   }
-//   //   &.sizeThreeThirds {
-//   //     width: 100%;
-//   //   }
-
-//   //   &.parallax {
-//   //     &.sizeTwoThirds {
-//   //       aspect-ratio: $aspect-one-third;
-//   //     }
-//   //     &.sizeThreeThirds {
-//   //       aspect-ratio: $aspect-one-third;
-//   //     }
-//   //   }
-//   // }
-
-//   @include media-s-breakpoint-and-down {
-//     &.sizeOneThird,
-//     &.sizeTwoThirds,
-//     &.sizeThreeThirds {
-//       width: 100%;
-//     }
-
-//     &.parallax {
-//       &.sizeTwoThirds,
-//       &.sizeThreeThirds {
-//         aspect-ratio: $aspect-one-third;
-//       }
-//     }
-//   }
-// }
-
-// // ═══════════════════════════════════════════════════════════════════════════
-// // РАЗМЕРЫ — GALLERY MODE
-// // ═══════════════════════════════════════════════════════════════════════════
-
-// .mode_gallery {
-//   --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 4);
-
-//   &.sizeOneThird {
-//     width: min($width-one-third, var(--max-module));
-//     aspect-ratio: $aspect-one-third;
-//   }
-
-//   &.sizeTwoThirds {
-//     width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
-//     aspect-ratio: $aspect-two-thirds;
-//   }
-
-//   &.sizeThreeThirds {
-//     width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
-//     aspect-ratio: $aspect-three-thirds;
-//   }
-// }
-
-// // ═══════════════════════════════════════════════════════════════════════════
-// // РАЗМЕРЫ — FULL MODE (max 100vw)
-// // ═══════════════════════════════════════════════════════════════════════════
-
-// .mode_full {
-//   --max-module: calc(100vw - var(--margin-screens-horizontal, 40px) * 2);
-
-//   &.sizeOneThird {
-//     width: min($width-one-third, var(--max-module));
-//     aspect-ratio: $aspect-one-third;
-//   }
-
-//   &.sizeTwoThirds {
-//     width: min($width-two-thirds, calc(var(--max-module) * 2 + $gap));
-//     aspect-ratio: $aspect-two-thirds;
-//   }
-
-//   &.sizeThreeThirds {
-//     width: min($width-three-thirds, calc(var(--max-module) * 3 + $gap * 2));
-//     aspect-ratio: $aspect-three-thirds;
-//   }
-
-//   @include media-1352px-breakpoint-and-down {
-//     &.sizeOneThird,
-//     &.sizeTwoThirds,
-//     &.sizeThreeThirds {
-//       width: 100% !important;
-//     }
-//   }
-// }

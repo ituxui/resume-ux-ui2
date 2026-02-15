@@ -91,12 +91,12 @@ export function AboutMeSection() {
           >
             <Tilt
               className="parallax-effect-glare-scale"
-              perspective={500}
+              perspective={200}
               glareEnable={true}
-              glareMaxOpacity={0.15}
+              glareMaxOpacity={0.25}
               tiltMaxAngleX={10}
               tiltMaxAngleY={10}
-              scale={1.02}
+              scale={1.12}
               tiltReverse={true}
               transitionSpeed={1000}
             >

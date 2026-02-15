@@ -9,10 +9,10 @@ export function ArticlesSection() {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.header}>
+          <Text role="caption">Подарочки для Вас</Text>
           <Heading role="section" className={styles.heading}>
-            Подарочки для Вас
+            Полезные материалы и статьи
           </Heading>
-          <Text role="caption">Полезные материалы и статьи</Text>
         </div>
 
         <div className={styles.articles}>

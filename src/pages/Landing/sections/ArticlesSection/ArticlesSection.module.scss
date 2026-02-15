@@ -22,7 +22,13 @@
 }
 
 .heading {
-  padding-bottom: var(--gap--heading_section-to-description);
+  width: 100%;
+  padding-top: var(--gap--heading_section-to-description);
+  max-width: var(--bento-width);
+}
+
+.header {
+  max-width: var(--bento-width);
 }
 
 .articles {

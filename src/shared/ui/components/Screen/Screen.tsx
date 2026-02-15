@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, type ReactNode } from 'react';
+import { useState, useEffect, useRef, useMemo, useCallback, type ReactNode } from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
@@ -6,6 +6,10 @@ import styles from './Screen.module.scss';
 import { useScrollImage } from './hooks/useScrollImage';
 import { useLazyLoad } from './hooks/useLazyLoad';
 import { Text } from '../Text/Text';
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TYPES
+// ═══════════════════════════════════════════════════════════════════════════
 
 export type ScreenSize = '1/3' | '2/3' | '3/3';
 export type ScreenScroll = 'static' | 'parallax';
@@ -15,29 +19,38 @@ export interface ScreenProps {
   alt?: string;
   size?: ScreenSize;
   scroll?: ScreenScroll;
-  // Эти пропсы больше не влияют на физику нового хука, но оставим их в типах,
-  // чтобы не ломать интерфейс, если они используются где-то еще
-  scrollStartThreshold?: number;
-  scrollEndThreshold?: number;
   lazyThreshold?: number;
   postfix?: ReactNode;
   className?: string;
 }
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CONSTANTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+const SIZE_CLASS_MAP: Record<ScreenSize, string> = {
+  '1/3': styles.sizeOneThird,
+  '2/3': styles.sizeTwoThirds,
+  '3/3': styles.sizeThreeThirds,
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// COMPONENT
+// ═══════════════════════════════════════════════════════════════════════════
 
 export const Screen = ({
   src,
   alt = 'Screenshot',
   size = '1/3',
   scroll = 'static',
-  // scrollStartThreshold и scrollEndThreshold больше не нужны для нового алгоритма
   lazyThreshold = 300,
   postfix,
   className,
 }: ScreenProps) => {
-
   const isParallax = scroll === 'parallax';
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // ─── Lazy Load ─────────────────────────────────────────────────
   const {
     containerRef: lazyContainerRef,
     shouldLoad,
@@ -45,162 +58,135 @@ export const Screen = ({
     setIsLoaded,
   } = useLazyLoad({ threshold: lazyThreshold });
 
-  // Исправленный вызов хука (убрали лишние пропсы)
+  // ─── Parallax ──────────────────────────────────────────────────
   const {
     containerRef: scrollContainerRef,
     imageRef,
-  } = useScrollImage({
-    enabled: isParallax && isLoaded,
-  });
+  } = useScrollImage({ enabled: isParallax && isLoaded });
 
+  // ─── Shared ref ────────────────────────────────────────────────
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const element = containerRef.current;
-    if (element) {
-      lazyContainerRef.current = element;
-      scrollContainerRef.current = element;
+    const el = containerRef.current;
+    if (el) {
+      lazyContainerRef.current = el;
+      scrollContainerRef.current = el;
     }
   }, [lazyContainerRef, scrollContainerRef]);
 
-  const [windowSize, setWindowSize] = useState({
+  // ─── Modal: window size ────────────────────────────────────────
+  const [windowSize, setWindowSize] = useState(() => ({
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
     height: typeof window !== 'undefined' ? window.innerHeight : 0,
-  });
+  }));
 
   useEffect(() => {
     if (!isModalOpen) return;
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const onResize = () => setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    onResize();
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
   }, [isModalOpen]);
 
-  const boundaryBuffer = useMemo(() => {
-    const xBuffer = Math.min(windowSize.width * 0.1, 50);
-    const yBuffer = Math.min(windowSize.height * 0.1, 50);
-    return { x: xBuffer, y: yBuffer };
-  }, [windowSize]);
+  const boundaryBuffer = useMemo(() => ({
+    x: Math.min(windowSize.width * 0.1, 50),
+    y: Math.min(windowSize.height * 0.1, 50),
+  }), [windowSize]);
 
+  // ─── Modal: body lock + esc ────────────────────────────────────
   useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isModalOpen ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
   }, [isModalOpen]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isModalOpen) setIsModalOpen(false);
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    if (!isModalOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setIsModalOpen(false); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
   }, [isModalOpen]);
 
-  const handleImageLoad = () => {
-    setIsLoaded(true);
-  };
+  // ─── Handlers ──────────────────────────────────────────────────
+  const openModal = useCallback(() => setIsModalOpen(true), []);
+  const closeModal = useCallback(() => setIsModalOpen(false), []);
+  const handleImageLoad = useCallback(() => setIsLoaded(true), [setIsLoaded]);
 
-  const sizeClassMap: Record<ScreenSize, string> = {
-    '1/3': styles.sizeOneThird,
-    '2/3': styles.sizeTwoThirds,
-    '3/3': styles.sizeThreeThirds,
-  };
+  const handleOverlayClick = useCallback((e: React.MouseEvent) => {
+    const target = e.target as Element;
 
+    // Клик по картинке — не закрывать
+    const img = document.querySelector(`.${styles.modalImage}`);
+    if (img) {
+      const r = img.getBoundingClientRect();
+      if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) return;
+    }
 
-  console.log('alt', alt, sizeClassMap[size]);
+    // Клик по контролам — не закрывать
+    if (target.closest(`.${styles.closeButton}`) || target.closest(`.${styles.zoomControls}`)) return;
 
-  const wrapperClasses = cn(
-    styles.wrapper,
-  );
+    closeModal();
+  }, [closeModal]);
 
-  const screenClasses = cn(
-    styles.screen,
-    sizeClassMap[size],
-    {
-      [styles.parallax]: isParallax,
-      [styles.loading]: !isLoaded && shouldLoad,
-    },
-    className
-  );
+  // ─── Data attribute ────────────────────────────────────────────
+  const dataSize = { 'data-screen-size': size };
 
-
-  const hasPostfix = Boolean(postfix);
-
-  const screenContent = (
-    <div ref={containerRef} className={screenClasses}>
-      {(!isLoaded && shouldLoad) && (
-        <div className={styles.skeleton}>
-          <Skeleton
-            height="100%"
-            width="100%"
-            baseColor="rgba(0, 0, 0, 0.06)"
-            highlightColor="rgba(0, 0, 0, 0.03)"
-            borderRadius={0}
-            duration={1.5}
-          />
-        </div>
-      )}
-
-      {shouldLoad && (
-        <img
-          ref={imageRef}
-          src={src}
-          alt={alt}
-          className={cn(styles.image, {
-            [styles.imageVisible]: isLoaded,
-          })}
-          onLoad={handleImageLoad}
-          onClick={() => setIsModalOpen(true)}
-        />
-      )}
-
-      {!shouldLoad && <div className={styles.placeholder} />}
-    </div>
-  );
-
+  // ─── Render ────────────────────────────────────────────────────
   return (
     <>
-      {hasPostfix ? (
-        <div className={wrapperClasses}>
-          <Text role={'caption'} className={styles.postfix}>{postfix}</Text>
-          {screenContent}
-        </div>
-      ) : (
-        screenContent
-      )}
-
-      {isModalOpen && (
+      <div
+        className={cn(styles.wrapper, SIZE_CLASS_MAP[size], className)}
+        {...dataSize}
+      >
+        {/* Screen container */}
         <div
-          className={styles.modalOverlay}
-          onClick={(e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            const img = document.querySelector(`.${styles.modalImage}`) as HTMLImageElement | null;
-            let isOverImage = false;
-            if (img) {
-              const rect = img.getBoundingClientRect();
-              if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
-                isOverImage = true;
-              }
-            }
-            const isOverControls =
-              e.target instanceof Element &&
-              (e.target.closest(`.${styles.closeButton}`) ||
-                e.target.closest(`.${styles.zoomControls}`) ||
-                e.target.closest(`.${styles.hint}`));
-            if (!isOverImage && !isOverControls) setIsModalOpen(false);
-          }}
+          ref={containerRef}
+          className={cn(styles.screen, {
+            [styles.parallax]: isParallax,
+            [styles.loading]: !isLoaded && shouldLoad,
+          })}
+          {...dataSize}
         >
-          <button
-            className={styles.closeButton}
-            onClick={() => setIsModalOpen(false)}
-            aria-label="Закрыть"
-          >
+          {/* Skeleton */}
+          {!isLoaded && shouldLoad && (
+            <div className={styles.skeleton}>
+              <Skeleton
+                height="100%"
+                width="100%"
+                baseColor="rgba(0, 0, 0, 0.06)"
+                highlightColor="rgba(0, 0, 0, 0.03)"
+                borderRadius={0}
+                duration={1.5}
+              />
+            </div>
+          )}
+
+          {/* Image */}
+          {shouldLoad && (
+            <img
+              ref={imageRef}
+              src={src}
+              alt={alt}
+              className={cn(styles.image, { [styles.imageVisible]: isLoaded })}
+              onLoad={handleImageLoad}
+              onClick={openModal}
+            />
+          )}
+
+          {/* Placeholder (before lazy threshold) */}
+          {!shouldLoad && <div className={styles.placeholder} />}
+        </div>
+
+        {/* Postfix */}
+        {postfix && (
+          <Text role="caption" className={styles.postfix}>{postfix}</Text>
+        )}
+      </div>
+
+      {/* ─── Zoom Modal ─────────────────────────────────────────── */}
+      {isModalOpen && (
+        <div className={styles.modalOverlay} onClick={handleOverlayClick}>
+          <button className={styles.closeButton} onClick={closeModal} aria-label="Закрыть">
             <span className={styles.closeIcon} />
           </button>
 
@@ -208,8 +194,8 @@ export const Screen = ({
             initialScale={1}
             minScale={1}
             maxScale={5}
-            limitToBounds={true}
-            centerZoomedOut={true}
+            limitToBounds
+            centerZoomedOut
             alignmentAnimation={{ sizeX: 0, sizeY: 0, velocityAlignmentTime: 400 }}
             wheel={{ step: 0.1 }}
             doubleClick={{ mode: 'toggle', step: 2 }}

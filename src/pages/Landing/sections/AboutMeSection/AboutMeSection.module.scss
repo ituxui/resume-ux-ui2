@@ -697,10 +697,10 @@
   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 
   transform-origin: center;
-  &,
-  & > * {
-    border-radius: 25px !important;
-  }
+  // &,
+  // & > * {
+  //   border-radius: 25px;
+  // }
 
   &:hover {
     transform: rotate(0deg) translateX(var(--translate));
@@ -740,7 +740,10 @@
   .photo-3,
   .photo-4 {
     --translate: 0px;
-    --max-width: max(200px, 25%);
+    // --max-width: max(200px, 25%);
+    --max-width: 20vw;
+    max-width: var(--max-width);
+    width: 100%;
   }
 
   .container {
@@ -793,9 +796,14 @@
       'software software software software'
       'it-courses it-courses soft-skills soft-skills'
       't-shape t-shape t-shape ai-tools'
-      'subscriptions books books books'
+      'subscriptions subscriptions books books'
       'preferences preferences preferences preferences';
     grid-template-columns: repeat(4, 1fr);
+
+    & > * {
+      min-width: 0;
+      overflow: hidden;
+    }
 
     &--software {
       :global(.children) {
@@ -803,7 +811,7 @@
         padding-bottom: 24px;
         gap: 24px 0;
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(7, 1fr);
       }
     }
     // &--design-systems {
@@ -880,9 +888,45 @@
       'it-courses it-courses it-courses it-courses'
       'software software software software'
       't-shape t-shape t-shape ai-tools'
-      't-shape t-shape t-shape subscriptions'
+      't-shape t-shape t-shape ai-tools'
+      'subscriptions subscriptions subscriptions subscriptions'
       'books books books books'
       'preferences preferences preferences preferences';
+
+    &--software {
+      --inner-element-size: 48px;
+      :global(.children) {
+        grid-template-columns: repeat(7, 1fr);
+      }
+    }
+
+    // &--design-systems {
+    //   :global(.children) {
+    //     grid-template-columns: repeat(5, 1fr);
+    //     & > *:last-child {
+    //       display: inline-flex;
+    //     }
+    //   }
+    // }
+    // &--t-shape {
+    //   :global(.children) {
+    //     grid-template-columns: repeat(4, 1fr);
+    //     & > *:last-child {
+    //       display: inline-flex;
+    //     }
+    //   }
+    // }
+  }
+}
+
+@media (max-width: 540px) {
+  .bento {
+    &--software {
+      --inner-element-size: 48px;
+      :global(.children) {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
 
     // &--design-systems {
     //   :global(.children) {
@@ -904,21 +948,50 @@
 }
 
 @media (max-width: 479.98px) {
+  // .container {
+  //   grid-template-areas:
+  //     'left'
+  //     'right'
+  //     'bento';
+  //   grid-template-columns: 1fr; /* две равные колонки */
+  // }
+
+  // .left {
+  //   align-items: center;
+  //   justify-content: center;
+  // }
   .bento {
     grid-template-areas:
       'personal personal personal personal'
       'software software software software'
+      'soft-skills soft-skills ai-tools ai-tools'
       'it-courses it-courses it-courses it-courses'
       'design-systems design-systems design-systems design-systems'
-      't-shape t-shape t-shape ai-tools'
-      't-shape t-shape t-shape subscriptions'
+      't-shape t-shape t-shape t-shape'
+      't-shape t-shape t-shape t-shape'
+      'subscriptions subscriptions subscriptions subscriptions'
       'books books books books'
-      'soft-skills soft-skills preferences preferences';
+      'preferences preferences preferences preferences';
+
+    &--software {
+      --inner-element-size: 42px;
+    }
   }
 }
 
 @media (max-width: 430px) {
-  .bento {
+  .photo-1,
+  .photo-2,
+  .photo-3,
+  .photo-4 {
+    --max-width: 17vw;
+    max-width: var(--max-width);
+    width: var(--max-width);
+  }
+
+  .left,
+  .right {
+    gap: 6px;
   }
 }
 
@@ -927,12 +1000,59 @@
     grid-template-areas:
       'personal personal personal personal'
       'software software software software'
+      'soft-skills soft-skills ai-tools ai-tools'
       'it-courses it-courses it-courses it-courses'
       'design-systems design-systems design-systems design-systems'
-      'ai-tools ai-tools subscriptions subscriptions'
       't-shape t-shape t-shape t-shape'
+      't-shape t-shape t-shape t-shape'
+      'subscriptions subscriptions subscriptions subscriptions'
       'books books books books'
-      'soft-skills soft-skills preferences preferences';
+      'preferences preferences preferences preferences';
+
+    &--software {
+      --inner-element-size: 48px;
+      :global(.children) {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    // &--ai-tools {
+    //   span:nth-child(2) {
+    //     font-size: 14px;
+    //     line-height: 20px;
+    //     --text-wght: 700;
+    //     margin-top: 4px;
+    //   }
+    //   span:nth-child(3) {
+    //     font-size: 52px;
+    //     line-height: 72px;
+    //     --text-wght: 600;
+    //   }
+    // }
+  }
+}
+
+@media (max-width: 320px) {
+  .bento {
+    grid-template-areas:
+      'personal personal personal personal'
+      'software software software software'
+      'soft-skills soft-skills soft-skills soft-skills'
+      'ai-tools ai-tools ai-tools ai-tools'
+      'it-courses it-courses it-courses it-courses'
+      'design-systems design-systems design-systems design-systems'
+      't-shape t-shape t-shape t-shape'
+      't-shape t-shape t-shape t-shape'
+      'subscriptions subscriptions subscriptions subscriptions'
+      'books books books books'
+      'preferences preferences preferences preferences';
+
+    &--software {
+      --inner-element-size: 40px;
+      :global(.children) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     // &--ai-tools {
     //   span:nth-child(2) {

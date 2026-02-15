@@ -1,27 +1,43 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// GALLERY
+// ═══════════════════════════════════════════════════════════════════════════
+
 .gallery {
-  display: grid;
+  width: 100%;
   gap: 16px;
+}
 
-  // & > * {
-  //   grid-row: span 1;
-  // }
+// ─── Desktop: 3-column grid ──────────────────────────────────────────────
 
-  @include media-s-breakpoint-and-down {
+.desktop {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: start; // Чтобы элементы не растягивались по высоте, если они разные
+
+  // Спец-режим: если все дети 3/3 (на всю ширину)
+  // Переключаемся на вертикальный стек
+  &.vertical {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 40px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px; // Чуть больше отступ для крупных блоков
+
+    // & > * {
+    //   width: 100% !important;
+    //   grid-column: unset !important;
+    //   max-width: none !important;
+    // }
   }
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// COLUMNS
-// ═══════════════════════════════════════════════════════════════════════════
+// ─── Mobile: вертикальный flex ───────────────────────────────────────────
 
-.cols-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
+.mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 
-.cols-2 {
-  grid-template-columns: repeat(2, 1fr);
+  & > * {
+    width: 100% !important;
+  }
 }

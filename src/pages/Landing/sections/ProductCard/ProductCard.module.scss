@@ -68,6 +68,18 @@
         'meta        meta'
         'gallery     gallery';
     }
+
+    @include media-s-breakpoint-and-down {
+      .container {
+        grid-template-areas:
+          'logo'
+          'heading'
+          'buttons'
+          'description'
+          'meta'
+          'gallery';
+      }
+    }
   }
 
   &-page {
