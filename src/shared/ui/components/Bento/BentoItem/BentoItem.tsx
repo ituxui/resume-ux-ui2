@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { useNavigate } from 'react-router';
 import classNames from 'classnames';
 import styles from './BentoItem.module.scss';
 import type { BentoItemProps } from './BentoItem.types';
@@ -12,18 +12,30 @@ export const BentoItem = ({
   className,
   to,
 }: BentoItemProps) => {
-  // Определяем, какой тег использовать: Link или div
-  const Component = to ? Link : 'div';
+  const navigate = useNavigate();
 
-  // Пропсы для Link (если to существует)
-  const linkProps = to ? { to, className: styles.linkReset } : {};
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Если путь не задан, ничего не делаем
+    if (!to) return;
+
+    // Проверяем, не кликнули ли мы по интерактивному элементу внутри (ссылка, кнопка)
+    // Если да — даем сработать внутреннему элементу, а навигацию карточки игнорируем
+    const target = e.target as HTMLElement;
+    if (target.closest('a') || target.closest('button')) {
+      return;
+    }
+
+    navigate(to);
+  };
 
   return (
-    <Component
-      {...(linkProps as any)}
+    <div
+      onClick={handleClick}
       className={classNames(
         styles.wrapper,
         styles[`margin_mode--${marginMode}`],
+        // Добавляем класс для курсора pointer, если есть ссылка
+        to && styles.clickable,
         className
       )}
     >
@@ -38,6 +50,6 @@ export const BentoItem = ({
         </div>
       )}
       <div className={classNames(styles.children, 'children')}>{children}</div>
-    </Component>
+    </div>
   );
 };

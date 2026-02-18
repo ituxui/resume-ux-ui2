@@ -4,7 +4,8 @@ import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
 import styles from './Screen.module.scss';
 import { useScrollImage } from './hooks/useScrollImage';
-import { useLazyLoad } from './hooks/useLazyLoad';
+// useLazyLoad больше не нужен для управления монтированием,
+// но мы можем использовать локальный стейт для isLoaded
 import { Text } from '../Text/Text';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -19,6 +20,7 @@ export interface ScreenProps {
   alt?: string;
   size?: ScreenSize;
   scroll?: ScreenScroll;
+  // lazyThreshold больше не критичен для отрисовки, так как используем нативный lazy
   lazyThreshold?: number;
   addition?: ReactNode;
   className?: string;
@@ -43,37 +45,30 @@ export const Screen = ({
   alt = 'Screenshot',
   size = '1/3',
   scroll = 'static',
-  lazyThreshold = 300,
   addition,
   className,
 }: ScreenProps) => {
   const isParallax = scroll === 'parallax';
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // ─── Lazy Load ─────────────────────────────────────────────────
-  const {
-    containerRef: lazyContainerRef,
-    shouldLoad,
-    isLoaded,
-    setIsLoaded,
-  } = useLazyLoad({ threshold: lazyThreshold });
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // ─── Parallax ──────────────────────────────────────────────────
+  // Включаем параллакс только когда картинка загрузилась
   const {
     containerRef: scrollContainerRef,
     imageRef,
   } = useScrollImage({ enabled: isParallax && isLoaded });
 
   // ─── Shared ref ────────────────────────────────────────────────
+  // Используем callback ref или просто объединяем, но здесь достаточно одного
+  // так как useLazyLoad мы убрали
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (el) {
-      lazyContainerRef.current = el;
-      scrollContainerRef.current = el;
+    if (containerRef.current) {
+      scrollContainerRef.current = containerRef.current;
     }
-  }, [lazyContainerRef, scrollContainerRef]);
+  }, [scrollContainerRef]);
 
   // ─── Modal: window size ────────────────────────────────────────
   const [windowSize, setWindowSize] = useState(() => ({
@@ -110,7 +105,10 @@ export const Screen = ({
   // ─── Handlers ──────────────────────────────────────────────────
   const openModal = useCallback(() => setIsModalOpen(true), []);
   const closeModal = useCallback(() => setIsModalOpen(false), []);
-  const handleImageLoad = useCallback(() => setIsLoaded(true), [setIsLoaded]);
+
+  const handleImageLoad = useCallback(() => {
+    setIsLoaded(true);
+  }, []);
 
   const handleOverlayClick = useCallback((e: React.MouseEvent) => {
     const target = e.target as Element;
@@ -147,14 +145,13 @@ export const Screen = ({
           ref={containerRef}
           className={cn(styles.screen, {
             [styles.parallax]: isParallax,
-            [styles.loading]: !isLoaded && shouldLoad,
+            [styles.loading]: !isLoaded,
           })}
           {...dataSize}
         >
 
-
-          {/* Skeleton */}
-          {!isLoaded && shouldLoad && (
+          {/* Skeleton (показываем поверх, пока не isLoaded) */}
+          {!isLoaded && (
             <div className={styles.skeleton}>
               <Skeleton
                 height="100%"
@@ -167,20 +164,17 @@ export const Screen = ({
             </div>
           )}
 
-          {/* Image */}
-          {shouldLoad && (
-            <img
-              ref={imageRef}
-              src={src}
-              alt={alt}
-              className={cn(styles.image, { [styles.imageVisible]: isLoaded })}
-              onLoad={handleImageLoad}
-              onClick={openModal}
-            />
-          )}
+          <img
+            ref={imageRef}
+            src={src}
+            alt={alt}
+            loading="lazy"
+            decoding="async"
+            className={cn(styles.image, { [styles.imageVisible]: isLoaded })}
+            onLoad={handleImageLoad}
+            onClick={openModal}
+          />
 
-          {/* Placeholder (before lazy threshold) */}
-          {!shouldLoad && <div className={styles.placeholder} />}
         </div>
 
       </div>
@@ -225,7 +219,10 @@ export const Screen = ({
                     justifyContent: 'center',
                   }}
                 >
-                  <img src={src} alt={alt} className={styles.modalImage} />
+                  <img src={src} alt={alt} className={styles.modalImage}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </TransformComponent>
               </>
             )}

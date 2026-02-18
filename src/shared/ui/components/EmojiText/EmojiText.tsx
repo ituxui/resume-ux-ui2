@@ -10,7 +10,10 @@ export type EmojiTextProps = React.HTMLAttributes<HTMLDivElement> & {
 export const EmojiText = ({ children, src, alt }: EmojiTextProps) => {
   return (
     <div className={styles.wrapper}>
-      <img src={src} alt={alt} />
+      <img src={src} alt={alt}
+        loading="lazy"
+        decoding="async"
+      />
       <Text role='bento'>{children}</Text>
     </div>
   )

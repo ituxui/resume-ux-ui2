@@ -132,6 +132,8 @@ export const Badge: FC<BadgeProps> = ({
         <img
           src={imageSrc}
           alt={imageAlt}
+          loading="lazy"
+          decoding="async"
           className={styles.badge__image}
         />
       )}

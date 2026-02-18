@@ -263,6 +263,8 @@ export const SubscriptionsWidget: FC<SubscriptionsWidgetProps> = ({
                     <img
                       src={item.imgUrl}
                       alt={item.heading}
+                      loading="lazy"
+                      decoding="async"
                       className={styles.itemImage}
                     />
                     <Heading role='item' className={styles.itemText}>{item.heading}</Heading>

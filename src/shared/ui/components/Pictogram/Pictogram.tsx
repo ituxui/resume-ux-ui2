@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
 import type { ReactNode } from 'react';
@@ -21,7 +21,7 @@ export interface PictogramProps {
   children?: ReactNode;
   /** Дополнительный класс */
   className?: string;
-  /** Порог загрузки в vh от верха viewport */
+  /** @deprecated Больше не используется */
   lazyThreshold?: number;
 }
 
@@ -42,58 +42,15 @@ export const Pictogram = ({
   face = 'empty',
   children,
   className,
-  lazyThreshold = 200,
 }: PictogramProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const lastCallRef = useRef(0);
-  const rafRef = useRef<number | null>(null);
-
-  const checkPosition = useCallback(() => {
-    if (shouldLoad) return;
-
-    const now = Date.now();
-    if (now - lastCallRef.current < 100) {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      rafRef.current = requestAnimationFrame(checkPosition);
-      return;
-    }
-    lastCallRef.current = now;
-
-    const container = containerRef.current;
-    if (!container) return;
-
-    const rect = container.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const distanceVh = (rect.top / viewportHeight) * 100;
-
-    if (distanceVh < lazyThreshold) {
-      setShouldLoad(true);
-    }
-  }, [shouldLoad, lazyThreshold]);
-
-  useEffect(() => {
-    if (shouldLoad) return;
-
-    checkPosition();
-
-    window.addEventListener('scroll', checkPosition, { passive: true });
-    window.addEventListener('resize', checkPosition, { passive: true });
-
-    return () => {
-      window.removeEventListener('scroll', checkPosition);
-      window.removeEventListener('resize', checkPosition);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, [shouldLoad, checkPosition]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleImageLoad = () => {
     setIsLoaded(true);
   };
 
   const pixelSize = sizeMap[size];
-  const isLoading = shouldLoad && !isLoaded;
 
   const content = (
     <div
@@ -102,12 +59,12 @@ export const Pictogram = ({
         styles.pictogram,
         styles[`size--${size}`],
         styles[`face--${face}`],
-        { [styles.loading]: isLoading },
+        { [styles.loading]: !isLoaded },
         className
       )}
     >
       {/* Скелетон */}
-      {isLoading && (
+      {!isLoaded && (
         <div className={styles.skeleton}>
           <Skeleton
             width={pixelSize}
@@ -120,27 +77,24 @@ export const Pictogram = ({
         </div>
       )}
 
-      {/* Placeholder до начала загрузки */}
-      {!shouldLoad && <div className={styles.placeholder} />}
-
       {/* Картинка */}
-      {shouldLoad && (
-        <img
-          src={src}
-          alt={alt}
-          className={cn(styles.image, {
-            [styles.imageVisible]: isLoaded,
-          })}
-          onLoad={handleImageLoad}
-        />
-      )}
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className={cn(styles.image, {
+          [styles.imageVisible]: isLoaded,
+        })}
+        onLoad={handleImageLoad}
+      />
     </div>
   );
 
   // Если есть children и картинка загружена — оборачиваем в Tooltip
   if (children && isLoaded) {
     return (
-      <Tooltip content={children} size={tooltipSizeMap[size]} disabled={isLoading}>
+      <Tooltip content={children} size={tooltipSizeMap[size]} disabled={!isLoaded}>
         {content}
       </Tooltip>
     );
