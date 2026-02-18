@@ -97,7 +97,7 @@ export const Image = ({
             className?.image
           )}
           loading="lazy"
-          decoding="async"
+          decoding="async" fetchPriority="low"
           onLoad={handleImageLoad}
           onClick={handleClick}
         />
@@ -148,7 +148,7 @@ export const Image = ({
                 >
                   <img src={src} alt={alt} className={styles.modalImage}
                     loading="lazy"
-                    decoding="async"
+                    decoding="async" fetchPriority="low"
                   />
                 </TransformComponent>
               </>

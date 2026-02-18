@@ -37,3 +37,7 @@ export const routeMap = {
 
 export type RouteKey = keyof typeof routeMap;
 export type RoutePath = (typeof routeMap)[RouteKey];
+
+
+// TODO: Переделать на объект, где будет путь, иконка, короткий заголовок, короткое описание, и везде всё переделать
+// TODO: Сделать хлебные крошки

@@ -69,7 +69,7 @@ export const Book = ({
         src={src}
         alt={alt}
         loading="lazy"
-        decoding="async"
+        decoding="async" fetchPriority="low"
         className={cn(styles.image, {
           [styles.imageVisible]: isLoaded,
         })}

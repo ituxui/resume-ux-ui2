@@ -169,7 +169,7 @@ export const Screen = ({
             src={src}
             alt={alt}
             loading="lazy"
-            decoding="async"
+            decoding="async" fetchPriority="low"
             className={cn(styles.image, { [styles.imageVisible]: isLoaded })}
             onLoad={handleImageLoad}
             onClick={openModal}
@@ -221,7 +221,7 @@ export const Screen = ({
                 >
                   <img src={src} alt={alt} className={styles.modalImage}
                     loading="lazy"
-                    decoding="async"
+                    decoding="async" fetchPriority="low"
                   />
                 </TransformComponent>
               </>

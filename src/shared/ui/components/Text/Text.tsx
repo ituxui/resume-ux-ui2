@@ -23,6 +23,8 @@ export type TextRole =
   | 'subheading'
   | 'image-info';
 
+// TODO: ColorScheme -> accent везде переделать, класс ксс тоже переименовать правильно
+
 type TextColorScheme = 'default' | 'muted';
 type TextTag = 'p' | 'span' | 'div' | 'li' | 'td' | 'a' | 'label';
 

@@ -12,7 +12,7 @@ export const EmojiText = ({ children, src, alt }: EmojiTextProps) => {
     <div className={styles.wrapper}>
       <img src={src} alt={alt}
         loading="lazy"
-        decoding="async"
+        decoding="async" fetchPriority="low"
       />
       <Text role='bento'>{children}</Text>
     </div>
