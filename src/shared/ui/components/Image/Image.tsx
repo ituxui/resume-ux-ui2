@@ -166,6 +166,9 @@ export const Image = ({
                 [styles.imageVisible]: isLoaded,
               },
               className?.image)}
+
+            loading="eager"           // ← главное изменение
+            decoding="async"
             onLoad={handleImageLoad}
             onClick={handleClick}
           />

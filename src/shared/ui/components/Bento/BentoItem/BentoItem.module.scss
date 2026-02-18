@@ -20,6 +20,22 @@
   //     0px 16px 16px rgba(0, 0, 0, 0.06),
   //     0px 32px 32px rgba(0, 0, 0, 0.05);
   // }
+
+  // Важно для Link, чтобы он вел себя как блок
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  // Сброс стилей ссылки, если wrapper - это <a>
+  text-decoration: none;
+  color: inherit;
+  cursor: default; // Если нет to
+
+  // Если это ссылка (имеет href/to), меняем курсор
+  &[href] {
+    cursor: pointer;
+  }
 }
 
 .margin_mode {

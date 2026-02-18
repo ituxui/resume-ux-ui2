@@ -6,7 +6,7 @@ import { articlesList } from '@shared/data';
 
 export function ArticlesSection() {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="anchor-articles">
       <div className={styles.container}>
         <div className={styles.header}>
           <Heading role="section" className={styles.heading}>

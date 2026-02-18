@@ -3,13 +3,13 @@ import type { ProjectData } from "./ProductsSection.types";
 
 export const productsSection: ProjectData[] = [
   {
-    id: 'uip',
-    projectPageUrl: routeMap.uip,
+    id: 'case-uip',
+    projectPageUrl: routeMap['case-uip'],
     companyName: 'УИП',
     projectName: 'Многостраничный портал застройщика',
     logo: '/images/brand/УИП.png',
     description: ['Участвовал во всех ключевых этапах: от бенчмаркинга конкурентов до проектирования пользовательских сценариев, разработки интерактивных прототипов и проведения тестирования на реальных пользователях. Обеспечил удобную навигацию, реализовал фильтры поиска, страницы объектов и новостные разделы, сфокусировавшись на оптимизации пользовательского опыта для разных сегментов аудитории (например, пожилых людей, инвесторов, предпринимателей).'],
-    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap.uip },
+    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-uip'] },
     actions: [
       { label: 'Сервис', face: 'light', href: 'https://uipdv.ru' },
       { label: 'Организация', face: 'light', href: 'https://наш.дом.рф/сервисы/единый-реестр-застройщиков/застройщик/976' },
@@ -28,13 +28,13 @@ export const productsSection: ProjectData[] = [
     ],
   },
   {
-    id: 'tsd',
-    projectPageUrl: routeMap.tsd,
+    id: 'case-tsd',
+    projectPageUrl: routeMap['case-tsd'],
     companyName: 'Кислородный завод (NDA)',
     projectName: 'Терминал сбора данных',
     logo: '/images/brand/Завод.png',
     description: ['Провел глубокий анализ потребностей пользователей и бизнес-процессов, разработал интуитивный интерфейс для терминала Chainway C5 UHF, адаптированный под сложные производственные условия, с крупными элементами, темной темой и четкой обратной связью. Спроектировал макеты, оптимизированные для разработчиков, с ясной структурой и визуальными инструкциями, обеспечив их легкую реализацию. В результате приложение увеличило скорость обслуживания, сократило ошибки и улучшило межцеховое взаимодействие, полностью трансформировав работу завода.'],
-    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap.tsd },
+    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-tsd'] },
     actions: [
     ],
     meta: [
@@ -51,13 +51,13 @@ export const productsSection: ProjectData[] = [
     ],
   },
   {
-    id: 'dvipraz-landing',
+    id: 'case-dvipraz-landing',
     companyName: 'ДВИПРАЗ',
-    projectPageUrl: routeMap["dvipraz-landing"],
+    projectPageUrl: routeMap["case-dvipraz-landing"],
     logo: '/images/brand/ДВИПРАЗ.png',
     projectName: 'Многостраничный портал для Института',
     description: ['Разработка информационного портала для Института дополнительного профессионального образования'],
-    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['dvipraz-landing'] },
+    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-dvipraz-landing'] },
     actions: [
       { label: 'Сервис', face: 'light', href: 'https://dvipraz.ru/' },
       { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/9260851' },
@@ -76,13 +76,13 @@ export const productsSection: ProjectData[] = [
     ],
   },
   {
-    id: 'dvipraz-dashboard',
-    projectPageUrl: routeMap["dvipraz-dashboard"],
+    id: 'case-dvipraz-dashboard',
+    projectPageUrl: routeMap["case-dvipraz-dashboard"],
     companyName: 'ДВИПРАЗ',
     logo: '/images/brand/ДВИПРАЗ.png',
     projectName: 'Система управления организаций',
     description: ['Разработка основного функционала панели управлений Института дополнительного профессионального образования «ДВИПРАЗ», которая предоставляет собой сервис для организаций по ведению своего штатного расписания, отправления заявок на специальную оценку условий труда, публикацию вакансий и ведению учёта сотрудников и должностей.'],
-    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['dvipraz-dashboard'] },
+    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-dvipraz-dashboard'] },
     actions: [
       { label: 'Сервис', face: 'light', href: 'https://lk.dvipraz.ru/' },
       { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/9260851' },
@@ -100,13 +100,13 @@ export const productsSection: ProjectData[] = [
     ],
   },
   {
-    id: 'rdp-dashboard',
-    projectPageUrl: routeMap["rdp-dashboard"],
+    id: 'case-rdp-dashboard',
+    projectPageUrl: routeMap["case-rdp-dashboard"],
     companyName: 'Stellar',
     logo: '/images/brand/Stellar.png',
     projectName: 'Сервис удалённого доступа через RDP-соединение',
     description: ['Сервис удалённого RDP доступа, которое сочетает в себе мощные инструменты для компаний и простоту для пользователей. Функции логирования, слежения, ограничений и автоматизации контроля позволяют получить полную картину происходящего и обеспечить спокойствие и уверенность в безопасности данных. Проект работает для более чем 30 клиентов компании 4А, став неотъемлемой частью бизнеса, и проходит финальные тестирования. Но Вы можете связаться с 4А, чтобы попросить их протестировать продукт бесплатно, не сообщая кто его Вам посоветовал.'],
-    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['rdp-dashboard'] },
+    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-rdp-dashboard'] },
     actions: [
       { label: 'Сервис', face: 'light', href: 'https://stellar.4ait.ru/' },
       { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/7564381' },
@@ -130,7 +130,7 @@ export const productsSection: ProjectData[] = [
     logo: '/images/brand/Аэроакт.png',
     projectName: 'Система учёта пассажиров',
     description: ['Разрабатывал продукт по собственной инициативе, работая в Аэропорту на должности диспетчера службы информации, не связанной с IT. Мотивацией разрабатывать стало большое количество болей сотрудников бизнес-зала, отсутствие автоматизации процесса работы, задержки на стойке регистрации в бизнес-зале. Я горжусь этим проектом, так как с него началось моё понимание, что я хочу делать приложения, упрощающие бизнес-процессы.'],
-    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap.aeroakt },
+    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-aeroakt'] },
     actions: [
       { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/11759511' },
     ],

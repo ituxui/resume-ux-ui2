@@ -1,4 +1,4 @@
-import { type ReactNode } from 'react';
+import { type ReactNode, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
 import styles from './PageWrapper.module.scss';
 import { Link, Text } from '@shared/ui';
@@ -15,6 +15,7 @@ type PageSectionType = 'landing' | 'case' | 'aboutme' | 'article';
 
 export function PageWrapper({ children }: PageWrapperProps) {
   const { pathname } = useLocation();
+  const menuRef = useRef<HTMLDivElement>(null);
 
   // Логика определения типа секции
   const getPageType = (path: string): PageSectionType => {
@@ -29,18 +30,48 @@ export function PageWrapper({ children }: PageWrapperProps) {
 
   const pageType = getPageType(pathname);
 
+  // Следим за высотой меню и пишем в CSS-переменную
+  useEffect(() => {
+    const menuElement = menuRef.current;
+    if (!menuElement) return;
+
+    const updateHeight = (height: number) => {
+      document.documentElement.style.setProperty('--js-setted-top-menu-height', `${height}px`);
+    };
+
+    // Инициализируем ResizeObserver
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        // borderBoxSize предпочтительнее, так как учитывает padding и border
+        if (entry.borderBoxSize && entry.borderBoxSize.length > 0) {
+          updateHeight(entry.borderBoxSize[0].blockSize);
+        } else {
+          // Fallback для старых браузеров
+          updateHeight(entry.contentRect.height);
+        }
+      }
+    });
+
+    observer.observe(menuElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className={styles.wrapper} data-page-type={pageType}>
-      <div className={styles.menu}>
+      <div className={styles.menu} id="_topMenu" ref={menuRef}>
         <div className={styles['menu--wrapper']}>
           <div className={styles['menu--left']}>
             <Text role='link-sm' colorScheme='muted'>Юрий, UX UI проектировщик</Text>
 
-            {/* Меню меняется или подсвечивается в зависимости от pageType, если нужно */}
+            <Link phrase="Скачать резюме" href="/files/resume-ux-ui.vercel.app.pdf" accent='muted' size="sm" />
+
             {pageType !== 'landing' && <Link phrase="Главная" to={routeMap['landing']} accent='muted' size='sm' />}
             <Link phrase="Портфолио" to={routeMap['anchor-projects']} accent='muted' size='sm' />
             <Link phrase="Обо мне" to={routeMap['anchor-about-me']} accent='muted' size='sm' />
-            <Link phrase="Скачать резюме" href="/files/resume-ux-ui.vercel.app.pdf" accent='muted' size="sm" />
+            <Link phrase="Статьи" to={routeMap['anchor-articles']} accent='muted' size='sm' />
           </div>
 
           <div className={styles['menu--center']}>

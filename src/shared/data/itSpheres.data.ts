@@ -68,14 +68,14 @@ export const itSpheresData: ItSphereItem[] = [
     sphere: 'Media Tech / Web Dev',
     additionalTitles: 'CMS, Web Portals, Content Management',
     products: [
-      ['Информационный портал для Института', 'dvipraz-landing'],
+      ['Информационный портал для Института', 'case-dvipraz-landing'],
     ],
   },
   {
     sphere: 'B2B SaaS, HR Management',
     additionalTitles: 'CMS, Web Portals, Content Management',
     products: [
-      ['Система управления организаций', 'dvipraz-dashboard'],
+      ['Система управления организаций', 'case-dvipraz-dashboard'],
     ],
   },
 
@@ -83,21 +83,21 @@ export const itSpheresData: ItSphereItem[] = [
     sphere: 'Cybersecurity Tech',
     additionalTitles: 'Access Control Systems, Network Security, Application Security, Remote Access Security',
     products: [
-      ['Приложение кибербезопасности (Remote Desktop Protocol)', 'rdp-dashboard'],
+      ['Приложение кибербезопасности (Remote Desktop Protocol)', 'case-rdp-dashboard'],
     ],
   },
   {
     sphere: 'ConTech / PropTech',
     additionalTitles: 'Enterprise SaaS, Project Management',
     products: [
-      ['Портал строительной компании', 'uip'],
+      ['Портал строительной компании', 'case-uip'],
     ],
   },
   {
     sphere: 'IIoT / Industry 4.0',
     additionalTitles: 'Embedded Systems, Industrial Automation',
     products: [
-      ['Терминалы сбора данных промышленных предприятий', 'tsd'],
+      ['Терминалы сбора данных промышленных предприятий', 'case-tsd'],
     ],
   },
   {

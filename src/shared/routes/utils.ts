@@ -7,14 +7,15 @@ export const routeMap = {
   'landing': '/',
   'anchor-projects': '/#anchor-projects',
   'anchor-about-me': '/#anchor-about-me',
+  'anchor-articles': '/#anchor-articles',
 
   // Кейсы
   'case-aeroakt': '/case/aeroakt',
-  'dvipraz-dashboard': '/case/dvipraz-dashboard',
-  'dvipraz-landing': '/case/dvipraz-landing',
-  'rdp-dashboard': '/case/rdp-dashboard',
-  'tsd': '/case/tsd',
-  'uip': '/case/uip',
+  'case-dvipraz-dashboard': '/case/dvipraz-dashboard',
+  'case-dvipraz-landing': '/case/dvipraz-landing',
+  'case-rdp-dashboard': '/case/rdp-dashboard',
+  'case-tsd': '/case/tsd',
+  'case-uip': '/case/uip',
 
   // Статьи
   'article-type-definition-framework': '/article/type-definition-framework',
@@ -31,7 +32,7 @@ export const routeMap = {
   'aboutme-library': '/aboutme/library',                   // Книги и другие сборники
   'aboutme-ai': '/aboutme/ai',                             // ИИ
   'aboutme-work-preferences': '/aboutme/work-preferences', // Пожелания к компании
-  'aboutme-hard-skills': '/aboutme/hard-skills',           // T-shape / Стек технологий
+  'aboutme-t-shape-skills': '/aboutme/t-shape-skills',           // T-shape / Стек технологий
 } as const;
 
 export type RouteKey = keyof typeof routeMap;
