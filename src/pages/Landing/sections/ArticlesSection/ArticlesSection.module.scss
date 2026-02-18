@@ -23,8 +23,13 @@
 
 .heading {
   width: 100%;
-  padding-top: var(--gap--heading_section-to-description);
+  padding-bottom: var(--gap--heading_section-to-description);
+  text-align: center;
   max-width: var(--bento-width);
+}
+
+.heading--caption {
+  text-align: center;
 }
 
 .header {

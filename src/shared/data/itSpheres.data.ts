@@ -104,7 +104,7 @@ export const itSpheresData: ItSphereItem[] = [
     sphere: 'Travel Tech',
     additionalTitles: 'Transportation, Airport Management Systems',
     products: [
-      ['Система учёта пассажиров для аэропортов', 'aeroakt'],
+      ['Система учёта пассажиров для аэропортов', 'case-aeroakt'],
     ],
   },
 ];

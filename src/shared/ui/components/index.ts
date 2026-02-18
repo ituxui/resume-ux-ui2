@@ -1,3 +1,5 @@
+export { StatusItem } from './FeatureStatus/StatusItem';
+
 export { type PersonData } from './Persons/Persons.types';
 export { List } from './list/List';
 export { ListItem } from './list/ListItem';

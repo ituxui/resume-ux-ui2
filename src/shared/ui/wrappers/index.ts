@@ -1,3 +1,5 @@
+export { PageWrapper } from "./PageWrapper/PageWrapper";
+
 export { ProductTitle } from "./ProductTitle/ProductTitle";
 
 export { Gallery } from "./Gallery/Gallery";

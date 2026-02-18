@@ -7,7 +7,7 @@ import { renderActions, renderDescription, renderMeta, renderScreens } from './P
 
 export const ProductsSection = () => {
   return (
-    <section>
+    <section id="anchor-projects">
       {productsSection.map((project) => (
         <ProductCard
           key={project.id}

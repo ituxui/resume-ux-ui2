@@ -34,27 +34,25 @@ export function Hero() {
             UX UI проектировщик с официальным стажем <strong><Nowrap>2 года</Nowrap></strong> и <strong><Nowrap>T-shaped</Nowrap></strong> знаниями фулстек программирования. Реализовал <strong><Nowrap>10+</Nowrap></strong> многостраничных приложений.
           </Text>
         </div>
-        <div className={styles.links}>
+        {/* <div className={styles.links}>
           <Link phrase="Портфолио" href="#features" size="sm" />
           <Link phrase="Обо мне" href="#features" size="sm" />
           <Link phrase="Скачать резюме" href="/files/resume-ux-ui.vercel.app.pdf" size="sm" />
-        </div>
+        </div> */}
         <div className={styles.talkAboutYourProduct}>
           <Text role="subheading">Поговорим <Nowrap>о Вашем</Nowrap> продукте?</Text>
-          <div className={cn(styles.links, styles.contacts)}>
+          {/* <div className={cn(styles.links, styles.contacts)}>
             <Popover
               trigger={<Link phrase="Email" size="sm" />}
               content={
-                <div className={styles.popoverContent}>
-                  <EmailPart />
-                </div>
+                <EmailPart />
               }
             />
 
             <Link phrase="Телеграм" href="https://t.me/Rumar1" size="sm" />
             <Link phrase="Вконтакте" href="https://vk.com/im/convo/16759075?entrypoint=list_all" size="sm" />
             <Link phrase="Max" href="https://max.ru/u/f9LHodD0cOJG5yySL7VLbp-sA3n4FO6R1DBs_xxekQ7dvzkrUA4XxhNNht4" size="sm" />
-          </div>
+          </div> */}
         </div>
       </div>
       <div

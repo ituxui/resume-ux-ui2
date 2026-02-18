@@ -12,6 +12,8 @@ type HeadingRole =
   | 'feature'  // Название фичи/преимущества
   | 'label'    // Подпись к элементу
   | 'question' // Вопрос (FAQ, интерактив)
+  | 'result-heading' // Вопрос (FAQ, интерактив)
+  | 'result-value' // Вопрос (FAQ, интерактив)
   | 'quote'    // Выделенная цитата
   | 'stat'     // Цифра/метрика
   | 'group'    // Объединяет группу элементов
@@ -39,6 +41,8 @@ const defaultTagMap: Record<HeadingRole, HeadingTag> = {
   feature: 'h3',
   label: 'span',
   question: 'h3',
+  [`result-heading`]: 'h3',
+  [`result-value`]: 'h3',
   quote: 'p',
   stat: 'p',
   group: 'h4',

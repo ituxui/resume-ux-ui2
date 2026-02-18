@@ -95,7 +95,7 @@
   }
 }
 // ═══════════════════════════════════════════════════════════════════════════
-// SECTION
+// .section
 // ═══════════════════════════════════════════════════════════════════════════
 .section {
   font-size: 28px;
@@ -124,13 +124,86 @@
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
+// .result-heading
+// ═══════════════════════════════════════════════════════════════════════════
+
+.result-heading {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+  max-width: var(--readable-container-min_text-width);
+
+  --heading-wght: 500;
+  --heading-XTRA: 468;
+  --heading-YTUC: 652;
+  --heading-YTAS: 670;
+
+  @media (max-width: 768px) {
+    font-size: 25px;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 20px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    --heading-wght: 640;
+  }
+}
+
+.result-heading {
+  padding-bottom: 0;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// .result-value
+// ═══════════════════════════════════════════════════════════════════════════
+
+.result-value {
+  font-size: 56px;
+  line-height: 56px;
+  letter-spacing: -0.03em; // -3%
+  color: hsla(159, 75%, 37%, 1);
+
+  // Переменные для осей вариативности
+  --heading-wght: 375;
+  --heading-wdth: 102;
+  --heading-XOPQ: 96;
+  --heading-YOPQ: 79;
+  --heading-XTRA: 483;
+  --heading-YTUC: 722;
+  --heading-YTLC: 532;
+  --heading-YTAS: 727;
+  --heading-YTDE: -218;
+  --heading-YTFI: 717;
+
+  // Планшет
+  @media (max-width: 768px) {
+    font-size: 42px;
+    line-height: 46px;
+    letter-spacing: -0.025em;
+  }
+
+  // Мобильный
+  @media (max-width: 480px) {
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: -0.015em;
+
+    // Немного увеличиваем жирность для читаемости мелкого шрифта
+    --heading-wght: 450;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // SUBSECTION
 // ═══════════════════════════════════════════════════════════════════════════
 .subsection {
-  font-size: 19px;
+  font-size: 22px;
   line-height: 28px;
   letter-spacing: -0.01em;
-  padding-bottom: 12px;
+  padding-bottom: 20px;
 
   --heading-wght: 550;
   --heading-XTRA: 468;
@@ -182,7 +255,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 .feature,
 .bento {
-  font-size: 19px;
+  font-size: 20px;
   line-height: 28px;
   letter-spacing: -0.01em;
 

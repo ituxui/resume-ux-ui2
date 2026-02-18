@@ -20,7 +20,7 @@ export interface ScreenProps {
   size?: ScreenSize;
   scroll?: ScreenScroll;
   lazyThreshold?: number;
-  postfix?: ReactNode;
+  addition?: ReactNode;
   className?: string;
 }
 
@@ -44,7 +44,7 @@ export const Screen = ({
   size = '1/3',
   scroll = 'static',
   lazyThreshold = 300,
-  postfix,
+  addition,
   className,
 }: ScreenProps) => {
   const isParallax = scroll === 'parallax';
@@ -138,6 +138,10 @@ export const Screen = ({
         className={cn(styles.wrapper, SIZE_CLASS_MAP[size], className)}
         {...dataSize}
       >
+        {/* Addition */}
+        {addition && (
+          <Text role="caption" className={styles.addition}>{addition}</Text>
+        )}
         {/* Screen container */}
         <div
           ref={containerRef}
@@ -147,6 +151,8 @@ export const Screen = ({
           })}
           {...dataSize}
         >
+
+
           {/* Skeleton */}
           {!isLoaded && shouldLoad && (
             <div className={styles.skeleton}>
@@ -177,10 +183,6 @@ export const Screen = ({
           {!shouldLoad && <div className={styles.placeholder} />}
         </div>
 
-        {/* Postfix */}
-        {postfix && (
-          <Text role="caption" className={styles.postfix}>{postfix}</Text>
-        )}
       </div>
 
       {/* ─── Zoom Modal ─────────────────────────────────────────── */}

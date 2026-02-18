@@ -1,0 +1,43 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  width: 100%;
+
+  &:not(:last-of-type) {
+    padding-bottom: 16px;
+  }
+}
+
+.line {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.content {
+  // Визуальная компенсация по вертикали для выравнивания с иконкой
+  flex: 1;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// VARIANTS
+// ═══════════════════════════════════════════════════════════════════════════
+
+.icon {
+  flex-shrink: 0;
+  margin-top: 5px;
+
+  &--success {
+    --icon-color: #00c853; // Зеленый
+  }
+
+  &--alert {
+    --icon-color: #d50000; // Красный
+  }
+
+  &--arrow {
+    --icon-color: var(--color_text_primary, #1f1f1f);
+  }
+}

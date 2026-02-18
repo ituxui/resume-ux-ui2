@@ -108,6 +108,7 @@ export const productsSection: ProjectData[] = [
     description: ['Сервис удалённого RDP доступа, которое сочетает в себе мощные инструменты для компаний и простоту для пользователей. Функции логирования, слежения, ограничений и автоматизации контроля позволяют получить полную картину происходящего и обеспечить спокойствие и уверенность в безопасности данных. Проект работает для более чем 30 клиентов компании 4А, став неотъемлемой частью бизнеса, и проходит финальные тестирования. Но Вы можете связаться с 4А, чтобы попросить их протестировать продукт бесплатно, не сообщая кто его Вам посоветовал.'],
     innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['rdp-dashboard'] },
     actions: [
+      { label: 'Сервис', face: 'light', href: 'https://stellar.4ait.ru/' },
       { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/7564381' },
     ],
     meta: [
@@ -123,8 +124,8 @@ export const productsSection: ProjectData[] = [
     ],
   },
   {
-    id: 'aeroakt',
-    projectPageUrl: routeMap["aeroakt"],
+    id: 'case-aeroakt',
+    projectPageUrl: routeMap["case-aeroakt"],
     companyName: 'Международный авиатерминал',
     logo: '/images/brand/Аэроакт.png',
     projectName: 'Система учёта пассажиров',

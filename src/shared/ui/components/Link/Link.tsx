@@ -46,7 +46,9 @@ const getLinkType = (props: Partial<LinkProps>): LinkType => {
     return 'download';
   }
 
-  if (anchorId || (href && href.startsWith('#'))) {
+  // ОБНОВЛЕНО: Добавлена проверка to.startsWith('/#')
+  // Теперь ссылки типа /#projects считаются типом anchor (для иконки)
+  if (anchorId || (href && href.startsWith('#')) || (to && to.startsWith('/#'))) {
     return 'anchor';
   }
 
@@ -166,10 +168,9 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
     onClick?.(e);
   };
 
-  // 1. Download
+  // 1. Download (без изменений)
   if (linkType === 'download' && href) {
     const filename = typeof download === 'string' ? download : undefined;
-
     return (
       <button
         ref={ref as any}
@@ -183,23 +184,24 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
     );
   }
 
-  // 2. Internal (React Router)
-  if (linkType === 'internal' && to) {
-    return (
-      <RouterLink
-        ref={ref as any}
-        to={to}
-        className={classes}
-        onClick={(e) => handleClick(e)}
-        {...props}
-      >
-        {content}
-      </RouterLink>
-    );
-  }
-
-  // 3. Anchor
+  // 2. Anchor (ОБНОВЛЕНО)
   if (linkType === 'anchor') {
+    // Если есть 'to' (например, /#projects), используем RouterLink для бесшовного перехода
+    if (to) {
+      return (
+        <RouterLink
+          ref={ref as any}
+          to={to}
+          className={classes}
+          onClick={(e) => handleClick(e)}
+          {...props}
+        >
+          {content}
+        </RouterLink>
+      );
+    }
+
+    // Обычный якорь на текущей странице (через <a> и scrollIntoView)
     const targetId = anchorId || href || '';
     return (
       <a
@@ -217,7 +219,22 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
     );
   }
 
-  // 4. External
+  // 3. Internal (без изменений)
+  if (linkType === 'internal' && to) {
+    return (
+      <RouterLink
+        ref={ref as any}
+        to={to}
+        className={classes}
+        onClick={(e) => handleClick(e)}
+        {...props}
+      >
+        {content}
+      </RouterLink>
+    );
+  }
+
+  // 4. External (без изменений)
   if (linkType === 'external') {
     return (
       <a
@@ -234,7 +251,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
     );
   }
 
-  // 5. Modal (button)
+  // 5. Modal (без изменений)
   return (
     <button
       ref={ref as any}

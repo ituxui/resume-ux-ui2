@@ -1,0 +1,64 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+
+  padding-left: var(--margin-screens-horizontal);
+  padding-right: var(--margin-screens-horizontal);
+
+  // Пример использования типа страницы
+  &[data-page-type='case'] {
+    // Специфичные стили для страницы кейса
+    // background-color: var(--color-bg-case);
+  }
+}
+
+// ... остальной код (menu и т.д.) без изменений
+.menu {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &,
+  &--wrapper {
+    width: 100%;
+  }
+  &--wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: var(--container-max-width);
+  }
+
+  &--left,
+  &--center,
+  &--right {
+    flex: 1;
+  }
+  &--left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &--center {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  &--right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+  }
+}

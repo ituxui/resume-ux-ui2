@@ -24,7 +24,7 @@ interface GalleryProps {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const MOBILE_BREAKPOINT = 768;
-const THROTTLE_MS = 100; // Уменьшил таймер для большей отзывчивости
+const THROTTLE_MS = 100;
 
 /** data-screen-size → grid-column span */
 const SPAN_MAP: Record<string, number> = {
@@ -69,7 +69,7 @@ export const Gallery: FC<GalleryProps> = ({ children, className }) => {
 
     // Если мобилка — чистим стили десктопа и выходим
     if (!isDesktop) {
-      el.classList.remove(styles.vertical);
+      el.classList.remove(styles.vertical, styles.centered);
       Array.from(el.children).forEach((child) => {
         (child as HTMLElement).style.gridColumn = '';
       });
@@ -79,23 +79,32 @@ export const Gallery: FC<GalleryProps> = ({ children, className }) => {
     const kids = Array.from(el.children) as HTMLElement[];
     const count = kids.length;
 
-    // 1. Проверяем сценарий "Все элементы 3/3"
-    // Если элементов 2 или 3, и ВСЕ они имеют размер 3/3 -> включаем Vertical Flex
+    // Сценарий 1: Все элементы 3/3 (Vertical Mode)
     const allAreFullWidth = kids.every(
       (child) => child.getAttribute('data-screen-size') === '3/3'
     );
     const isVerticalMode = (count === 2 || count === 3) && allAreFullWidth;
 
-    if (isVerticalMode) {
-      el.classList.add(styles.vertical);
-      // Очищаем grid-column, так как теперь работаем во flex
-      kids.forEach((child) => {
-        child.style.gridColumn = '';
-      });
-    } else {
-      el.classList.remove(styles.vertical);
+    // Сценарий 2: Два элемента по 1/3 (Centered Mode)
+    const allAreOneThird = kids.every(
+      (child) => child.getAttribute('data-screen-size') === '1/3'
+    );
+    const isCenteredMode = count === 2 && allAreOneThird;
 
-      // 2. Стандартный режим Grid: расставляем span
+    if (isVerticalMode) {
+      // ─── Применяем Vertical ───
+      el.classList.add(styles.vertical);
+      el.classList.remove(styles.centered);
+      kids.forEach((child) => (child.style.gridColumn = ''));
+    } else if (isCenteredMode) {
+      // ─── Применяем Centered ───
+      el.classList.add(styles.centered);
+      el.classList.remove(styles.vertical);
+      kids.forEach((child) => (child.style.gridColumn = ''));
+    } else {
+      // ─── Применяем Default Grid ───
+      el.classList.remove(styles.vertical, styles.centered);
+
       kids.forEach((child) => {
         const size = child.getAttribute('data-screen-size');
         let span: number;
@@ -127,7 +136,7 @@ export const Gallery: FC<GalleryProps> = ({ children, className }) => {
     observer.observe(el, {
       childList: true,
       attributes: true,
-      attributeFilter: ['data-screen-size']
+      attributeFilter: ['data-screen-size'],
     });
 
     return () => observer.disconnect();

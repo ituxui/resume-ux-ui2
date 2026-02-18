@@ -85,10 +85,10 @@
 
 .counter {
   white-space: nowrap;
-  flex-shrink: 0;
+  width: inherit;
 }
 
 .navButton {
   flex: 1;
-  min-width: 0;
+  // min-width: 0;
 }

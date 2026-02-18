@@ -1,25 +1,19 @@
 import { renderActions, renderDescription, renderMeta, renderScreens } from '@pages/Landing/sections/ProductsSection/ProductsSection.utils';
 import { productsSection } from '@pages/Landing/sections/ProductsSection/ProductsSection.data';
 import { ProductCard } from '@pages/Landing/sections';
-import classNames from 'classnames';
 import { Heading, Text } from '@shared/ui';
-import styles from './UipProductPage.module.scss';
-import { List, ListItem, Persons, Screen, } from '@components';
-import { Gallery, Stack } from '@shared/ui/wrappers';
+import { List, ListItem, Persons, Screen, StatusItem, } from '@components';
+import { Gallery, PageWrapper, Stack } from '@shared/ui/wrappers';
 import { uipPersons } from '@shared/data';
 import { CompetitorsSection } from './sections/CompetitorsSection';
 
 export function UipProductPage() {
 
-  // Добавь для отладки:
-  console.log('styles:', styles);
-  console.log('wrapper:', styles.wrapper);
-
   return (
-    <div className={classNames(styles.wrapper)}>
+    <PageWrapper>
 
 
-      <Stack page="article" width='container' role="subsection" className={styles.hero}>
+      <Stack page="article" width='container' role="subsection">
 
         <ProductCard
           companyName={"УИП"}
@@ -62,9 +56,9 @@ export function UipProductPage() {
       <Stack page="article" width='container' role="section">
 
         <Gallery>
-          <Screen src="/projects/uip/page/Hero и о застройщике.png" alt="Hero и о застройщике" postfix="Hero и о застройщике" size='1/3' scroll='parallax' />
-          <Screen src="/projects/uip/page/ЖК и другие проекты.png" alt="Жилые комплексы и другие проекты" postfix="Жилые комплексы и другие проекты" size='1/3' scroll='parallax' />
-          <Screen src="/projects/uip/page/Новости и акции.png" alt="Новости и акции" postfix="Новости и акции" size='1/3' scroll='parallax' />
+          <Screen src="/projects/uip/page/Hero и о застройщике.png" alt="Hero и о застройщике" addition="Hero и о застройщике" size='1/3' scroll='parallax' />
+          <Screen src="/projects/uip/page/ЖК и другие проекты.png" alt="Жилые комплексы и другие проекты" addition="Жилые комплексы и другие проекты" size='1/3' scroll='parallax' />
+          <Screen src="/projects/uip/page/Новости и акции.png" alt="Новости и акции" addition="Новости и акции" size='1/3' scroll='parallax' />
         </Gallery>
       </Stack>
 
@@ -286,8 +280,8 @@ export function UipProductPage() {
 
         <Stack page="article" width="full" role="subsubsection">
           <Gallery>
-            <Screen src="/projects/uip/page/UIP components.png" alt="Компоненты UIP UI-kit" postfix="Компоненты" size='3/3' scroll='static' />
-            <Screen src="/projects/uip/page/UIP colors fonts etc.png" alt="Цвета, шрифты UIP UI-kit" postfix="Цвета, шрифты, эмблемы, иконки" size='3/3' scroll='static' />
+            <Screen src="/projects/uip/page/UIP components.png" alt="Компоненты UIP UI-kit" addition="Компоненты" size='3/3' scroll='static' />
+            <Screen src="/projects/uip/page/UIP colors fonts etc.png" alt="Цвета, шрифты UIP UI-kit" addition="Цвета, шрифты, эмблемы, иконки" size='3/3' scroll='static' />
           </Gallery>
         </Stack>
       </Stack>
@@ -361,11 +355,259 @@ export function UipProductPage() {
 
         <Stack page="article" width='container' role="subsection">
           <Gallery>
-            <Screen src="/projects/uip/page/Модальные окна связи мобильный дизайн.png" alt="Модальное окно в мобильном дизайне" postfix="Компоненты" size='1/3' scroll='parallax' />
-            <Screen src="/projects/uip/page/Модальные окна связи ПК.png" alt="Модальное окно в ПК дизайне" postfix="Цвета, шрифты, эмблемы, иконки" size='2/3' scroll='parallax' />
+            <Screen src="/projects/uip/page/Модальные окна связи мобильный дизайн.png" alt="Модальное окно в мобильном дизайне" size='1/3' scroll='parallax' />
+            <Screen src="/projects/uip/page/Модальные окна связи ПК.png" alt="Модальное окно в ПК дизайне" size='2/3' scroll='parallax' />
           </Gallery>
         </Stack>
       </Stack>
 
-    </div>);
+
+      <Stack page="article" width="full" role="section">
+        <Stack page="article" width="text" role="subsubsection">
+          <Heading role="section">
+            Оптимизация под разные устройства (адаптивность)
+          </Heading>
+
+
+
+          <Stack page="article" width="text" role="subsection">
+            <Text role='body'>
+              Спроектировали адаптивный дизайна начиная с ширины 320 пикселей, провели тестирование на разных разрешениях экрана, упростили навигации для мобильных пользователей (например, hamburger-меню).
+            </Text>
+          </Stack>
+
+
+        </Stack>
+
+        <Stack page="article" width='container' role="subsection">
+          <Gallery>
+            <Screen src="/projects/uip/page/Адаптивный дизайн.png" alt="Демонстрация экранов под разные устройства" addition="Пример разработки адаптивных экранов для одной из 16 страниц " size='3/3' scroll='static' />
+          </Gallery>
+        </Stack>
+      </Stack>
+
+
+
+      <Stack page="article" width="full" role="section">
+        <Stack page="article" width="text" role="subsubsection">
+          <Heading role="section">
+            Демонстрация локальных особенностей
+          </Heading>
+
+
+
+          <Stack page="article" width="text" role="subsection">
+            <Heading role="subsection">
+              Проблема
+            </Heading>
+
+            <Stack page="article" width="text" role="paragraph">
+              <Text role='body'>
+                Федеральные застройщики (ПИК, М2.ру) предлагают унифицированный контент, который не учитывает специфику конкретного региона. Для покупателя из Владивостока важно не абстрактное «развитая инфраструктура», а конкретное: «5 минут до остановки автобуса №31» или «в 300 метрах школа №42».
+              </Text>
+            </Stack>
+            <Text role='body'>
+              При анализе конкурентов выяснилось, что региональные игроки (Талан) имеют «менее интерактивные карты без детальных слоёв», теряя возможность показать реальную ценность локации.
+            </Text>
+          </Stack>
+
+
+          <Stack page="article" width="text" role="subsection">
+            <Heading role="subsection">
+              Инсайт
+            </Heading>
+            <Stack page="article" width="text" role="paragraph">
+              <Text role='body'>
+                Для покупателей Дальнего Востока локация — это не просто точка на карте. Это ответы на вопросы:
+              </Text>
+            </Stack>
+
+
+            <Stack page="article" width="text" role="none">
+              <List>
+                <ListItem>
+                  «Как далеко мне добираться по зиме -30° до школы с ребёнком?»
+                </ListItem>
+                <ListItem>
+                  «Есть ли рядом китайский, японский и корейский рестораны?»
+                </ListItem>
+                <ListItem>
+                  «Ходит ли отсюда маршрутка до центра?»
+                </ListItem>
+              </List>
+            </Stack>
+          </Stack>
+
+
+          <Stack page="article" width="text" role="subsection">
+            <Heading role="subsection">
+              Контекстные преимущества:
+            </Heading>
+
+            <Stack page="article" width="text" role="none">
+              <List>
+                <ListItem>
+                  <strong>Для семей:</strong> акцент на школах, площадках, безопасности двора
+                </ListItem>
+                <ListItem>
+                  <strong>Для пожилых:</strong> близость к поликлиникам и паркам
+                </ListItem>
+                <ListItem>
+                  <strong>Для предпринимателей:</strong> трафик района, парковка, видимость
+                </ListItem>
+              </List>
+            </Stack>
+          </Stack>
+
+
+        </Stack>
+
+        <Stack page="article" width='container' role="subsection">
+          <Gallery>
+            <Screen src="/projects/uip/page/Map.png" alt="Демонстрация экранов под разные устройства" addition="Пример отображения карты" size='3/3' scroll='parallax' />
+          </Gallery>
+        </Stack>
+      </Stack>
+
+
+
+
+
+
+
+
+      <Stack page="article" width="full" role="section">
+        <Stack page="article" width="text" role="subsubsection">
+          <Heading role="section">
+            Юзабилити-тестирование
+          </Heading>
+
+
+
+          <Stack page="article" width="text" role="subsubsection">
+            <Heading role="subsection">
+              Проблема
+            </Heading>
+
+            <Stack page="article" width="text" role="paragraph">
+              <Text role='body'>
+                <strong>Условия:</strong> ограниченный бюджет заказчика
+              </Text>
+              <Text role='body'>
+                <strong>Участники</strong>: 8 человек из дочерних компаний и 5 человек из нашей компании
+              </Text>
+              <Text role='body'>
+                <strong>Формат:</strong> Немодерируемое удалённое тестирование + интервью
+              </Text>
+              <Text role='body'>
+                <strong>Инструменты:</strong> Figma прототип
+              </Text>
+            </Stack>
+          </Stack>
+
+
+          <Stack page="article" width="text" role="subsection">
+            <Heading role="subsection">
+              Ключевые находки и решения
+            </Heading>
+
+            <Stack page="article" width="text" role="none">
+
+              {/* 1. Проблема с каталогом */}
+              <StatusItem
+                status="alert"
+                text="5 из 8 путались в каталоге"
+                note="Переделали механизм работы хлебных крошек"
+              />
+
+              {/* 2. Проблема со сроком сдачи */}
+              <StatusItem
+                status="alert"
+                text="7/8 первым делом искали «когда дом сдаётся» — информация была внизу страницы"
+                note="Вынести срок сдачи в карточку превью и в шапку страницы ЖК"
+              />
+
+              {/* 3. Проблема с планировкой */}
+              <StatusItem
+                status="alert"
+                text="8/8 не могли разглядеть детали планировки"
+                note="Добавить возможность открыть на весь экран"
+              />
+
+              {/* 4. Проблема с шрифтом */}
+              <StatusItem
+                status="alert"
+                text="Пожилые участники щурились при чтении характеристик"
+                note="Увеличили базовый размер шрифта до 20px минимум"
+              />
+
+              {/* 5. Успех: Фильтр */}
+              <StatusItem
+                status="success"
+                text="8/8 легко нашли фильтр по цене"
+              />
+
+              {/* 6. Успех: Контакты */}
+              <StatusItem
+                status="success"
+                text="8/8 легко нашли контакты"
+              />
+
+              {/* 7. Успех: Дизайн */}
+              <StatusItem
+                status="success"
+                text="7/8 положительно оценили дизайн страницы ЖК"
+              />
+
+            </Stack>
+          </Stack>
+
+
+
+
+        </Stack>
+
+      </Stack>
+
+
+
+      <Stack page="article" width="full" role="section">
+        <Stack page="article" width="text" role="subsubsection">
+          <Heading role="section">
+            Результаты
+          </Heading>
+
+
+
+          <Stack page="article" width="text" role="subsection">
+            <Text role='body'>
+              Клиент заказал сайт в имиджевых целях, а основные продажи осуществлялись через отлаженную систему размещения рекламы на досках объявлений. После улучшения сайта он отметил значительный рост продаж.
+            </Text>
+          </Stack>
+
+
+          {/* <Stack page="article" width="text" role="subsection">
+            <Stack page="article" width="text" role="none">
+              <Heading role="result-heading">Клиент</Heading>
+              <Heading role="result-value">Продолжает сотрудничество</Heading>
+            </Stack>
+          </Stack> */}
+
+
+
+
+        </Stack>
+
+        <Stack page="article" width='container' role="subsection">
+          <Gallery>
+            <Screen src="/projects/uip/page/4212.png" alt="Было" size='1/3' addition={<Heading role='article'>Было</Heading>} scroll='parallax' />
+            <Screen src="/projects/uip/uip-full-pc-first-page.png" alt="Стало" size='1/3' addition={<Heading role='article'>Стало</Heading>} scroll='parallax' />
+          </Gallery>
+        </Stack>
+      </Stack>
+
+
+
+
+    </PageWrapper>);
 }

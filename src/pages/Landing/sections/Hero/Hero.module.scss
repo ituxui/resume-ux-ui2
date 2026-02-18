@@ -27,14 +27,14 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  min-height: min(calc(100vh - 48px), 1920px);
+  min-height: min(calc(100vh - 48px - 220px), 1920px);
   max-width: 514px;
-  padding-top: var(--margin-sections-vertical);
+  // padding-top: var(--margin-sections-vertical);
   padding-bottom: var(--margin-sections-vertical);
 }
 
 .talkAboutYourProduct {
-  margin-top: var(--margin-sections-vertical);
+  margin-top: calc(var(--margin-sections-vertical) / 2);
 }
 
 .links {

@@ -12,7 +12,7 @@ import { SubscriptionsWidget } from './widgets/SubscriptionsWidget';
 
 export function AboutMeSection() {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} id="anchor-about-me">
       <div className={styles.header}>
         <Heading role="section" className={styles.heading}>
           Обо мне
