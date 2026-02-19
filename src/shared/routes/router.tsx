@@ -11,6 +11,8 @@ import {
 } from "@pages";
 import { App } from "../../app/ui/App";
 
+
+
 export const router = createHashRouter([
   {
     path: "/",
