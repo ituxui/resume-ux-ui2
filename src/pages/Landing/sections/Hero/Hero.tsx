@@ -4,7 +4,7 @@ import { Heading, Icon, Link, Text } from "@shared/ui";
 import { useArrowVisibility } from '@hooks/useArrowVisibility';
 import styles from './Hero.module.scss';
 import { Image, Nowrap, Popover } from '@components';
-import { EmailPart } from '@sections';
+import { EmailPart } from '@shared/ui/widgets';
 
 export function Hero() {
   const arrowRef = useRef<HTMLDivElement>(null);

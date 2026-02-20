@@ -2,7 +2,7 @@
 // import { Meta, Table, TableBody, TableCell, TableHead, TableRow } from '@shared/ui/components';
 import { ProductCard } from '../ProductCard/ProductCard';
 import { ProductCardOther } from '../ProductCard/ProductCardOther';
-import { productsSection } from './ProductsSection.data';
+import { productsSection } from '../../../../shared/data/ProductsSection.data';
 import { renderActions, renderDescription, renderMeta, renderScreens } from './ProductsSection.utils';
 
 export const ProductsSection = () => {

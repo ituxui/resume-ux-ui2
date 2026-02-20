@@ -35,7 +35,7 @@ export function AboutMeSection() {
             marginMode="compact"
             className={styles['bento--personal']}
             heading="Личная информация"
-            to={routeMap['aboutme-personal']}
+            to={routeMap['aboutme-personal']['path']}
           >
             <EmojiText src="/images/emoji/cake.png" alt="В офисе">Возраст 35</EmojiText>
             <EmojiText src="/images/emoji/family.png" alt="В офисе">Женат и есть ребёнок</EmojiText>
@@ -49,7 +49,7 @@ export function AboutMeSection() {
             marginMode="compact"
             className={styles['bento--design-systems']}
             heading="Дизайн-системы"
-            to={routeMap['aboutme-design-systems']}
+            to={routeMap['aboutme-design-systems']['path']}
           >
 
             <PhysicsContainer cursorForce={0.01} cursorRadius={100}>
@@ -63,7 +63,7 @@ export function AboutMeSection() {
             marginMode="compact"
             className={styles['bento--software']}
             heading="Программы"
-            to={routeMap['aboutme-software']}
+            to={routeMap['aboutme-software']['path']}
           >
             {softwareItems.map((item) => (
               <Pictogram key={item.id} alt={item.alt} src={item.src} size="sm" face='island'>
@@ -76,7 +76,7 @@ export function AboutMeSection() {
           <BentoItem
             marginMode="compact"
             className={styles['bento--it-courses']}
-            to={routeMap['aboutme-education']}
+            to={routeMap['aboutme-education']['path']}
           >
             <h3>30+</h3>
             <span>
@@ -88,7 +88,7 @@ export function AboutMeSection() {
             marginMode="compact"
             className={styles['bento--soft-skills']}
             heading="Софт-скиллы"
-            to={routeMap['aboutme-soft-skills']}
+            to={routeMap['aboutme-soft-skills']['path']}
           >
             <Tilt
               className="parallax-effect-glare-scale"
@@ -109,7 +109,7 @@ export function AboutMeSection() {
           <BentoItem
             marginMode="compact"
             className={styles['bento--subscriptions']}
-            to={routeMap['aboutme-subscriptions']}
+            to={routeMap['aboutme-subscriptions']['path']}
           >
             <div className={styles['bento--subscriptions-header']}>
               <Heading role='bento' className={styles['bento--subscriptions-heading']}>Подписки</Heading>
@@ -123,7 +123,7 @@ export function AboutMeSection() {
             marginMode="compact"
             className={styles['bento--books']}
             heading="Книги и другие сборники"
-            to={routeMap['aboutme-library']}
+            to={routeMap['aboutme-library']['path']}
           >
             {booksItems.map((item) => (
               <Book key={item.id} alt={item.alt} src={item.src} size="free">
@@ -135,7 +135,7 @@ export function AboutMeSection() {
           <BentoItem
             marginMode="compact"
             className={styles['bento--ai-tools']}
-            to={routeMap['aboutme-ai']}
+            to={routeMap['aboutme-ai']['path']}
           >
             <Text role="bento">ИИ</Text>
           </BentoItem>
@@ -143,7 +143,7 @@ export function AboutMeSection() {
           <BentoItem
             marginMode="compact"
             className={styles['bento--t-shape']}
-            to={routeMap['aboutme-t-shape-skills']}
+            to={routeMap['aboutme-t-shape-skills']['path']}
           // heading="T-Shape технологии"
           >
             {technologiesItems.map((item) => (
@@ -161,7 +161,7 @@ export function AboutMeSection() {
             marginMode="compact"
             className={styles['bento--preferences']}
             heading={<>Пожелания <Nowrap>к компании</Nowrap></>}
-            to={routeMap['aboutme-work-preferences']}
+            to={routeMap['aboutme-work-preferences']['path']}
           >
             <Text role="bento">Мы сработаемся</Text>
             <Image

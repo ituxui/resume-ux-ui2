@@ -1,43 +1,188 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// ROUTES
+// ROUTES CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════════
 
-export const routeMap = {
+const DEFAULT_IMG = "/images/miniatures/roadmap.sh.png";
 
-  'landing': '/',
-  'anchor-projects': '/#anchor-projects',
-  'anchor-about-me': '/#anchor-about-me',
-  'anchor-articles': '/#anchor-articles',
-
-  // Кейсы
-  'case-aeroakt': '/case/aeroakt',
-  'case-dvipraz-dashboard': '/case/dvipraz-dashboard',
-  'case-dvipraz-landing': '/case/dvipraz-landing',
-  'case-rdp-dashboard': '/case/rdp-dashboard',
-  'case-tsd': '/case/tsd',
-  'case-uip': '/case/uip',
-
-  // Статьи
-  'article-type-definition-framework': '/article/type-definition-framework',
-  'article-figma-automation-macros': '/article/figma-automation-macros',
-  'article-alpha-colors': '/article/alpha-colors',
-
-  // Обо мне (Бенто-секции)
-  'aboutme-personal': '/aboutme/personal',                 // Личная информация
-  'aboutme-design-systems': '/aboutme/design-systems',     // Дизайн-системы
-  'aboutme-software': '/aboutme/software',                 // Программы
-  'aboutme-education': '/aboutme/education',               // 30+ курсов
-  'aboutme-soft-skills': '/aboutme/soft-skills',           // Софт-скиллы
-  'aboutme-subscriptions': '/aboutme/subscriptions',       // Подписки (UX, Product...)
-  'aboutme-library': '/aboutme/library',                   // Книги и другие сборники
-  'aboutme-ai': '/aboutme/ai',                             // ИИ
-  'aboutme-work-preferences': '/aboutme/work-preferences', // Пожелания к компании
-  'aboutme-t-shape-skills': '/aboutme/t-shape-skills',           // T-shape / Стек технологий
+export const landingRouteMap = {
+  'landing': {
+    path: '/',
+    heading: 'Главная',
+    description: 'Портфолио',
+    img: DEFAULT_IMG
+  },
+  'anchor-projects': {
+    path: '/#anchor-projects',
+    heading: 'Проекты',
+    description: 'Избранные кейсы',
+    img: DEFAULT_IMG
+  },
+  'anchor-about-me': {
+    path: '/#anchor-about-me',
+    heading: 'Обо мне',
+    description: 'Личная информация и навыки',
+    img: DEFAULT_IMG
+  },
 } as const;
 
+
+// Типы для landingRouteMap
+export type LandingRouteKey = keyof typeof landingRouteMap;
+export type LandingRouteEntry = (typeof landingRouteMap)[LandingRouteKey];
+export type LandingRoutePath = LandingRouteEntry['path'];
+
+
+export const innerPageRouteMap = {
+  'anchor-articles': {
+    path: '/#anchor-articles',
+    heading: 'Статьи',
+    description: 'Публикации и заметки',
+    img: DEFAULT_IMG
+  },
+
+  // ─── Кейсы ───
+  'case-uip': {
+    path: '/case/uip',
+    heading: 'UIP',
+    description: 'User Interface Platform',
+    img: DEFAULT_IMG
+  },
+  'case-tsd': {
+    path: '/case/tsd',
+    heading: 'TSD',
+    description: 'Терминал сбора данных',
+    img: DEFAULT_IMG
+  },
+  'case-dvipraz-landing': {
+    path: '/case/dvipraz-landing',
+    heading: 'Dvipraz Landing',
+    description: 'Лендинг для Dvipraz',
+    img: DEFAULT_IMG
+  },
+  'case-dvipraz-dashboard': {
+    path: '/case/dvipraz-dashboard',
+    heading: 'Dvipraz Dashboard',
+    description: 'Панель управления для Dvipraz',
+    img: DEFAULT_IMG
+  },
+  'case-rdp-dashboard': {
+    path: '/case/rdp-dashboard',
+    heading: 'RDP Dashboard',
+    description: 'Дашборд RDP',
+    img: DEFAULT_IMG
+  },
+  'case-aeroakt': {
+    path: '/case/aeroakt',
+    heading: 'Аэроакт',
+    description: 'Дизайн продукта для Аэроакт',
+    img: DEFAULT_IMG
+  },
+
+  // ─── Обо мне (Бенто-секции) ───
+  'aboutme-personal': {
+    path: '/aboutme/personal',
+    heading: 'Личная информация',
+    description: 'Биография и факты',
+    img: DEFAULT_IMG
+  },
+  'aboutme-design-systems': {
+    path: '/aboutme/design-systems',
+    heading: 'Дизайн-системы',
+    description: 'Опыт работы с дизайн-системами',
+    img: DEFAULT_IMG
+  },
+  'aboutme-software': {
+    path: '/aboutme/software',
+    heading: 'Программы',
+    description: 'Используемый софт',
+    img: DEFAULT_IMG
+  },
+  'aboutme-education': {
+    path: '/aboutme/education',
+    heading: 'Образование',
+    description: '30+ пройденных курсов',
+    img: DEFAULT_IMG
+  },
+  'aboutme-soft-skills': {
+    path: '/aboutme/soft-skills',
+    heading: 'Софт-скиллы',
+    description: 'Мягкие навыки',
+    img: DEFAULT_IMG
+  },
+  'aboutme-subscriptions': {
+    path: '/aboutme/subscriptions',
+    heading: 'Подписки',
+    description: 'UX, Product, UI ресурсы',
+    img: DEFAULT_IMG
+  },
+  'aboutme-library': {
+    path: '/aboutme/library',
+    heading: 'Библиотека',
+    description: 'Книги и сборники',
+    img: DEFAULT_IMG
+  },
+  'aboutme-ai': {
+    path: '/aboutme/ai',
+    heading: 'Искусственный интеллект',
+    description: 'Использование ИИ в работе',
+    img: DEFAULT_IMG
+  },
+  'aboutme-work-preferences': {
+    path: '/aboutme/work-preferences',
+    heading: 'Пожелания к работе',
+    description: 'Ожидания от компании',
+    img: DEFAULT_IMG
+  },
+  'aboutme-t-shape-skills': {
+    path: '/aboutme/t-shape-skills',
+    heading: 'T-Shape навыки',
+    description: 'Стек технологий',
+    img: DEFAULT_IMG
+  },
+
+  // ─── Статьи ───
+  'article-type-definition-framework': {
+    path: '/article/type-definition-framework',
+    heading: 'Type Definition Framework',
+    description: 'Фреймворк определения типов',
+    img: DEFAULT_IMG
+  },
+  'article-figma-automation-macros': {
+    path: '/article/figma-automation-macros',
+    heading: 'Figma Automation Macros',
+    description: 'Макросы для автоматизации в Figma',
+    img: DEFAULT_IMG
+  },
+  'article-alpha-colors': {
+    path: '/article/alpha-colors',
+    heading: 'Alpha Colors',
+    description: 'Работа с альфа-каналами цветов',
+    img: DEFAULT_IMG
+  },
+} as const;
+
+
+// Типы для innerPageRouteMap
+export type InnerPageRouteKey = keyof typeof innerPageRouteMap;
+export type InnerPageRouteEntry = (typeof innerPageRouteMap)[InnerPageRouteKey];
+export type InnerPageRoutePath = InnerPageRouteEntry['path'];
+
+// Объединяем два объекта в один общий routeMap
+export const routeMap = {
+  ...landingRouteMap,
+  ...innerPageRouteMap,
+} as const;
+
+// ═══════════════════════════════════════════════════════════════════════════
+// TYPES
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Тип ключей (например, 'landing' | 'case-aeroakt')
 export type RouteKey = keyof typeof routeMap;
-export type RoutePath = (typeof routeMap)[RouteKey];
 
+// Тип самого объекта конфигурации маршрута
+export type RouteEntry = (typeof routeMap)[RouteKey];
 
-// TODO: Переделать на объект, где будет путь, иконка, короткий заголовок, короткое описание, и везде всё переделать
-// TODO: Сделать хлебные крошки, создать компонент маленький и делать muted Text link-sm, а для последнего пути возможно обычный цвет
+// Тип пути (строка URL), например '/' | '/case/aeroakt'
+// TypeScript автоматически выведет строковые литералы благодаря as const
+export type RoutePath = RouteEntry['path'];

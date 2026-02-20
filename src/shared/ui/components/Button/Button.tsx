@@ -15,7 +15,8 @@ import {
 } from './utils';
 
 export type ButtonAccent = 'high' | 'primary';
-export type ButtonContent = 'text-icon' | 'text' | 'icon';
+// Добавлен тип 'icon-text'
+export type ButtonContent = 'text-icon' | 'text' | 'icon' | 'icon-text';
 export type ButtonFace = 'solid' | 'light' | 'outline';
 export type ButtonSize = 'md' | 'lg' | 'xl';
 export type ButtonWidth = 'auto' | 'full' | 'full-between';
@@ -85,24 +86,46 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     className
   );
 
-  const renderContent = () => (
-    <>
-      {content !== 'icon' && children && (
-        <Text role={textRole} className={styles.text}>
-          {children}
-        </Text>
-      )}
-      {content !== 'text' && (
-        <Icon
-          name={finalIconName}
-          size={finalIconSize}
-          className={styles.icon}
-        />
-      )}
-    </>
+  // Вспомогательные рендеры
+  const textNode = children && (
+    <Text role={textRole} className={styles.text}>
+      {children}
+    </Text>
   );
 
-  // Обёртка для обработчиков с stopPropagation
+  const iconNode = (
+    <Icon
+      name={finalIconName}
+      size={finalIconSize}
+      className={styles.icon}
+    />
+  );
+
+  // Логика отображения контента в зависимости от типа
+  const renderContent = () => {
+    switch (content) {
+      case 'icon':
+        return iconNode;
+      case 'text':
+        return textNode;
+      case 'icon-text':
+        return (
+          <>
+            {iconNode}
+            {textNode}
+          </>
+        );
+      case 'text-icon':
+      default:
+        return (
+          <>
+            {textNode}
+            {iconNode}
+          </>
+        );
+    }
+  };
+
   const handleClick = (e: MouseEvent, callback?: () => void) => {
     e.stopPropagation();
     if (disabled) return;

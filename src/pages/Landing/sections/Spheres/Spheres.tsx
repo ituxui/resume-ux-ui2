@@ -27,7 +27,7 @@ const renderProduct = (product: ProductTuple, index: number): ReactNode => {
         phrase={name}
         // Мы используем "as RouteKey", так как уверены (из проверки if (route)),
         // что если route есть, то это валидный ключ из наших данных.
-        to={routeMap[route as RouteKey]}
+        to={routeMap[route as RouteKey]['path']}
         size="md"
       />
     );

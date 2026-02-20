@@ -1,7 +1,7 @@
 import type {
   CompetitorAnalysis,
   TransformedCompetitorRow,
-  CompetitorFeature
+
 } from '@shared/data/competitors/competitors.types';
 
 interface TransformResult {

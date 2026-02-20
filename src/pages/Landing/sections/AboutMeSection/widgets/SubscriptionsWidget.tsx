@@ -1,7 +1,7 @@
 import { type FC, useRef, useState, useEffect, useCallback } from 'react';
 import cn from 'classnames';
 import styles from './SubscriptionsWidget.module.scss';
-import { Heading, Tab, Text } from '@components';
+import { Heading, Tab, } from '@components';
 
 interface SubscriptionItem {
   heading: string;

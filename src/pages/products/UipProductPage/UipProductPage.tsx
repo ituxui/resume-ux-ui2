@@ -1,5 +1,5 @@
 import { renderActions, renderDescription, renderMeta, renderScreens } from '@pages/Landing/sections/ProductsSection/ProductsSection.utils';
-import { productsSection } from '@pages/Landing/sections/ProductsSection/ProductsSection.data';
+import { productsSection } from '@shared/data/ProductsSection.data';
 import { ProductCard } from '@pages/Landing/sections';
 import { Heading, Text } from '@shared/ui';
 import { List, ListItem, Persons, Screen, StatusItem, } from '@components';
@@ -39,17 +39,18 @@ export function UipProductPage() {
         <Heading role='section'>
           Кратко
         </Heading>
-        <Text role='body'>
-          В этом проекте я был ведущим UX UI дизайнером и плотно работал с продуктовым менеджером и программистами.
-        </Text>
-        <Text role='body'>
-          Разработав информационный портал для компании застройщика, мы достигли следующих целей:
-        </Text>
-        <List role='body'>
-          <ListItem>Формирование доверия к бренду через портфолио, отзывы и профессиональный дизайн</ListItem>
-          <ListItem>Привлечение потенциальных клиентов тронулось с места, потому что предыдущие лендинги не вызывали доверия</ListItem>
-          <ListItem>Сделали удобный и расширяемый портал для компании</ListItem>
-        </List>
+        <Stack page="article" width='container' role="paragraph">
+          <Text role='body'>
+            В этом проекте я был ведущим UX UI дизайнером и плотно работал с продуктовым менеджером и программистами. Разработав информационный портал для компании застройщика, мы достигли следующих целей:
+          </Text>
+        </Stack>
+        <Stack page="article" width='container' role="paragraph">
+          <List role='body'>
+            <ListItem>Формирование доверия к бренду через портфолио, отзывы и профессиональный дизайн</ListItem>
+            <ListItem>Привлечение потенциальных клиентов тронулось с места, потому что предыдущие лендинги не вызывали доверия</ListItem>
+            <ListItem>Сделали удобный и расширяемый портал для компании</ListItem>
+          </List>
+        </Stack>
       </Stack>
 
 

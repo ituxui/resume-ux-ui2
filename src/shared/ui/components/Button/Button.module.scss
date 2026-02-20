@@ -25,6 +25,10 @@
 // БАЗОВЫЕ СТИЛИ
 // ═══════════════════════════════════════════════════════════════════════════
 
+// ═══════════════════════════════════════════════════════════════════════════
+// БАЗОВЫЕ СТИЛИ
+// ═══════════════════════════════════════════════════════════════════════════
+
 .button {
   display: inline-flex;
   align-items: center;
@@ -62,11 +66,14 @@
   aspect-ratio: 2 / 1;
 }
 
+// SIZE MD
 .size_md {
   height: var(--size-md__height);
   gap: var(--size-md__gap);
 
+  // Общие отступы для кнопок с текстом
   &.content_text-icon,
+  &.content_icon-text,
   &.content_text {
     padding: 0 var(--size-md__padding-to-text);
   }
@@ -76,16 +83,24 @@
     padding: 0;
   }
 
+  // Если иконка справа — уменьшаем отступ справа
   &.content_text-icon {
     padding-right: var(--size-md__padding-to-icon);
   }
+
+  // Если иконка слева — уменьшаем отступ слева
+  &.content_icon-text {
+    padding-left: var(--size-md__padding-to-icon);
+  }
 }
 
+// SIZE LG
 .size_lg {
   height: var(--size-lg__height);
   gap: var(--size-lg__gap);
 
   &.content_text-icon,
+  &.content_icon-text,
   &.content_text {
     padding: 0 var(--size-lg__padding-to-text);
   }
@@ -98,13 +113,19 @@
   &.content_text-icon {
     padding-right: var(--size-lg__padding-to-icon);
   }
+
+  &.content_icon-text {
+    padding-left: var(--size-lg__padding-to-icon);
+  }
 }
 
+// SIZE XL
 .size_xl {
   height: var(--size-xl__height);
   gap: var(--size-xl__gap);
 
   &.content_text-icon,
+  &.content_icon-text,
   &.content_text {
     padding: 0 var(--size-xl__padding-to-text);
   }
@@ -116,6 +137,10 @@
 
   &.content_text-icon {
     padding-right: var(--size-xl__padding-to-icon);
+  }
+
+  &.content_icon-text {
+    padding-left: var(--size-xl__padding-to-icon);
   }
 }
 

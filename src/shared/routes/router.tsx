@@ -24,83 +24,83 @@ export const router = createHashRouter([
       },
       // Кейсы
       {
-        path: routeMap['case-aeroakt'],
+        path: routeMap['case-aeroakt']['path'],
         Component: AeroaktProductPage
       },
       {
-        path: routeMap['case-dvipraz-dashboard'],
+        path: routeMap['case-dvipraz-dashboard']['path'],
         Component: DviprazDashboardProductPage
       },
       {
-        path: routeMap['case-dvipraz-landing'],
+        path: routeMap['case-dvipraz-landing']['path'],
         Component: DviprazLandingProductPage
       },
       {
-        path: routeMap['case-rdp-dashboard'],
+        path: routeMap['case-rdp-dashboard']['path'],
         Component: RdpDashboardProductPage
       },
       {
-        path: routeMap['case-tsd'],
+        path: routeMap['case-tsd']['path'],
         Component: TsdProductPage
       },
       {
-        path: routeMap['case-uip'],
+        path: routeMap['case-uip']['path'],
         Component: UipProductPage
       },
 
       // Статьи
       {
-        path: routeMap['article-type-definition-framework'],
+        path: routeMap['article-type-definition-framework']['path'],
         element: "ArticleTypeDefinitionFramework"
       },
       {
-        path: routeMap['article-figma-automation-macros'],
+        path: routeMap['article-figma-automation-macros']['path'],
         element: "ArticleFigmaAutomationMacros"
       },
       {
-        path: routeMap['article-alpha-colors'],
+        path: routeMap['article-alpha-colors']['path'],
         element: "ArticleAlphaColors"
       },
 
       // Обо мне (Бенто-секции)
       {
-        path: routeMap['aboutme-personal'],
+        path: routeMap['aboutme-personal']['path'],
         element: "AboutmePersonal"
       },
       {
-        path: routeMap['aboutme-design-systems'],
+        path: routeMap['aboutme-design-systems']['path'],
         element: "AboutmeDesignSystems"
       },
       {
-        path: routeMap['aboutme-software'],
+        path: routeMap['aboutme-software']['path'],
         element: "AboutmeSoftware"
       },
       {
-        path: routeMap['aboutme-education'],
+        path: routeMap['aboutme-education']['path'],
         element: "AboutmeEducation"
       },
       {
-        path: routeMap['aboutme-soft-skills'],
+        path: routeMap['aboutme-soft-skills']['path'],
         element: "AboutmeSoftSkills"
       },
       {
-        path: routeMap['aboutme-subscriptions'],
+        path: routeMap['aboutme-subscriptions']['path'],
         element: "AboutmeSubscriptions"
       },
       {
-        path: routeMap['aboutme-library'],
+        path: routeMap['aboutme-library']['path'],
         element: "AboutmeLibrary"
       },
       {
-        path: routeMap['aboutme-ai'],
+        path: routeMap['aboutme-ai']['path'],
         element: "AboutmeAi"
       },
       {
-        path: routeMap['aboutme-work-preferences'],
+        path: routeMap['aboutme-work-preferences']['path'],
         element: "AboutmeWorkPreferences"
       },
       {
-        path: routeMap['aboutme-t-shape-skills'],
+        path: routeMap['aboutme-t-shape-skills']['path'],
         element: "AboutmeHardSkills"
       }
     ]
