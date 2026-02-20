@@ -10,69 +10,60 @@ type NavItem = {
 
 export const usePageNavigation = () => {
   const location = useLocation();
-
-  // Получаем массив всех записей из карты маршрутов
   const entries = Object.entries(innerPageRouteMap);
+  const total = entries.length;
 
-  // Находим индекс текущей страницы
-  // Сравниваем pathname. ВАЖНО: для хеш-роутера и якорей логика может отличаться,
-  // здесь мы нормализуем путь, убирая хеши, если мы находимся на полноценной странице
-  const currentIndex = entries.findIndex(([_, value]) => {
-    // Если путь в конфиге совпадает с текущим pathname (для обычных страниц)
-    if (value.path === location.pathname) return true;
-    // Если путь в конфиге содержит якорь, а мы на этой странице (сложный кейс,
-    // но для internal страниц обычно path уникален)
-    return false;
-  });
+  // Находим текущий индекс
+  const currentIndex = entries.findIndex(([_, value]) => value.path === location.pathname);
 
-  if (currentIndex === -1) {
+  // Если страница не найдена в списке (например, 404), возвращаем null
+  if (currentIndex === -1 || total === 0) {
     return { prev: null, next: null };
   }
 
-  const getLabelAndButton = (path: string, direction: 'next' | 'prev') => {
+  // ─── ЛОГИКА ЦИКЛА (CIRCULAR) ───
+
+  // Вычисляем индекс предыдущего элемента
+  // Если мы в начале (0), переходим в конец (total - 1)
+  const prevIndex = currentIndex === 0 ? total - 1 : currentIndex - 1;
+
+  // Вычисляем индекс следующего элемента
+  // Если мы в конце (total - 1), переходим в начало (0)
+  const nextIndex = currentIndex === total - 1 ? 0 : currentIndex + 1;
+
+
+  // Хелпер для получения текстов
+  const getMeta = (path: string, direction: 'next' | 'prev') => {
     const isNext = direction === 'next';
 
     if (path.includes('/case/')) {
       return {
         label: isNext ? 'Следующий кейс' : 'Предыдущий кейс',
-        buttonText: isNext ? 'Читать кейс' : 'Назад'
+        buttonText: isNext ? 'Открыть' : 'Назад'
       };
     }
     if (path.includes('/article/')) {
       return {
         label: isNext ? 'Следующая статья' : 'Предыдущая статья',
-        buttonText: isNext ? 'Читать статью' : 'Назад'
+        buttonText: isNext ? 'Читать' : 'Назад'
       };
     }
-    if (path.includes('/aboutme/')) {
-      return {
-        label: isNext ? 'Далее обо мне' : 'Ранее обо мне',
-        buttonText: isNext ? 'Перейти' : 'Назад'
-      };
-    }
-    // Дефолт (например для якорей)
+    // Дефолт
     return {
-      label: isNext ? 'Далее' : 'Назад',
+      label: isNext ? 'Далее обо мне' : 'Ранее обо мне',
       buttonText: isNext ? 'Перейти' : 'Назад'
     };
   };
 
-  const createNavItem = (index: number, direction: 'next' | 'prev'): NavItem => {
-    if (index < 0 || index >= entries.length) return null;
-
+  // Создание объекта навигации
+  const createItem = (index: number, dir: 'next' | 'prev'): NavItem => {
     const [key, entry] = entries[index];
-    const { label, buttonText } = getLabelAndButton(entry.path, direction);
-
-    return {
-      key,
-      entry,
-      label,
-      buttonText
-    };
+    const { label, buttonText } = getMeta(entry.path, dir);
+    return { key, entry, label, buttonText };
   };
 
-  const prev = createNavItem(currentIndex - 1, 'prev');
-  const next = createNavItem(currentIndex + 1, 'next');
-
-  return { prev, next };
+  return {
+    prev: createItem(prevIndex, 'prev'),
+    next: createItem(nextIndex, 'next')
+  };
 };

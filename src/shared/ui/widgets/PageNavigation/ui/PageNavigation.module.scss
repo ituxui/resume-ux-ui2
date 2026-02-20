@@ -1,104 +1,177 @@
-@use 'sass:math';
+// ═══════════════════════════════════════════════════════════════════════════
+// CONFIG & VARIABLES
+// ═══════════════════════════════════════════════════════════════════════════
 
-.wrapper {
+$card-height: 180px; // Общая высота карточки
+$card-radius: 24px; // Скругление углов карточки
+$card-padding: 8px; // Внутренний отступ (padding)
+$collapsed-width: 80px; // Ширина свернутой полоски
+
+// АВТОМАТИЧЕСКИЕ ВЫЧИСЛЕНИЯ
+// Высота минус отступы сверху и снизу
+$image-size: $card-height - ($card-padding * 2);
+// Радиус вложенного элемента = Радиус родителя - Отступ
+$image-radius: max(0px, $card-radius - $card-padding);
+
+// ═══════════════════════════════════════════════════════════════════════════
+// STYLES
+// ═══════════════════════════════════════════════════════════════════════════
+
+.container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  // Отступы можно настроить под проект
-  padding: 80px 0;
-  gap: 20px;
-  min-height: 300px; // Резервируем место, чтобы не прыгало
+  max-width: 648px;
+  margin: 0 auto;
+  gap: 16px;
+  height: $card-height;
+  padding: 40px 0;
+  box-sizing: content-box;
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// NAV ITEM (LINK)
+// NAV LINK (CARD)
 // ═══════════════════════════════════════════════════════════════════════════
 
 .navLink {
   position: relative;
-  display: flex;
+  display: block;
   text-decoration: none;
-  color: inherit;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
+  border-radius: $card-radius; // Использование переменной
+
+  // ВИЗУАЛ: Белый фон и большая тень
+  // background-color: #ffffff;
+  box-shadow:
+    rgba(17, 17, 26, 0.1) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 8px 24px,
+    rgba(17, 17, 26, 0.1) 0px 16px 48px,
+    0px 24px 48px -12px rgba(0, 0, 0, 0);
   cursor: pointer;
 
-  // Начальное состояние (Маленькая пилюля)
-  background-color: var(--color_bg_default--enabled, #fff); // Фоллбэк на белый
-  border-radius: 999px; // Pill shape
-  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06); // Пример тени
+  // АНИМАЦИЯ
+  transition:
+    flex-grow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+    flex-basis 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  will-change: flex-grow, flex-basis;
 
-  height: 160px;
-  width: 100px; // Узкая ширина по умолчанию
-  overflow: hidden;
+  // СОСТОЯНИЕ: СЖАТО
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: $collapsed-width;
 
-  // Центрирование стрелки в свернутом состоянии
-  align-items: center;
-  justify-content: center;
+  // СОСТОЯНИЕ: РАСКРЫТО
+  &.expanded {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  &.single {
+    flex-grow: 1;
+    width: 100%;
+  }
 
   &:hover {
-    // При наведении превращаемся в карточку
-    width: 600px;
-    border-radius: 40px; // Скругление как у карточки
+    box-shadow:
+      rgba(17, 17, 26, 0.1) 0px 1px 0px,
+      rgba(17, 17, 26, 0.1) 0px 8px 24px,
+      rgba(17, 17, 26, 0.1) 0px 16px 48px,
+      0px 24px 48px -12px rgba(0, 0, 0, 0.12);
   }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// INNER CONTAINERS
+// CONTENT CONTAINERS
 // ═══════════════════════════════════════════════════════════════════════════
 
-// Контейнер для свернутого состояния (Стрелка)
+// 1. ИКОНКА (СЖАТО)
 .collapsedContent {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease;
-  opacity: 1;
-  z-index: 2;
-}
-
-// Контейнер для развернутого состояния (Карточка)
-.expandedContent {
+  top: 0;
+  left: 0;
+  width: $collapsed-width;
+  height: 100%;
   display: flex;
   align-items: center;
-  width: 600px; // Фиксированная ширина контента внутри
-  padding: 24px;
-  gap: 32px;
-  opacity: 0;
-  transition: opacity 0.3s ease 0.1s; // Задержка появления
-  z-index: 1;
-
-  // Скрываем, пока не наведем
-  pointer-events: none;
+  justify-content: center;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+  opacity: 1;
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// HOVER LOGIC
-// ═══════════════════════════════════════════════════════════════════════════
+// 2. ПОЛНЫЙ КОНТЕНТ (РАСКРЫТО)
+.expandedContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $card-padding; // Использование переменной
+  box-sizing: border-box;
+  z-index: 1;
+  opacity: 0;
 
-.navLink:hover {
+  gap: 20px;
+  transition: opacity 0.4s ease 0.15s;
+
+  // Мин. ширина контента для стабильности анимации
+  min-width: 400px;
+}
+
+.navLink.expanded {
   .collapsedContent {
     opacity: 0;
+    pointer-events: none;
   }
-
   .expandedContent {
     opacity: 1;
-    pointer-events: all;
   }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// CONTENT ELEMENTS
+// ELEMENTS
 // ═══════════════════════════════════════════════════════════════════════════
 
+.textContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+
+  &--top {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 100%;
+  }
+}
+
+.subLabel {
+  margin: 0;
+  height: 100%;
+  padding-top: 8px;
+}
+
+.fakeButton {
+  pointer-events: none;
+  height: 100%;
+  display: flex;
+  align-items: end;
+}
+
 .imageWrapper {
-  width: 160px;
-  height: 160px;
-  flex-shrink: 0;
-  border-radius: 20px;
+  // АВТОМАТИЧЕСКИЕ ЗНАЧЕНИЯ
+  width: $image-size;
+  height: $image-size;
+  border-radius: $image-radius;
+
   overflow: hidden;
-  background-color: #f0f0f0;
+  // background-color: #f2f2f2;
+  flex-shrink: 0;
 
   img {
     width: 100%;
@@ -107,85 +180,62 @@
   }
 }
 
-.textContent {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex-grow: 1;
-  gap: 12px;
-}
-
-.headingWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.buttonWrapper {
-  margin-top: 12px;
-}
-
 // ═══════════════════════════════════════════════════════════════════════════
-// MODIFIERS (PREV / NEXT)
+// VARIANTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-// PREV: Картинка справа, текст слева (по макету)
-// Но на макете для PREV: Текст слева, Картинка справа.
 .prev {
-  margin-right: auto; // Прижимаем влево
-
   .expandedContent {
-    flex-direction: row; // Текст - Картинка
-    justify-content: space-between;
-  }
-
-  // Порядок элементов внутри expandedContent для PREV
-  // На макете: Текст(слева) - Картинка(справа).
-  // DOM: Img, Text. Меняем order.
-  .imageWrapper {
-    order: 2;
+    flex-direction: row-reverse;
   }
   .textContent {
-    order: 1;
-    align-items: flex-start; // Текст прижат влево
-    text-align: left;
-  }
-}
-
-// NEXT: Картинка слева, текст справа
-.next {
-  margin-left: auto; // Прижимаем вправо
-
-  .expandedContent {
-    flex-direction: row;
-  }
-
-  .imageWrapper {
-    order: 1;
-  }
-  .textContent {
-    order: 2;
     align-items: flex-start;
     text-align: left;
   }
-
-  // Кнопка прижата вправо внутри контента? На макете она под текстом.
 }
 
-// Адаптив (Mobile)
-@media (max-width: 768px) {
-  .wrapper {
+.next {
+  .expandedContent {
+    flex-direction: row;
+  }
+  .textContent {
+    align-items: flex-end;
+    text-align: left;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MOBILE
+// ═══════════════════════════════════════════════════════════════════════════
+@media (max-width: 680px) {
+  .container {
     flex-direction: column;
-    padding: 40px 0;
+    height: auto;
+    max-width: 100%;
+    padding: 20px;
   }
 
   .navLink {
     width: 100%;
-    height: auto;
-    border-radius: 24px;
+    height: 140px; // На мобилке своя высота
+    flex-basis: auto !important;
+    flex-grow: 1 !important;
+  }
 
-    // На мобилке сразу показываем развернутое (или упрощенное)
-    // Но по задаче нужно hover. Для тач-устройств hover работает по клику.
-    // Можно оставить как есть, или сделать всегда развернутым.
+  .collapsedContent {
+    display: none;
+  }
+
+  .expandedContent {
+    opacity: 1;
+    min-width: 0;
+    position: relative;
+    padding: 20px; // На мобилке свой паддинг
+  }
+
+  // На мобилке сбрасываем фиксированный размер картинки, если нужно
+  .imageWrapper {
+    width: 100px;
+    height: 100px;
   }
 }

@@ -3,14 +3,14 @@ import { productsSection } from '@shared/data/ProductsSection.data';
 import { ProductCard } from '@pages/Landing/sections';
 import { Heading, Text } from '@shared/ui';
 import { List, ListItem, Persons, Screen, StatusItem, } from '@components';
-import { Gallery, PageWrapper, Stack } from '@shared/ui/wrappers';
+import { Gallery, Stack } from '@shared/ui/wrappers';
 import { uipPersons } from '@shared/data';
 import { CompetitorsSection } from './sections/CompetitorsSection';
 
 export function UipProductPage() {
 
   return (
-    <PageWrapper>
+    <>
 
 
       <Stack page="article" width='container' role="subsection">
@@ -610,5 +610,5 @@ export function UipProductPage() {
 
 
 
-    </PageWrapper>);
+    </>);
 }

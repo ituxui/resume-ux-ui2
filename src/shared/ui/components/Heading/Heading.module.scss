@@ -124,13 +124,14 @@
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// .result-heading
+// .result-heading, .navigation-widget
 // ═══════════════════════════════════════════════════════════════════════════
 
-.result-heading {
+.result-heading,
+.navigation-widget {
   font-size: 24px;
-  line-height: 32px;
-  letter-spacing: -0.02em;
+  line-height: 28px;
+  letter-spacing: -0.03em;
   max-width: var(--readable-container-min_text-width);
 
   --heading-wght: 500;
@@ -152,7 +153,8 @@
   }
 }
 
-.result-heading {
+.result-heading,
+.navigation-widget {
   padding-bottom: 0;
 }
 

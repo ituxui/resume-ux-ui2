@@ -24,28 +24,28 @@ export const router = createHashRouter([
       },
       // Кейсы
       {
-        path: routeMap['case-aeroakt']['path'],
-        Component: AeroaktProductPage
-      },
-      {
-        path: routeMap['case-dvipraz-dashboard']['path'],
-        Component: DviprazDashboardProductPage
-      },
-      {
-        path: routeMap['case-dvipraz-landing']['path'],
-        Component: DviprazLandingProductPage
-      },
-      {
-        path: routeMap['case-rdp-dashboard']['path'],
-        Component: RdpDashboardProductPage
+        path: routeMap['case-uip']['path'],
+        Component: UipProductPage
       },
       {
         path: routeMap['case-tsd']['path'],
         Component: TsdProductPage
       },
       {
-        path: routeMap['case-uip']['path'],
-        Component: UipProductPage
+        path: routeMap['case-dvipraz-landing']['path'],
+        Component: DviprazLandingProductPage
+      },
+      {
+        path: routeMap['case-dvipraz-dashboard']['path'],
+        Component: DviprazDashboardProductPage
+      },
+      {
+        path: routeMap['case-rdp-dashboard']['path'],
+        Component: RdpDashboardProductPage
+      },
+      {
+        path: routeMap['case-aeroakt']['path'],
+        Component: AeroaktProductPage
       },
 
       // Статьи

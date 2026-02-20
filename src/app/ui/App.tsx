@@ -1,9 +1,12 @@
+import { PageWrapper } from '@shared/ui/wrappers';
 import { Outlet, ScrollRestoration, } from 'react-router';
 
 export function App() {
   return (<>
-    <Outlet />
-    <ScrollRestoration />
+    <PageWrapper>
+      <Outlet />
+      <ScrollRestoration />
+    </PageWrapper>
   </>
   )
 }

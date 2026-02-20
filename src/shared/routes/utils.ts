@@ -23,6 +23,12 @@ export const landingRouteMap = {
     description: 'Личная информация и навыки',
     img: DEFAULT_IMG
   },
+  'anchor-articles': {
+    path: '/#anchor-articles',
+    heading: 'Статьи',
+    description: 'Публикации и заметки',
+    img: DEFAULT_IMG
+  },
 } as const;
 
 
@@ -33,23 +39,17 @@ export type LandingRoutePath = LandingRouteEntry['path'];
 
 
 export const innerPageRouteMap = {
-  'anchor-articles': {
-    path: '/#anchor-articles',
-    heading: 'Статьи',
-    description: 'Публикации и заметки',
-    img: DEFAULT_IMG
-  },
 
   // ─── Кейсы ───
   'case-uip': {
     path: '/case/uip',
     heading: 'UIP',
     description: 'User Interface Platform',
-    img: DEFAULT_IMG
+    img: '/images/brand/УИП.png'
   },
   'case-tsd': {
     path: '/case/tsd',
-    heading: 'TSD',
+    heading: 'Терминал сбора данных для кислородного оборудования',
     description: 'Терминал сбора данных',
     img: DEFAULT_IMG
   },

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router';
 import cn from 'classnames';
 
@@ -12,95 +13,121 @@ import { Icon } from '@shared/ui/atoms/Icon/Icon';
 export const PageNavigation = () => {
   const { prev, next } = usePageNavigation();
 
-  // Если нет ни предыдущей, ни следующей страницы (например, мы на лендинге или вне карты)
-  // Компонент вернет null или пустой div
-  if (!prev && !next) return null;
+  // Состояние: наведен ли курсор на левую часть (Prev)
+  // По умолчанию (false) -> раскрыта правая часть (Next)
+  const [isPrevHovered, setIsPrevHovered] = useState(false);
+
+  // Если маршрутов нет или мы не на внутренней странице
+  if (!prev || !next) return null;
+
+  // Хендлеры
+  const handlePrevEnter = () => setIsPrevHovered(true);
+  const handlePrevLeave = () => setIsPrevHovered(false); // Убираем мышь -> возвращаемся к Next
+
+  const handleFocusPrev = () => setIsPrevHovered(true);
+  const handleFocusNext = () => setIsPrevHovered(false);
+
+  // Логика классов:
+  // Prev раскрыт, если на него навели.
+  const isPrevExpanded = isPrevHovered;
+
+  // Next раскрыт, если Prev НЕ наведен (дефолтное состояние).
+  const isNextExpanded = !isPrevHovered;
 
   return (
-    <div className={styles.wrapper}>
-      {/* ─── PREV BUTTON ─── */}
-      {prev ? (
-        <Link to={prev.entry.path} className={cn(styles.navLink, styles.prev)}>
-          {/* Collapsed State */}
-          <div className={styles.collapsedContent}>
-            <Icon name="chevron-left" size="lg" />
-          </div>
+    <div className={styles.container}>
 
-          {/* Expanded State */}
-          <div className={styles.expandedContent}>
-            <div className={styles.textContent}>
-              <div className={styles.headingWrapper}>
-                <Text role="subheading" className={styles.subLabel}>
-                  {prev.label}
-                </Text>
-                <Heading role="section" as="h3">
-                  {prev.entry.heading}
-                </Heading>
-              </div>
+      {/* ════ PREVIOUS PAGE ════ */}
+      <Link
+        to={prev.entry.path}
+        className={cn(styles.navLink, styles.prev, {
+          [styles.expanded]: isPrevExpanded
+        })}
+        onMouseEnter={handlePrevEnter}
+        onMouseLeave={handlePrevLeave}
+        onFocus={handleFocusPrev}
+      >
+        {/* Сжатый вид */}
+        <div className={styles.collapsedContent}>
+          <Icon name="chevron-left" size="lg" />
+        </div>
 
-              <div className={styles.buttonWrapper}>
-                <Button
-                  face="solid"
-                  size="lg"
-                  content="icon-text" // Иконка слева для кнопки "Назад"
-                  iconName="arrow-left"
-                  className={styles.fakeButton}
-                >
-                  {prev.buttonText}
-                </Button>
-              </div>
+        {/* Раскрытый вид */}
+        <div className={styles.expandedContent}>
+          <div className={styles.textContent}>
+            <div className={styles['textContent--top']}>
+              <Text role="caption" className={styles.subLabel}>
+                {prev.label}
+              </Text>
+              <Heading role="navigation-widget" as="h4">
+                {prev.entry.heading}
+              </Heading>
             </div>
 
-            <div className={styles.imageWrapper}>
-              <img src={prev.entry.img} alt={prev.entry.heading} />
+            <div className={styles.fakeButton}>
+              <Button
+                accent="primary"
+                face="solid"
+                size="md"
+                content="icon-text"
+                iconName="chevron-left"
+              >
+                {prev.buttonText}
+              </Button>
             </div>
           </div>
-        </Link>
-      ) : (
-        <div /> // Spacer if no prev
-      )}
 
-      {/* ─── NEXT BUTTON ─── */}
-      {next ? (
-        <Link to={next.entry.path} className={cn(styles.navLink, styles.next)}>
-          {/* Collapsed State */}
-          <div className={styles.collapsedContent}>
-            <Icon name="chevron-right" size="lg" />
+          <div className={styles.imageWrapper}>
+            <img src={prev.entry.img} alt="" />
+          </div>
+        </div>
+      </Link>
+
+      {/* ════ NEXT PAGE ════ */}
+      <Link
+        to={next.entry.path}
+        className={cn(styles.navLink, styles.next, {
+          [styles.expanded]: isNextExpanded
+        })}
+        onFocus={handleFocusNext}
+      // При наведении на Next ничего делать не надо,
+      // так как уход с Prev (onMouseLeave) уже сделает Next активным.
+      >
+        {/* Сжатый вид */}
+        <div className={styles.collapsedContent}>
+          <Icon name="chevron-right" size="lg" />
+        </div>
+
+        {/* Раскрытый вид */}
+        <div className={styles.expandedContent}>
+          <div className={styles.imageWrapper}>
+            <img src={next.entry.img} alt="" />
           </div>
 
-          {/* Expanded State */}
-          <div className={styles.expandedContent}>
-            <div className={styles.imageWrapper}>
-              <img src={next.entry.img} alt={next.entry.heading} />
+          <div className={styles.textContent}>
+            <div className={styles['textContent--top']}>
+              <Text role="caption" className={styles.subLabel}>
+                {next.label}
+              </Text>
+              <Heading role="navigation-widget" as="h4">
+                {next.entry.heading}
+              </Heading>
             </div>
 
-            <div className={styles.textContent}>
-              <div className={styles.headingWrapper}>
-                <Text role="subheading" className={styles.subLabel}>
-                  {next.label}
-                </Text>
-                <Heading role="section" as="h3">
-                  {next.entry.heading}
-                </Heading>
-              </div>
-
-              <div className={styles.buttonWrapper}>
-                <Button
-                  face="solid"
-                  size="lg"
-                  content="text-icon" // Иконка справа для кнопки "Читать"
-                  iconName="arrow-right"
-                  className={styles.fakeButton}
-                >
-                  {next.buttonText}
-                </Button>
-              </div>
+            <div className={styles.fakeButton}>
+              <Button
+                accent="primary"
+                face="solid"
+                size="md"
+                content="text-icon"
+                iconName="chevron-right"
+              >
+                {next.buttonText}
+              </Button>
             </div>
           </div>
-        </Link>
-      ) : (
-        <div /> // Spacer if no next
-      )}
-    </div>
+        </div>
+      </Link >
+    </div >
   );
 };
