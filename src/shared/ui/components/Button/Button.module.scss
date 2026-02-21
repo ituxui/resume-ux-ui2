@@ -48,6 +48,22 @@
   &:active {
     opacity: 0.9;
   }
+
+  // Убираем стандартный аутлайн
+  outline: none;
+
+  // Единый стиль фокуса при навигации с клавиатуры
+  &:focus-visible {
+    box-shadow: var(--focus-shadow);
+    // Поднимаем z-index, чтобы кольцо не перекрывалось соседями
+    z-index: 10;
+  }
+}
+
+// Если кнопка не интерактивна (курсор дефолтный)
+.notInteractive {
+  cursor: default;
+  pointer-events: none; // Опционально, если нужно полностью отключить мышь
 }
 
 .text {

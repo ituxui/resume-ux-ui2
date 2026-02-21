@@ -15,7 +15,6 @@ import {
 } from './utils';
 
 export type ButtonAccent = 'high' | 'primary';
-// Добавлен тип 'icon-text'
 export type ButtonContent = 'text-icon' | 'text' | 'icon' | 'icon-text';
 export type ButtonFace = 'solid' | 'light' | 'outline';
 export type ButtonSize = 'md' | 'lg' | 'xl';
@@ -41,9 +40,11 @@ export interface ButtonProps {
   className?: string;
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
+  // Полиморфный проп (если нужно отрендерить как div явно)
+  as?: 'button' | 'a' | 'div';
 }
 
-export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(({
+export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLDivElement, ButtonProps>(({
   children,
   accent = 'primary',
   content = 'text-icon',
@@ -63,9 +64,25 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
   className,
   disabled = false,
   type = 'button',
+  as,
   ...props
 }, ref) => {
   const buttonType = getButtonType({ href, to, download, onClick, anchorId });
+
+  // 1. ОПРЕДЕЛЯЕМ ИНТЕРАКТИВНОСТЬ
+  // Если нет действий и это не submit/reset, то кнопка декоративная
+  const isInteractive = Boolean(
+    href ||
+    to ||
+    download ||
+    onClick ||
+    anchorId ||
+    type === 'submit' ||
+    type === 'reset'
+  );
+
+  // Если кнопка не интерактивна, убираем её из Tab-порядка
+  const tabIndex = isInteractive && !disabled ? undefined : -1;
 
   const finalIconName = iconName || getAutoIconName(buttonType);
   const finalIconSize = iconSize || autoIconSizeMap[size];
@@ -82,67 +99,55 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     {
       [styles.active]: isActive,
       [styles.disabled]: disabled,
+      [styles.notInteractive]: !isInteractive, // Добавляем класс стиля
     },
     className
   );
 
-  // Вспомогательные рендеры
-  const textNode = children && (
-    <Text role={textRole} className={styles.text}>
-      {children}
-    </Text>
-  );
-
-  const iconNode = (
-    <Icon
-      name={finalIconName}
-      size={finalIconSize}
-      className={styles.icon}
-    />
-  );
-
-  // Логика отображения контента в зависимости от типа
   const renderContent = () => {
+    const textNode = children && (
+      <Text role={textRole} className={styles.text}>{children}</Text>
+    );
+    const iconNode = <Icon name={finalIconName} size={finalIconSize} className={styles.icon} />;
+
     switch (content) {
-      case 'icon':
-        return iconNode;
-      case 'text':
-        return textNode;
-      case 'icon-text':
-        return (
-          <>
-            {iconNode}
-            {textNode}
-          </>
-        );
+      case 'icon': return iconNode;
+      case 'text': return textNode;
+      case 'icon-text': return <>{iconNode}{textNode}</>;
       case 'text-icon':
-      default:
-        return (
-          <>
-            {textNode}
-            {iconNode}
-          </>
-        );
+      default: return <>{textNode}{iconNode}</>;
     }
   };
 
   const handleClick = (e: MouseEvent, callback?: () => void) => {
+    if (!isInteractive || disabled) {
+      e.preventDefault();
+      return;
+    }
     e.stopPropagation();
-    if (disabled) return;
     callback?.();
     onClick?.(e);
   };
 
+  // Если передан проп as="div", рендерим div (для вложенности в ссылки)
+  if (as === 'div') {
+    return (
+      <div className={classes} {...props}>
+        {renderContent()}
+      </div>
+    );
+  }
+
   // 1. Download
   if (buttonType === 'download' && href) {
-    const filename = typeof download === 'string' ? download : undefined;
     return (
       <button
         ref={ref as any}
         type="button"
         className={classes}
         disabled={disabled}
-        onClick={(e) => handleClick(e, () => downloadFile(href, filename))}
+        onClick={(e) => handleClick(e, () => downloadFile(href, typeof download === 'string' ? download : undefined))}
+        tabIndex={tabIndex}
         {...props}
       >
         {renderContent()}
@@ -150,7 +155,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     );
   }
 
-  // 2. Internal (React Router)
+  // 2. Internal
   if (buttonType === 'internal' && to) {
     return (
       <RouterLink
@@ -158,6 +163,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
         to={to}
         className={classes}
         onClick={(e) => handleClick(e)}
+        tabIndex={tabIndex}
         {...props}
       >
         {renderContent()}
@@ -177,6 +183,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
           e.preventDefault();
           handleClick(e, () => scrollToAnchor(targetId));
         }}
+        tabIndex={tabIndex}
         {...props}
       >
         {renderContent()}
@@ -184,16 +191,17 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     );
   }
 
-  // 4. External
-  if (buttonType === 'external') {
+  // 4. External / Email
+  if ((buttonType === 'external' || buttonType === 'email') && href) {
     return (
       <a
         ref={ref as any}
         href={href}
-        target={target || '_blank'}
-        rel={rel || 'noopener noreferrer'}
+        target={target || (buttonType === 'external' ? '_blank' : undefined)}
+        rel={rel || (buttonType === 'external' ? 'noopener noreferrer' : undefined)}
         className={classes}
         onClick={(e) => handleClick(e)}
+        tabIndex={tabIndex}
         {...props}
       >
         {renderContent()}
@@ -201,29 +209,15 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     );
   }
 
-  // 5. Email (mailto)
-  if (buttonType === 'email' && href) {
-    return (
-      <a
-        ref={ref as any}
-        href={href}
-        className={classes}
-        onClick={(e) => handleClick(e)}
-        {...props}
-      >
-        {renderContent()}
-      </a>
-    );
-  }
-
-  // 6. Button (modal / default)
+  // 6. Button (Default / Modal)
   return (
     <button
       ref={ref as any}
       type={type}
       className={classes}
       onClick={(e) => handleClick(e)}
-      disabled={disabled}
+      disabled={disabled || !isInteractive}
+      tabIndex={tabIndex}
       {...props}
     >
       {renderContent()}

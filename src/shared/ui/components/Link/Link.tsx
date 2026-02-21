@@ -29,16 +29,6 @@ export interface LinkProps {
 }
 
 
-const sizeToTextRole: Record<LinkSize, TextRole> = {
-  sm: 'link-sm',
-  md: 'link',
-};
-
-const sizeToIconSize: Record<LinkSize, IconSize> = {
-  sm: 'sm',
-  md: 'md',
-};
-
 const getLinkType = (props: Partial<LinkProps>): LinkType => {
   const { href, to, download, onClick, anchorId } = props;
 
@@ -142,16 +132,22 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
   rel,
   ...props
 }, ref) => {
-  const linkType = getLinkType({ phrase, href, to, download, onClick, anchorId });
-  const iconName = getIconName(linkType);
-  const iconSize = sizeToIconSize[size];
-  const textRole = sizeToTextRole[size];
+  const linkType = getLinkType({ href, to, download, onClick, anchorId }); // (Предполагается что функция импортирована или определена выше)
+
+  // Определяем интерактивность
+  const isInteractive = Boolean(href || to || download || onClick || anchorId);
+
+  // Иконки и роли
+  const iconName = getIconName(linkType); // (функция определена выше/импортирована)
+  const iconSize = size === 'sm' ? 'sm' : 'md';
+  const textRole = size === 'sm' ? 'link-sm' : 'link';
 
   const classes = cn(
     styles.link,
     styles[accent],
     invert && styles.invert,
     isActive && styles.active,
+    { [styles.notInteractive]: !isInteractive },
     className
   );
 
@@ -163,12 +159,15 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
   );
 
   const handleClick = (e: MouseEvent, callback?: () => void) => {
+    if (!isInteractive) return;
     e.stopPropagation();
     callback?.();
     onClick?.(e);
   };
 
-  // 1. Download (без изменений)
+  const tabIndex = isInteractive ? undefined : -1;
+
+  // 1. Download
   if (linkType === 'download' && href) {
     const filename = typeof download === 'string' ? download : undefined;
     return (
@@ -176,7 +175,8 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
         ref={ref as any}
         type="button"
         className={classes}
-        onClick={(e) => handleClick(e, () => downloadFile(href, filename))}
+        onClick={(e) => handleClick(e, () => downloadFile(href, filename))} // (функция определена выше/импортирована)
+        tabIndex={tabIndex}
         {...props}
       >
         {content}
@@ -184,9 +184,8 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
     );
   }
 
-  // 2. Anchor (ОБНОВЛЕНО)
+  // 2. Anchor
   if (linkType === 'anchor') {
-    // Если есть 'to' (например, /#projects), используем RouterLink для бесшовного перехода
     if (to) {
       return (
         <RouterLink
@@ -194,14 +193,13 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
           to={to}
           className={classes}
           onClick={(e) => handleClick(e)}
+          tabIndex={tabIndex}
           {...props}
         >
           {content}
         </RouterLink>
       );
     }
-
-    // Обычный якорь на текущей странице (через <a> и scrollIntoView)
     const targetId = anchorId || href || '';
     return (
       <a
@@ -210,8 +208,9 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
         className={classes}
         onClick={(e) => {
           e.preventDefault();
-          handleClick(e, () => scrollToAnchor(targetId));
+          handleClick(e, () => scrollToAnchor(targetId)); // (функция определена выше/импортирована)
         }}
+        tabIndex={tabIndex}
         {...props}
       >
         {content}
@@ -219,7 +218,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
     );
   }
 
-  // 3. Internal (без изменений)
+  // 3. Internal
   if (linkType === 'internal' && to) {
     return (
       <RouterLink
@@ -227,6 +226,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
         to={to}
         className={classes}
         onClick={(e) => handleClick(e)}
+        tabIndex={tabIndex}
         {...props}
       >
         {content}
@@ -234,7 +234,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
     );
   }
 
-  // 4. External (без изменений)
+  // 4. External
   if (linkType === 'external') {
     return (
       <a
@@ -244,6 +244,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
         rel={rel || 'noopener noreferrer'}
         className={classes}
         onClick={(e) => handleClick(e)}
+        tabIndex={tabIndex}
         {...props}
       >
         {content}
@@ -251,13 +252,15 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
     );
   }
 
-  // 5. Modal (без изменений)
+  // 5. Default Button
   return (
     <button
       ref={ref as any}
       type="button"
       className={classes}
       onClick={(e) => handleClick(e)}
+      tabIndex={tabIndex}
+      disabled={!isInteractive}
       {...props}
     >
       {content}

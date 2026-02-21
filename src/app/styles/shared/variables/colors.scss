@@ -22,4 +22,14 @@
 
   --bento-bg: hsl(220, 1%, 97%);
   --bg__accent-primary: hsl(0, 0%, 100%);
+
+  // Цвета фокуса (обычно акцентный цвет бренда)
+  --focus-color: #007aff;
+
+  // Параметры кольца фокуса
+  --focus-ring-width: 3px;
+  --focus-ring-offset: 2px;
+
+  // Готовая тень для фокуса (учитывает скругление элемента, в отличие от outline)
+  --focus-shadow: 0 0 0 var(--focus-ring-offset) #fff, 0 0 0 calc(var(--focus-ring-offset) + var(--focus-ring-width)) var(--focus-color);
 }

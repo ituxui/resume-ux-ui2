@@ -4,7 +4,7 @@ import styles from './PageWrapper.module.scss';
 import { Link, Text } from '@shared/ui';
 import { routeMap } from '@shared/routes';
 import { Popover } from '@shared/ui/components';
-import { EmailPart, PageNavigation } from '@shared/ui/widgets';
+import { Breadcrumbs, EmailPart, PageNavigation } from '@shared/ui/widgets';
 
 // Описываем тип пропсов
 interface PageWrapperProps {
@@ -68,17 +68,18 @@ export function PageWrapper({ children }: PageWrapperProps) {
 
             <Link phrase="Скачать резюме" href="/files/resume-ux-ui.vercel.app.pdf" accent='muted' size="sm" />
 
-            {pageType !== 'landing' && <Link phrase="Главная" to={routeMap['landing']['path']} accent='muted' size='sm' />}
+            {/* {pageType !== 'landing' && <Link phrase="Главная" to={routeMap['landing']['path']} accent='muted' size='sm' />} */}
             <Link phrase="Портфолио" to={routeMap['anchor-projects']['path']} accent='muted' size='sm' />
             <Link phrase="Обо мне" to={routeMap['anchor-about-me']['path']} accent='muted' size='sm' />
             <Link phrase="Статьи" to={routeMap['anchor-articles']['path']} accent='muted' size='sm' />
           </div>
 
           <div className={styles['menu--center']}>
-            {/* Пример: скрываем "Главная" в центре, если мы уже на главной, или наоборот */}
+            <Breadcrumbs />
+            {/* Пример: скрываем "Главная" в центре, если мы уже на главной, или наоборот
             {pageType !== 'landing' && (
               <Link phrase="Главная" to={routeMap['landing']['path']} accent='muted' size='sm' />
-            )}
+            )} */}
           </div>
 
           <div className={styles['menu--right']}>

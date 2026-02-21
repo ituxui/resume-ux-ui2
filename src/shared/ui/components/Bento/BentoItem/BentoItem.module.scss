@@ -1,5 +1,4 @@
 .wrapper {
-  // @include flex(column, flex-start, center); — если у вас есть миксин, оставьте
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -8,14 +7,11 @@
   background: var(--bento-bg);
   border-radius: var(--bento__border-radius);
 
-  // Сбрасываем стили на случай наследования
   text-decoration: none;
   color: inherit;
-
-  // По умолчанию курсор обычный
   cursor: default;
+  outline: none; // Убираем дефолт
 
-  // Класс добавляется условно в TSX
   &.clickable {
     cursor: pointer;
     transition:
@@ -23,8 +19,13 @@
       box-shadow 0.2s ease;
 
     &:hover {
-      // Пример ховера (опционально)
-      // transform: translateY(-2px);
+      // ... (ваш ховер)
+    }
+
+    // Фокус только для интерактивных
+    &:focus-visible {
+      box-shadow: var(--focus-shadow);
+      z-index: 5;
     }
   }
 }

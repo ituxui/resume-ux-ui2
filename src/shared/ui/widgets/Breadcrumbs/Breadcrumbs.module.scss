@@ -1,0 +1,22 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+  list-style: none; // Убираем маркеры списка
+}
+
+.li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.separator {
+  display: inline-block;
+  color: var(--color_text-accent_muted--enabled, #858585); // Цвет muted
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
+}

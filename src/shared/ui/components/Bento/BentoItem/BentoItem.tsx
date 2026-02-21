@@ -14,27 +14,38 @@ export const BentoItem = ({
 }: BentoItemProps) => {
   const navigate = useNavigate();
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Если путь не задан, ничего не делаем
-    if (!to) return;
+  const handleNavigate = () => {
+    if (to) navigate(to);
+  };
 
-    // Проверяем, не кликнули ли мы по интерактивному элементу внутри (ссылка, кнопка)
-    // Если да — даем сработать внутреннему элементу, а навигацию карточки игнорируем
+  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!to) return;
+    // Если кликнули по ссылке или кнопке внутри карточки, не переходим по карточке
     const target = e.target as HTMLElement;
     if (target.closest('a') || target.closest('button')) {
       return;
     }
+    handleNavigate();
+  };
 
-    navigate(to);
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (!to) return;
+    // Поддержка навигации с клавиатуры (Enter или Пробел)
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handleNavigate();
+    }
   };
 
   return (
     <div
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={to ? 0 : -1} // Делаем фокусируемым только если есть ссылка
+      role={to ? 'link' : undefined}
       className={classNames(
         styles.wrapper,
         styles[`margin_mode--${marginMode}`],
-        // Добавляем класс для курсора pointer, если есть ссылка
         to && styles.clickable,
         className
       )}

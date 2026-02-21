@@ -38,11 +38,26 @@
   border: none;
   background: none;
   font: inherit;
-  transition: color 0.15s ease;
+  transition:
+    color 0.15s ease,
+    opacity 0.15s ease;
+
+  // Для фокуса
+  outline: none;
+  border-radius: 4px;
+
+  &:focus-visible {
+    box-shadow: var(--focus-shadow);
+  }
 
   &:active {
     opacity: 0.8;
   }
+}
+
+.notInteractive {
+  cursor: default;
+  pointer-events: none;
 }
 
 .phrase {

@@ -1,28 +1,28 @@
-p {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
+// p {
+//   padding-top: 8px;
+//   padding-bottom: 8px;
+// }
 
-ol li {
-  margin-left: 18px;
-}
+// ol li {
+//   margin-left: 18px;
+// }
 
-.scroll-lock {
-  overflow: hidden !important;
-  /* Можно добавить padding-right, чтобы компенсировать исчезновение скроллбара */
-  padding-right: var(--scrollbar-width, 0);
-}
+// .scroll-lock {
+//   overflow: hidden !important;
+//   /* Можно добавить padding-right, чтобы компенсировать исчезновение скроллбара */
+//   padding-right: var(--scrollbar-width, 0);
+// }
 
-body {
-  transition: background-color 2s ease-in-out;
-}
+// body {
+//   transition: background-color 2s ease-in-out;
+// }
 
-* {
-  scroll-behavior: smooth;
-}
+// * {
+//   scroll-behavior: smooth;
+// }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+// #root {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+// }

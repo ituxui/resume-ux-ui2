@@ -23,6 +23,7 @@ import Download1 from './icons/download-1.svg?react';
 import Expand from './icons/expand.svg?react';
 import Home from './icons/home.svg?react';
 import Monitor from './icons/monitor.svg?react';
+import Menu from './icons/menu.svg?react';
 import Plus from './icons/plus.svg?react';
 import Smartphone from './icons/smartphone.svg?react';
 import Tablet from './icons/tablet.svg?react';
@@ -49,6 +50,7 @@ const icons = {
   'expand': Expand,
   'home': Home,
   'monitor': Monitor,
+  'menu': Menu,
   'plus': Plus,
   'smartphone': Smartphone,
   'tablet': Tablet,
