@@ -56,7 +56,10 @@ export const FloatingMenu = () => {
     };
   }, [isMenuOpen]);
 
-
+  // Обработчик клика по фону
+  const handleOverlayClick = () => {
+    setIsMenuOpen(false);
+  };
 
   return (
     <>
@@ -83,14 +86,16 @@ export const FloatingMenu = () => {
             // Меняем иконку: menu (3 полоски) или x (крестик)
             iconName={isMenuOpen ? 'x' : 'menu'}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-          // Поднимаем z-index кнопки, чтобы она была поверх оверлея (хотя она внутри острова, а остров z=1000)
-          // style={{ position: 'relative', zIndex: 1001 }}
           />
         </div>
       </div>
 
       {/* ─── FULLSCREEN OVERLAY ─── */}
-      <div className={cn(styles.overlay, { [styles.open]: isMenuOpen })}>
+      {/* Добавлен onClick={handleOverlayClick} */}
+      <div
+        className={cn(styles.overlay, { [styles.open]: isMenuOpen })}
+        onClick={handleOverlayClick}
+      >
         <div className={styles.menuContent}>
 
           {/* Навигационные ссылки */}
@@ -113,8 +118,6 @@ export const FloatingMenu = () => {
               face="light"
               size="xl"
               width="full"
-              // anchorId={landingRouteMap['anchor-projects'].path.replace('/#', '')}
-              // Для навигации с других страниц используем href c полным путем
               to={landingRouteMap['anchor-projects'].path}
             >
               {landingRouteMap['anchor-projects'].heading}
@@ -168,13 +171,6 @@ export const FloatingMenu = () => {
             </Button>
 
           </nav>
-
-          {/* Разделитель или отступ
-          <div style={{ height: 16 }} /> */}
-
-          {/* Виджет EmailPart */}
-          {/* <EmailPart /> */}
-
         </div>
       </div>
     </>
