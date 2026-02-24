@@ -4,6 +4,8 @@ import cn from 'classnames';
 import styles from './Link.module.scss';
 import { Text, type TextRole } from '../Text/Text';
 import { Icon, type IconSize } from '@shared/ui/atoms/Icon/Icon';
+// ИМПОРТИРУЕМ ОБНОВЛЕННУЮ ФУНКЦИЮ
+import { scrollToAnchor } from '../Button/utils/scrollToAnchor';
 
 export type LinkSize = 'sm' | 'md';
 export type LinkAccent = 'muted' | 'default' | 'high';
@@ -28,7 +30,6 @@ export interface LinkProps {
   rel?: string;
 }
 
-
 const getLinkType = (props: Partial<LinkProps>): LinkType => {
   const { href, to, download, onClick, anchorId } = props;
 
@@ -36,79 +37,47 @@ const getLinkType = (props: Partial<LinkProps>): LinkType => {
     return 'download';
   }
 
-  // ОБНОВЛЕНО: Добавлена проверка to.startsWith('/#')
-  // Теперь ссылки типа /#projects считаются типом anchor (для иконки)
-  if (anchorId || (href && href.startsWith('#')) || (to && to.startsWith('/#'))) {
+  // Если есть #, это якорь
+  if (anchorId || (href && href.includes('#')) || (to && to.includes('#'))) {
     return 'anchor';
   }
 
-  if (to) {
-    return 'internal';
-  }
-
-  if (onClick && !href && !to) {
-    return 'modal';
-  }
-
-  if (href && (href.startsWith('http') || href.startsWith('//'))) {
-    return 'external';
-  }
-
-  if (href) {
-    return 'internal';
-  }
+  if (to) return 'internal';
+  if (onClick && !href && !to) return 'modal';
+  if (href && (href.startsWith('http') || href.startsWith('//'))) return 'external';
+  if (href) return 'internal';
 
   return 'modal';
 };
 
 const getIconName = (type: LinkType) => {
   switch (type) {
-    case 'download':
-      return 'download';
-    case 'internal':
-      return 'arrow-right';
-    case 'modal':
-      return 'expand';
-    case 'external':
-      return 'arrow-top-right';
-    case 'anchor':
-      return 'arrow-down-right';
-    default:
-      return 'arrow-right';
-  }
-};
-
-const scrollToAnchor = (id: string) => {
-  const element = document.getElementById(id.replace('#', ''));
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    case 'download': return 'download';
+    case 'internal': return 'arrow-right';
+    case 'modal': return 'expand';
+    case 'external': return 'arrow-top-right';
+    case 'anchor': return 'arrow-down-right';
+    default: return 'arrow-right';
   }
 };
 
 const getFilenameFromUrl = (url: string): string => {
   const pathname = new URL(url, window.location.origin).pathname;
-  const filename = pathname.split('/').pop();
-  return filename || 'download';
+  return pathname.split('/').pop() || 'download';
 };
 
 const downloadFile = async (url: string, filename?: string) => {
   try {
     const response = await fetch(url);
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     const blob = await response.blob();
     const blobUrl = window.URL.createObjectURL(blob);
-
     const link = document.createElement('a');
     link.href = blobUrl;
     link.download = filename || getFilenameFromUrl(url);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
     window.URL.revokeObjectURL(blobUrl);
   } catch (error) {
     console.error('Download failed:', error);
@@ -132,13 +101,10 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
   rel,
   ...props
 }, ref) => {
-  const linkType = getLinkType({ href, to, download, onClick, anchorId }); // (Предполагается что функция импортирована или определена выше)
-
-  // Определяем интерактивность
+  const linkType = getLinkType({ href, to, download, onClick, anchorId });
   const isInteractive = Boolean(href || to || download || onClick || anchorId);
 
-  // Иконки и роли
-  const iconName = getIconName(linkType); // (функция определена выше/импортирована)
+  const iconName = getIconName(linkType);
   const iconSize = size === 'sm' ? 'sm' : 'md';
   const textRole = size === 'sm' ? 'link-sm' : 'link';
 
@@ -171,14 +137,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
   if (linkType === 'download' && href) {
     const filename = typeof download === 'string' ? download : undefined;
     return (
-      <button
-        ref={ref as any}
-        type="button"
-        className={classes}
-        onClick={(e) => handleClick(e, () => downloadFile(href, filename))} // (функция определена выше/импортирована)
-        tabIndex={tabIndex}
-        {...props}
-      >
+      <button ref={ref as any} type="button" className={classes} onClick={(e) => handleClick(e, () => downloadFile(href, filename))} tabIndex={tabIndex} {...props}>
         {content}
       </button>
     );
@@ -192,7 +151,11 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
           ref={ref as any}
           to={to}
           className={classes}
-          onClick={(e) => handleClick(e)}
+          onClick={(e) => {
+            handleClick(e);
+            // Если переход по React Router, ждем пока страница обновится, затем скроллим
+            setTimeout(() => scrollToAnchor(to), 100);
+          }}
           tabIndex={tabIndex}
           {...props}
         >
@@ -208,7 +171,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
         className={classes}
         onClick={(e) => {
           e.preventDefault();
-          handleClick(e, () => scrollToAnchor(targetId)); // (функция определена выше/импортирована)
+          handleClick(e, () => scrollToAnchor(targetId));
         }}
         tabIndex={tabIndex}
         {...props}
@@ -237,16 +200,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
   // 4. External
   if (linkType === 'external') {
     return (
-      <a
-        ref={ref as any}
-        href={href}
-        target={target || '_blank'}
-        rel={rel || 'noopener noreferrer'}
-        className={classes}
-        onClick={(e) => handleClick(e)}
-        tabIndex={tabIndex}
-        {...props}
-      >
+      <a ref={ref as any} href={href} target={target || '_blank'} rel={rel || 'noopener noreferrer'} className={classes} onClick={(e) => handleClick(e)} tabIndex={tabIndex} {...props}>
         {content}
       </a>
     );
@@ -254,15 +208,7 @@ export const Link = forwardRef<HTMLButtonElement | HTMLAnchorElement, LinkProps>
 
   // 5. Default Button
   return (
-    <button
-      ref={ref as any}
-      type="button"
-      className={classes}
-      onClick={(e) => handleClick(e)}
-      tabIndex={tabIndex}
-      disabled={!isInteractive}
-      {...props}
-    >
+    <button ref={ref as any} type="button" className={classes} onClick={(e) => handleClick(e)} tabIndex={tabIndex} disabled={!isInteractive} {...props}>
       {content}
     </button>
   );

@@ -20,7 +20,7 @@ $image-radius: max(0px, $card-radius - $card-padding);
 .container {
   display: flex;
   width: 100%;
-  max-width: 648px;
+  max-width: var(--readable-container-min_text-width);
   margin: 0 auto;
   gap: 16px;
   height: $card-height;
@@ -231,6 +231,10 @@ $image-radius: max(0px, $card-radius - $card-padding);
     }
   }
 
+  .subLabel {
+    padding-top: 0px;
+  }
+
   .prev {
     box-shadow: none !important;
   }
@@ -252,7 +256,7 @@ $image-radius: max(0px, $card-radius - $card-padding);
     min-width: 0;
     position: relative;
     gap: 12px;
-    // padding: 20px; // На мобилке свой паддинг
+    padding: 20px 8px;
   }
 
   // На мобилке сбрасываем фиксированный размер картинки, если нужно

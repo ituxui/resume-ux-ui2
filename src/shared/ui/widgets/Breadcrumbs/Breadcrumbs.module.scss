@@ -1,8 +1,8 @@
 .wrapper {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  flex-wrap: wrap; // Разрешаем перенос строк между крошками
+  gap: 8px; // Вертикальный и горизонтальный отступ при переносе
   padding: 0;
   margin: 0;
   list-style: none;
@@ -13,29 +13,15 @@
   align-items: center;
 }
 
-.separator {
-  display: inline-block;
-  color: var(--color_text-accent_muted--enabled, #858585);
-  font-size: 14px;
-  line-height: 1;
-  user-select: none;
-}
-
 // ═══════════════════════════════════════════════════════════════════════════
 // MOBILE ADAPTIVE
 // ═══════════════════════════════════════════════════════════════════════════
 
 @include media-s-breakpoint-and-down {
   .wrapper {
-    // 1. Скрываем "Главная", если она НЕ единственная крошка в списке
-    // (:last-child означает, что если элемент и первый, и последний одновременно,
-    // правило :not(:last-child) не сработает, и "Главная" останется видимой)
+    // 1. Скрываем "Главная", если она НЕ единственная крошка в списке.
+    // Слэш скроется автоматически, так как он теперь внутри первого li.
     > li:first-child:not(:last-child) {
-      display: none;
-    }
-
-    // 2. Скрываем первый разделитель "/", который идет сразу за "Главной"
-    > li:first-child:not(:last-child) + .separator {
       display: none;
     }
   }

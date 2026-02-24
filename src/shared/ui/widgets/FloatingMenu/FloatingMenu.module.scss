@@ -4,7 +4,7 @@
 
 .islandWrapper {
   position: fixed;
-  z-index: 1000; // Поверх всего
+  z-index: 1000;
   left: 50%;
   transform: translateX(-50%);
 
@@ -19,16 +19,14 @@
   gap: 8px;
 
   background: rgba(255, 255, 255, 1);
-  // backdrop-filter: blur(12px);
   border-radius: 999px;
 
   box-shadow:
     0 4px 24px -1px rgba(0, 0, 0, 0.08),
     0 0 1px rgba(0, 0, 0, 0.04);
 
-  // Анимация появления сверху
   transition: top 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-  top: -100px; // Скрыто по умолчанию
+  top: -100px;
 
   &.visible {
     top: 24px;
@@ -42,7 +40,7 @@
   overflow: hidden;
   background-color: #f0f0f0;
   flex-shrink: 0;
-  cursor: pointer; // Можно сделать кликабельным (на главную)
+  cursor: pointer;
 
   img {
     width: 100%;
@@ -56,16 +54,18 @@
   display: flex;
   justify-content: center;
   overflow: hidden;
+  transition: opacity 0.2s ease;
 
-  // Скрываем скроллбар хлебных крошек
   :global {
     nav {
       overflow-x: auto;
       scrollbar-width: none;
+
       &::-webkit-scrollbar {
         display: none;
       }
     }
+
     ol {
       flex-wrap: wrap;
       white-space: nowrap;
@@ -76,8 +76,9 @@
 .menuButton {
   flex-shrink: 0;
   height: 100%;
+
   & > * {
-    height: 100% !important ;
+    height: 100% !important;
   }
 }
 
@@ -87,26 +88,45 @@
 
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.98); // Почти непрозрачный белый
+  inset: 0;
+  z-index: 999;
+
+  background: rgba(255, 255, 255, 0.98);
   backdrop-filter: blur(20px);
-  z-index: 999; // Чуть ниже острова (чтобы кнопка закрытия была видна на острове, если нужно)
 
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overscroll-behavior: contain;
+  overscroll-behavior: contain;
+
+  padding-top: 100px;
+  padding-bottom: 40px;
 
   opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
 
   &.open {
     opacity: 1;
+    visibility: visible;
     pointer-events: auto;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
   }
 }
 
@@ -117,9 +137,8 @@
   gap: 24px;
   width: 100%;
   max-width: 400px;
-  padding: 24px;
-
-  // Анимация контента при открытии
+  padding: 0 24px;
+  margin: auto 0;
   transform: translateY(20px);
   transition: transform 0.4s ease;
 
@@ -142,11 +161,8 @@
 
 @include media-s-breakpoint-and-down {
   .islandWrapper {
-    top: 16px !important; // Всегда виден
-    width: calc(100% - 32px); // Отступы по краям
+    top: 16px !important;
+    width: calc(100% - 32px);
     max-width: 100%;
-  }
-  .navLinks {
-    padding-top: 80px;
   }
 }

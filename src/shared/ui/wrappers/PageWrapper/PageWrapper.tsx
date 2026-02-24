@@ -65,7 +65,11 @@ export function PageWrapper({ children }: PageWrapperProps) {
       <div className={styles.menu} id="_topMenu" ref={menuRef}>
         <div className={styles['menu--wrapper']}>
           <div className={styles['menu--left']}>
-            <Text role='link-sm' colorScheme='muted'>Юрий, UX UI проектировщик</Text>
+            {
+              pageType === 'landing'
+                ? <Text role='link-sm' colorScheme='muted'>Юрий, UX UI проектировщик</Text>
+                : <Link phrase="Юрий, UX UI проектировщик" to={routeMap['landing'].path} accent='muted' size='sm' />
+            }
 
             <Link phrase="Скачать резюме" href={RESUME_URL} accent='muted' size="sm" />
 

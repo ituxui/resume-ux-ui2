@@ -1,6 +1,7 @@
 import { Button, Link, Meta, Screen, Text } from "@shared/ui/components";
 import type { ProjectAction, ProjectMeta, ProjectScreen } from "./ProductsSection.types";
 import type { ReactNode } from "react";
+import { Stack } from "@shared/ui/wrappers";
 
 
 export type RenderActionsProps = { actions: ProjectAction[], innerLink?: ProjectAction, mode: 'page' | 'landing' }
@@ -53,7 +54,9 @@ export const renderDescription = (texts: string[]): ReactNode => {
   return (
     <>
       {texts.map((text, index) => (
-        <Text key={index} role="description">{text}</Text>
+        <Stack key={index} page="article" width='container' role="paragraph">
+          <Text key={index} role="description">{text}</Text>
+        </Stack>
       ))}
     </>
   );

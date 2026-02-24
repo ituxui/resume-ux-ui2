@@ -153,6 +153,8 @@ export const Gallery: FC<GalleryProps> = ({ children, className }) => {
         className,
       )}
       data-gallery-children={childCount}
+
+      onClick={(e) => e.stopPropagation()} // 🔥 Перехватываем клик здесь
     >
       {children}
     </div>

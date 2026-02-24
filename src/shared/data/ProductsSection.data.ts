@@ -16,7 +16,7 @@ export const productsSection: ProjectData[] = [
     ],
     meta: [
       { title: 'Даты', value: '2023\u00A0—\u00A02024' },
-      { title: 'Роль', value: 'UX UI Head' },
+      { title: 'Роль', value: 'UX UI Middle' },
       { title: 'Сфера', value: 'Enterprise SaaS, Project Management, ConTech, PropTech' },
       { title: 'Организация', value: '', link: { href: 'https://наш.дом.рф/сервисы/единый-реестр-застройщиков/застройщик/976', phrase: 'ООО «СЗ-Управление Инвестиционных Программ»' } },
       { title: 'Платформа', value: 'Web' },
@@ -32,22 +32,23 @@ export const productsSection: ProjectData[] = [
     projectPageUrl: routeMap['case-tsd']['path'],
     companyName: 'Кислородный завод (NDA)',
     projectName: 'Терминал сбора данных',
-    logo: '/images/brand/Завод.png',
+    logo: '/images/brand/tsd-pictogram.png',
     description: ['Провел глубокий анализ потребностей пользователей и бизнес-процессов, разработал интуитивный интерфейс для терминала Chainway C5 UHF, адаптированный под сложные производственные условия, с крупными элементами, темной темой и четкой обратной связью. Спроектировал макеты, оптимизированные для разработчиков, с ясной структурой и визуальными инструкциями, обеспечив их легкую реализацию. В результате приложение увеличило скорость обслуживания, сократило ошибки и улучшило межцеховое взаимодействие, полностью трансформировав работу завода.'],
     innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-tsd']['path'] },
     actions: [
     ],
     meta: [
       { title: 'Даты', value: '2024' },
-      { title: 'Роль', value: 'UX UI Head' },
+      { title: 'Роль', value: 'UX UI Middle' },
       { title: 'Сфера', value: 'Industry 4.0, IIoT, Embedded Systems, Industrial Automation' },
       { title: 'Организация', value: 'NDA' },
       { title: 'Платформа', value: 'Android (Chainway C5 UHF)' },
       { title: 'Доступ', value: 'Закрытый' },
     ],
     screens: [
-      { src: '/projects/oxygen-plant/landing.jpg', alt: 'Терминал сбора данных', size: '2/3', },
+      { src: '/projects/oxygen-plant/landing.jpg', alt: 'Терминал сбора данных', size: '1/3', },
       { src: '/projects/oxygen-plant/result/22.png', alt: 'Терминал сбора данных', size: '1/3', },
+      { src: '/projects/oxygen-plant/page/1. Contractor.png', alt: 'Терминал сбора данных', size: '1/3', },
     ],
   },
   {
@@ -64,7 +65,7 @@ export const productsSection: ProjectData[] = [
     ],
     meta: [
       { title: 'Даты', value: '2024\u00A0—\u00A02025' },
-      { title: 'Роль', value: 'UX UI' },
+      { title: 'Роль', value: 'UX UI Middle' },
       { title: 'Сфера', value: 'Media Tech, Content Management' },
       { title: 'Организация', value: '', link: { href: 'https://www.rusprofile.ru/id/9260851', phrase: 'АНО ДПО "ДВИПРАЗ"' } },
       { title: 'Платформа', value: 'Web' },

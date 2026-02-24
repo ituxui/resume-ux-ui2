@@ -1,14 +1,15 @@
 .item {
   display: inline-flex;
   align-items: center;
+  gap: 8px; // Отступ между текстом и слэшем
+  white-space: nowrap; // ЗАПРЕЩАЕМ ПЕРЕНОС ВНУТРИ ССЫЛКИ
+
   text-decoration: none;
   border: none;
   background: none;
   padding: 0;
   margin: 0;
   cursor: pointer;
-
-  // Цвета удалены, управляются через <Text colorScheme='muted'>
 
   transition: opacity 0.2s ease;
 
@@ -20,12 +21,10 @@
     opacity: 0.5;
   }
 
-  // Фокус для доступности (на контейнере ссылки)
   outline: none;
   border-radius: 4px;
 
   &:focus-visible {
-    // Используем глобальную переменную фокуса или локальный стиль
     box-shadow: var(--focus-shadow, 0 0 0 2px #858585);
   }
 }
@@ -33,4 +32,13 @@
 .last {
   cursor: default;
   pointer-events: none;
+}
+
+// Перенесли стили слэша сюда
+.separator {
+  display: inline-block;
+  color: var(--color_text-accent_muted--enabled, #858585);
+  font-size: 14px;
+  line-height: 1;
+  user-select: none;
 }

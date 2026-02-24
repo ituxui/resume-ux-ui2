@@ -3,8 +3,10 @@ import cn from 'classnames';
 import { Heading, Icon, Link, Text } from "@shared/ui";
 import { useArrowVisibility } from '@hooks/useArrowVisibility';
 import styles from './Hero.module.scss';
-import { Image, Nowrap, Popover } from '@components';
+import { Button, Image, Nowrap, Popover } from '@components';
 import { EmailPart } from '@shared/ui/widgets';
+import { RESUME_URL } from '@shared/data';
+import { Stack } from '@shared/ui/wrappers';
 
 export function Hero() {
   const arrowRef = useRef<HTMLDivElement>(null);
@@ -40,7 +42,12 @@ export function Hero() {
           <Link phrase="Скачать резюме" href="/files/resume-ux-ui.vercel.app.pdf" size="sm" />
         </div> */}
         <div className={styles.talkAboutYourProduct}>
-          <Text role="subheading">Поговорим <Nowrap>о Вашем</Nowrap> продукте?</Text>
+          <Stack page='landing' role='paragraph'>
+            <Text role="subheading">Поговорим <Nowrap>о Вашем</Nowrap> продукте?</Text>
+          </Stack>
+          <Button accent="primary" face="solid" size="lg" width="auto" download href={RESUME_URL} iconName="download" content="text-icon">
+            Скачать резюме
+          </Button>
           {/* <div className={cn(styles.links, styles.contacts)}>
             <Popover
               trigger={<Link phrase="Email" size="sm" />}

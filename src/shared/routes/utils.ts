@@ -61,10 +61,10 @@ export const innerPageRouteMap = {
   },
   'case-tsd': {
     path: '/case/tsd',
-    heading: 'Терминал сбора данных для кислородного оборудования',
+    heading: 'Терминал сбора данных для завода',
     breadcrumbTitle: 'ТСД',
     description: 'Терминал сбора данных',
-    img: DEFAULT_IMG
+    img: '/images/brand/tsd-pictogram.png'
   },
   'case-dvipraz-landing': {
     path: '/case/dvipraz-landing',

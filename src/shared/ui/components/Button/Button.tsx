@@ -162,7 +162,13 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement | HTMLDiv
         ref={ref as any}
         to={to}
         className={classes}
-        onClick={(e) => handleClick(e)}
+        onClick={(e) => {
+          handleClick(e);
+          // Если внутри 'to' затесался хеш, перехватываем и скроллим
+          if (to.includes('#')) {
+            setTimeout(() => scrollToAnchor(to), 100);
+          }
+        }}
         tabIndex={tabIndex}
         {...props}
       >

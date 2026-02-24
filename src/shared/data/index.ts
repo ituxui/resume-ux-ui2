@@ -1,3 +1,5 @@
+export { tsdPersons } from './persons/tsdPersons';
+
 export { RESUME_URL } from './files.data';
 
 export { uipPersons } from './persons/uipPersons';
@@ -20,5 +22,4 @@ export { subscriptionsList } from './subscriptionsList.data';
 
 export { itSpheresData } from './itSpheres.data';
 export type { ItSphereItem, ProductTuple } from './itSpheres.data';
-
 

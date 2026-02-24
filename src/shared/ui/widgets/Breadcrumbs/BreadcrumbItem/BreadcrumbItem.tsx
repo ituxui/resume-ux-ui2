@@ -7,26 +7,38 @@ interface BreadcrumbItemProps {
   to: string;
   label: string;
   isLast?: boolean;
+  hasSeparator?: boolean; // Добавили проп для слэша
 }
 
-export const BreadcrumbItem = ({ to, label, isLast }: BreadcrumbItemProps) => {
+export const BreadcrumbItem = ({ to, label, isLast, hasSeparator }: BreadcrumbItemProps) => {
+
+  // Общий контент (Текст + Слэш)
+  const content = (
+    <>
+      <Text role="link-sm" colorScheme="muted" as="span">
+        {label}
+      </Text>
+      {hasSeparator && (
+        <span className={styles.separator} aria-hidden="true">
+          /
+        </span>
+      )}
+    </>
+  );
+
   if (isLast) {
     // Последний элемент: неактивный span
     return (
       <span className={cn(styles.item, styles.last)}>
-        <Text role="link-sm" colorScheme="muted">
-          {label}
-        </Text>
+        {content}
       </span>
     );
   }
 
-  // Ссылка
+  // Ссылка (слэш теперь внутри кликабельной области)
   return (
     <RouterLink to={to} className={styles.item}>
-      <Text role="link-sm" colorScheme="muted">
-        {label}
-      </Text>
+      {content}
     </RouterLink>
   );
 };
