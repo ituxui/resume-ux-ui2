@@ -62,3 +62,14 @@
     align-items: flex-end;
   }
 }
+
+@include media-s-breakpoint-and-down {
+  .menu {
+    &--wrapper {
+      padding-bottom: 40px;
+      & > * {
+        display: none;
+      }
+    }
+  }
+}

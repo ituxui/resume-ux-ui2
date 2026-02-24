@@ -1,0 +1,152 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// FLOATING MENU (THE ISLAND)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.islandWrapper {
+  position: fixed;
+  z-index: 1000; // Поверх всего
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: var(--readable-container-min_text-width);
+  height: 64px;
+  padding: 8px;
+  gap: 16px;
+
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border-radius: 999px;
+
+  box-shadow:
+    0 4px 24px -1px rgba(0, 0, 0, 0.08),
+    0 0 1px rgba(0, 0, 0, 0.04);
+
+  // Анимация появления сверху
+  transition: top 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  top: -100px; // Скрыто по умолчанию
+
+  &.visible {
+    top: 24px;
+  }
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  flex-shrink: 0;
+  cursor: pointer; // Можно сделать кликабельным (на главную)
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  // Скрываем скроллбар хлебных крошек
+  :global {
+    nav {
+      overflow-x: auto;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    ol {
+      flex-wrap: nowrap;
+      white-space: nowrap;
+    }
+  }
+}
+
+.menuButton {
+  flex-shrink: 0;
+  height: 100%;
+  & > * {
+    height: 100% !important ;
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// OVERLAY MENU (OPENED STATE)
+// ═══════════════════════════════════════════════════════════════════════════
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.98); // Почти непрозрачный белый
+  backdrop-filter: blur(20px);
+  z-index: 999; // Чуть ниже острова (чтобы кнопка закрытия была видна на острове, если нужно)
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+
+  &.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.menuContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+
+  // Анимация контента при открытии
+  transform: translateY(20px);
+  transition: transform 0.4s ease;
+
+  .open & {
+    transform: translateY(0);
+  }
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// MOBILE ADAPTIVE
+// ═══════════════════════════════════════════════════════════════════════════
+
+@include media-s-breakpoint-and-down {
+  .islandWrapper {
+    top: 16px !important; // Всегда виден
+    width: calc(100% - 32px); // Отступы по краям
+    max-width: 100%;
+  }
+  .navLinks {
+    padding-top: 80px;
+  }
+}

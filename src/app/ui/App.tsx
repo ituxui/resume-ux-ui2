@@ -1,9 +1,12 @@
+import { FloatingMenu } from '@shared/ui/widgets';
 import { PageWrapper } from '@shared/ui/wrappers';
 import { Outlet, ScrollRestoration, } from 'react-router';
 
 export function App() {
   return (<>
+    <FloatingMenu />
     <PageWrapper>
+
       <Outlet />
       <ScrollRestoration />
     </PageWrapper>

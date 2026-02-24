@@ -31,7 +31,7 @@ export function Hero() {
 
         <div>
           <Text role="subheading">
-            UX UI проектировщик с официальным стажем <strong><Nowrap>2 года</Nowrap></strong> и <strong><Nowrap>T-shaped</Nowrap></strong> знаниями фулстек программирования. Реализовал <strong><Nowrap>10+</Nowrap></strong> многостраничных приложений.
+            UX UI проектировщик с официальным стажем <strong><Nowrap>2 года</Nowrap></strong> и <strong><Nowrap>T-shaped</Nowrap></strong> знаниями фулстек программирования. Реализовал <strong><Nowrap>10+</Nowrap></strong> многостраничных приложений за время работы в группе 4-х компаний, реализующие как собственные IT-продукты, так и продукты для клиентов.
           </Text>
         </div>
         {/* <div className={styles.links}>

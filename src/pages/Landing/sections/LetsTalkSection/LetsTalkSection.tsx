@@ -3,6 +3,7 @@
 import styles from './LetsTalkSection.module.scss';
 import { EmailPart } from '@shared/ui/widgets';
 import { Heading, Link, Nowrap, Popover, } from '@components';
+import { RESUME_URL } from '@shared/data';
 
 
 export function LetsTalkSection() {
@@ -17,7 +18,7 @@ export function LetsTalkSection() {
 
         <div className={styles.content}>
 
-          <Link phrase="Скачать резюме" href="/files/resume-ux-ui.vercel.app.pdf" size="sm" />
+          <Link phrase="Скачать резюме" href={RESUME_URL} size="sm" />
 
           <Popover
             trigger={<Link phrase="Email" size="sm" />}

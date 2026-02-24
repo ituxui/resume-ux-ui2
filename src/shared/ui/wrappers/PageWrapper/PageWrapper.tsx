@@ -5,6 +5,7 @@ import { Link, Text } from '@shared/ui';
 import { routeMap } from '@shared/routes';
 import { Popover } from '@shared/ui/components';
 import { Breadcrumbs, EmailPart, PageNavigation } from '@shared/ui/widgets';
+import { RESUME_URL } from '@shared/data';
 
 // Описываем тип пропсов
 interface PageWrapperProps {
@@ -66,7 +67,7 @@ export function PageWrapper({ children }: PageWrapperProps) {
           <div className={styles['menu--left']}>
             <Text role='link-sm' colorScheme='muted'>Юрий, UX UI проектировщик</Text>
 
-            <Link phrase="Скачать резюме" href="/files/resume-ux-ui.vercel.app.pdf" accent='muted' size="sm" />
+            <Link phrase="Скачать резюме" href={RESUME_URL} accent='muted' size="sm" />
 
             {/* {pageType !== 'landing' && <Link phrase="Главная" to={routeMap['landing']['path']} accent='muted' size='sm' />} */}
             <Link phrase="Портфолио" to={routeMap['anchor-projects']['path']} accent='muted' size='sm' />

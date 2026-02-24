@@ -37,6 +37,13 @@
   padding-bottom: var(--gap--heading_section-to-description);
 }
 
+@include media-s-breakpoint-and-down {
+  .wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .bento {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
