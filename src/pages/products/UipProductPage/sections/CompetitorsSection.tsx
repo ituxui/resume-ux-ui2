@@ -1,9 +1,9 @@
 import { type FC } from 'react';
 import { CompetitorsTable } from '@components';
-import { competitorsData } from '@shared/data/competitors/competitors.data';
+import { uipCompetitorsData } from '@shared/data/competitors/uipCompetitors.data';
 
 export const CompetitorsSection: FC = () => {
   return (
-    <CompetitorsTable data={competitorsData} />
+    <CompetitorsTable data={uipCompetitorsData} />
   );
 };

@@ -68,31 +68,31 @@ export const innerPageRouteMap = {
   },
   'case-dvipraz-landing': {
     path: '/case/dvipraz-landing',
-    heading: 'Dvipraz Landing',
-    breadcrumbTitle: 'Dvipraz',
+    heading: 'Многостраничный портал для университета ДВИПРАЗ',
+    breadcrumbTitle: 'Портал ДВИПРАЗ',
     description: 'Лендинг для Dvipraz',
-    img: DEFAULT_IMG
+    img: '/images/brand/ДВИПРАЗ.png'
   },
   'case-dvipraz-dashboard': {
     path: '/case/dvipraz-dashboard',
-    heading: 'Dvipraz Dashboard',
-    breadcrumbTitle: 'D. Dashboard',
+    heading: 'Панель управления для ДВИПРАЗ',
+    breadcrumbTitle: 'ПУ ДВИПРАЗ',
     description: 'Панель управления для Dvipraz',
-    img: DEFAULT_IMG
+    img: '/images/brand/ДВИПРАЗ.png'
   },
   'case-rdp-dashboard': {
     path: '/case/rdp-dashboard',
-    heading: 'RDP Dashboard',
+    heading: 'Сервис удалённго доступа RDP',
     breadcrumbTitle: 'RDP',
     description: 'Дашборд RDP',
-    img: DEFAULT_IMG
+    img: '/images/brand/Stellar.png'
   },
   'case-aeroakt': {
     path: '/case/aeroakt',
     heading: 'Аэроакт',
     breadcrumbTitle: 'Аэроакт',
     description: 'Дизайн продукта для Аэроакт',
-    img: DEFAULT_IMG
+    img: '/images/brand/Аэроакт.png'
   },
 
   // ─── Обо мне (Бенто-секции) ───

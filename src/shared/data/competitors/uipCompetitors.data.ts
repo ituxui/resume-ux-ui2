@@ -1,6 +1,6 @@
 import { type CompetitorAnalysis } from './competitors.types';
 
-export const competitorsData: CompetitorAnalysis[] = [
+export const uipCompetitorsData: CompetitorAnalysis[] = [
   {
     name: "ПИК",
     url: "https://www.pik.ru/",
