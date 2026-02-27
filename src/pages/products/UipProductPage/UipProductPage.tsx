@@ -1,5 +1,5 @@
 import { renderActions, renderDescription, renderMeta, renderScreens } from '@pages/Landing/sections/ProductsSection/ProductsSection.utils';
-import { productsSection } from '@shared/data/ProductsSection.data';
+import { productsMap, } from '@shared/data/ProductsSection.data';
 import { ProductCard } from '@pages/Landing/sections';
 import { Heading, Text } from '@shared/ui';
 import { List, ListItem, Persons, Screen, StatusItem, } from '@components';
@@ -21,16 +21,16 @@ export function UipProductPage() {
           description={renderDescription(['Многостраничный информационный портал. Предоставляет информацию о жилых комплексах, коммерческих объектах и новостях компании. Включает в себя каталог объектов с фильтрами, страницы отдельных жилых комплексов, новости и акции компании, персональные разделы для каждого объекта недвижимости.'])}
           actions={renderActions(
             {
-              actions: productsSection[0].actions,
-              innerLink: productsSection[0].innerLink,
+              actions: productsMap['case-uip'].actions,
+              innerLink: productsMap['case-uip'].innerLink,
               mode: 'page',
             }
           )}
-          summaryItems={renderMeta(productsSection[0].meta)}
-          gallery={renderScreens(productsSection[0].screens)}
-          // projectPageUrl={productsSection[0].projectPageUrl}
+          summaryItems={renderMeta(productsMap['case-uip'].meta)}
+          gallery={renderScreens(productsMap['case-uip'].screens)}
+          // projectPageUrl={productsMap['case-uip'].projectPageUrl}
           mode="page"
-          logo={productsSection[0].logo}
+          logo={productsMap['case-uip'].logo}
         />
       </Stack>
 

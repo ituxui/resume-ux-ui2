@@ -1,6 +1,10 @@
 import { routeMap } from "@shared/routes";
 import type { ProjectData } from "../../pages/Landing/sections/ProductsSection/ProductsSection.types";
 
+// ═══════════════════════════════════════════════════════════════════════════
+// Ключи проектов — используются везде для типобезопасного доступа
+// ═══════════════════════════════════════════════════════════════════════════
+
 export type ProjectKey =
   | 'case-uip'
   | 'case-tsd'
@@ -9,8 +13,12 @@ export type ProjectKey =
   | 'case-rdp-dashboard'
   | 'case-aeroakt';
 
-export const productsSection: ProjectData[] = [
-  {
+// ═══════════════════════════════════════════════════════════════════════════
+// Объект проектов (вместо массива)
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const productsMap: Record<ProjectKey, ProjectData> = {
+  'case-uip': {
     id: 'case-uip',
     projectPageUrl: routeMap['case-uip']['path'],
     companyName: 'УИП',
@@ -35,7 +43,8 @@ export const productsSection: ProjectData[] = [
       { src: '/projects/uip/uip-full-pc-first-page.png', alt: 'УИП', size: '2/3', scroll: 'parallax' },
     ],
   },
-  {
+
+  'case-tsd': {
     id: 'case-tsd',
     projectPageUrl: routeMap['case-tsd']['path'],
     companyName: 'Завод по заправке газов (NDA)',
@@ -43,8 +52,7 @@ export const productsSection: ProjectData[] = [
     logo: '/images/brand/tsd-pictogram.png',
     description: ['Провел глубокий анализ потребностей пользователей и бизнес-процессов, разработал интуитивный интерфейс для терминала Chainway C5 UHF, адаптированный под сложные производственные условия, с крупными элементами, темной темой и четкой обратной связью. Спроектировал макеты, оптимизированные для разработчиков, с ясной структурой и визуальными инструкциями, обеспечив их легкую реализацию. В результате приложение увеличило скорость обслуживания, сократило ошибки и улучшило межцеховое взаимодействие, полностью трансформировав работу завода.'],
     innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-tsd']['path'] },
-    actions: [
-    ],
+    actions: [],
     meta: [
       { title: 'Даты', value: '2024' },
       { title: 'Роль', value: 'UX UI Middle' },
@@ -54,12 +62,13 @@ export const productsSection: ProjectData[] = [
       { title: 'Доступ', value: 'Закрытый' },
     ],
     screens: [
-      { src: '/projects/oxygen-plant/landing.jpg', alt: 'Терминал сбора данных', size: '1/3', },
-      { src: '/projects/oxygen-plant/result/22.png', alt: 'Терминал сбора данных', size: '1/3', },
-      { src: '/projects/oxygen-plant/page/1. Contractor.png', alt: 'Терминал сбора данных', size: '1/3', },
+      { src: '/projects/oxygen-plant/landing.jpg', alt: 'Терминал сбора данных', size: '1/3' },
+      { src: '/projects/oxygen-plant/result/22.png', alt: 'Терминал сбора данных', size: '1/3' },
+      { src: '/projects/oxygen-plant/page/1. Contractor.png', alt: 'Терминал сбора данных', size: '1/3' },
     ],
   },
-  {
+
+  'case-dvipraz-landing': {
     id: 'case-dvipraz-landing',
     companyName: 'ДВИПРАЗ',
     projectPageUrl: routeMap["case-dvipraz-landing"]['path'],
@@ -84,31 +93,8 @@ export const productsSection: ProjectData[] = [
       { src: '/projects/dvipraz/landing-1280.png', alt: 'ДВИПРАЗ', size: '2/3', scroll: 'parallax' },
     ],
   },
-  // {
-  //   id: 'case-dvipraz-dashboard',
-  //   projectPageUrl: routeMap["case-dvipraz-dashboard"]['path'],
-  //   companyName: 'ДВИПРАЗ',
-  //   logo: '/images/brand/ДВИПРАЗ.png',
-  //   projectName: 'Система управления организаций',
-  //   description: ['Разработка основного функционала панели управлений Института дополнительного профессионального образования «ДВИПРАЗ», которая предоставляет собой сервис для организаций по ведению своего штатного расписания, отправления заявок на специальную оценку условий труда, публикацию вакансий и ведению учёта сотрудников и должностей.'],
-  //   innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-dvipraz-dashboard']['path'] },
-  //   actions: [
-  //     { label: 'Сервис', face: 'light', href: 'https://lk.dvipraz.ru/' },
-  //     { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/9260851' },
-  //   ],
-  //   meta: [
-  //     { title: 'Даты', value: '2025\u00A0—\u00A0н.в.' },
-  //     { title: 'Роль', value: 'UX UI Head' },
-  //     { title: 'Сфера', value: 'B2B SaaS, HR Management' },
-  //     { title: 'Организация', value: '', link: { href: 'https://www.rusprofile.ru/id/9260851', phrase: 'АНО ДПО "ДВИПРАЗ"' } },
-  //     { title: 'Платформа', value: 'Web' },
-  //     { title: 'Доступ', value: '', link: { href: 'https://lk.dvipraz.ru/', phrase: 'Открытый' } },
-  //   ],
-  //   screens: [
-  //     { src: '/projects/dvipraz-lk/landing.png', alt: 'ДВИПРАЗ ЛК', size: '3/3' },
-  //   ],
-  // },
-  {
+
+  'case-rdp-dashboard': {
     id: 'case-rdp-dashboard',
     projectPageUrl: routeMap["case-rdp-dashboard"]['path'],
     companyName: 'Stellar',
@@ -132,7 +118,8 @@ export const productsSection: ProjectData[] = [
       { src: '/projects/rdp/landing.png', alt: 'Stellar', size: '3/3' },
     ],
   },
-  {
+
+  'case-aeroakt': {
     id: 'case-aeroakt',
     projectPageUrl: routeMap["case-aeroakt"]['path'],
     companyName: 'Международный авиатерминал',
@@ -155,4 +142,22 @@ export const productsSection: ProjectData[] = [
       { src: '/projects/aeroakt/landing.jpg', alt: 'Аэроакт', size: '3/3' },
     ],
   },
+};
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Порядок отображения на лендинге
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const productsOrder: ProjectKey[] = [
+  'case-uip',
+  'case-tsd',
+  'case-dvipraz-landing',
+  'case-rdp-dashboard',
+  'case-aeroakt',
 ];
+
+// ═══════════════════════════════════════════════════════════════════════════
+// Обратная совместимость: массив в порядке отображения
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const productsSection: ProjectData[] = productsOrder.map(key => productsMap[key]);

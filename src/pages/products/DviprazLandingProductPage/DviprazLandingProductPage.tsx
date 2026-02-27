@@ -1,8 +1,7 @@
 import { ProductCard } from "@pages/Landing/sections";
 import { renderDescription, renderMeta, renderScreens } from "@pages/Landing/sections/ProductsSection/ProductsSection.utils";
 import { dviprazPortalCompetitorsData, dviprazPortalPersons, } from "@shared/data";
-import { uipCompetitorsData } from "@shared/data/competitors/uipCompetitors.data";
-import { productsSection } from "@shared/data/ProductsSection.data";
+import { productsMap, } from "@shared/data/ProductsSection.data";
 import { Heading, Text } from "@shared/ui";
 import { CompetitorsTable, List, ListItem, Persons, Screen } from "@shared/ui/components";
 import { Gallery, Stack } from "@shared/ui/wrappers";
@@ -18,16 +17,16 @@ export function DviprazLandingProductPage() {
         description={renderDescription(['EdTech для Дальнего Востока: Как мы превратили сложный портал Института дополнительного профессионального образования в удобный сервис'])}
         // actions={renderActions(
         //   {
-        //     actions: productsSection[1].actions,
-        //     innerLink: productsSection[1].innerLink,
+        //     actions: productsMap['case-tsd'].actions,
+        //     innerLink: productsMap['case-tsd'].innerLink,
         //     mode: 'page',
         //   }
         // )}
-        summaryItems={renderMeta(productsSection[2].meta)}
-        gallery={renderScreens(productsSection[2].screens)}
-        // projectPageUrl={productsSection[0].projectPageUrl}
+        summaryItems={renderMeta(productsMap['case-dvipraz-landing'].meta)}
+        gallery={renderScreens(productsMap['case-dvipraz-landing'].screens)}
+        // projectPageUrl={productsMap['case-uip'].projectPageUrl}
         mode="page"
-        logo={productsSection[2].logo}
+        logo={productsMap['case-dvipraz-landing'].logo}
       />
     </Stack>
 

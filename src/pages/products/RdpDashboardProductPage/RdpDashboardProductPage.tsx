@@ -1,6 +1,6 @@
 import { ProductCard } from "@pages/Landing/sections";
 import { renderDescription, renderMeta, renderScreens } from "@pages/Landing/sections/ProductsSection/ProductsSection.utils";
-import { tsdPersons } from "@shared/data";
+import { rdpPersons, } from "@shared/data";
 import { productsSection } from "@shared/data/ProductsSection.data";
 import { Heading, Text } from "@shared/ui";
 import { List, ListItem, Persons } from "@shared/ui/components";
@@ -17,14 +17,14 @@ export function RdpDashboardProductPage() {
         description={renderDescription(['Enterprise-решение для безопасного управления удалённым доступом через Remote Desktop Protocol. Я осуществил полный редизайн панели управления для сервиса безопасного удаленного доступа (RDP) и превратил «сырой» внутренний инструмента в конкурентоспособный продукт для выхода на внешний рынок.'])}
         // actions={renderActions(
         //   {
-        //     actions: productsSection[1].actions,
-        //     innerLink: productsSection[1].innerLink,
+        //     actions: productsMap['case-tsd'].actions,
+        //     innerLink: productsMap['case-tsd'].innerLink,
         //     mode: 'page',
         //   }
         // )}
         summaryItems={renderMeta(productsSection[3].meta)}
         gallery={renderScreens(productsSection[3].screens)}
-        // projectPageUrl={productsSection[0].projectPageUrl}
+        // projectPageUrl={productsMap['case-uip'].projectPageUrl}
         mode="page"
         logo={productsSection[3].logo}
       />
@@ -129,7 +129,7 @@ export function RdpDashboardProductPage() {
 
 
     <Stack page="article" width='text' role="section">
-      <Persons persons={tsdPersons} />
+      <Persons persons={rdpPersons} />
     </Stack>
 
   </>;

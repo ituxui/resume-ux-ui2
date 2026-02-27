@@ -1,7 +1,6 @@
 import { ProductCard } from "@pages/Landing/sections";
 import { renderDescription, renderMeta, renderScreens } from "@pages/Landing/sections/ProductsSection/ProductsSection.utils";
-import { tsdPersons } from "@shared/data";
-import { productsSection } from "@shared/data/ProductsSection.data";
+import { productsMap, tsdPersons } from "@shared/data";
 import { Heading, Text } from "@shared/ui";
 import { List, ListItem, Nowrap, Persons, Screen } from "@shared/ui/components";
 import { Gallery, Stack } from "@shared/ui/wrappers";
@@ -17,16 +16,16 @@ export function TsdProductPage() {
         description={renderDescription(['UX для тяжелой промышленности: Как редизайн приложения для ТСД ускорил обслуживание клиентов завода в 2 раза. Это не типичный проект про «красивые кнопки». Это хардкорный промышленный UX.', 'Передо мной стояла задача спроектировать интерфейс для терминала сбора данных (ТСД), который автоматизирует весь цикл жизни баллона: от приемки и проверки качества до заправки и выдачи клиенту.', 'Нужно не просто оцифровать бумажную волокиту, а полностью переосмыслить логистику предприятия. Сотрудники работают в тяжелых условиях, и интерфейс должен стать их помощником, а не препятствием.', 'Уже на первых встречах стало понятно — просто «оцифровать» хаос недостаточно. Нужно было переосмыслить саму логику работы завода.'])}
         // actions={renderActions(
         //   {
-        //     actions: productsSection[1].actions,
-        //     innerLink: productsSection[1].innerLink,
+        //     actions: productsMap['case-tsd'].actions,
+        //     innerLink: productsMap['case-tsd'].innerLink,
         //     mode: 'page',
         //   }
         // )}
-        summaryItems={renderMeta(productsSection[1].meta)}
-        gallery={renderScreens(productsSection[1].screens)}
-        // projectPageUrl={productsSection[0].projectPageUrl}
+        summaryItems={renderMeta(productsMap['case-tsd'].meta)}
+        gallery={renderScreens(productsMap['case-tsd'].screens)}
+        // projectPageUrl={productsMap['case-uip'].projectPageUrl}
         mode="page"
-        logo={productsSection[1].logo}
+        logo={productsMap['case-tsd'].logo}
       />
     </Stack>
 

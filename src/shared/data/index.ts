@@ -1,12 +1,16 @@
+
+
+export { productsMap, productsSection } from './ProductsSection.data';
+
 export { dviprazPortalCompetitorsData } from './competitors/dviprazPortalCompetitors.data';
 
 export { dviprazPortalPersons } from './persons/dviprazPortalPersons';
-
+export { rdpPersons } from './persons/rdpPersons';
 export { tsdPersons } from './persons/tsdPersons';
+export { uipPersons } from './persons/uipPersons';
+
 
 export { RESUME_URL } from './files.data';
-
-export { uipPersons } from './persons/uipPersons';
 
 export { MY_EMAIL } from './config';
 
@@ -26,5 +30,3 @@ export { subscriptionsList } from './subscriptionsList.data';
 
 export { itSpheresData } from './itSpheres.data';
 export type { ItSphereItem, ProductTuple } from './itSpheres.data';
-
-
