@@ -4,15 +4,13 @@ import Skeleton from 'react-loading-skeleton';
 import cn from 'classnames';
 import styles from './Screen.module.scss';
 import { useScrollImage } from './hooks/useScrollImage';
-// useLazyLoad больше не нужен для управления монтированием,
-// но мы можем использовать локальный стейт для isLoaded
 import { Text } from '../Text/Text';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES
 // ═══════════════════════════════════════════════════════════════════════════
 
-export type ScreenSize = '1/3' | '2/3' | '3/3';
+export type ScreenSize = '1/3' | '2/3' | '3/3' | 'unset';
 export type ScreenScroll = 'static' | 'parallax';
 
 export interface ScreenProps {
@@ -20,7 +18,6 @@ export interface ScreenProps {
   alt?: string;
   size?: ScreenSize;
   scroll?: ScreenScroll;
-  // lazyThreshold больше не критичен для отрисовки, так как используем нативный lazy
   lazyThreshold?: number;
   addition?: ReactNode;
   className?: string;
@@ -30,10 +27,11 @@ export interface ScreenProps {
 // CONSTANTS
 // ═══════════════════════════════════════════════════════════════════════════
 
-const SIZE_CLASS_MAP: Record<ScreenSize, string> = {
+const SIZE_CLASS_MAP: Partial<Record<ScreenSize, string>> = {
   '1/3': styles.sizeOneThird,
   '2/3': styles.sizeTwoThirds,
   '3/3': styles.sizeThreeThirds,
+  'unset': styles.sizeUnset,
 };
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -53,15 +51,12 @@ export const Screen = ({
   const [isLoaded, setIsLoaded] = useState(false);
 
   // ─── Parallax ──────────────────────────────────────────────────
-  // Включаем параллакс только когда картинка загрузилась
   const {
     containerRef: scrollContainerRef,
     imageRef,
   } = useScrollImage({ enabled: isParallax && isLoaded });
 
   // ─── Shared ref ────────────────────────────────────────────────
-  // Используем callback ref или просто объединяем, но здесь достаточно одного
-  // так как useLazyLoad мы убрали
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -113,14 +108,12 @@ export const Screen = ({
   const handleOverlayClick = useCallback((e: React.MouseEvent) => {
     const target = e.target as Element;
 
-    // Клик по картинке — не закрывать
     const img = document.querySelector(`.${styles.modalImage}`);
     if (img) {
       const r = img.getBoundingClientRect();
       if (e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom) return;
     }
 
-    // Клик по контролам — не закрывать
     if (target.closest(`.${styles.closeButton}`) || target.closest(`.${styles.zoomControls}`)) return;
 
     closeModal();
@@ -136,11 +129,10 @@ export const Screen = ({
         className={cn(styles.wrapper, SIZE_CLASS_MAP[size], className)}
         {...dataSize}
       >
-        {/* Addition */}
         {addition && (
           <Text role="caption" className={styles.addition}>{addition}</Text>
         )}
-        {/* Screen container */}
+
         <div
           ref={containerRef}
           className={cn(styles.screen, {
@@ -149,8 +141,6 @@ export const Screen = ({
           })}
           {...dataSize}
         >
-
-          {/* Skeleton (показываем поверх, пока не isLoaded) */}
           {!isLoaded && (
             <div className={styles.skeleton}>
               <Skeleton
@@ -169,17 +159,15 @@ export const Screen = ({
             src={src}
             alt={alt}
             loading="lazy"
-            decoding="async" fetchPriority="low"
+            decoding="async"
+            fetchPriority="low"
             className={cn(styles.image, { [styles.imageVisible]: isLoaded })}
             onLoad={handleImageLoad}
             onClick={openModal}
           />
-
         </div>
-
       </div>
 
-      {/* ─── Zoom Modal ─────────────────────────────────────────── */}
       {isModalOpen && (
         <div className={styles.modalOverlay} onClick={handleOverlayClick}>
           <button className={styles.closeButton} onClick={closeModal} aria-label="Закрыть">
@@ -221,7 +209,8 @@ export const Screen = ({
                 >
                   <img src={src} alt={alt} className={styles.modalImage}
                     loading="lazy"
-                    decoding="async" fetchPriority="low"
+                    decoding="async"
+                    fetchPriority="low"
                   />
                 </TransformComponent>
               </>

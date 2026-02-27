@@ -326,7 +326,7 @@ export function TsdProductPage() {
     <Stack page="article" width='container' role="section">
 
       <Heading role='section'>
-        📱 Пример 1 из 10 популярных User Flow: Приёмка баллонов
+        📱 Пример 1 из 10 User Flow: Приёмка баллонов
       </Heading>
 
 
@@ -422,7 +422,9 @@ export function TsdProductPage() {
           с 10 до 0-1
         </Heading>
       </Stack>
-
     </Stack>
+
+
+
   </>;
 }

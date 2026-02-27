@@ -71,11 +71,18 @@ export const itSpheresData: ItSphereItem[] = [
       ['Информационный портал для Института', 'case-dvipraz-landing'],
     ],
   },
+  // {
+  //   sphere: 'B2B SaaS, HR Management',
+  //   additionalTitles: 'CMS, Web Portals, Content Management',
+  //   products: [
+  //     ['Система управления организаций', 'case-dvipraz-dashboard'],
+  //   ],
+  // },
   {
     sphere: 'B2B SaaS, HR Management',
     additionalTitles: 'CMS, Web Portals, Content Management',
     products: [
-      ['Система управления организаций', 'case-dvipraz-dashboard'],
+      ['Система управления организаций', null, true],
     ],
   },
 

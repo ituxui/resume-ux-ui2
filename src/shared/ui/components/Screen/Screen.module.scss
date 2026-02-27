@@ -2,16 +2,11 @@
 // SCREEN COMPONENT
 // ═══════════════════════════════════════════════════════════════════════════
 //
-// Структура DOM:
-//   .wrapper[data-screen-size]   ← размер, aspect, flex-column
-//     .screen[data-screen-size]  ← overflow, border, zoom-in cursor
-//       .image / .skeleton / .placeholder
-//     .addition                   ← опциональная подпись
-//
 // РАЗМЕРЫ (Desktop):
-//   1/3  →  424px × 832px   (aspect-ratio: 424/832)
-//   2/3  →  864px × 832px   (424×2 + 16 gap)
-//   3/3  → 1304px × 832px   (424×3 + 16×2 gap)
+//   1/3   →  424px × 832px   (aspect-ratio: 424/832)
+//   2/3   →  864px × 832px   (424×2 + 16 gap)
+//   3/3   → 1304px × 832px   (424×3 + 16×2 gap)
+//   unset →  100% × auto     (без aspect-ratio, нативные пропорции)
 
 // ═══════════════════════════════════════════════════════════════════════════
 // VARIABLES
@@ -61,6 +56,29 @@ $width-3: var(--container-max-width, 1304px);
 
   .screen {
     aspect-ratio: $aspect-3;
+  }
+}
+
+// ─── Unset: без фиксированного размера и aspect-ratio ───────────────────
+
+.sizeUnset {
+  width: 100%;
+
+  .screen {
+    // Нет aspect-ratio — высота определяется содержимым
+    aspect-ratio: unset;
+  }
+
+  .image {
+    // Изображение показывается в нативных пропорциях
+    height: auto;
+    object-fit: contain;
+  }
+
+  // Skeleton не абсолютный — занимает место до загрузки
+  .skeleton {
+    position: relative;
+    min-height: 200px;
   }
 }
 
@@ -155,8 +173,6 @@ $width-3: var(--container-max-width, 1304px);
   color: var(--color_text-accent_muted--enabled, rgba(0, 0, 0, 0.6));
   text-align: center;
 
-  /* 🔥 Главное исправление */
-  /* Принудительно заставляем любой заголовок внутри использовать muted-цвет */
   h1,
   h2,
   h3,
@@ -166,7 +182,6 @@ $width-3: var(--container-max-width, 1304px);
     color: var(--color_text-accent_default--enabled, rgba(0, 0, 0, 0.6));
   }
 
-  /* Дополнительно (на всякий случай) */
   :where(h1, h2, h3, h4, h5, h6) {
     color: var(--color_text-accent_default--enabled, rgba(0, 0, 0, 0.6));
   }
@@ -187,6 +202,8 @@ $width-3: var(--container-max-width, 1304px);
     width: 100%;
     max-width: none;
   }
+
+  // sizeUnset уже 100% — ничего не меняем
 }
 
 @media (max-width: 480px) {
@@ -230,8 +247,6 @@ $width-3: var(--container-max-width, 1304px);
     cursor: grabbing;
   }
 }
-
-// ─── Close ───────────────────────────────────────────────────────────────
 
 .closeButton {
   position: fixed;
@@ -279,8 +294,6 @@ $width-3: var(--container-max-width, 1304px);
   }
 }
 
-// ─── Zoom Controls ───────────────────────────────────────────────────────
-
 .zoomControls {
   position: fixed;
   bottom: 80px;
@@ -317,8 +330,6 @@ $width-3: var(--container-max-width, 1304px);
   }
 }
 
-// ─── Hint ────────────────────────────────────────────────────────────────
-
 .hint {
   position: fixed;
   bottom: 24px;
@@ -337,8 +348,6 @@ $width-3: var(--container-max-width, 1304px);
     max-width: 280px;
   }
 }
-
-// ─── Mobile modal ────────────────────────────────────────────────────────
 
 @media (max-width: 768px) {
   .closeButton {

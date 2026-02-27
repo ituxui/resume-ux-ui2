@@ -73,13 +73,13 @@ export const innerPageRouteMap = {
     description: 'Лендинг для Dvipraz',
     img: '/images/brand/ДВИПРАЗ.png'
   },
-  'case-dvipraz-dashboard': {
-    path: '/case/dvipraz-dashboard',
-    heading: 'Панель управления для ДВИПРАЗ',
-    breadcrumbTitle: 'ПУ ДВИПРАЗ',
-    description: 'Панель управления для Dvipraz',
-    img: '/images/brand/ДВИПРАЗ.png'
-  },
+  // 'case-dvipraz-dashboard': {
+  //   path: '/case/dvipraz-dashboard',
+  //   heading: 'Панель управления для ДВИПРАЗ',
+  //   breadcrumbTitle: 'ПУ ДВИПРАЗ',
+  //   description: 'Панель управления для Dvipraz',
+  //   img: '/images/brand/ДВИПРАЗ.png'
+  // },
   'case-rdp-dashboard': {
     path: '/case/rdp-dashboard',
     heading: 'Сервис удалённго доступа RDP',

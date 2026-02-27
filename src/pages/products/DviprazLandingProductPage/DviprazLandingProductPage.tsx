@@ -247,9 +247,14 @@ export function DviprazLandingProductPage() {
         <List role='body'>
           <ListItem><strong>Структура:</strong> Пользователи теперь находят информацию о курсах быстрее благодаря логичной группировке. Стало значительно меньше обращений по поиску информации.</ListItem>
           <ListItem><strong>Вовлечение:</strong> Современный UI повысил доверие к институту как к передовой организации — субъективная оценка заказчика.</ListItem>
-          <ListItem><strong>UI Kit:</strong> Создали просто и универсальный UI Kit, который используется в разработке новых секций сайта.</ListItem>
+          <ListItem><strong>UI Kit:</strong> Создали простой и универсальный UI Kit, который используется в разработке новых секций сайта.</ListItem>
         </List>
       </Stack>
+    </Stack>
+
+
+    <Stack page="article" width='container' role="subsection">
+      <Screen src="/projects/dvipraz/dvipraz portal mockup.jpg" alt="ДВИПРАЗ Портал Mockup" size='unset' scroll='static' />
     </Stack>
   </>;
 }

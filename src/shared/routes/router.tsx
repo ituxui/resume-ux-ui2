@@ -35,10 +35,10 @@ export const router = createHashRouter([
         path: routeMap['case-dvipraz-landing']['path'],
         Component: DviprazLandingProductPage
       },
-      {
-        path: routeMap['case-dvipraz-dashboard']['path'],
-        Component: DviprazDashboardProductPage
-      },
+      // {
+      //   path: routeMap['case-dvipraz-dashboard']['path'],
+      //   Component: DviprazDashboardProductPage
+      // },
       {
         path: routeMap['case-rdp-dashboard']['path'],
         Component: RdpDashboardProductPage

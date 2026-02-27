@@ -615,11 +615,11 @@ export function UipProductPage() {
           <Stack page="article" width='container' role="subsection">
             <Stack page="article" width='container' role="paragraph">
               <Heading role='result-heading'>
-                Скорость разработки новых страниц новых ЖК увеличена
+                Скорость разработки страниц новых ЖК увеличена благодаре унифицированному UI Kit и продуманной структуре с 4 человекочасов...
               </Heading>
             </Stack>
             <Heading role='result-value'>
-              в 1000 раз
+              до 20 минут
             </Heading>
           </Stack>
           {/* <Stack page="article" width="text" role="subsection">
@@ -633,7 +633,7 @@ export function UipProductPage() {
 
 
       <Stack page="article" width='container' role="subsection">
-        <Screen src="/projects/uip/UIP Mockup.png" alt="UIP Mockup" size='3/3' scroll='static' />
+        <Screen src="/projects/uip/UIP Mockup.png" alt="UIP Mockup" size='unset' scroll='static' />
       </Stack>
 
     </>);

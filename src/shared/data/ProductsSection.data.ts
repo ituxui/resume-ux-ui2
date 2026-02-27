@@ -1,6 +1,14 @@
 import { routeMap } from "@shared/routes";
 import type { ProjectData } from "../../pages/Landing/sections/ProductsSection/ProductsSection.types";
 
+export type ProjectKey =
+  | 'case-uip'
+  | 'case-tsd'
+  | 'case-dvipraz-landing'
+  // | 'case-dvipraz-dashboard'
+  | 'case-rdp-dashboard'
+  | 'case-aeroakt';
+
 export const productsSection: ProjectData[] = [
   {
     id: 'case-uip',
@@ -76,30 +84,30 @@ export const productsSection: ProjectData[] = [
       { src: '/projects/dvipraz/landing-1280.png', alt: 'ДВИПРАЗ', size: '2/3', scroll: 'parallax' },
     ],
   },
-  {
-    id: 'case-dvipraz-dashboard',
-    projectPageUrl: routeMap["case-dvipraz-dashboard"]['path'],
-    companyName: 'ДВИПРАЗ',
-    logo: '/images/brand/ДВИПРАЗ.png',
-    projectName: 'Система управления организаций',
-    description: ['Разработка основного функционала панели управлений Института дополнительного профессионального образования «ДВИПРАЗ», которая предоставляет собой сервис для организаций по ведению своего штатного расписания, отправления заявок на специальную оценку условий труда, публикацию вакансий и ведению учёта сотрудников и должностей.'],
-    innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-dvipraz-dashboard']['path'] },
-    actions: [
-      { label: 'Сервис', face: 'light', href: 'https://lk.dvipraz.ru/' },
-      { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/9260851' },
-    ],
-    meta: [
-      { title: 'Даты', value: '2025\u00A0—\u00A0н.в.' },
-      { title: 'Роль', value: 'UX UI Head' },
-      { title: 'Сфера', value: 'B2B SaaS, HR Management' },
-      { title: 'Организация', value: '', link: { href: 'https://www.rusprofile.ru/id/9260851', phrase: 'АНО ДПО "ДВИПРАЗ"' } },
-      { title: 'Платформа', value: 'Web' },
-      { title: 'Доступ', value: '', link: { href: 'https://lk.dvipraz.ru/', phrase: 'Открытый' } },
-    ],
-    screens: [
-      { src: '/projects/dvipraz-lk/landing.png', alt: 'ДВИПРАЗ ЛК', size: '3/3' },
-    ],
-  },
+  // {
+  //   id: 'case-dvipraz-dashboard',
+  //   projectPageUrl: routeMap["case-dvipraz-dashboard"]['path'],
+  //   companyName: 'ДВИПРАЗ',
+  //   logo: '/images/brand/ДВИПРАЗ.png',
+  //   projectName: 'Система управления организаций',
+  //   description: ['Разработка основного функционала панели управлений Института дополнительного профессионального образования «ДВИПРАЗ», которая предоставляет собой сервис для организаций по ведению своего штатного расписания, отправления заявок на специальную оценку условий труда, публикацию вакансий и ведению учёта сотрудников и должностей.'],
+  //   innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-dvipraz-dashboard']['path'] },
+  //   actions: [
+  //     { label: 'Сервис', face: 'light', href: 'https://lk.dvipraz.ru/' },
+  //     { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/9260851' },
+  //   ],
+  //   meta: [
+  //     { title: 'Даты', value: '2025\u00A0—\u00A0н.в.' },
+  //     { title: 'Роль', value: 'UX UI Head' },
+  //     { title: 'Сфера', value: 'B2B SaaS, HR Management' },
+  //     { title: 'Организация', value: '', link: { href: 'https://www.rusprofile.ru/id/9260851', phrase: 'АНО ДПО "ДВИПРАЗ"' } },
+  //     { title: 'Платформа', value: 'Web' },
+  //     { title: 'Доступ', value: '', link: { href: 'https://lk.dvipraz.ru/', phrase: 'Открытый' } },
+  //   ],
+  //   screens: [
+  //     { src: '/projects/dvipraz-lk/landing.png', alt: 'ДВИПРАЗ ЛК', size: '3/3' },
+  //   ],
+  // },
   {
     id: 'case-rdp-dashboard',
     projectPageUrl: routeMap["case-rdp-dashboard"]['path'],

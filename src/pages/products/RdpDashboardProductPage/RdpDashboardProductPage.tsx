@@ -22,11 +22,11 @@ export function RdpDashboardProductPage() {
         //     mode: 'page',
         //   }
         // )}
-        summaryItems={renderMeta(productsSection[4].meta)}
-        gallery={renderScreens(productsSection[4].screens)}
+        summaryItems={renderMeta(productsSection[3].meta)}
+        gallery={renderScreens(productsSection[3].screens)}
         // projectPageUrl={productsSection[0].projectPageUrl}
         mode="page"
-        logo={productsSection[4].logo}
+        logo={productsSection[3].logo}
       />
     </Stack>
 
