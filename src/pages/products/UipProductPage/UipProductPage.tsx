@@ -532,14 +532,14 @@ export function UipProductPage() {
               <StatusItem
                 status="alert"
                 text="8/8 не могли разглядеть детали планировки"
-                note="Добавить возможность открыть на весь экран"
+                note="Добавили возможность открыть на весь экран"
               />
 
               {/* 4. Проблема с шрифтом */}
               <StatusItem
                 status="alert"
                 text="Пожилые участники щурились при чтении характеристик"
-                note="Увеличили базовый размер шрифта до 20px минимум"
+                note="Установили базовый размер шрифта от 16px минимум"
               />
 
               {/* 5. Успех: Фильтр */}
@@ -562,14 +562,16 @@ export function UipProductPage() {
 
             </Stack>
           </Stack>
-
-
-
-
         </Stack>
-
       </Stack>
 
+
+      <Stack page="article" width='container' role="subsection">
+        <Gallery>
+          <Screen src="/projects/uip/page/4212.png" alt="Было" size='1/3' addition={<Heading role='article'>Было</Heading>} scroll='parallax' />
+          <Screen src="/projects/uip/uip-full-pc-first-page.png" alt="Стало" size='1/3' addition={<Heading role='article'>Стало</Heading>} scroll='parallax' />
+        </Gallery>
+      </Stack>
 
 
       <Stack page="article" width="full" role="section">
@@ -587,28 +589,52 @@ export function UipProductPage() {
           </Stack>
 
 
+
+          <Stack page="article" width='container' role="subsection">
+            <Stack page="article" width='container' role="paragraph">
+              <Heading role='result-heading'>
+                Звонки с сайта
+              </Heading>
+            </Stack>
+            <Heading role='result-value'>
+              +30%
+            </Heading>
+          </Stack>
+
+          <Stack page="article" width='container' role="subsection">
+            <Stack page="article" width='container' role="paragraph">
+              <Heading role='result-heading'>
+                Продолжительность разговора с менеджером уменьшилась
+              </Heading>
+            </Stack>
+            <Heading role='result-value'>
+              -76%
+            </Heading>
+          </Stack>
+
+          <Stack page="article" width='container' role="subsection">
+            <Stack page="article" width='container' role="paragraph">
+              <Heading role='result-heading'>
+                Скорость разработки новых страниц новых ЖК увеличена
+              </Heading>
+            </Stack>
+            <Heading role='result-value'>
+              в 1000 раз
+            </Heading>
+          </Stack>
           {/* <Stack page="article" width="text" role="subsection">
             <Stack page="article" width="text" role="none">
               <Heading role="result-heading">Клиент</Heading>
               <Heading role="result-value">Продолжает сотрудничество</Heading>
             </Stack>
           </Stack> */}
-
-
-
-
-        </Stack>
-
-        <Stack page="article" width='container' role="subsection">
-          <Gallery>
-            <Screen src="/projects/uip/page/4212.png" alt="Было" size='1/3' addition={<Heading role='article'>Было</Heading>} scroll='parallax' />
-            <Screen src="/projects/uip/uip-full-pc-first-page.png" alt="Стало" size='1/3' addition={<Heading role='article'>Стало</Heading>} scroll='parallax' />
-          </Gallery>
         </Stack>
       </Stack>
 
 
-
+      <Stack page="article" width='container' role="subsection">
+        <Screen src="/projects/uip/UIP Mockup.png" alt="UIP Mockup" size='3/3' scroll='static' />
+      </Stack>
 
     </>);
 }

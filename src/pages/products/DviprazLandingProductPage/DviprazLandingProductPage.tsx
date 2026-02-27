@@ -217,11 +217,39 @@ export function DviprazLandingProductPage() {
     </Stack>
 
 
-    <Stack page="article" width='container' role="subsection">
+    <Stack page="article" width='container' role="section">
       <Gallery>
-        <Screen src="/projects/uip/page/4212.png" alt="Было" size='1/3' addition={<Heading role='article'>Было</Heading>} scroll='static' />
-        <Screen src="/projects/uip/uip-full-pc-first-page.png" alt="Стало" size='1/3' addition={<Heading role='article'>Стало</Heading>} scroll='static' />
+        <Screen src="/projects/dvipraz/документы было full (3).png" alt="Было" size='1/3' addition={<Heading role='article'>Было</Heading>} scroll='static' />
+        <Screen src="/projects/dvipraz/документы стало full (3).png" alt="Стало" size='1/3' addition={<Heading role='article'>Стало</Heading>} scroll='static' />
       </Gallery>
+    </Stack>
+
+    <Stack page="article" width='container' role="section">
+      {' '}
+    </Stack>
+    <Stack page="article" width='container' role="section">
+      {' '}
+    </Stack>
+
+    <Stack page="article" width='text' role="section">
+      <Stack page="article" width='container' role="subsection">
+        <Heading role='hero'>
+          Результаты
+        </Heading>
+      </Stack>
+      <Stack page="article" width='container' role="paragraph">
+        <Text role='body'>
+          Нам удалось трансформировать сложную структуру института в понятный цифровой продукт. Мы получили следующий фидбек от заказчика:
+        </Text>
+      </Stack>
+
+      <Stack page="article" width='container' role="subsection">
+        <List role='body'>
+          <ListItem><strong>Структура:</strong> Пользователи теперь находят информацию о курсах быстрее благодаря логичной группировке. Стало значительно меньше обращений по поиску информации.</ListItem>
+          <ListItem><strong>Вовлечение:</strong> Современный UI повысил доверие к институту как к передовой организации — субъективная оценка заказчика.</ListItem>
+          <ListItem><strong>UI Kit:</strong> Создали просто и универсальный UI Kit, который используется в разработке новых секций сайта.</ListItem>
+        </List>
+      </Stack>
     </Stack>
   </>;
 }

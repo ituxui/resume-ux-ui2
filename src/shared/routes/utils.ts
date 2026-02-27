@@ -15,8 +15,8 @@ export const landingRouteMap = {
   'anchor-projects': {
     path: '/#anchor-projects',
     heading: 'Проекты',
-    breadcrumbTitle: 'Кейсы',
-    description: 'Избранные кейсы',
+    breadcrumbTitle: 'Проекты',
+    description: 'Проекты',
     img: DEFAULT_IMG
   },
   'anchor-about-me': {
@@ -83,8 +83,8 @@ export const innerPageRouteMap = {
   'case-rdp-dashboard': {
     path: '/case/rdp-dashboard',
     heading: 'Сервис удалённго доступа RDP',
-    breadcrumbTitle: 'RDP',
-    description: 'Дашборд RDP',
+    breadcrumbTitle: 'RDP (ПУ)',
+    description: 'RDP (ПУ)',
     img: '/images/brand/Stellar.png'
   },
   'case-aeroakt': {

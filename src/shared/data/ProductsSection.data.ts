@@ -118,7 +118,7 @@ export const productsSection: ProjectData[] = [
       { title: 'Сфера', value: 'Cybersecurity Tech' },
       { title: 'Организация', value: '', link: { href: 'https://www.rusprofile.ru/id/7564381', phrase: 'ООО «4А»' } },
       { title: 'Платформа', value: 'Web' },
-      { title: 'Доступ', value: 'Закрытое тестирование' },
+      { title: 'Доступ', value: '', link: { href: 'https://stellar.4ait.ru/', phrase: 'Альфа тестирование' } },
     ],
     screens: [
       { src: '/projects/rdp/landing.png', alt: 'Stellar', size: '3/3' },

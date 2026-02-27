@@ -7,8 +7,8 @@ import styles from './Image.module.scss';
 export interface ImageProps {
   src: string;
   alt?: string;
-  /** @deprecated Больше не используется, оставлено для совместимости */
-  lazyThreshold?: number;
+  // /** @deprecated Больше не используется, оставлено для совместимости */
+  // lazyThreshold?: number;
   /** Включить zoom по клику */
   zoomable?: boolean;
   /** Дополнительный класс (для размеров) */
