@@ -133,3 +133,15 @@
     @content;
   }
 }
+
+@mixin media-360px-breakpoint-and-down {
+  @media (max-width: 360px - 0.02px) {
+    @content;
+  }
+}
+
+@mixin media-320px-breakpoint-and-down {
+  @media (max-width: 320px - 0.02px) {
+    @content;
+  }
+}

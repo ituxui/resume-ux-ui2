@@ -13,6 +13,8 @@
 
   transition: opacity 0.2s ease;
 
+  --text-wght: 450;
+
   &:hover {
     opacity: 0.6;
   }
@@ -41,4 +43,12 @@
   font-size: 14px;
   line-height: 1;
   user-select: none;
+}
+
+@include media-390px-breakpoint-and-down {
+  .item {
+    font-size: 14px;
+    line-height: 20px;
+    gap: 4px;
+  }
 }

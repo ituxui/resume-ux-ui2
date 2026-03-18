@@ -1,8 +1,10 @@
 
-
 export { productsMap, productsSection } from './ProductsSection.data';
 
 export { dviprazPortalCompetitorsData } from './competitors/dviprazPortalCompetitors.data';
+export { rdpDashboardCompetitorsData } from './competitors/rdpDashboardCompetitors.data';
+
+
 
 export { dviprazPortalPersons } from './persons/dviprazPortalPersons';
 export { rdpPersons } from './persons/rdpPersons';

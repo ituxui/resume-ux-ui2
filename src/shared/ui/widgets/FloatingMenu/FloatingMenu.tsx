@@ -60,13 +60,14 @@ export const FloatingMenu = () => {
 
   return (
     <>
+      <div className={styles.mobileBackdrop} aria-hidden />
       {/* ─── ISLAND BAR ─── */}
       <div className={cn(styles.islandWrapper, { [styles.visible]: isVisible || isMenuOpen })}>
-        <div className={styles.avatar} onClick={() => navigate('/')}>
-          <img src={landingRouteMap['landing'].img} alt="Avatar" />
-        </div>
+        {/* <div className={styles.avatar} onClick={() => navigate('/')}>
+          <img src={'/images/my-photos/ava.png'} alt="Avatar" />
+        </div> */}
 
-        <div className={styles.center} style={{ opacity: isMenuOpen ? 0 : 1 }}>
+        <div className={styles.center}>
           <Breadcrumbs />
         </div>
 
@@ -74,7 +75,7 @@ export const FloatingMenu = () => {
           <Button
             accent="primary"
             face="light"
-            size="lg"
+            size="md"
             content="icon"
             iconName={isMenuOpen ? 'x' : 'menu'}
             onClick={() => setIsMenuOpen(!isMenuOpen)}

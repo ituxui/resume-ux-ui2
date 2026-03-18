@@ -13,16 +13,22 @@
   align-items: center;
 }
 
+@include media-390px-breakpoint-and-down {
+  .wrapper {
+    gap: 4px;
+  }
+}
+
 // ═══════════════════════════════════════════════════════════════════════════
 // MOBILE ADAPTIVE
 // ═══════════════════════════════════════════════════════════════════════════
 
-@include media-s-breakpoint-and-down {
-  .wrapper {
-    // 1. Скрываем "Главная", если она НЕ единственная крошка в списке.
-    // Слэш скроется автоматически, так как он теперь внутри первого li.
-    > li:first-child:not(:last-child) {
-      display: none;
-    }
-  }
-}
+// @include media-s-breakpoint-and-down {
+//   .wrapper {
+//     // 1. Скрываем "Главная", если она НЕ единственная крошка в списке.
+//     // Слэш скроется автоматически, так как он теперь внутри первого li.
+//     > li:first-child:not(:last-child) {
+//       display: none;
+//     }
+//   }
+// }

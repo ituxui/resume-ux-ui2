@@ -82,7 +82,7 @@ export const innerPageRouteMap = {
   // },
   'case-rdp-dashboard': {
     path: '/case/rdp-dashboard',
-    heading: 'Сервис удалённго доступа RDP',
+    heading: 'Сервис удалённого доступа RDP',
     breadcrumbTitle: 'RDP (ПУ)',
     description: 'RDP (ПУ)',
     img: '/images/brand/Stellar.png'

@@ -256,13 +256,18 @@ $image-radius: max(0px, $card-radius - $card-padding);
     min-width: 0;
     position: relative;
     gap: 12px;
-    padding: 20px 8px;
+    padding: 16px;
   }
 
   // На мобилке сбрасываем фиксированный размер картинки, если нужно
   .imageWrapper {
     width: min(100px, 20vw);
     height: min(100px, 20vw);
-    border-radius: 999px;
+    // border-radius: 999px;
+    align-self: baseline;
+  }
+
+  .fakeButton {
+    display: none;
   }
 }

@@ -33,7 +33,7 @@ export function Hero() {
 
         <div>
           <Text role="subheading">
-            UX UI проектировщик с официальным стажем <strong><Nowrap>2 года</Nowrap></strong> и <strong><Nowrap>T-shaped</Nowrap></strong> знаниями фулстек программирования. Реализовал <strong><Nowrap>10+</Nowrap></strong> многостраничных приложений за время работы в группе 4-х компаний, реализующие как собственные IT-продукты, так и продукты для клиентов.
+            Проектировщик ПО / ПИ (UX / UI) <Nowrap>с официальным</Nowrap> стажем <strong><Nowrap>2 года</Nowrap></strong> и <strong><Nowrap>T-shaped</Nowrap></strong> знаниями фулстек программирования. Реализовал <Nowrap><strong>10+ многостраничных</strong></Nowrap> приложений <Nowrap>за время</Nowrap> работы <Nowrap>в группе</Nowrap> 4-х компаний, реализующие <Nowrap>как собственные</Nowrap> IT-продукты, так и продукты <Nowrap>для клиентов</Nowrap>.
           </Text>
         </div>
         {/* <div className={styles.links}>
@@ -70,6 +70,6 @@ export function Hero() {
       >
         <Icon name="arrow-down" size="xxxl" />
       </div>
-    </div>
+    </div >
   );
 }
