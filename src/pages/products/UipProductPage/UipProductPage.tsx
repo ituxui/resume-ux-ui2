@@ -19,13 +19,13 @@ export function UipProductPage() {
           companyName={"УИП"}
           projectName={"Многостраничный портал застройщика"}
           description={renderDescription(['Многостраничный информационный портал. Предоставляет информацию о жилых комплексах, коммерческих объектах и новостях компании. Включает в себя каталог объектов с фильтрами, страницы отдельных жилых комплексов, новости и акции компании, персональные разделы для каждого объекта недвижимости.'])}
-          actions={renderActions(
-            {
-              actions: productsMap['case-uip'].actions,
-              innerLink: productsMap['case-uip'].innerLink,
-              mode: 'page',
-            }
-          )}
+          // actions={renderActions(
+          //   {
+          //     actions: productsMap['case-uip'].actions,
+          //     innerLink: productsMap['case-uip'].innerLink,
+          //     mode: 'page',
+          //   }
+          // )}
           summaryItems={renderMeta(productsMap['case-uip'].meta)}
           gallery={renderScreens(productsMap['case-uip'].screens)}
           // projectPageUrl={productsMap['case-uip'].projectPageUrl}

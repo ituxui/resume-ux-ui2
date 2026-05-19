@@ -41,7 +41,8 @@ export const PageNavigation = () => {
       <Link
         to={prev.entry.path}
         className={cn(styles.navLink, styles.prev, {
-          [styles.expanded]: isPrevExpanded
+          [styles.expanded]: isPrevExpanded,
+          [styles.noImage]: !prev.entry.img, // Добавляем класс, если изображения нет
         })}
         onMouseEnter={handlePrevEnter}
         onMouseLeave={handlePrevLeave}
@@ -77,9 +78,10 @@ export const PageNavigation = () => {
             </div>
           </div>
 
-          <div className={styles.imageWrapper}>
+          {prev.entry.img && <div className={styles.imageWrapper}>
             <img src={prev.entry.img} alt="" />
           </div>
+          }
         </div>
       </Link>
 
@@ -87,7 +89,8 @@ export const PageNavigation = () => {
       <Link
         to={next.entry.path}
         className={cn(styles.navLink, styles.next, {
-          [styles.expanded]: isNextExpanded
+          [styles.expanded]: isNextExpanded,
+          [styles.noImage]: !next.entry.img, // Добавляем класс, если изображения нет
         })}
         onFocus={handleFocusNext}
       // При наведении на Next ничего делать не надо,
@@ -100,9 +103,10 @@ export const PageNavigation = () => {
 
         {/* Раскрытый вид */}
         <div className={styles.expandedContent}>
-          <div className={styles.imageWrapper}>
+          {next.entry.img && <div className={styles.imageWrapper}>
             <img src={next.entry.img} alt="" />
           </div>
+          }
 
           <div className={styles.textContent}>
             <div className={styles['textContent--top']}>

@@ -122,6 +122,12 @@
   }
 }
 
+@mixin media-s-breakpoint-and-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
 @mixin media-s-breakpoint-and-down {
   @media (max-width: 768px - 0.02px) {
     @content;

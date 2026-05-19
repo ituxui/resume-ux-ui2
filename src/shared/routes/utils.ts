@@ -1,9 +1,25 @@
 // ═══════════════════════════════════════════════════════════════════════════
+// BASE INTERFACES
+// ═══════════════════════════════════════════════════════════════════════════
+
+// 1. Создаем строгий шаблон, где img является опциональным
+export interface AppRouteEntry {
+  readonly path: string;
+  readonly heading: string;
+  readonly breadcrumbTitle: string;
+  readonly description: string;
+  readonly img?: string; // <-- Добавлено опциональное свойство
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
 // ROUTES CONFIGURATION
 // ═══════════════════════════════════════════════════════════════════════════
 
 const DEFAULT_IMG = "/images/miniatures/roadmap.sh.png";
 
+// 2. Используем `as const satisfies Record<string, AppRouteEntry>`
+// Это гарантирует, что мы не опечатаемся в ключах (например, не напишем image вместо img),
+// и сохранит точные литеральные типы путей (path).
 export const landingRouteMap = {
   'landing': {
     path: '/',
@@ -40,8 +56,7 @@ export const landingRouteMap = {
     description: 'Связаться со мной',
     img: DEFAULT_IMG
   },
-} as const;
-
+} as const satisfies Record<string, AppRouteEntry>;
 
 // Типы для landingRouteMap
 export type LandingRouteKey = keyof typeof landingRouteMap;
@@ -50,7 +65,6 @@ export type LandingRoutePath = LandingRouteEntry['path'];
 
 
 export const innerPageRouteMap = {
-
   // ─── Кейсы ───
   'case-uip': {
     path: '/case/uip',
@@ -73,13 +87,6 @@ export const innerPageRouteMap = {
     description: 'Лендинг для Dvipraz',
     img: '/images/brand/ДВИПРАЗ.png'
   },
-  // 'case-dvipraz-dashboard': {
-  //   path: '/case/dvipraz-dashboard',
-  //   heading: 'Панель управления для ДВИПРАЗ',
-  //   breadcrumbTitle: 'ПУ ДВИПРАЗ',
-  //   description: 'Панель управления для Dvipraz',
-  //   img: '/images/brand/ДВИПРАЗ.png'
-  // },
   'case-rdp-dashboard': {
     path: '/case/rdp-dashboard',
     heading: 'Сервис удалённого доступа RDP',
@@ -101,7 +108,7 @@ export const innerPageRouteMap = {
     heading: 'Личная информация',
     breadcrumbTitle: 'Личное',
     description: 'Биография и факты',
-    img: DEFAULT_IMG
+    // img: DEFAULT_IMG // Свойство отсутствует, и TS не будет ругаться благодаря опциональности в AppRouteEntry
   },
   'aboutme-design-systems': {
     path: '/aboutme/design-systems',
@@ -189,8 +196,7 @@ export const innerPageRouteMap = {
     description: 'Работа с альфа-каналами цветов',
     img: DEFAULT_IMG
   },
-} as const;
-
+} as const satisfies Record<string, AppRouteEntry>;
 
 // Типы для innerPageRouteMap
 export type InnerPageRouteKey = keyof typeof innerPageRouteMap;
@@ -210,9 +216,13 @@ export const routeMap = {
 // Тип ключей (например, 'landing' | 'case-aeroakt')
 export type RouteKey = keyof typeof routeMap;
 
-// Тип самого объекта конфигурации маршрута
-export type RouteEntry = (typeof routeMap)[RouteKey];
+// 1. Получаем "сырой" тип (где в некоторых объектах img есть, а в некоторых нет вообще)
+type RawRouteEntry = (typeof routeMap)[RouteKey];
+
+// 2. Изящный хак: объединяем сырой тип с явным указанием опционального img.
+// Omit убирает старый img (если он был), а & добавляет правильный опциональный img ко ВСЕМ объектам.
+export type RouteEntry = Omit<RawRouteEntry, 'img'> & { readonly img?: string };
 
 // Тип пути (строка URL), например '/' | '/case/aeroakt'
-// TypeScript автоматически выведет строковые литералы благодаря as const
-export type RoutePath = RouteEntry['path'];
+// Сохраняет строгие литеральные типы путей для автодополнения!
+export type RoutePath = RawRouteEntry['path'];

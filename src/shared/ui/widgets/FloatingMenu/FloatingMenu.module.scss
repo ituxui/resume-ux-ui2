@@ -2,7 +2,7 @@
 // FLOATING MENU (THE ISLAND)
 // ═══════════════════════════════════════════════════════════════════════════
 
-$border-radius: 8px;
+$border-radius: 999px;
 
 .islandWrapper {
   position: fixed;
@@ -14,7 +14,7 @@ $border-radius: 8px;
   width: unset;
   height: 48px;
   gap: 4px;
-  padding-left: 16px;
+  padding-left: 20px;
   background: rgb(255, 255, 255);
   border-radius: $border-radius;
   border: 1px solid var(--border_color-screen, rgba(0, 0, 0, 0.08));
@@ -45,21 +45,24 @@ $border-radius: 8px;
 .center {
   flex: 1;
   display: flex;
+  min-width: 0;
   transition: opacity 0.2s ease;
 
   :global {
     nav {
       scrollbar-width: none;
+      min-width: 0;
+      overflow: hidden;
 
       &::-webkit-scrollbar {
         display: none;
       }
     }
 
-    ol {
-      flex-wrap: wrap;
-      white-space: nowrap;
-    }
+    // ol {
+    //   flex-wrap: wrap;
+    //   white-space: nowrap;
+    // }
   }
 }
 
@@ -87,7 +90,7 @@ $border-radius: 8px;
   z-index: 998;
   width: 100%;
   height: 64px;
-  background: linear-gradient(180deg, white 16px, transparent);
+  background: linear-gradient(180deg, white 50%, transparent);
   pointer-events: none;
   display: none;
 }

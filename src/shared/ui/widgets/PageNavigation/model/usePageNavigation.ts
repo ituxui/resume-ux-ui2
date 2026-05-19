@@ -6,6 +6,7 @@ type NavItem = {
   entry: RouteEntry;
   label: string;
   buttonText: string;
+  img?: string; // Add the 'img' property here
 } | null;
 
 export const usePageNavigation = () => {

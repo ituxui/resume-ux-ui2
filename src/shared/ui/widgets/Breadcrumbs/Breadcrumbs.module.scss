@@ -1,16 +1,33 @@
 .wrapper {
   display: flex;
   align-items: center;
-  flex-wrap: wrap; // Разрешаем перенос строк между крошками
-  gap: 8px; // Вертикальный и горизонтальный отступ при переносе
+  flex-wrap: nowrap;
+  gap: 8px;
   padding: 0;
   margin: 0;
   list-style: none;
+  min-width: 0;
+  overflow: hidden;
+  flex: 1 1 auto;
+
+  // @media screen and (max-width: 1366px) {
+  // }
+
+  @include media-s-breakpoint-and-up {
+    max-width: calc(100vw - 30px - (214px * 2) - (var(--margin-screens-horizontal) * 2));
+  }
 }
 
 .li {
   display: inline-flex;
   align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+.wrapper > li:last-child {
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 @include media-390px-breakpoint-and-down {

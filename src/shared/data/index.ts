@@ -1,4 +1,5 @@
 
+
 export { productsMap, productsSection } from './ProductsSection.data';
 
 export { dviprazPortalCompetitorsData } from './competitors/dviprazPortalCompetitors.data';
@@ -10,6 +11,8 @@ export { dviprazPortalPersons } from './persons/dviprazPortalPersons';
 export { rdpPersons } from './persons/rdpPersons';
 export { tsdPersons } from './persons/tsdPersons';
 export { uipPersons } from './persons/uipPersons';
+export { aeroactPersons } from './persons/aeroactPersons';
+
 
 
 export { RESUME_URL } from './files.data';

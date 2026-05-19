@@ -11,11 +11,12 @@ interface BreadcrumbItemProps {
 }
 
 export const BreadcrumbItem = ({ to, label, isLast, hasSeparator }: BreadcrumbItemProps) => {
+  const labelClassName = cn(styles.label, { [styles.labelEllipsis]: isLast });
 
   // Общий контент (Текст + Слэш)
   const content = (
     <>
-      <Text role="link-sm" colorScheme="muted" as="span">
+      <Text role="link-sm" colorScheme="muted" as="span" className={labelClassName}>
         {label}
       </Text>
       {hasSeparator && (

@@ -205,6 +205,11 @@ $image-radius: max(0px, $card-radius - $card-padding);
     align-items: flex-start;
     text-align: left;
   }
+  &.noImage {
+    .textContent--top {
+      margin-left: 16px;
+    }
+  }
 }
 
 .next {
@@ -214,6 +219,11 @@ $image-radius: max(0px, $card-radius - $card-padding);
   .textContent {
     align-items: flex-end;
     text-align: left;
+  }
+  &.noImage {
+    .textContent {
+      margin-left: 16px;
+    }
   }
 }
 

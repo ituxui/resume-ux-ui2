@@ -73,7 +73,7 @@ export const productsMap: Record<ProjectKey, ProjectData> = {
     companyName: 'ДВИПРАЗ',
     projectPageUrl: routeMap["case-dvipraz-landing"]['path'],
     logo: '/images/brand/ДВИПРАЗ.png',
-    projectName: 'Многостраничный портал для Института',
+    projectName: 'Многостраничный портал института',
     description: ['Разработка информационного портала для Института дополнительного профессионального образования'],
     innerLink: { label: 'Процесс разработки', face: 'solid', to: routeMap['case-dvipraz-landing']['path'] },
     actions: [
@@ -131,7 +131,7 @@ export const productsMap: Record<ProjectKey, ProjectData> = {
       { label: 'Организация', face: 'light', href: 'https://www.rusprofile.ru/id/11759511' },
     ],
     meta: [
-      { title: 'Даты', value: '2016\u00A0—\u00A02019' },
+      { title: 'Даты', value: '2018\u00A0—\u00A02019' },
       { title: 'Роль', value: 'Лид' },
       { title: 'Сфера', value: 'Travel Tech, Transportation' },
       { title: 'Организация', value: '', link: { href: 'https://www.rusprofile.ru/id/11759511', phrase: 'АО "Международный Авиатерминал Хабаровск"' } },

@@ -13,7 +13,7 @@ export function DviprazLandingProductPage() {
 
       <ProductCard
         companyName={"ДВИПРАЗ"}
-        projectName={"Многостраничный портал для Института"}
+        projectName={"Многостраничный портал института"}
         description={renderDescription(['EdTech для Дальнего Востока: Как мы превратили сложный портал Института дополнительного профессионального образования в удобный сервис'])}
         // actions={renderActions(
         //   {

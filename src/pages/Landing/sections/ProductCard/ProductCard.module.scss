@@ -52,6 +52,7 @@
 
 .heading {
   grid-area: heading;
+  padding-bottom: 24px;
 }
 
 .description {
@@ -60,6 +61,7 @@
 
 .buttons {
   grid-area: buttons;
+  padding-bottom: 16px;
 }
 
 .meta {
@@ -208,9 +210,9 @@
 
     margin-top: 0;
   }
-  @include media-320px-breakpoint-and-down {
-    grid-template-columns: repeat(1, 1fr);
-  }
+  // @include media-320px-breakpoint-and-down {
+  //   grid-template-columns: repeat(1, 1fr);
+  // }
 }
 
 .mode {

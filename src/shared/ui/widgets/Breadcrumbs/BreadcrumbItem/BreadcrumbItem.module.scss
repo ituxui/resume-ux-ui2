@@ -31,9 +31,23 @@
   }
 }
 
+.label {
+  min-width: 0;
+}
+
+.labelEllipsis {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .last {
   cursor: default;
   pointer-events: none;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
 }
 
 // Перенесли стили слэша сюда

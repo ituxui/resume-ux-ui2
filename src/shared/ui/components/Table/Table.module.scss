@@ -22,7 +22,8 @@ $text-header: var(--color_text-accent_default-inverted--enabled, #fff);
 
   // Размеры
   min-width: var(--readable-container-min_text-width);
-  max-width: calc(100vw - (var(--margin-screens-horizontal) * 2));
+  // max-width: calc(100vw - (var(--margin-screens-horizontal) * 2));
+  max-width: min(100%, calc(100vw - var(--margin-screens-horizontal) * 2));
   max-height: min(70vh, calc(100vh - 100px));
 
   // Flex нужен, чтобы скролл-контейнер занимал все место

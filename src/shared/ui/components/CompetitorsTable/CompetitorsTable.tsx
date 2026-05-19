@@ -23,14 +23,13 @@ export interface CompetitorsTableProps {
 export const CompetitorsTable: FC<CompetitorsTableProps> = ({
   data,
   title,
-  className
 }) => {
   const { headerColumns, rows } = useMemo(() => {
     return transformCompetitorsData(data);
   }, [data]);
 
   return (
-    <div className={className}>
+    <>
       {title && (
         <Text role="subheading" style={{ marginBottom: 24 }}>
           {title}
@@ -98,6 +97,6 @@ export const CompetitorsTable: FC<CompetitorsTableProps> = ({
           ))}
         </TableBody>
       </Table>
-    </div>
+    </>
   );
 };

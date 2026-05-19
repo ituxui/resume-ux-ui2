@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import cn from 'classnames';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, } from 'react-router';
 
 import { Button } from '@shared/ui/components/Button';
 import { landingRouteMap } from '@shared/routes';
@@ -15,7 +15,7 @@ export const FloatingMenu = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Блокировка скролла страницы (скроллбар остаётся!)
   useScrollLock(isMenuOpen);
@@ -23,7 +23,7 @@ export const FloatingMenu = () => {
   // Логика скролла для Острова
   useEffect(() => {
     const handleScroll = () => {
-      const isMobile = window.innerWidth <= 768;
+      const isMobile = window.innerWidth <= 767.98;
       if (isMobile) {
         setIsVisible(true);
       } else {

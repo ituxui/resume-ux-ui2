@@ -14,7 +14,7 @@ export function RdpDashboardProductPage() {
       <ProductCard
         companyName={"Stellar"}
         projectName={"Сервис удалённого доступа через RDP"}
-        description={renderDescription(['Enterprise-решение для безопасного управления удалённым доступом через Remote Desktop Protocol. Я осуществил полный редизайн панели управления для сервиса безопасного удаленного доступа (RDP) и превратил «сырой» внутренний инструмента в конкурентоспособный продукт для выхода на внешний рынок.'])}
+        description={renderDescription(['Enterprise-решение для безопасного управления удалённым доступом через Remote Desktop Protocol. Я осуществил полный редизайн панели управления для сервиса безопасного удаленного доступа (RDP) и превратил «сырой» внутренний инструмент в конкурентоспособный продукт для выхода на внешний рынок.'])}
         // actions={renderActions(
         //   {
         //     actions: productsMap['case-tsd'].actions,
@@ -47,7 +47,7 @@ export function RdpDashboardProductPage() {
 
         <Stack page="article" width="text" role="paragraph">
           <Text role='body'>
-            Комплексный редизайн дашборд-системы, для существующего enterprise-продукта, используемого внутри компании. В ходе проекта необходимо полностью переработаны пользовательские пути, информационную архитектуру и ключевые бизнес-процессы.
+            Компания создала внутренний сервис для RDP-подключений. Первая версия интерфейса разрабатывалась силами инженеров в режиме rapid prototyping (даже с использованием AI для генерации UI), без участия UX-специалистов. Необходимо полностью переработать пользовательские пути, информационную архитектуру и ключевые бизнес-процессы.
           </Text>
         </Stack>
       </Stack>
@@ -59,7 +59,7 @@ export function RdpDashboardProductPage() {
         </Heading>
         <Stack page="article" width="text" role="paragraph">
           <Text role='body'>
-            Предыдущая версия интерфейса не удовлетворяла потребностям целевой аудитории (системные администраторы, DevOps-инженеры, менеджеры по безопасности), поскольку была разработана без участия UX-специалистов в режиме rapid prototyping с использованием AI-генерации, что привело к критическим проблемам usability и низкому task completion rate.
+            Предыдущая версия интерфейса не удовлетворяла потребностям целевой аудитории (системные администраторы, DevOps-инженеры, менеджеры по безопасности). Интерфейс был абсолютно не юзабелен для технических специалистов. Это приводило к огромной нагрузке на IT-поддержку.
           </Text>
         </Stack>
       </Stack>
@@ -73,16 +73,13 @@ export function RdpDashboardProductPage() {
         <Stack page="article" width="text" role="none">
           <List>
             <ListItem>
-              Подготовить продукт к выходу на B2B и B2C рынки, обеспечив конкурентоспособный UX.
+              Снизить Time-to-Value (время до первого успешного подключения) для новых пользователей.
             </ListItem>
             <ListItem>
-              Снизить время получения выгоды (time-to-value) для новых пользователей
+              Радикально уменьшить количество тикетов в службу техподдержки.
             </ListItem>
             <ListItem>
-              Уменьшить нагрузку на техническую поддержку
-            </ListItem>
-            <ListItem>
-              Обеспечить масштабируемость интерфейса под будущий функционал
+              Обеспечить масштабируемость дашборда для добавления новых фич (Zero Trust, MFA) под нужды Enterprise-клиентов.
             </ListItem>
           </List>
         </Stack>
@@ -102,12 +99,12 @@ export function RdpDashboardProductPage() {
 
 
 
-      <Stack page="article" width="text" role="subsection">
+      <Stack page="article" width="text" role="none">
         <Heading role="subsection">
           Исследование пользователей и контекста
         </Heading>
 
-        <Stack page="article" width="text" role="paragraph">
+        <Stack page="article" width="text" role="none">
           <Text role='body'>
             Провёл серию глубинных интервью с пользователями текущего продукта, включая супер-администраторов и системных администраторов. Применил методологию Jobs-to-be-Done для анализа потребностей и контекста использования, собрал качественную обратную связь о pain points существующего решения.
           </Text>
@@ -117,7 +114,7 @@ export function RdpDashboardProductPage() {
 
 
     <Stack page="article" width='text' role="subsubsection">
-      <Heading role='section'>
+      <Heading role='subsection'>
         User Personas
       </Heading>
       <Stack page="article" width='container' role="subsection">
@@ -154,14 +151,14 @@ export function RdpDashboardProductPage() {
         </Text>
       </Stack>
 
-      <Stack page="article" width='container' role="subsection">
+      {/* <Stack page="article" width='container' role="subsection">
         <Heading role='subsection'>
           Эффективность для Супер-админов
         </Heading>
         <Text role='body'>
           Павел управляет сотнями людей и ненавидит лишние клики. Для него мы разработали режим <strong>высокой плотности данных</strong> (Compact Mode), поддержку горячих клавиш (Keyboard-first) и, главное, <strong>массовые операции</strong> (Bulk Actions), позволяющие менять права для 50 пользователей в два клика.
         </Text>
-      </Stack>
+      </Stack> */}
 
       <Stack page="article" width='container' role="subsection">
         <Heading role='subsection'>
@@ -290,15 +287,75 @@ export function RdpDashboardProductPage() {
       </Text>
     </Stack>
 
-    <Stack page="article" width='text' role="none">
-      <Heading role='subsection'>
-        Панель управления
-      </Heading>
-    </Stack>
-    <Stack page="article" width='container' role="subsection">
-      <Text role='body'>
-        Вместо разрозненных подключений мы создали <strong>единый дашборд</strong>. Внедрили карточную систему с группировкой по отделам и мгновенными <strong>индикаторами статуса</strong> (Online/Offline), чтобы админ считывал ситуацию за секунду.
-      </Text>
+
+
+
+    <Stack page="article" width="full" role="section">
+      <Stack page="article" width="text" role="subsubsection">
+        <Heading role="section">
+          Результаты
+        </Heading>
+
+
+
+        <Stack page="article" width="text" role="subsection">
+          <Text role='body'>
+            Редизайн полностью изменил восприятие продукта и позволил подготовить его к коммерческому B2B-запуску. Вместо разрозненных подключений мы создали <strong>единый дашборд</strong>. Внедрили карточную систему с группировкой по отделам и мгновенными <strong>индикаторами статуса</strong> (Online/Offline), чтобы админ считывал ситуацию за секунду.
+          </Text>
+        </Stack>
+
+
+
+        <Stack page="article" width='container' role="subsection">
+          <Stack page="article" width='container' role="paragraph">
+            <Heading role='result-heading'>
+              Время от получения инвайта до первого входа на рабочий стол снизилось с 15-20 минут
+            </Heading>
+          </Stack>
+          <Heading role='result-value'>
+            до 2 минут
+          </Heading>
+        </Stack>
+
+        <Stack page="article" width='container' role="subsection">
+          <Stack page="article" width='container' role="paragraph">
+            <Heading role='result-heading'>
+              Снижение нагрузки на поддержку за счёт интуитивного интерфейса и гуманизации ошибок на
+            </Heading>
+          </Stack>
+          <Heading role='result-value'>
+            -80%
+          </Heading>
+        </Stack>
+
+        <Stack page="article" width='container' role="subsection">
+          <Stack page="article" width='container' role="paragraph">
+            <Heading role='result-heading'>
+              Внедрение Side Drawers и массовых действий позволило админам управлять правами доступа без лишних кликов и перезагрузок страниц. Task Completion Rate у сисадминов вырос
+            </Heading>
+          </Stack>
+          <Heading role='result-value'>
+            на 200%
+          </Heading>
+        </Stack>
+
+        {/* <Stack page="article" width='container' role="subsection">
+          <Stack page="article" width='container' role="paragraph">
+            <Heading role='result-heading'>
+              Использование паттернов Carbon Design System сэкономило команде разработки сотни часов на проектировании базовых компонентов таблиц и форм.
+            </Heading>
+          </Stack>
+          <Heading role='result-value'>
+            Time-to-market ∞
+          </Heading>
+        </Stack> */}
+        {/* <Stack page="article" width="text" role="subsection">
+            <Stack page="article" width="text" role="none">
+              <Heading role="result-heading">Клиент</Heading>
+              <Heading role="result-value">Продолжает сотрудничество</Heading>
+            </Stack>
+          </Stack> */}
+      </Stack>
     </Stack>
 
 
@@ -307,6 +364,29 @@ export function RdpDashboardProductPage() {
   </>;
 }
 
+
+
+// <Stack page="article" width='text' role="none">
+//   <Heading role='subsection'>
+//     Результаты
+//   </Heading>
+// </Stack>
+// <Stack page="article" width='container' role="subsection">
+//   <Text role='body'>
+//     Вместо разрозненных подключений мы создали <strong>единый дашборд</strong>. Внедрили карточную систему с группировкой по отделам и мгновенными <strong>индикаторами статуса</strong> (Online/Offline), чтобы админ считывал ситуацию за секунду.
+//   </Text>
+// </Stack>
+
+//  <Stack page="article" width='text' role="none">
+//   <Heading role='subsection'>
+//     Панель управления
+//   </Heading>
+// </Stack>
+// <Stack page="article" width='container' role="subsection">
+//   <Text role='body'>
+//     Вместо разрозненных подключений мы создали <strong>единый дашборд</strong>. Внедрили карточную систему с группировкой по отделам и мгновенными <strong>индикаторами статуса</strong> (Online/Offline), чтобы админ считывал ситуацию за секунду.
+//   </Text>
+// </Stack>
 
 // <Stack page="article" width='text' role="subsubsection">
 
