@@ -81,11 +81,17 @@
   @media (max-width: 480px) {
     gap: 12px;
   }
+  @media (max-width: 340px) {
+    gap: 4px;
+  }
 }
 
 .counter {
   white-space: nowrap;
   width: inherit;
+  @media (max-width: 400px) {
+    display: none;
+  }
 }
 
 .navButton {

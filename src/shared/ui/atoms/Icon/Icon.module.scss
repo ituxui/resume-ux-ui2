@@ -32,10 +32,10 @@
     display: block;
     overflow: visible; // чтобы stroke не обрезался на краях
 
-    // Цвет для fill-иконок
-    path:not([stroke]) {
-      fill: var(--icon-color);
-    }
+    // // Цвет для fill-иконок
+    // path:not([stroke]) {
+    //   fill: var(--icon-color);
+    // }
 
     // Цвет и толщина для stroke-иконок
     path[stroke],

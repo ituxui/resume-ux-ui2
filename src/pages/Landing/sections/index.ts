@@ -1,3 +1,7 @@
+export { ProjectCard } from './AboutMeSection/PortfolioSection/ProjectCard/ProjectCard';
+
+export { PersonalInformation } from './AboutMeSection/AboutMeSectionPages/PersonalInformation';
+
 export { Spheres } from './Spheres/Spheres';
 
 export { AboutMeSection } from './AboutMeSection/AboutMeSection';

@@ -82,7 +82,7 @@ export const innerPageRouteMap = {
   },
   'case-dvipraz-landing': {
     path: '/case/dvipraz-landing',
-    heading: 'Многостраничный портал для университета ДВИПРАЗ',
+    heading: 'Многостраничный портал для университета',
     breadcrumbTitle: 'Портал ДВИПРАЗ',
     description: 'Лендинг для Dvipraz',
     img: '/images/brand/ДВИПРАЗ.png'

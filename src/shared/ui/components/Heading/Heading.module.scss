@@ -98,8 +98,8 @@
 // .section
 // ═══════════════════════════════════════════════════════════════════════════
 .section {
-  font-size: 28px;
-  line-height: 36px;
+  font-size: 36px;
+  line-height: 42px;
   letter-spacing: -0.03em;
   padding-bottom: 48px;
   max-width: var(--readable-container-min_text-width);
@@ -130,7 +130,7 @@
 .result-heading,
 .navigation-widget {
   font-size: 24px;
-  line-height: 36px;
+  line-height: 28px;
   letter-spacing: -0.03em;
   max-width: var(--readable-container-min_text-width);
 
@@ -158,6 +158,46 @@
   padding-bottom: 0;
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// .navigation-caption
+// ═══════════════════════════════════════════════════════════════════════════
+
+.navigation-caption {
+  font-size: 14px; /* Было 19px, на картинке 20 */
+  line-height: 24px;
+  letter-spacing: 2%; /* Добавлено из третьей картинки */
+  text-transform: uppercase;
+  color: var(--color_text-accent_muted--enabled) !important;
+  transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+  --heading-wdth: 92; /* Было 100, на картинке 92 */
+  --heading-wght: 519; /* Было 400, на картинке 519 */
+  --heading-opsz: 18;
+  --heading-GRAD: 0;
+  --heading-slnt: 0;
+  --heading-XOPQ: 96;
+  --heading-YOPQ: 79;
+  --heading-XTRA: 468;
+  --heading-YTLC: 514;
+  --heading-YTUC: 647;
+  --heading-YTAS: 665;
+  --heading-YTDE: -189;
+  --heading-YTFI: 738;
+  font-variation-settings:
+    'wght' var(--heading-wght),
+    'wdth' var(--heading-wdth),
+    'opsz' var(--heading-opsz),
+    'GRAD' var(--heading-GRAD),
+    'slnt' var(--heading-slnt),
+    'XOPQ' var(--heading-XOPQ),
+    'YOPQ' var(--heading-YOPQ),
+    'XTRA' var(--heading-XTRA),
+    'YTLC' var(--heading-YTLC),
+    'YTUC' var(--heading-YTUC),
+    'YTAS' var(--heading-YTAS),
+    'YTDE' var(--heading-YTDE),
+    'YTFI' var(--heading-YTFI);
+}
 // ═══════════════════════════════════════════════════════════════════════════
 // .result-value
 // ═══════════════════════════════════════════════════════════════════════════

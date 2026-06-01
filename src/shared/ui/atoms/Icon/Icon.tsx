@@ -21,6 +21,7 @@ import Copy from './icons/copy.svg?react';
 import Download from './icons/download.svg?react';
 import Download1 from './icons/download-1.svg?react';
 import Expand from './icons/expand.svg?react';
+import External from './icons/external-link.svg?react';
 import Home from './icons/home.svg?react';
 import Monitor from './icons/monitor.svg?react';
 import Menu from './icons/menu.svg?react';
@@ -48,6 +49,7 @@ const icons = {
   'download-1': Download1,
   'download': Download,
   'expand': Expand,
+  'external-link': External,
   'home': Home,
   'monitor': Monitor,
   'menu': Menu,

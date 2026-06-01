@@ -1,3 +1,5 @@
+export { HeadingMainPage } from './HeadingMainPage/HeadingMainPage';
+
 export { StatusItem } from './FeatureStatus/StatusItem';
 
 export { type PersonData } from './Persons/Persons.types';
@@ -31,6 +33,7 @@ export type {
   ButtonFace,
   ButtonSize
 } from './Button';
+
 
 export { Screen } from './Screen/Screen';
 export type { ScreenProps, ScreenSize, ScreenScroll } from './Screen/Screen';

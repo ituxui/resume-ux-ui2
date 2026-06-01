@@ -10,6 +10,7 @@ import {
   UipProductPage
 } from "@pages";
 import { App } from "../../app/ui/App";
+import { PersonalInformation } from "@pages/Landing/sections";
 
 
 
@@ -65,7 +66,7 @@ export const router = createHashRouter([
       // Обо мне (Бенто-секции)
       {
         path: routeMap['aboutme-personal']['path'],
-        element: "AboutmePersonal"
+        Component: PersonalInformation
       },
       {
         path: routeMap['aboutme-design-systems']['path'],

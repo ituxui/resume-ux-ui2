@@ -18,7 +18,17 @@
   &--size-xl {
     height: 40px;
     padding: 8px;
-    border-radius: 8px;
+    border-radius: 12px;
+
+    &.badge--with-text {
+      padding-right: 10px;
+    }
+  }
+  // Size: lg
+  &--size-lg {
+    height: 32px;
+    padding: 8px;
+    border-radius: 12px;
 
     &.badge--with-text {
       padding-right: 10px;

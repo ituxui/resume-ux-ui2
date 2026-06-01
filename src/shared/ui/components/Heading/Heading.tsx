@@ -13,6 +13,7 @@ type HeadingRole =
   | 'label'    // Подпись к элементу
   | 'question' // Вопрос (FAQ, интерактив)
   | 'navigation-widget' // Заголовок в виджете навигации
+  | 'navigation-caption' // Заголовок в виджете навигации заглавными буквами и небольшим размером
   | 'result-heading' // Вопрос (FAQ, интерактив)
   | 'result-value' // Вопрос (FAQ, интерактив)
   | 'quote'    // Выделенная цитата
@@ -45,6 +46,7 @@ const defaultTagMap: Record<HeadingRole, HeadingTag> = {
   [`navigation-widget`]: 'h3',
   [`result-heading`]: 'h3',
   [`result-value`]: 'h3',
+  [`navigation-caption`]: 'h5',
   quote: 'p',
   stat: 'p',
   group: 'h4',

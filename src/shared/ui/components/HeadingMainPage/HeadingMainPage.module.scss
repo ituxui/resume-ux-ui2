@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.descriptionRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.marker {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  margin-top: 8px; // выравниваем по первой строке текста, подстрой под свой line-height
+  background-color: #22c55e; // зелёный, замени на токен из дизайн-системы при необходимости
+  border-radius: 2px;
+  margin-left: 4px; // отступ между маркером и текстом
+}
+
+.description {
+  margin: 0 !important;
+}
+
+.heading {
+  margin: 0;
+}

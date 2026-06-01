@@ -8,24 +8,24 @@
   max-width: var(--container-max-width);
 }
 
-.left,
-.right {
-  @include flex(column, center, flex-start);
-  flex: 1;
-  gap: 24px;
-}
+// .left,
+// .right {
+//   @include flex(column, center, flex-start);
+//   flex: 1;
+//   gap: 24px;
+// }
 
-.left {
-  padding-right: 24px;
-}
+// .left {
+//   padding-right: 24px;
+// }
 
-.right {
-  padding-left: 24px;
-}
+// .right {
+//   padding-left: 24px;
+// }
 
 .container {
   @include flex(row, flex-start, center);
-  margin-top: var(--margin-sections-vertical);
+  // margin-top: var(--margin-sections-vertical);
   width: 100%;
 }
 
@@ -37,6 +37,85 @@
   padding-bottom: var(--gap--heading_section-to-description);
 }
 
+.bento {
+  &--personal {
+    grid-area: personal;
+  }
+
+  &--design-systems {
+    grid-area: design-systems;
+  }
+
+  &--software {
+    grid-area: software;
+  }
+
+  &--it-courses {
+    grid-area: it-courses;
+  }
+
+  &--soft-skills {
+    grid-area: soft-skills;
+  }
+
+  &--subscriptions {
+    grid-area: subscriptions;
+  }
+
+  &--books {
+    grid-area: books;
+  }
+
+  &--ai-tools {
+    grid-area: ai-tools;
+  }
+
+  &--t-shape {
+    grid-area: t-shape;
+  }
+
+  &--preferences {
+    grid-area: preferences;
+  }
+}
+
+.bento {
+  display: grid;
+  /* Создаем 6 одинаковых колонок */
+  grid-template-columns: repeat(6, 1fr);
+  gap: 20px; /* Отступ между карточками */
+
+  /* Распределяем зоны */
+  grid-template-areas:
+    'software software personal   personal   design-systems design-systems'
+    'software software it-courses it-courses subscriptions  subscriptions'
+    'software software t-shape    t-shape    subscriptions  subscriptions'
+    'books    books    t-shape    t-shape    soft-skills    ai-tools'
+    'books    books    preferences preferences soft-skills   ai-tools';
+  // .bento-grid {
+  //   display: grid;
+  //   /* Создаем 6 одинаковых колонок */
+  //   grid-template-columns: repeat(6, 1fr);
+  //   gap: 20px; /* Отступ между карточками */
+
+  //   /* Распределяем зоны */
+  //   grid-template-areas:
+  //     'software software personal   personal   design-systems design-systems'
+  //     'software software it-courses it-courses subscriptions  subscriptions'
+  //     'software software t-shape    t-shape    subscriptions  subscriptions'
+  //     'books    books    t-shape    t-shape    soft-skills    ai-tools'
+  //     'books    books    preferences preferences soft-skills   ai-tools';
+  // }
+
+  & > * {
+    min-width: 0;
+    overflow: hidden;
+
+    grid-column: unset !important;
+    grid-row: unset !important;
+  }
+}
+
 @include media-s-breakpoint-and-down {
   .wrapper {
     padding-left: 0;
@@ -45,11 +124,11 @@
 }
 
 .bento {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 4px;
-  width: 100%;
-  max-width: var(--bento-width);
+  // display: grid;
+  // grid-template-columns: repeat(8, 1fr);
+  // gap: 4px;
+  // width: 100%;
+  // max-width: var(--bento-width);
 
   &--personal {
     :global(.children) {
@@ -540,6 +619,7 @@
   &--subscriptions {
     background: transparent;
     padding: 0;
+    overflow: hidden;
     &-header {
       background: var(--bento-bg);
       height: 62px;
@@ -695,102 +775,102 @@
   }
 }
 
-@mixin photo($rotate, $translate, $max-width) {
-  --translate: #{$translate};
-  --max-width: #{$max-width};
+// @mixin photo($rotate, $translate, $max-width) {
+//   --translate: #{$translate};
+//   --max-width: #{$max-width};
 
-  max-width: var(--max-width);
-  transform: rotate($rotate) translateX(var(--translate));
-  transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+//   max-width: var(--max-width);
+//   transform: rotate($rotate) translateX(var(--translate));
+//   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
 
-  transform-origin: center;
-  // &,
-  // & > * {
-  //   border-radius: 25px;
-  // }
+//   transform-origin: center;
+//   // &,
+//   // & > * {
+//   //   border-radius: 25px;
+//   // }
 
-  &:hover {
-    transform: rotate(0deg) translateX(var(--translate));
-  }
+//   &:hover {
+//     transform: rotate(0deg) translateX(var(--translate));
+//   }
+// }
+
+// .photo-1 {
+//   @include photo(5deg, clamp(-100px, -10vw, 0px), 100%);
+// }
+// .photo-2 {
+//   @include photo(-5deg, clamp(-80px, -8vw, 0px), 90%);
+
+//   img {
+//     object-position: 40%;
+//   }
+// }
+// .photo-3 {
+//   @include photo(-5deg, clamp(0px, 8vw, 80px), 80%);
+// }
+// .photo-4 {
+//   @include photo(5deg, clamp(0px, 10vw, 100px), 90%);
+// }
+
+// @media (max-width: 1500px) {
+//   .photo-1,
+//   .photo-2,
+//   .photo-3,
+//   .photo-4 {
+//     --translate: 0px;
+//     --max-width: 100%;
+//   }
+// }
+
+// @media (max-width: 1280px) {
+// .photo-1,
+// .photo-2,
+// .photo-3,
+// .photo-4 {
+//   --translate: 0px;
+//   // --max-width: max(200px, 25%);
+//   --max-width: 20vw;
+//   max-width: var(--max-width);
+//   width: 100%;
+// }
+
+// .container {
+//   display: grid;
+//   grid-template-areas:
+//     // 'left right'
+//     'bento bento';
+//   grid-template-columns: 1fr 1fr; /* две равные колонки */
+//   grid-template-rows: auto auto; /* две строки по содержимому */
+//   gap: 16px; /* опционально */
+// }
+
+// .photo-3 {
+//   @include photo(5deg, clamp(0px, -8vw, 80px), 80%);
+// }
+// .photo-4 {
+//   @include photo(-5deg, clamp(0px, -10vw, 100px), 90%);
+// }
+
+// .left {
+//   grid-area: left;
+//   justify-content: right;
+// }
+
+// .right {
+//   grid-area: right;
+//   justify-content: left;
+// }
+
+// .left,
+// .right {
+//   flex-direction: row;
+//   padding: 0;
+// }
+
+.bento {
+  grid-area: bento;
+  max-width: unset;
 }
-
-.photo-1 {
-  @include photo(5deg, clamp(-100px, -10vw, 0px), 100%);
-}
-.photo-2 {
-  @include photo(-5deg, clamp(-80px, -8vw, 0px), 90%);
-
-  img {
-    object-position: 40%;
-  }
-}
-.photo-3 {
-  @include photo(-5deg, clamp(0px, 8vw, 80px), 80%);
-}
-.photo-4 {
-  @include photo(5deg, clamp(0px, 10vw, 100px), 90%);
-}
-
-@media (max-width: 1500px) {
-  .photo-1,
-  .photo-2,
-  .photo-3,
-  .photo-4 {
-    --translate: 0px;
-    --max-width: 100%;
-  }
-}
-
-@media (max-width: 1280px) {
-  .photo-1,
-  .photo-2,
-  .photo-3,
-  .photo-4 {
-    --translate: 0px;
-    // --max-width: max(200px, 25%);
-    --max-width: 20vw;
-    max-width: var(--max-width);
-    width: 100%;
-  }
-
-  .container {
-    display: grid;
-    grid-template-areas:
-      'left right'
-      'bento bento';
-    grid-template-columns: 1fr 1fr; /* две равные колонки */
-    grid-template-rows: auto auto; /* две строки по содержимому */
-    gap: 16px; /* опционально */
-  }
-
-  .photo-3 {
-    @include photo(5deg, clamp(0px, -8vw, 80px), 80%);
-  }
-  .photo-4 {
-    @include photo(-5deg, clamp(0px, -10vw, 100px), 90%);
-  }
-
-  .left {
-    grid-area: left;
-    justify-content: right;
-  }
-
-  .right {
-    grid-area: right;
-    justify-content: left;
-  }
-
-  .left,
-  .right {
-    flex-direction: row;
-    padding: 0;
-  }
-
-  .bento {
-    grid-area: bento;
-    max-width: unset;
-  }
-}
+// }
 
 @include media-s-breakpoint-and-down {
   .bento {
@@ -844,46 +924,6 @@
     // }
 
     // grid areas
-
-    &--personal {
-      grid-area: personal;
-    }
-
-    &--design-systems {
-      grid-area: design-systems;
-    }
-
-    &--software {
-      grid-area: software;
-    }
-
-    &--it-courses {
-      grid-area: it-courses;
-    }
-
-    &--soft-skills {
-      grid-area: soft-skills;
-    }
-
-    &--subscriptions {
-      grid-area: subscriptions;
-    }
-
-    &--books {
-      grid-area: books;
-    }
-
-    &--ai-tools {
-      grid-area: ai-tools;
-    }
-
-    &--t-shape {
-      grid-area: t-shape;
-    }
-
-    &--preferences {
-      grid-area: preferences;
-    }
   }
 }
 
@@ -986,21 +1026,21 @@
   }
 }
 
-@media (max-width: 430px) {
-  .photo-1,
-  .photo-2,
-  .photo-3,
-  .photo-4 {
-    --max-width: 17vw;
-    max-width: var(--max-width);
-    width: var(--max-width);
-  }
+// @media (max-width: 430px) {
+//   .photo-1,
+//   .photo-2,
+//   .photo-3,
+//   .photo-4 {
+//     --max-width: 17vw;
+//     max-width: var(--max-width);
+//     width: var(--max-width);
+//   }
 
-  .left,
-  .right {
-    gap: 6px;
-  }
-}
+//   .left,
+//   .right {
+//     gap: 6px;
+//   }
+// }
 
 @media (max-width: 389.98px) {
   .bento {

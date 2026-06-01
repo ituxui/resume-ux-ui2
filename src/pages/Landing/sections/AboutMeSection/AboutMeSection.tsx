@@ -1,6 +1,6 @@
 import Tilt from 'react-parallax-tilt';
 
-import { Badge, BentoItem, Book, EmojiText, Heading, Image, Link, Nowrap, Pictogram, Screen, Text } from '@components';
+import { Badge, BentoItem, Book, EmojiText, Heading, HeadingMainPage, Image, Link, Nowrap, Pictogram, Screen, Text } from '@components';
 import { booksItems, designSystemsItems, softwareItems, subscriptionsList, technologiesItems } from '@shared/data';
 
 import styles from './AboutMeSection.module.scss';
@@ -14,19 +14,26 @@ import { routeMap } from '@shared/routes';
 export function AboutMeSection() {
   return (
     <div className={styles.wrapper} id="anchor-about-me">
-      <div className={styles.header}>
+      {/* <div className={styles.header}>
         <Heading role="section" className={styles.heading}>
           Обо мне
         </Heading>
         <Text role="caption">Нажмите на элементы бенто</Text>
-      </div>
+      </div> */}
+
+
+      <HeadingMainPage
+        heading="Обо мне"
+        description="Нажмите на элементы бенто"
+      // className={styles.heading}
+      />
 
 
       <div className={styles.container}>
-        <div className={styles.left}>
+        {/* <div className={styles.left}>
           <Screen src="/images/my-photos/ezgif-5f4caa56e597afa9.jpg" alt="В офисе" scroll='static' className={styles['photo-1']} />
           <Screen src="/images/my-photos/ezgif-5d39d34362e9dde5.jpg" alt="Дедлайн" scroll='static' className={styles['photo-2']} />
-        </div>
+        </div> */}
 
 
 
@@ -175,11 +182,11 @@ export function AboutMeSection() {
           </BentoItem>
         </div>
 
-        <div className={styles.right}>
+        {/* <div className={styles.right}>
           <Screen src="/images/my-photos/ezgif-268b656bf08a07f7.jpg" alt="Выступаю" scroll='static' className={styles['photo-3']} />
           <Screen src="/images/my-photos/ezgif-5791ef184acbb522.jpg" alt="В офисе" scroll='static' className={styles['photo-4']}
           />
-        </div>
+        </div> */}
       </div>
 
     </div>

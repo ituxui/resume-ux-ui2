@@ -4,7 +4,7 @@ import cn from 'classnames';
 import styles from './Badge.module.scss';
 
 type BadgeKind = 'island';
-type BadgeSize = 'xl';
+type BadgeSize = 'lg' | 'xl';
 
 interface BadgeProps {
   imageSrc?: string;

@@ -615,7 +615,7 @@ export function UipProductPage() {
           <Stack page="article" width='container' role="subsection">
             <Stack page="article" width='container' role="paragraph">
               <Heading role='result-heading'>
-                Скорость разработки страниц новых ЖК увеличена благодаре унифицированному UI Kit и продуманной структуре с 4 человекочасов...
+                Скорость разработки страниц новых ЖК увеличена благодаря унифицированному UI Kit и продуманной структуре с 4 человекочасов...
               </Heading>
             </Stack>
             <Heading role='result-value'>

@@ -1,0 +1,112 @@
+.bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  max-width: 100%;
+  width: var(--bento-width);
+
+  & > * {
+    min-height: 300px;
+  }
+
+  &--personality-type {
+    position: relative;
+
+    h5 {
+      color: var(--color_text-accent_muted--enabled) !important;
+    }
+    &__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      height: 100%;
+
+      &__heading {
+        /* Задаем градиент слева направо */
+        background: linear-gradient(to right, #aa7dd7, #d26aa9);
+
+        /* Обрезаем фон по тексту */
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        /* Делаем сам цвет текста прозрачным, чтобы было видно фон */
+        -webkit-text-fill-color: transparent;
+        color: transparent;
+
+        /* (Опционально) чтобы текст не переносился криво с градиентом */
+        display: inline-block;
+        margin-bottom: 8px;
+
+        &__icon {
+          position: absolute;
+          width: 16px;
+          right: 18px;
+          top: 18px;
+          height: 16px;
+        }
+      }
+      &__badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 12px;
+      }
+    }
+  }
+
+  &--birthday {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+
+    &__heading {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      flex: 1;
+    }
+
+    &__content {
+      &__description {
+        padding-bottom: 0;
+      }
+      &__date {
+        color: var(--color_text-accent_muted--enabled) !important;
+        padding-bottom: 8px;
+      }
+    }
+  }
+
+  &--location-time {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: space-between;
+
+    &__heading {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-between !important;
+      align-items: flex-start !important;
+      flex: 1;
+    }
+
+    &__content {
+      &__description {
+        padding-bottom: 12px;
+      }
+      &__date {
+        padding-bottom: 0;
+        color: var(--color_text-accent_muted--enabled) !important;
+      }
+    }
+  }
+}
+
+.header,
+.heading {
+  padding-bottom: var(--gap--heading_section-to-description);
+  text-align: center;
+  max-width: 100%;
+  width: var(--bento-width);
+}

@@ -113,6 +113,7 @@
 // SIZE LG
 .size_lg {
   height: var(--size-lg__height);
+  min-height: var(--size-lg__height);
   gap: var(--size-lg__gap);
 
   &.content_text-icon,
@@ -123,6 +124,7 @@
 
   &.content_icon {
     height: var(--size-lg__height);
+    min-height: var(--size-lg__height);
     padding: 0;
   }
 

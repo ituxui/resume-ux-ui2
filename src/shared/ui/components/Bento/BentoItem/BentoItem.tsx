@@ -11,15 +11,26 @@ export const BentoItem = ({
   marginMode = 'large',
   className,
   to,
+  href, // <-- Достаем href
 }: BentoItemProps) => {
   const navigate = useNavigate();
 
+  // Карточка кликабельна, если передан to или href
+  const isClickable = Boolean(to || href);
+
   const handleNavigate = () => {
-    if (to) navigate(to);
+    if (href) {
+      // Открываем внешнюю ссылку в новой вкладке безопасно
+      window.open(href, '_blank', 'noopener,noreferrer');
+    } else if (to) {
+      // Иначе используем внутренний роутинг
+      navigate(to);
+    }
   };
 
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!to) return;
+    if (!isClickable) return;
+
     // Если кликнули по ссылке или кнопке внутри карточки, не переходим по карточке
     const target = e.target as HTMLElement;
     if (target.closest('a') || target.closest('button')) {
@@ -29,7 +40,8 @@ export const BentoItem = ({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!to) return;
+    if (!isClickable) return;
+
     // Поддержка навигации с клавиатуры (Enter или Пробел)
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
@@ -41,12 +53,12 @@ export const BentoItem = ({
     <div
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      tabIndex={to ? 0 : -1} // Делаем фокусируемым только если есть ссылка
-      role={to ? 'link' : undefined}
+      tabIndex={isClickable ? 0 : -1} // Делаем фокусируемым, если есть to или href
+      role={isClickable ? 'link' : undefined}
       className={classNames(
         styles.wrapper,
         styles[`margin_mode--${marginMode}`],
-        to && styles.clickable,
+        (isClickable || href) && styles.clickable, // Применяем ховер-эффекты
         className
       )}
     >

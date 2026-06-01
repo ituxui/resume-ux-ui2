@@ -1,3 +1,5 @@
+export { KhabarovskClock } from './KhabarovskClock/KhabarovskClock';
+
 export { FloatingMenu } from './FloatingMenu/FloatingMenu';
 
 export { PageNavigation } from './PageNavigation/ui/PageNavigation';

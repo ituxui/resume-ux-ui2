@@ -1,4 +1,5 @@
-import { AboutMeSection, ArticlesSection, Hero, LetsTalkSection, ProductsSection, Spheres } from './sections';
+import { AboutMeSection, ArticlesSection, Hero, LetsTalkSection, Spheres } from './sections';
+import { PortfolioSection } from './sections/AboutMeSection/PortfolioSection/PortfolioSection';
 
 
 export function LandingPage() {
@@ -12,7 +13,10 @@ export function LandingPage() {
 
     */}
 
-    <ProductsSection />
+
+    <PortfolioSection />
+
+    {/* <ProductsSection /> */}
     <Spheres />
     <AboutMeSection />
     <ArticlesSection />
