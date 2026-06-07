@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 16px;
   width: 100%;
+  max-width: var(--container-max-width);
 }
 
 .descriptionRow {
@@ -19,6 +20,10 @@
   background-color: #22c55e; // зелёный, замени на токен из дизайн-системы при необходимости
   border-radius: 2px;
   margin-left: 4px; // отступ между маркером и текстом
+
+  @media (max-width: 480px) {
+    margin-top: 4px;
+  }
 }
 
 .description {

@@ -79,7 +79,7 @@ export function useDaysUntilBirthday(
   const isBirthday = days === 0;
   const text = isBirthday
     ? 'Сегодня ДР! 🎉'
-    : `${days} ${pluralizeDays(days)} до ДР`;
+    : `${days} ${pluralizeDays(days)} до праздника`;
 
   return { days, text, isBirthday };
 }

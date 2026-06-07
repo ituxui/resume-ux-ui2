@@ -1,5 +1,5 @@
 import styles from './ArticlesSection.module.scss';
-import { Heading, Text } from '@components';
+import { Heading, HeadingMainPage, Text } from '@components';
 import { Article } from './components/Article';
 import { articlesList } from '@shared/data';
 
@@ -8,12 +8,18 @@ export function ArticlesSection() {
   return (
     <div className={styles.wrapper} id="anchor-articles">
       <div className={styles.container}>
-        <div className={styles.header}>
+        <HeadingMainPage
+          heading="Мой блог"
+          description="Полезные материалы и статьи"
+        // className={styles.heading}
+        />
+
+        {/* <div className={styles.header}>
           <Heading role="section" className={styles.heading}>
             Полезные материалы и статьи
           </Heading>
           <Text role="caption" className={styles[`heading--caption`]}>Подарочки для Вас</Text>
-        </div>
+        </div> */}
 
         <div className={styles.articles}>
           {articlesList.map((article) => (

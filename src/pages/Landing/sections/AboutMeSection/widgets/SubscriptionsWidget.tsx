@@ -1,7 +1,7 @@
 import { type FC, useRef, useState, useEffect, useCallback } from 'react';
 import cn from 'classnames';
 import styles from './SubscriptionsWidget.module.scss';
-import { Heading, Tab, } from '@components';
+import { Heading, Tab, Text, } from '@components';
 
 interface SubscriptionItem {
   heading: string;
@@ -267,7 +267,7 @@ export const SubscriptionsWidget: FC<SubscriptionsWidgetProps> = ({
                       decoding="async" fetchPriority="low"
                       className={styles.itemImage}
                     />
-                    <Heading role='item' className={styles.itemText}>{item.heading}</Heading>
+                    <Text role='bento' className={styles.itemText}>{item.heading}</Text>
                   </a>
                 </li>
               ))}

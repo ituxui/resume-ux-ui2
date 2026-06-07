@@ -3,7 +3,7 @@ import { Link as RouterLink } from 'react-router';
 import cn from 'classnames';
 import styles from './Badge.module.scss';
 
-type BadgeKind = 'island';
+type BadgeKind = 'island' | 'outline';
 type BadgeSize = 'lg' | 'xl';
 
 interface BadgeProps {

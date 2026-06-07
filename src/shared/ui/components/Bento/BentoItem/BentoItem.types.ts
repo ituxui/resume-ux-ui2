@@ -6,6 +6,7 @@ export type BentoItemProps = PropsWithChildren & {
   headingIcon?: ReactNode;
   marginMode?: 'large' | 'compact';
   className?: string;
+  headerClassName?: string;
   to?: RoutePath;
   href?: string; // <-- Новое свойство для внешних ссылок
 };

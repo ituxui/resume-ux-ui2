@@ -17,44 +17,46 @@
 
 /* Сетка: по умолчанию 3 колонки */
 .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  display: flex;
+  // grid-template-columns: repeat(3, 1fr);
+
+  // gap: var(--gap--bento-horizontal);
+  // row-gap: var(--gap--list-vertical);
 }
 
 /* Средние экраны — 2 колонки */
-@media (max-width: 1279px) {
-  .container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+// @media (max-width: 1279px) {
+//   .container {
+//     grid-template-columns: repeat(2, 1fr);
+//   }
+// }
 
 /* Меньше 768px — горизонтальный слайдер */
-@media (max-width: 768px) {
-  .container {
-    display: grid;
-    grid-auto-flow: column; /* элементы в ряд */
-    grid-auto-columns: 80%; /* ширина одного item — 80%, чтобы сосед "торчал" */
-    gap: 16px;
+// @media (max-width: 768px) {
+//   .container {
+//     display: grid;
+//     grid-auto-flow: column; /* элементы в ряд */
+//     grid-auto-columns: 80%; /* ширина одного item — 80%, чтобы сосед "торчал" */
+//     gap: 16px;
 
-    overflow-x: auto;
-    scroll-snap-type: x mandatory; /* приятный "примагничивающийся" скролл */
-    -webkit-overflow-scrolling: touch; /* плавный скролл на iOS */
+//     overflow-x: auto;
+//     scroll-snap-type: x mandatory; /* приятный "примагничивающийся" скролл */
+//     -webkit-overflow-scrolling: touch; /* плавный скролл на iOS */
 
-    /* отступы по краям, чтобы первый/последний элемент не прилипал к границам */
-    padding-inline: 16px;
-    scroll-padding-inline: 16px;
+//     /* отступы по краям, чтобы первый/последний элемент не прилипал к границам */
+//     padding-inline: 16px;
+//     scroll-padding-inline: 16px;
 
-    /* убираем скроллбар (по желанию) */
-    scrollbar-width: none; /* Firefox */
-  }
+//     /* убираем скроллбар (по желанию) */
+//     scrollbar-width: none; /* Firefox */
+//   }
 
-  .container::-webkit-scrollbar {
-    display: none; /* Chrome/Safari */
-  }
+//   .container::-webkit-scrollbar {
+//     display: none; /* Chrome/Safari */
+//   }
 
-  /* каждый элемент примагничивается к началу */
-  .container > * {
-    scroll-snap-align: start;
-  }
-}
+//   /* каждый элемент примагничивается к началу */
+//   .container > * {
+//     scroll-snap-align: start;
+//   }
+// }

@@ -1,0 +1,167 @@
+/* Подключаем вариативный Roboto Flex напрямую от Google (если он у вас не локальный) */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,slnt,wdth,wght,GRAD,XOPQ,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC@8..144,-10..0,25..151,100..1000,-200..150,27..175,323..603,25..135,649..854,-305..-98,560..788,416..570,528..760&display=swap');
+
+.wrapper {
+  font-family: 'Roboto Flex', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: absolute;
+  inset: 0;
+}
+
+.line {
+  line-height: 1;
+  margin: 0;
+  white-space: nowrap;
+
+  // Базовые настройки для всех строк
+  --base-settings:
+    'XOPQ' 96, 'YOPQ' 79, 'XTRA' 483, 'YTUC' 722, 'wght' 375, 'wdth' 102, 'opsz' 12, 'GRAD' 0, 'slnt' 0, 'YTLC' 532, 'YTAS' 727, 'YTDE' -218,
+    'YTFI' 717;
+
+  font-variation-settings: var(--base-settings);
+  // Плавный переход, чтобы анимация не дергалась
+  will-change: font-variation-settings;
+}
+
+/* =========================================
+   АНИМАЦИЯ 1: "Вариативный" (Чернила / Дыхание)
+   Наливается краской (wght + GRAD), но СУЖАЕТСЯ (wdth),
+   чтобы не вылезать за пределы контейнера.
+========================================= */
+.animVariable {
+  margin-top: 72px;
+  font-size: clamp(24px, 5vw, 32px);
+  animation: inkBleed 4s ease-in-out infinite;
+}
+
+@keyframes inkBleed {
+  0%,
+  100% {
+    font-variation-settings: var(--base-settings);
+  }
+  50% {
+    font-variation-settings:
+      'XOPQ' 120,
+      'YOPQ' 100,
+      'XTRA' 400,
+      /* Меньше внутрибуквенного пространства */ 'YTUC' 722,
+      'wght' 800,
+      /* Становится очень жирным */ 'wdth' 75,
+      /* СУЖАЕМ ширину, чтобы компенсировать жирность! */ 'opsz' 8,
+      /* Оптический размер для мелкого текста (закрывает формы) */ 'GRAD' 150,
+      /* Максимальная градация (эффект расплывающихся чернил) */ 'slnt' 0,
+      'YTLC' 532,
+      'YTAS' 727,
+      'YTDE' -218,
+      'YTFI' 717;
+  }
+}
+
+/* =========================================
+   АНИМАЦИЯ 2: "Roboto" (Механика / Курсив)
+   Пружинистая анимация: буквы сплющиваются, затем резко
+   становятся высокими, тонкими и падают в курсив.
+========================================= */
+.animRoboto {
+  margin-bottom: -8px;
+  margin-top: 6px;
+  font-size: clamp(48px, 6vw, 64px);
+  /* Используем пружинистый easing (back) */
+  animation: mechanicalShift 5s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+}
+
+@keyframes mechanicalShift {
+  0%,
+  100% {
+    font-variation-settings: var(--base-settings);
+  }
+  25% {
+    /* Сплющиваем текст по вертикали (YTUC, YTLC) */
+    font-variation-settings:
+      'XOPQ' 96,
+      'YOPQ' 79,
+      'XTRA' 483,
+      'YTUC' 528,
+      /* Заглавные минимальны */ 'wght' 500,
+      'wdth' 90,
+      /* Чуть уже */ 'opsz' 12,
+      'GRAD' 0,
+      'slnt' 0,
+      'YTLC' 416,
+      /* Строчные минимальны */ 'YTAS' 649,
+      /* Укорачиваем хвостики вверх */ 'YTDE' -98,
+      /* Укорачиваем хвостики вниз */ 'YTFI' 560;
+  }
+  60% {
+    /* Резкий выстрел вверх + курсив */
+    font-variation-settings:
+      'XOPQ' 96,
+      'YOPQ' 79,
+      'XTRA' 603,
+      /* Воздушно */ 'YTUC' 760,
+      /* Максимальная высота */ 'wght' 100,
+      /* Супер-тонкий */ 'wdth' 100,
+      'opsz' 144,
+      /* Изящные детали */ 'GRAD' -200,
+      'slnt' -10,
+      /* Максимальный курсив */ 'YTLC' 570,
+      /* Строчные высокие */ 'YTAS' 854,
+      'YTDE' -305,
+      'YTFI' 788;
+  }
+}
+
+/* =========================================
+   АНИМАЦИЯ 3: "Flex" (Экстремальный контраст)
+   Играет с толщиной горизонталей и вертикалей в противофазе.
+   Ширина жестко контролируется.
+========================================= */
+.animFlex {
+  font-size: clamp(80px, 10vw, 96px);
+  animation: elasticContrast 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes elasticContrast {
+  0%,
+  100% {
+    font-variation-settings: var(--base-settings);
+  }
+  35% {
+    /* Очень толстые вертикали, тонкие горизонтали (классический контраст) */
+    font-variation-settings:
+      'XOPQ' 175,
+      /* Вертикали - максимум */ '83' 60,
+      /* Горизонтали - минимум */ 'XTRA' 323,
+      'YTUC' 560,
+      'wght' 400,
+      'wdth' 60,
+      /* Жестко сжимаем ширину, чтобы не вылезло! */ 'opsz' 144,
+      'GRAD' 0,
+      'slnt' 0,
+      'YTLC' 570,
+      'YTAS' 854,
+      'YTDE' -305,
+      'YTFI' 788;
+  }
+  70% {
+    /* Инверсия: толстые горизонтали, тонкие вертикали (обратный контраст) */
+    font-variation-settings:
+      'XOPQ' 27,
+      /* Вертикали - минимум */ 'YOPQ' 135,
+      /* Горизонтали - максимум */ 'XTRA' 550,
+      'YTUC' 600,
+      'wght' 300,
+      'wdth' 95,
+      'opsz' 8,
+      'GRAD' 0,
+      'slnt' -5,
+      'YTLC' 450,
+      'YTAS' 649,
+      'YTDE' -150,
+      'YTFI' 600;
+  }
+}

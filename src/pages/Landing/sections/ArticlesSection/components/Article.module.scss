@@ -27,7 +27,7 @@
 
 .imageContainer {
   background: var(--bento-bg);
-  border-radius: 8px;
+  border-radius: var(--bento__border-radius);
   overflow: hidden;
 }
 

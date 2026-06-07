@@ -21,7 +21,8 @@ type HeadingRole =
   | 'group'    // Объединяет группу элементов
   | 'item'     // Элемент списка/карточки
   | 'meta'    // Дата, автор, категория
-  | 'bento';    // bento блок
+  | 'bento'    // bento блок
+  | 'image';    // изображение
 
 // Семантические теги для заголовков
 type HeadingTag = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div';
@@ -40,6 +41,7 @@ const defaultTagMap: Record<HeadingRole, HeadingTag> = {
   section: 'h2',
   subsection: 'h3',
   article: 'h3',
+  image: 'h3',
   feature: 'h3',
   label: 'span',
   question: 'h3',

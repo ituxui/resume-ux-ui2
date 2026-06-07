@@ -4,6 +4,37 @@
   gap: 8px;
   background-color: #ffffff;
 
+  // & {
+  //   position: relative;
+  //   inset: 50% auto auto 50%;
+  //   transform: translate(-50%, -50%);
+  //   border-radius: 50%;
+  //   background: rgba(255, 255, 255, 0.08);
+  //   border: 2px solid transparent;
+  //   box-shadow:
+  //     0 0 0 2px rgba(255, 255, 255, 0.6),
+  //     0 16px 32px rgba(0, 0, 0, 0.12);
+  //   backdrop-filter: url(#frosted);
+  //   -webkit-backdrop-filter: url(#frosted);
+  //   display: grid;
+  //   place-items: center;
+  //   cursor: pointer;
+  //   outline: 0;
+  // }
+
+  // &::before,
+  // &::after {
+  //   content: '';
+  //   position: absolute;
+  //   width: 40%;
+  //   height: 10px;
+  //   background: #fff;
+  //   border-radius: 10px;
+  // }
+  // &::after {
+  //   transform: rotate(90deg);
+  // }
+
   // Kind: island
   &--kind-island {
     box-shadow:
@@ -12,6 +43,9 @@
       0px 3px 2px rgba(0, 0, 0, 0.03),
       0px 6px 2px rgba(0, 0, 0, 0.01),
       0px 9px 2px rgba(0, 0, 0, 0);
+  }
+  &--kind-outline {
+    border: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   // Size: xl
@@ -43,8 +77,8 @@
   }
 
   &__text {
-    font-size: 14px;
-    line-height: 1.2;
+    font-size: 13px;
+    line-height: 20px;
     white-space: nowrap;
   }
 }

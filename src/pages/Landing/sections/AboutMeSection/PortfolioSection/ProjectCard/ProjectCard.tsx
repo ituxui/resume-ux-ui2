@@ -20,14 +20,12 @@ export const ProjectCard = ({
 }: ProjectCardProps) => {
   return (
     <Link to={link} className={styles.wrapper}>
-      <div className={styles.image}>
-        <img src={img} alt={alt} className={styles.img} />
-      </div>
+      <img src={img} alt={alt} className={styles.img} />
 
-      <Heading role="navigation-widget" className={styles.heading}>
+      <Heading role="item" className={styles.heading}>
         {heading}
       </Heading>
-      <Text role="body" className={styles.description} colorScheme="muted">
+      <Text role="image-info" className={styles.description} colorScheme="muted">
         {description}
       </Text>
     </Link>

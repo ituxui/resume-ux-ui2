@@ -21,7 +21,7 @@ export const KhabarovskClock = ({ testHour, testMinute }: KhabarovskClockProps) 
     <div className={styles.clock}>
       <div className={styles.header}>
         <Heading role="navigation-widget" className={styles.heading}>Я в Хабаровске</Heading>
-        <Text role='body' className={styles.gmt}>GMT +10</Text>
+        <Text role='body' className={styles.gmt}>GMT&nbsp;+10</Text>
       </div>
 
       {/* Красная точка над временем */}
@@ -38,9 +38,11 @@ export const KhabarovskClock = ({ testHour, testMinute }: KhabarovskClockProps) 
 
       {/* Само время */}
       <div className={styles.timeRow}>
-        <Text role='body' className={styles.time}>
+        {/* <Text role='body' className={styles.time}>
+        </Text> */}
+        <Heading role="hero" className={styles.time}>
           {formattedTime}
-        </Text>
+        </Heading>
         {suffix && <span className={styles.suffix}>{suffix}</span>}
       </div>
 

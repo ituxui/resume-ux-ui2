@@ -2,30 +2,14 @@
   @include flex(column, flex-start, center);
   padding-top: calc(var(--margin-sections-vertical) * 2);
   padding-bottom: calc(var(--margin-sections-vertical) * 2);
-  padding-left: var(--margin-screens-horizontal);
-  padding-right: var(--margin-screens-horizontal);
+  // padding-left: var(--margin-screens-horizontal);
+  // padding-right: var(--margin-screens-horizontal);
   width: 100%;
   max-width: var(--container-max-width);
 }
 
-// .left,
-// .right {
-//   @include flex(column, center, flex-start);
-//   flex: 1;
-//   gap: 24px;
-// }
-
-// .left {
-//   padding-right: 24px;
-// }
-
-// .right {
-//   padding-left: 24px;
-// }
-
 .container {
   @include flex(row, flex-start, center);
-  // margin-top: var(--margin-sections-vertical);
   width: 100%;
 }
 
@@ -37,122 +21,112 @@
   padding-bottom: var(--gap--heading_section-to-description);
 }
 
-.bento {
-  &--personal {
-    grid-area: personal;
-  }
-
-  &--design-systems {
-    grid-area: design-systems;
-  }
-
-  &--software {
-    grid-area: software;
-  }
-
-  &--it-courses {
-    grid-area: it-courses;
-  }
-
-  &--soft-skills {
-    grid-area: soft-skills;
-  }
-
-  &--subscriptions {
-    grid-area: subscriptions;
-  }
-
-  &--books {
-    grid-area: books;
-  }
-
-  &--ai-tools {
-    grid-area: ai-tools;
-  }
-
-  &--t-shape {
-    grid-area: t-shape;
-  }
-
-  &--preferences {
-    grid-area: preferences;
-  }
-}
-
+/* =========================================
+   ГЛАВНАЯ СЕТКА BENTO
+========================================= */
 .bento {
   display: grid;
-  /* Создаем 6 одинаковых колонок */
   grid-template-columns: repeat(6, 1fr);
-  gap: 20px; /* Отступ между карточками */
+  gap: var(--gap--bento-horizontal);
 
-  /* Распределяем зоны */
+  width: 100%;
+  grid-area: bento;
+
+  /* Распределяем зоны для десктопа */
   grid-template-areas:
-    'software software personal   personal   design-systems design-systems'
-    'software software it-courses it-courses subscriptions  subscriptions'
-    'software software t-shape    t-shape    subscriptions  subscriptions'
-    'books    books    t-shape    t-shape    soft-skills    ai-tools'
-    'books    books    preferences preferences soft-skills   ai-tools';
-  // .bento-grid {
-  //   display: grid;
-  //   /* Создаем 6 одинаковых колонок */
-  //   grid-template-columns: repeat(6, 1fr);
-  //   gap: 20px; /* Отступ между карточками */
-
-  //   /* Распределяем зоны */
-  //   grid-template-areas:
-  //     'software software personal   personal   design-systems design-systems'
-  //     'software software it-courses it-courses subscriptions  subscriptions'
-  //     'software software t-shape    t-shape    subscriptions  subscriptions'
-  //     'books    books    t-shape    t-shape    soft-skills    ai-tools'
-  //     'books    books    preferences preferences soft-skills   ai-tools';
-  // }
+    'software software personal    personal    design-systems design-systems'
+    'software software it-courses  it-courses  design-systems  design-systems'
+    'software software it-courses  it-courses  subscriptions  subscriptions'
+    'software software t-shape     t-shape     subscriptions  subscriptions'
+    'books    books    t-shape     t-shape     subscriptions  subscriptions'
+    'books    books    preferences preferences soft-skills    ai-tools';
 
   & > * {
     min-width: 0;
     overflow: hidden;
-
-    grid-column: unset !important;
-    grid-row: unset !important;
   }
-}
 
-@include media-s-breakpoint-and-down {
-  .wrapper {
-    padding-left: 0;
-    padding-right: 0;
+  /* ПРИВЯЗКА КЛАССОВ К ЗОНАМ */
+  &--personal {
+    grid-area: personal;
   }
-}
+  &--design-systems {
+    grid-area: design-systems;
+  }
+  &--software {
+    grid-area: software;
+  }
+  &--it-courses {
+    grid-area: it-courses;
+  }
+  &--soft-skills {
+    grid-area: soft-skills;
+  }
+  &--subscriptions {
+    grid-area: subscriptions;
+  }
+  &--books {
+    grid-area: books;
+  }
+  &--ai-tools {
+    grid-area: ai-tools;
+  }
 
-.bento {
-  // display: grid;
-  // grid-template-columns: repeat(8, 1fr);
-  // gap: 4px;
-  // width: 100%;
-  // max-width: var(--bento-width);
+  /* ============ Анимация лучей ============ */
+  @keyframes smoothBg {
+    from {
+      background-position:
+        50% 50%,
+        50% 50%;
+    }
+    to {
+      background-position:
+        350% 50%,
+        350% 50%;
+    }
+  }
+  &--t-shape {
+    grid-area: t-shape;
+  }
+  &--preferences {
+    grid-area: preferences;
+  }
 
+  /* =========================================
+     ВНУТРЕННИЕ СТИЛИ КАРТОЧКЕК
+  ========================================= */
   &--personal {
     :global(.children) {
-      gap: 4px;
+      border-radius: var(--bento__border-radius);
     }
   }
 
-  &--software,
   &--books {
     :global(.children) {
       @include flex(row, space-around, flex-end);
       flex-wrap: wrap;
-      gap: 0 0; // вертикальный gap, горизонтальный = auto
+      gap: 0 0;
     }
   }
 
   &--software {
     --inner-element-size: 62px;
-
     padding-bottom: 24px;
+
+    &-header {
+      flex: 1;
+    }
+
     :global(.children) {
-      & > * {
-        flex: 0 0 clamp(calc(40% - 9px), calc(45% - 9px), calc(60% - 9px)); // 2 колонки
-      }
+      flex-wrap: wrap;
+      gap: 40px;
+      flex: unset;
+
+      @include flex(row, space-evenly, flex-start);
+    }
+
+    :global(.children) > * {
+      flex: 0 0 clamp(calc(40% - 9px), calc(45% - 9px), calc(60% - 9px));
     }
 
     .plus {
@@ -164,6 +138,7 @@
       border-radius: 999px;
       @include flex(row, center, center);
       color: white;
+
       svg {
         width: var(--inner-element-size) !important;
         max-width: unset !important;
@@ -174,12 +149,11 @@
   }
 
   &--t-shape {
-    height: 300px;
+    min-height: 300px;
     padding: 0;
     position: relative;
     overflow: hidden;
 
-    // Фон с кругами через псевдоэлемент (для анимации)
     &::before {
       content: '';
       position: absolute;
@@ -210,19 +184,15 @@
         bottom: auto;
         left: auto;
         right: auto;
-
         --push-x: 0;
         --push-y: 0;
         --w: 32px;
         --h: 32px;
-
         width: var(--w);
         height: var(--h);
-
         transform: translate(-50%, -50%) rotate(var(--r, 0deg));
         transform-origin: center center;
         transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-
         z-index: 1;
 
         &:not(.bento--t-shape--heading) {
@@ -230,11 +200,7 @@
             drop-shadow(0 8px 12px rgba(0, 0, 0, 0.12));
         }
 
-        // ------------------------------------------------------------
-        // 1. ВНЕШНИЙ КОНТУР
-        // ------------------------------------------------------------
-
-        // Redux (Левый Верхний угол)
+        // КОНТУР И СЛОИ T-SHAPE
         &:nth-child(2) {
           top: 8%;
           left: 3%;
@@ -244,8 +210,6 @@
           --w: min(32px, 8vw);
           --h: min(32px, 8vw);
         }
-
-        // Zustand (Правый Верхний угол)
         &:nth-child(6) {
           top: 8%;
           right: 0%;
@@ -255,8 +219,6 @@
           --w: min(48px, 12vw);
           --h: min(48px, 12vw);
         }
-
-        // Flickity (Низ центр)
         &:nth-child(11) {
           bottom: -1%;
           left: 40%;
@@ -266,8 +228,6 @@
           --w: min(48px, 12vw);
           --h: min(48px, 12vw);
         }
-
-        // Storybook (Правый Нижний угол)
         &:nth-child(5) {
           bottom: -5%;
           right: -5%;
@@ -277,8 +237,6 @@
           --w: min(38px, 10vw);
           --h: min(38px, 10vw);
         }
-
-        // AnimeJS (Справа)
         &:nth-child(10) {
           top: 32%;
           right: 10%;
@@ -288,8 +246,6 @@
           --w: min(32px, 8vw);
           --h: min(32px, 8vw);
         }
-
-        // SQL (Левый низ)
         &:nth-child(19) {
           bottom: 0%;
           left: 5%;
@@ -299,8 +255,6 @@
           --w: min(42px, 10vw);
           --h: min(42px, 10vw);
         }
-
-        // MongoDB (Слева)
         &:nth-child(18) {
           top: 50%;
           left: 10%;
@@ -310,8 +264,6 @@
           --w: min(32px, 8vw);
           --h: min(32px, 8vw);
         }
-
-        // Floating UI (Верх)
         &:nth-child(12) {
           top: 10%;
           left: 42%;
@@ -321,12 +273,6 @@
           --w: min(38px, 10vw);
           --h: min(38px, 10vw);
         }
-
-        // ------------------------------------------------------------
-        // 2. СРЕДНИЙ СЛОЙ
-        // ------------------------------------------------------------
-
-        // Node.js (Левый верх)
         &:nth-child(16) {
           top: 25%;
           left: 15%;
@@ -336,8 +282,6 @@
           --w: min(48px, 12vw);
           --h: min(48px, 12vw);
         }
-
-        // Express (Левый низ)
         &:nth-child(17) {
           bottom: 11%;
           left: 21%;
@@ -347,8 +291,6 @@
           --w: min(42px, 10vw);
           --h: min(42px, 10vw);
         }
-
-        // React Hook Form (Справа)
         &:nth-child(3) {
           top: 35%;
           right: -5%;
@@ -358,8 +300,6 @@
           --w: min(32px, 8vw);
           --h: min(32px, 8vw);
         }
-
-        // TanStack (Справа внизу)
         &:nth-child(4) {
           bottom: 25%;
           right: -5%;
@@ -369,8 +309,6 @@
           --w: min(32px, 8vw);
           --h: min(32px, 8vw);
         }
-
-        // API (Справа внизу)
         &:nth-child(15) {
           bottom: 20%;
           right: 12%;
@@ -380,8 +318,6 @@
           --w: min(32px, 8vw);
           --h: min(32px, 8vw);
         }
-
-        // Framer Motion (Правый верх)
         &:nth-child(9) {
           top: 5%;
           right: 22%;
@@ -391,12 +327,6 @@
           --w: min(45px, 11vw);
           --h: min(45px, 11vw);
         }
-
-        // ------------------------------------------------------------
-        // 3. ЯДРО
-        // ------------------------------------------------------------
-
-        // React (Центр-верх)
         &:nth-child(1) {
           top: 23%;
           right: 33%;
@@ -406,8 +336,6 @@
           --w: min(48px, 12vw);
           --h: min(48px, 12vw);
         }
-
-        // JS (Левее центра)
         &:nth-child(7) {
           top: 32%;
           left: 31%;
@@ -417,8 +345,6 @@
           --w: min(32px, 8vw);
           --h: min(32px, 8vw);
         }
-
-        // TS (Правее низа)
         &:nth-child(8) {
           bottom: 0%;
           right: 30%;
@@ -428,8 +354,6 @@
           --w: min(42px, 10vw);
           --h: min(42px, 10vw);
         }
-
-        // HTML (Справа от центра)
         &:nth-child(13) {
           top: 50%;
           right: 22%;
@@ -439,8 +363,6 @@
           --w: min(32px, 8vw);
           --h: min(32px, 8vw);
         }
-
-        // CSS (Слева снизу от центра)
         &:nth-child(14) {
           top: 58%;
           left: 32%;
@@ -453,14 +375,10 @@
       }
     }
 
-    // ============================================================
-    // HOVER НА КОНТЕЙНЕР: все элементы разлетаются от центра
-    // ============================================================
     &:hover :global(.children) > * {
       transform: translate(calc(-50% + var(--push-x)), calc(-50% + var(--push-y))) rotate(var(--r, 0deg));
     }
 
-    // Заголовок в центре
     &--heading {
       --heading-wght: 700 !important;
       --heading-wdth: 190 !important;
@@ -496,7 +414,6 @@
           transform: translate(30%, 1%) rotate(-15deg) scale(0.8);
         }
         &:nth-child(2) {
-          // z-index: 5;
           transform: translate(0px, 0) rotate(-2deg) scale(0.9);
         }
         &:nth-child(3) {
@@ -504,20 +421,15 @@
         }
       }
     }
-    &:hover {
-      :global(.children) {
-        & > * {
-          &:nth-child(1) {
-            transform: translate(35%, 1%) rotate(-18deg) scale(0.8);
-          }
-          &:nth-child(2) {
-            // z-index: 5;
-            transform: translate(0px, 0) rotate(0deg) scale(1);
-          }
-          &:nth-child(3) {
-            transform: translate(-35%, 0) rotate(7deg) scale(0.8);
-          }
-        }
+    &:hover :global(.children) > * {
+      &:nth-child(1) {
+        transform: translate(35%, 1%) rotate(-18deg) scale(0.8);
+      }
+      &:nth-child(2) {
+        transform: translate(0px, 0) rotate(0deg) scale(1);
+      }
+      &:nth-child(3) {
+        transform: translate(-35%, 0) rotate(7deg) scale(0.8);
       }
     }
   }
@@ -525,87 +437,53 @@
   &--it-courses {
     :global(.children) {
       justify-content: space-between;
-      h3 {
-        font-size: 130px;
-        line-height: 130px;
+      h4 {
         transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-
-        --heading-wght: 300;
-        --heading-wdth: 90;
-        --heading-opsz: 18;
-        --heading-GRAD: 0;
-        --heading-slnt: 0;
-        --heading-XOPQ: 96;
-        --heading-YOPQ: 79;
-        --heading-XTRA: 468;
-        --heading-YTLC: 514;
-        --heading-YTUC: 647;
-        --heading-YTAS: 665;
-        --heading-YTDE: -189;
-        --heading-YTFI: 738;
-        font-variation-settings:
-          'wght' var(--heading-wght),
-          'wdth' var(--heading-wdth),
-          'opsz' var(--heading-opsz),
-          'GRAD' var(--heading-GRAD),
-          'slnt' var(--heading-slnt),
-          'XOPQ' var(--heading-XOPQ),
-          'YOPQ' var(--heading-YOPQ),
-          'XTRA' var(--heading-XTRA),
-          'YTLC' var(--heading-YTLC),
-          'YTUC' var(--heading-YTUC),
-          'YTAS' var(--heading-YTAS),
-          'YTDE' var(--heading-YTDE),
-          'YTFI' var(--heading-YTFI);
       }
-      span {
-        font-size: 19px;
-        line-height: 28px;
-        transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
-
-        --heading-wdth: 100;
-        --heading-wght: 400;
-        --heading-opsz: 18;
-        --heading-GRAD: 0;
-        --heading-slnt: 0;
-        --heading-XOPQ: 96;
-        --heading-YOPQ: 79;
-        --heading-XTRA: 468;
-        --heading-YTLC: 514;
-        --heading-YTUC: 647;
-        --heading-YTAS: 665;
-        --heading-YTDE: -189;
-        --heading-YTFI: 738;
-        font-variation-settings:
-          'wght' var(--heading-wght),
-          'wdth' var(--heading-wdth),
-          'opsz' var(--heading-opsz),
-          'GRAD' var(--heading-GRAD),
-          'slnt' var(--heading-slnt),
-          'XOPQ' var(--heading-XOPQ),
-          'YOPQ' var(--heading-YOPQ),
-          'XTRA' var(--heading-XTRA),
-          'YTLC' var(--heading-YTLC),
-          'YTUC' var(--heading-YTUC),
-          'YTAS' var(--heading-YTAS),
-          'YTDE' var(--heading-YTDE),
-          'YTFI' var(--heading-YTFI);
-      }
+      // h3 {
+      //   font-size: 130px;
+      //   line-height: 130px;
+      //   transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      //   font-variation-settings:
+      //     'wght' 300,
+      //     'wdth' 90,
+      //     'opsz' 18,
+      //     'GRAD' 0,
+      //     'slnt' 0,
+      //     'XOPQ' 96,
+      //     'YOPQ' 79,
+      //     'XTRA' 468,
+      //     'YTLC' 514,
+      //     'YTUC' 647,
+      //     'YTAS' 665,
+      //     'YTDE' -189,
+      //     'YTFI' 738;
+      // }
+      // span {
+      //   font-size: 19px;
+      //   line-height: 28px;
+      //   transition: 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      //   font-variation-settings:
+      //     'wght' 400,
+      //     'wdth' 100,
+      //     'opsz' 18,
+      //     'GRAD' 0,
+      //     'slnt' 0,
+      //     'XOPQ' 96,
+      //     'YOPQ' 79,
+      //     'XTRA' 468,
+      //     'YTLC' 514,
+      //     'YTUC' 647,
+      //     'YTAS' 665,
+      //     'YTDE' -189,
+      //     'YTFI' 738;
+      // }
     }
-    &:hover {
-      :global(.children) {
-        h3 {
-          font-size: 145px;
-
-          --heading-wght: 300;
-
-          --heading-opsz: 22;
-        }
-        // span {
-        //   --heading-wdth: 50;
-        //   --heading-opsz: 14;
-        // }
-      }
+    &:hover :global(.children) h4 {
+      font-size: 145px !important;
+      font-variation-settings:
+        'wght' 300,
+        'opsz' 22 !important;
     }
   }
 
@@ -640,19 +518,26 @@
   }
 
   &--ai-tools {
-    background: radial-gradient(125% 125% at 50% 90%, #fff 40%, hsl(239, 84%, 67%) 100%) !important;
-    box-shadow: inset 0px 0px 4px 2px hsla(239, 83%, 77%, 0.25);
+    position: relative;
+    overflow: hidden;
+    // border: none !important;
+    padding: 0 !important;
 
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: none !important;
+    // Убираем старый статичный градиент, так как теперь есть анимированный
+    // background: radial-gradient(...) !important;
+    // box-shadow: inset ...
 
+    /* Делаем так, чтобы контент (текст ИИ) был ПОВЕРХ анимированного фона */
     :global(.children) {
+      position: relative;
+      z-index: 2; /* Важно: поднимаем текст над фоном */
       text-align: center;
       justify-content: center;
+      width: 100%;
+      height: 100%;
     }
 
-    span {
+    span:nth-child(1) {
       background: linear-gradient(180deg, #49474f 0%, hsla(255, 5%, 29%, 80%) 100%);
       background-clip: text;
       -webkit-background-clip: text;
@@ -662,22 +547,59 @@
       color: transparent;
       text-align: center;
       width: 100%;
-    }
-    span:nth-child(1) {
       font-size: 64px;
       line-height: 72px;
       --text-wght: 600;
     }
-    // span:nth-child(2) {
-    //   font-size: 16px;
-    //   line-height: 20px;
-    //   --text-wght: 700;
-    //   margin-top: 4px;
-    // }
-    // span:nth-child(3) {
-    //   font-size: 64px;
-    //   line-height: 72px;
-    //   --text-wght: 600;
+  }
+
+  /* ============ Анимированный фон (Rays) для карточки ИИ ============ */
+  .aiBg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Чтобы клик проходил насквозь к ссылке BentoItem */
+    z-index: 0; /* Фон лежит ниже контента */
+
+    /* Цвета для лучей (можно подстроить под вашу тему) */
+    --stripe-color: #fff;
+    --stripes: repeating-linear-gradient(
+      100deg,
+      var(--stripe-color) 0%,
+      var(--stripe-color) 7%,
+      transparent 10%,
+      transparent 12%,
+      var(--stripe-color) 16%
+    );
+
+    --rainbow: repeating-linear-gradient(100deg, #60a5fa 10%, #e879f9 15%, #60a5fa 20%, #5eead4 25%, #60a5fa 30%);
+
+    background-image: var(--stripes), var(--rainbow);
+    background-size: 300%, 200%;
+    background-position:
+      50% 50%,
+      50% 50%;
+    filter: blur(10px) invert(100%);
+    /* Маска от центра, чтобы края карточки не были засвечены */
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    opacity: 0.5;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: var(--stripes), var(--rainbow);
+      background-size: 200%, 100%;
+      animation: smoothBg 70s linear infinite; /* Анимация smoothBg уже объявлена у вас выше */
+      mix-blend-mode: difference;
+    }
+
+    // @include dark {
+    //   filter: blur(10px) opacity(50%) saturate(200%);
+    //   &::after {
+    //     filter: blur(10px) opacity(50%) saturate(200%);
+    //   }
     // }
   }
 
@@ -686,198 +608,50 @@
       min-height: 200px;
     }
   }
-  &--t-shape {
-    &--heading {
-      --heading-wght: 700 !important;
-      --heading-wdth: 190 !important;
-      top: 50% !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      @include flex(column, center, center);
-
-      & > *:nth-child(1) {
-        font-size: 60px;
-        line-height: 40px;
-      }
-    }
-  }
 
   &--preferences {
     :global(.children) {
       @include flex(row, space-between, flex-end);
-
       img {
         width: 80px;
         transform-origin: bottom center;
       }
     }
-
     &:hover :global(.children) img {
       animation: thumbs-up-shake 0.6s ease-in-out;
     }
-
     &-imageContainer {
       overflow: visible;
     }
   }
-
-  // grid
-  &--personal {
-    grid-column: span 4;
-    grid-row: span 1;
-  }
-
-  &--design-systems {
-    grid-column: span 4;
-    grid-row: span 1;
-  }
-
-  &--software {
-    grid-column: span 2;
-    grid-row: span 3;
-  }
-  &--it-courses {
-    grid-column: span 4;
-    grid-row: span 1;
-  }
-  &--soft-skills {
-    grid-column: span 2;
-    grid-row: span 1;
-  }
-
-  &--subscriptions {
-    grid-column: span 3;
-    grid-row: span 1;
-  }
-
-  &--books {
-    grid-column: span 3;
-    grid-row: span 1;
-  }
-
-  &--ai-tools {
-    grid-column: span 2;
-    grid-row: span 1;
-    background: radial-gradient(circle at center bottom, rgba(255, 215, 0, 1) -10%, rgba(255, 127, 80, 1) 40%, rgba(135, 206, 235, 1) 100%);
-    background-repeat: no-repeat;
-    background-size: cover;
-    border: none !important;
-  }
-
-  &--t-shape {
-    grid-column: span 4;
-    grid-row: span 2;
-  }
-
-  &--preferences {
-    grid-column: span 4;
-    grid-row: span 1;
-  }
 }
 
-// @mixin photo($rotate, $translate, $max-width) {
-//   --translate: #{$translate};
-//   --max-width: #{$max-width};
+/* =========================================
+   МЕДИА ЗАПРОСЫ
+========================================= */
 
-//   max-width: var(--max-width);
-//   transform: rotate($rotate) translateX(var(--translate));
-//   transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
-
-//   transform-origin: center;
-//   // &,
-//   // & > * {
-//   //   border-radius: 25px;
-//   // }
-
-//   &:hover {
-//     transform: rotate(0deg) translateX(var(--translate));
-//   }
-// }
-
-// .photo-1 {
-//   @include photo(5deg, clamp(-100px, -10vw, 0px), 100%);
-// }
-// .photo-2 {
-//   @include photo(-5deg, clamp(-80px, -8vw, 0px), 90%);
-
-//   img {
-//     object-position: 40%;
-//   }
-// }
-// .photo-3 {
-//   @include photo(-5deg, clamp(0px, 8vw, 80px), 80%);
-// }
-// .photo-4 {
-//   @include photo(5deg, clamp(0px, 10vw, 100px), 90%);
-// }
-
-// @media (max-width: 1500px) {
-//   .photo-1,
-//   .photo-2,
-//   .photo-3,
-//   .photo-4 {
-//     --translate: 0px;
-//     --max-width: 100%;
-//   }
-// }
-
-// @media (max-width: 1280px) {
-// .photo-1,
-// .photo-2,
-// .photo-3,
-// .photo-4 {
-//   --translate: 0px;
-//   // --max-width: max(200px, 25%);
-//   --max-width: 20vw;
-//   max-width: var(--max-width);
-//   width: 100%;
-// }
-
-// .container {
-//   display: grid;
-//   grid-template-areas:
-//     // 'left right'
-//     'bento bento';
-//   grid-template-columns: 1fr 1fr; /* две равные колонки */
-//   grid-template-rows: auto auto; /* две строки по содержимому */
-//   gap: 16px; /* опционально */
-// }
-
-// .photo-3 {
-//   @include photo(5deg, clamp(0px, -8vw, 80px), 80%);
-// }
-// .photo-4 {
-//   @include photo(-5deg, clamp(0px, -10vw, 100px), 90%);
-// }
-
-// .left {
-//   grid-area: left;
-//   justify-content: right;
-// }
-
-// .right {
-//   grid-area: right;
-//   justify-content: left;
-// }
-
-// .left,
-// .right {
-//   flex-direction: row;
-//   padding: 0;
-// }
-
-.bento {
-  grid-area: bento;
-  max-width: unset;
+@media (min-width: 1280px) {
+  .bento {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas:
+      'software software personal    personal    subscriptions subscriptions design-systems design-systems'
+      'software software personal    personal    subscriptions subscriptions design-systems design-systems'
+      'software software ai-tools    ai-tools    subscriptions subscriptions it-courses     it-courses'
+      'software software ai-tools    ai-tools    subscriptions subscriptions it-courses     it-courses'
+      'software software ai-tools    ai-tools    subscriptions subscriptions it-courses     it-courses'
+      'books    books    ai-tools    ai-tools soft-skills   soft-skills   t-shape        t-shape'
+      'books    books    preferences preferences soft-skills   soft-skills   t-shape        t-shape';
+  }
 }
-// }
 
 @include media-s-breakpoint-and-down {
-  .bento {
-    grid-area: bento;
-    max-width: unset;
+  .wrapper {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
-    display: grid;
+  .bento {
+    grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
       'personal personal design-systems design-systems'
       'software software software software'
@@ -885,45 +659,14 @@
       't-shape t-shape t-shape ai-tools'
       'subscriptions subscriptions books books'
       'preferences preferences preferences preferences';
-    grid-template-columns: repeat(4, 1fr);
 
-    & > * {
-      min-width: 0;
-      overflow: hidden;
+    &--software :global(.children) {
+      padding-top: 24px;
+      padding-bottom: 24px;
+      gap: 24px 0;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
     }
-
-    &--software {
-      :global(.children) {
-        padding-top: 24px;
-        padding-bottom: 24px;
-        gap: 24px 0;
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-      }
-    }
-    // &--design-systems {
-    //   :global(.children) {
-    //     // padding-top: 24px;
-    //     // padding-bottom: 24px;
-    //     // gap: 24px 0;
-    //     // display: grid;
-    //     // grid-template-columns: repeat(3, 1fr);
-    //     // & > *:last-child {
-    //     //   display: none;
-    //     // }
-    //   }
-    // }
-    // &--t-shape {
-    //   :global(.children) {
-    //     padding-top: 24px;
-    //     padding-bottom: 24px;
-    //     gap: 24px 0;
-    //     display: grid;
-    //     grid-template-columns: repeat(5, 1fr);
-    //   }
-    // }
-
-    // grid areas
   }
 }
 
@@ -946,23 +689,6 @@
         grid-template-columns: repeat(7, 1fr);
       }
     }
-
-    // &--design-systems {
-    //   :global(.children) {
-    //     grid-template-columns: repeat(5, 1fr);
-    //     & > *:last-child {
-    //       display: inline-flex;
-    //     }
-    //   }
-    // }
-    // &--t-shape {
-    //   :global(.children) {
-    //     grid-template-columns: repeat(4, 1fr);
-    //     & > *:last-child {
-    //       display: inline-flex;
-    //     }
-    //   }
-    // }
   }
 }
 
@@ -974,39 +700,10 @@
         grid-template-columns: repeat(5, 1fr);
       }
     }
-
-    // &--design-systems {
-    //   :global(.children) {
-    //     grid-template-columns: repeat(5, 1fr);
-    //     & > *:last-child {
-    //       display: inline-flex;
-    //     }
-    //   }
-    // }
-    // &--t-shape {
-    //   :global(.children) {
-    //     grid-template-columns: repeat(4, 1fr);
-    //     & > *:last-child {
-    //       display: inline-flex;
-    //     }
-    //   }
-    // }
   }
 }
 
 @media (max-width: 479.98px) {
-  // .container {
-  //   grid-template-areas:
-  //     'left'
-  //     'right'
-  //     'bento';
-  //   grid-template-columns: 1fr; /* две равные колонки */
-  // }
-
-  // .left {
-  //   align-items: center;
-  //   justify-content: center;
-  // }
   .bento {
     grid-template-areas:
       'personal personal personal personal'
@@ -1021,26 +718,10 @@
       'preferences preferences preferences preferences';
 
     &--software {
-      --inner-element-size: 42px;
+      --inner-element-size: 56px;
     }
   }
 }
-
-// @media (max-width: 430px) {
-//   .photo-1,
-//   .photo-2,
-//   .photo-3,
-//   .photo-4 {
-//     --max-width: 17vw;
-//     max-width: var(--max-width);
-//     width: var(--max-width);
-//   }
-
-//   .left,
-//   .right {
-//     gap: 6px;
-//   }
-// }
 
 @media (max-width: 389.98px) {
   .bento {
@@ -1057,29 +738,15 @@
       'preferences preferences preferences preferences';
 
     &--software {
-      --inner-element-size: 48px;
+      --inner-element-size: 56px;
       :global(.children) {
         grid-template-columns: repeat(4, 1fr);
       }
     }
-
-    // &--ai-tools {
-    //   span:nth-child(2) {
-    //     font-size: 14px;
-    //     line-height: 20px;
-    //     --text-wght: 700;
-    //     margin-top: 4px;
-    //   }
-    //   span:nth-child(3) {
-    //     font-size: 52px;
-    //     line-height: 72px;
-    //     --text-wght: 600;
-    //   }
-    // }
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 319.98px) {
   .bento {
     grid-template-areas:
       'personal personal personal personal'
@@ -1095,25 +762,11 @@
       'preferences preferences preferences preferences';
 
     &--software {
-      --inner-element-size: 40px;
+      --inner-element-size: 50px;
       :global(.children) {
         grid-template-columns: repeat(3, 1fr);
       }
     }
-
-    // &--ai-tools {
-    //   span:nth-child(2) {
-    //     font-size: 14px;
-    //     line-height: 20px;
-    //     --text-wght: 700;
-    //     margin-top: 4px;
-    //   }
-    //   span:nth-child(3) {
-    //     font-size: 52px;
-    //     line-height: 72px;
-    //     --text-wght: 600;
-    //   }
-    // }
   }
 }
 

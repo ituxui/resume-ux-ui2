@@ -1,6 +1,6 @@
 import Tilt from 'react-parallax-tilt';
 
-import { Badge, BentoItem, Book, EmojiText, Heading, HeadingMainPage, Image, Link, Nowrap, Pictogram, Screen, Text } from '@components';
+import { Badge, BentoItem, Book, EmojiText, Heading, HeadingMainPage, Image, Link, Nowrap, Pictogram, Text } from '@components';
 import { booksItems, designSystemsItems, softwareItems, subscriptionsList, technologiesItems } from '@shared/data';
 
 import styles from './AboutMeSection.module.scss';
@@ -12,6 +12,8 @@ import { routeMap } from '@shared/routes';
 
 
 export function AboutMeSection() {
+
+
   return (
     <div className={styles.wrapper} id="anchor-about-me">
       {/* <div className={styles.header}>
@@ -38,6 +40,7 @@ export function AboutMeSection() {
 
 
         <div className={styles.bento}>
+
           <BentoItem
             marginMode="compact"
             className={styles['bento--personal']}
@@ -48,7 +51,7 @@ export function AboutMeSection() {
             <EmojiText src="/images/emoji/family.png" alt="В офисе">Женат и есть ребёнок</EmojiText>
             <EmojiText src="/images/emoji/東.png" alt="В офисе">Высшее образование переводчика английского и китайского языков</EmojiText>
             {/* <EmojiText src="/images/emoji/army.png" alt="В офисе">Срочная служба в армии 1 год</EmojiText> */}
-            <EmojiText src="/images/emoji/location.png" alt="В офисе">Нахожусь в Хабаровске (UTC +10)</EmojiText>
+            <EmojiText src="/images/emoji/location.png" alt="В офисе">Нахожусь в Хабаровске (UTC&nbsp;+10)</EmojiText>
             {/* <EmojiText src="/images/emoji/alarm.png" alt="В офисе">Желательное время работы до 13 МСК</EmojiText> */}
           </BentoItem>
 
@@ -70,6 +73,7 @@ export function AboutMeSection() {
             marginMode="compact"
             className={styles['bento--software']}
             heading="Программы"
+            headerClassName={styles['bento--software-header']}
             to={routeMap['aboutme-software']['path']}
           >
             {softwareItems.map((item) => (
@@ -85,7 +89,7 @@ export function AboutMeSection() {
             className={styles['bento--it-courses']}
             to={routeMap['aboutme-education']['path']}
           >
-            <h3>30+</h3>
+            <Heading role="hero" className={styles['bento--it-courses-heading']}>30+</Heading>
             <span>
               курсов пройдено по разным цифровым&#160;профессиям с 2019 года
             </span>
@@ -139,12 +143,25 @@ export function AboutMeSection() {
             ))}
           </BentoItem>
 
-          <BentoItem
+          {/* <BentoItem
             marginMode="compact"
             className={styles['bento--ai-tools']}
             to={routeMap['aboutme-ai']['path']}
           >
             <Text role="bento">ИИ</Text>
+            <div className={styles['bento--ai-tools-header']} />
+          </BentoItem> */}
+
+          <BentoItem
+            marginMode="compact"
+            className={styles['bento--ai-tools']}
+            to={routeMap['aboutme-ai']['path']}
+          >
+            {/* Анимированный фон (Лучи) */}
+            <div className={styles.aiBg} />
+
+            {/* Контент поверх */}
+            <Heading role="hero">ИИ</Heading>
           </BentoItem>
 
           <BentoItem

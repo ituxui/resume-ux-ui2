@@ -5,6 +5,9 @@
   --readable-container-max-width: 768px;
 
   --bento-width: 800px;
+  --gap--bento-horizontal: 16px;
+  --gap--list-vertical: 40px;
+
   --readable-container-min_text-width: var(--bento-width);
   --margin-sections-vertical: 120px;
   --margin-screens-horizontal: 24px;
@@ -28,7 +31,7 @@
 
   --padding__popover: 16px;
 
-  --bento__border-radius: 16px;
+  --bento__border-radius: 8px;
 
   --bento__size-compact__padding: 16px;
 

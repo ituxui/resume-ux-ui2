@@ -10,6 +10,7 @@ export const BentoItem = ({
   children,
   marginMode = 'large',
   className,
+  headerClassName,
   to,
   href, // <-- Достаем href
 }: BentoItemProps) => {
@@ -63,7 +64,7 @@ export const BentoItem = ({
       )}
     >
       {heading && (
-        <div className={styles.header}>
+        <div className={classNames(styles.header, headerClassName)}>
           <Heading role="bento" className={styles.heading}>
             {heading}
           </Heading>

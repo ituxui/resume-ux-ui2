@@ -90,7 +90,7 @@ $width-3: var(--container-max-width, 1304px);
   position: relative;
   overflow: hidden;
   width: 100%;
-  border-radius: 12px;
+  border-radius: var(--bento__border-radius);
   border: 1px solid var(--border_color-screen);
   background-color: rgba(0, 0, 0, 0.04);
   cursor: zoom-in;
@@ -208,7 +208,7 @@ $width-3: var(--container-max-width, 1304px);
 
 @media (max-width: 480px) {
   .screen {
-    border-radius: 8px;
+    border-radius: var(--bento__border-radius);
   }
 }
 

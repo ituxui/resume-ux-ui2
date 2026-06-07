@@ -1,12 +1,12 @@
 .bento {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
+  gap: var(--gap--bento-horizontal);
   max-width: 100%;
   width: var(--bento-width);
 
   & > * {
-    min-height: 300px;
+    min-height: 260px;
   }
 
   &--personality-type {
@@ -52,12 +52,17 @@
         margin-top: 12px;
       }
     }
+
+    personality-type__heading {
+      text-wrap-mode: nowrap;
+    }
   }
 
   &--birthday {
     flex-direction: column;
     justify-content: space-between;
     align-items: space-between;
+    position: relative;
 
     &__heading {
       display: flex !important;
@@ -73,7 +78,7 @@
       }
       &__date {
         color: var(--color_text-accent_muted--enabled) !important;
-        padding-bottom: 8px;
+        padding-top: 8px;
       }
     }
   }
@@ -103,10 +108,202 @@
   }
 }
 
+.favorite-font {
+  // background: url('/images/RobotoFlex.jpg') center / cover no-repeat !important;
+  position: relative;
+  &,
+  &--text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    // text-align: center;
+    flex: 1;
+    width: 100%;
+    height: 100%;
+  }
+  :global(.children) {
+    justify-content: space-between;
+    // align-items: center;
+    width: 100%;
+    // img {
+    //   border-radius: 8px;
+    //   filter: invert(100%);
+    //   mix-blend-mode: darken;
+    // }
+  }
+}
+
 .header,
 .heading {
   padding-bottom: var(--gap--heading_section-to-description);
   text-align: center;
   max-width: 100%;
   width: var(--bento-width);
+}
+
+.marital-status {
+  &,
+  :global(.children),
+  &--images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // img {
+  //   padding: 8px;
+  // }
+
+  &--images > *:not(:first-child) {
+    margin-left: -24px; // только между элементами, не у первого
+  }
+
+  &--heading {
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .emoji {
+    display: flex;
+    background: var(--bg__accent-primary);
+    width: 80px;
+    padding: 8px;
+    box-shadow:
+      0 0 0 1px rgba(0, 0, 0, 0.08),
+      rgba(0, 0, 0, 0.12) 0 -4px 6px 0 inset,
+      rgba(0, 0, 0, 0.08) 0 -8px 10px 0 inset,
+      rgba(0, 0, 0, 0.05) 0 -14px 12px 0 inset,
+      rgba(0, 0, 0, 0.06) 0 1px 1px,
+      rgba(0, 0, 0, 0.06) 0 2px 2px,
+      rgba(0, 0, 0, 0.05) 0 4px 3px,
+      rgba(0, 0, 0, 0.04) 0 6px 5px;
+    border-radius: 50%;
+    transition: 0.3s ease;
+
+    &:hover {
+      width: 88px;
+      padding: 6px;
+    }
+  }
+
+  // &--images > {
+  //   & > *:nth-child(1) {
+  //     z-index: 3;
+  //   }
+  //   & > *:nth-child(2) {
+  //     z-index: 2;
+  //   }
+  //   & > *:nth-child(3) {
+  //     z-index: 1;
+  //   }
+  // }
+}
+
+.knowledge-of-languages {
+  /* Переменные для настройки эффекта */
+  --brightness: 0.85;
+  --saturation: 1.5;
+  --frostRadius: 1.5rem;
+
+  position: relative;
+  overflow: hidden;
+
+  /* Фон */
+  background: url('/images/my-photos/show host.jpg') center / cover no-repeat !important;
+
+  /* Layout: разносим хедер наверх, а контент вниз */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* <-- Изменил тут, чтобы заголовок был сверху */
+  gap: 12px;
+  padding: 16px;
+  min-height: 280px; /* Чуть увеличил высоту, чтобы по центру осталось место без блюра */
+  h5 {
+    color: var(--color_text-accent_default-inverted--enabled) !important;
+  }
+  /* === ЭФФЕКТ СТЕКЛА (СВЕРХУ И СНИЗУ) === */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -0.5rem;
+    z-index: 1;
+    pointer-events: none;
+
+    /* Само размытие (не меняем) */
+    backdrop-filter: blur(var(--frostRadius)) saturate(var(--saturation)) brightness(var(--brightness));
+    -webkit-backdrop-filter: blur(var(--frostRadius)) saturate(var(--saturation)) brightness(var(--brightness));
+
+    /* Белое свечение: теперь есть легкое сверху и более сильное снизу */
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.12) 0%,
+      /* Легкое свечение сверху */ rgba(255, 255, 255, 0) 15%,
+      /* Прозрачно в центре */ rgba(255, 255, 255, 0) 40%,
+      /* Прозрачно в центре */ rgba(255, 255, 255, 0.2) 100% /* Свечение снизу */
+    );
+
+    /* МАСКА: Объединяем верхнее и нижнее размытие */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      rgba(0, 0, 0, 0.5) 10%,
+      transparent 28%,
+      transparent 40%,
+      rgba(0, 0, 0, 0.1) 45%,
+      rgba(0, 0, 0, 0.5) 55%,
+      black 75%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      black 0%,
+      /* 100% размытие на самом верху */ rgba(0, 0, 0, 0.5) 10%,
+      /* Быстрое затухание */ transparent 28%,
+
+      /* КОНЕЦ верхнего размытия (оно короткое) */ transparent 40%,
+      /* НАЧАЛО нижнего размытия (центр картинки чистый) */ rgba(0, 0, 0, 0.1) 45%,
+      rgba(0, 0, 0, 0.5) 55%,
+      black 75% /* 100% размытие к низу */
+    );
+  }
+
+  /* === ПОДНИМАЕМ КОНТЕНТ НАД СТЕКЛОМ === */
+  &--header,
+  &--content {
+    position: relative;
+    z-index: 2;
+    color: #fff;
+  }
+
+  &--header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    &__flags {
+      display: flex;
+    }
+
+    .flag {
+      width: 32px;
+      height: 32px;
+      border-radius: 90%;
+      transition: 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+
+      &:not(:first-child) {
+        margin-left: -8px;
+      }
+    }
+  }
+
+  &--content {
+    display: flex;
+    align-items: flex-end;
+    line-height: 1.4;
+  }
+
+  :global(.children) {
+    height: 100%;
+    justify-content: space-between;
+  }
 }

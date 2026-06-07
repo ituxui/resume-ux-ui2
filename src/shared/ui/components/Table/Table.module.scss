@@ -4,7 +4,6 @@
 // VARIABLES
 // ═══════════════════════════════════════════════════════════════════════════
 
-$radius: 12px;
 $border-color: var(--border_color-screen, rgba(0, 0, 0, 0.08));
 $bg-header: var(--color_bg-accent_default--enabled, #1d1d1f);
 $bg-body: var(--color_bg-primary, #fff);
@@ -17,11 +16,11 @@ $text-header: var(--color_text-accent_default-inverted--enabled, #fff);
 .wrapper {
   // Рисуем внешнюю рамку здесь, чтобы она была стационарной
   border: 1px solid $border-color;
-  border-radius: $radius;
+  border-radius: var(--bento__border-radius);
   overflow: hidden; // Обрезаем углы контента и скроллбаров
 
   // Размеры
-  min-width: var(--readable-container-min_text-width);
+  min-width: min(var(--readable-container-min_text-width), 100%);
   // max-width: calc(100vw - (var(--margin-screens-horizontal) * 2));
   max-width: min(100%, calc(100vw - var(--margin-screens-horizontal) * 2));
   max-height: min(70vh, calc(100vh - 100px));
